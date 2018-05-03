@@ -6,10 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Dapper;
+using Freescape.Game.Server.Contracts;
 
 namespace Freescape.Game.Server.Data
 {
-    class DataContext: IDisposable
+    internal class DataContext: IDisposable, IDataContext
     {
         private readonly IDbConnection _connection;
 
@@ -31,13 +32,13 @@ namespace Freescape.Game.Server.Data
             return $"server={ipAddress};database={database};user id={username};password={password};Integrated Security=False;MultipleActiveResultSets=True;TrustServerCertificate=True;Encrypt=False";
         }
 
-        private string ReadSQLScript(string path)
+        private static string ReadSQLScript(string path)
         {
             const string prefix = "Freescape.Game.Server.Data.SQL.";
             path = path.Replace(".sql", "");
             path = prefix + path.Replace("/", ".") + ".sql";
 
-            string sql = string.Empty;
+            string sql;
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path))
             {
                 if (stream == null)
@@ -54,7 +55,7 @@ namespace Freescape.Game.Server.Data
             return sql;
         }
 
-        private DynamicParameters BuildParameters(SqlParameter[] parameters)
+        private static DynamicParameters BuildParameters(SqlParameter[] parameters)
         {
             var args = new DynamicParameters(new { });
             foreach (var parm in parameters)
