@@ -183,20 +183,15 @@
     <Compile Include="NWNX\INTERNAL_nwscript.intrinsics.cs" />
     <Compile Include="NWNX\INTERNAL_Types.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\SQL\**\*.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Contracts\" />
