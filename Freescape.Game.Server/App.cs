@@ -1,32 +1,32 @@
 ﻿using System;
 using System.Linq;
 using Autofac;
-using Freescape.Game.Server.Contracts;
 using Freescape.Game.Server.Data;
+using Freescape.Game.Server.Events.Contracts;
 
 namespace Freescape.Game.Server
 {
     // Compositional root for the app.
-    internal class App
+    internal static class App
     {
-        private IContainer _container;
+        private static IContainer _container;
 
-        public App()
+        static App()
         {
             BuildIOCContainer();
         }
 
-        public void RunEvent<T>()
+        public static void RunEvent<T>()
             where T: IRegisteredEvent
         {
             IRegisteredEvent @event = _container.ResolveNamed<IRegisteredEvent>(typeof(T).ToString());
             @event.Run();
         }
         
-        private void BuildIOCContainer()
+        private static void BuildIOCContainer()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<DataContext>().As<IDataContext>();
+            builder.RegisterType<DataContext>();
 
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);
 
@@ -36,6 +36,11 @@ namespace Freescape.Game.Server
 
         private static void RegisterInterfaceImplementations<T>(ContainerBuilder builder)
         {
+            if (!typeof(T).IsInterface)
+            {
+                throw new Exception("Only interfaces may be used with " + nameof(RegisterInterfaceImplementations));
+            }
+
             var classes = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p => typeof(T).IsAssignableFrom(p) && p.IsClass).ToArray();
