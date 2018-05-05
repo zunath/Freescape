@@ -2,7 +2,7 @@
 using System.Linq;
 using Autofac;
 using Freescape.Game.Server.Data;
-using Freescape.Game.Server.Events.Contracts;
+using Freescape.Game.Server.Events;
 
 namespace Freescape.Game.Server
 {
@@ -16,11 +16,11 @@ namespace Freescape.Game.Server
             BuildIOCContainer();
         }
 
-        public static void RunEvent<T>()
+        public static void RunEvent<T>(params object[] args)
             where T: IRegisteredEvent
         {
             IRegisteredEvent @event = _container.ResolveNamed<IRegisteredEvent>(typeof(T).ToString());
-            @event.Run();
+            @event.Run(args);
         }
         
         private static void BuildIOCContainer()

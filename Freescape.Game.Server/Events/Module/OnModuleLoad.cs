@@ -1,12 +1,11 @@
-﻿using Freescape.Game.Server.Events.Contracts;
-using NWN;
+﻿using NWN;
 using static NWN.NWScript;
 
 namespace Freescape.Game.Server.Events.Module
 {
     internal class OnModuleLoad: IRegisteredEvent
     {
-        public void Run()
+        public void Run(params object[] args)
         {
             SetModuleEventScripts();
             SetAreaEventScripts();
