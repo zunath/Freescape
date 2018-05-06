@@ -64,6 +64,11 @@ namespace Freescape.Game.Server.GameObject
             _script.SetLocalInt(this, name, value);
         }
 
+        public void DeleteLocalInt(string name)
+        {
+            _script.DeleteLocalInt(this, name);
+        }
+
 
         public string GetLocalString(string name)
         {
@@ -73,6 +78,11 @@ namespace Freescape.Game.Server.GameObject
         public void SetLocalString(string name, string value)
         {
             _script.SetLocalString(this, name, value);
+        }
+
+        public void DeleteLocalString(string name)
+        {
+            _script.DeleteLocalString(this, name);
         }
 
 
@@ -86,6 +96,11 @@ namespace Freescape.Game.Server.GameObject
             _script.SetLocalFloat(this, name, value);
         }
 
+        public void DeleteLocalFloat(string name)
+        {
+            _script.DeleteLocalFloat(this, name);
+        }
+
 
         public Location GetLocalLocation(string name)
         {
@@ -97,6 +112,11 @@ namespace Freescape.Game.Server.GameObject
             _script.SetLocalLocation(this, name, value);
         }
 
+        public void DeleteLocalLocation(string name)
+        {
+            _script.DeleteLocalLocation(this, name);
+        }
+
 
         public Object GetLocalObject(string name)
         {
@@ -106,6 +126,11 @@ namespace Freescape.Game.Server.GameObject
         public void SetLocalObject(string name, Object value)
         {
             _script.SetLocalObject(this, name, value);
+        }
+
+        public void DeleteLocalObject(string name)
+        {
+            _script.DeleteLocalObject(this, name);
         }
 
     }

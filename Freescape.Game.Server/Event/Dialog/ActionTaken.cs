@@ -37,7 +37,7 @@ namespace Freescape.Game.Server.Event.Dialog
             else if (selectionNumber != _dialogService.NumberOfResponsesPerPage + 3) // End
             {
                 Type type = Type.GetType("Conversation." + dialog.ActiveDialogName);
-                IConversation convo = App.Get<IConversation>(type);
+                IConversation convo = App.ResolveByInterface<IConversation>(type);
                 convo.DoAction(player, dialog.CurrentPageName, responseID + 1);
             }
 

@@ -24,5 +24,7 @@ namespace Freescape.Game.Server.ValueObject.Dialog
                 Responses.Add(new DialogResponse(response));
             }
         }
+
+        public int NumberOfResponses => Responses.Count;
     }
 }

@@ -1,17 +1,18 @@
 ﻿using Freescape.Game.Server;
-using Freescape.Game.Server.Event.Dialog;
+using Freescape.Game.Server.Event.Legacy;
+using Freescape.Game.Server.Event.Module;
 
 // ReSharper disable once CheckNamespace
 namespace NWN.Scripts
 {
 #pragma warning disable IDE1006 // Naming Styles
-    internal class dialog_appears_0
+    internal class jvm_script_3
 #pragma warning restore IDE1006 // Naming Styles
     {
         // ReSharper disable once UnusedMember.Local
-        private static int Main()
+        private static void Main()
         {
-            return App.RunEvent<AppearsWhen>(2, 0) ? 1 : 0;
+            App.RunEvent<LegacyJVMEvent>("JAVA_SCRIPT_3");
         }
     }
 }

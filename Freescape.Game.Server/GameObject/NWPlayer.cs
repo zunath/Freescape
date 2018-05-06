@@ -1,5 +1,6 @@
 ﻿using System;
 using NWN;
+using Object = NWN.Object;
 
 namespace Freescape.Game.Server.GameObject
 {
@@ -7,12 +8,12 @@ namespace Freescape.Game.Server.GameObject
     {
         private readonly INWScript _script;
 
-        public NWPlayer(INWScript script)
+        private NWPlayer(INWScript script)
             : base(script)
         {
             _script = script;
         }
-
+        
         public bool IsInitialized
         {
             get

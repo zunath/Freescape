@@ -32,5 +32,10 @@ namespace Freescape.Game.Server.ValueObject.Dialog
             }
         }
 
+        public DialogPage CurrentPage
+        {
+            get => Pages[CurrentPageName];
+        }
+
     }
 }

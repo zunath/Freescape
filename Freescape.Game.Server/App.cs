@@ -28,7 +28,7 @@ namespace Freescape.Game.Server
             return @event.Run(args);
         }
 
-        public static T Get<T>()
+        public static T ResolveByInterface<T>()
         {
             if (!typeof(T).IsInterface)
             {
@@ -37,8 +37,8 @@ namespace Freescape.Game.Server
 
             return _container.ResolveNamed<T>(typeof(T).ToString());
         }
-
-        public static T Get<T>(Type type)
+        
+        public static T ResolveByInterface<T>(Type type)
         {
             if (!typeof(T).IsInterface)
             {

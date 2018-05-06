@@ -5,13 +5,13 @@ using Freescape.Game.Server.Event.Dialog;
 namespace NWN.Scripts
 {
 #pragma warning disable IDE1006 // Naming Styles
-    internal class dialog_appears_0
+    internal class dialog_appears_5
 #pragma warning restore IDE1006 // Naming Styles
     {
         // ReSharper disable once UnusedMember.Local
         private static int Main()
         {
-            return App.RunEvent<AppearsWhen>(2, 0) ? 1 : 0;
+            return App.RunEvent<AppearsWhen>(2, 5) ? 1 : 0;
         }
     }
 }

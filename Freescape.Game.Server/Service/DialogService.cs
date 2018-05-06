@@ -75,7 +75,7 @@ namespace Freescape.Game.Server.Service
         public void LoadConversation(NWPlayer player, NWObject talkTo, string @class, int dialogNumber)
         {
             Type type = Type.GetType("Conversation." + @class);
-            IConversation convo = App.Get<IConversation>(type);
+            IConversation convo = App.ResolveByInterface<IConversation>(type);
 
             PlayerDialog dialog = convo.SetUp(player);
             if (dialogNumber > 0)
