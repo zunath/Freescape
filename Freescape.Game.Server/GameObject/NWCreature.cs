@@ -7,12 +7,12 @@ namespace Freescape.Game.Server.GameObject
 {
     public class NWCreature : NWObject, INWCreature
     {
-        private readonly INWScript _script;
+        private readonly INWScript _;
 
         public NWCreature(INWScript script)
             : base(script)
         {
-            _script = script;
+            _ = script;
         }
 
 
@@ -24,57 +24,88 @@ namespace Freescape.Game.Server.GameObject
             return obj;
         }
 
-        public int Age => _script.GetAge(Object);
+        public int Age => _.GetAge(Object);
 
-        public float ChallengeRating => _script.GetChallengeRating(Object);
+        public float ChallengeRating => _.GetChallengeRating(Object);
 
-        public int Class1 => _script.GetClassByPosition(1, Object);
+        public int Class1 => _.GetClassByPosition(1, Object);
 
-        public int Class2 => _script.GetClassByPosition(2, Object);
+        public int Class2 => _.GetClassByPosition(2, Object);
 
-        public int Class3 => _script.GetClassByPosition(3, Object);
+        public int Class3 => _.GetClassByPosition(3, Object);
 
         public bool IsCommandable
         {
-            get => _script.GetCommandable(Object) == 1;
-            set => _script.SetCommandable(value ? 1 : 0, Object);
+            get => _.GetCommandable(Object) == 1;
+            set => _.SetCommandable(value ? 1 : 0, Object);
         }
 
-        public int Size => _script.GetCreatureSize(Object);
+        public int Size => _.GetCreatureSize(Object);
 
         public int Phenotype
         {
-            get => _script.GetPhenoType(Object);
-            set => _script.SetPhenoType(value, Object);
+            get => _.GetPhenoType(Object);
+            set => _.SetPhenoType(value, Object);
         }
 
         public string Deity
         {
-            get => _script.GetDeity(Object);
-            set => _script.SetDeity(Object, value);
+            get => _.GetDeity(Object);
+            set => _.SetDeity(Object, value);
         }
 
-        public int RacialType => _script.GetRacialType(Object);
+        public int RacialType => _.GetRacialType(Object);
 
-        public int Gender => _script.GetGender(Object);
+        public int Gender => _.GetGender(Object);
 
-        public bool IsPlayer => _script.GetIsPC(Object) == 1 && _script.GetIsDM(Object) == 0 && _script.GetIsDMPossessed(Object) == 0;
+        public bool IsPlayer => _.GetIsPC(Object) == 1 && _.GetIsDM(Object) == 0 && _.GetIsDMPossessed(Object) == 0;
 
-        public bool IsDM => _script.GetIsPC(Object) == 0 && (_script.GetIsDM(Object) == 1 || _script.GetIsDMPossessed(Object) == 1);
+        public bool IsDM => _.GetIsPC(Object) == 0 && (_.GetIsDM(Object) == 1 || _.GetIsDMPossessed(Object) == 1);
 
-        public bool IsResting => _script.GetIsResting(Object) == 1;
+        public bool IsResting => _.GetIsResting(Object) == 1;
 
-        public float Weight => _script.GetWeight(Object) * 0.1f;
+        public float Weight => _.GetWeight(Object) * 0.1f;
+
+        public int Strength
+        {
+            get => _.GetAbilityScore(Object, NWScript.ABILITY_STRENGTH);
+            set => throw new NotImplementedException();
+        }
+        public int Dexterity
+        {
+            get => _.GetAbilityScore(Object, NWScript.ABILITY_DEXTERITY);
+            set => throw new NotImplementedException();
+        }
+        public int Constitution
+        {
+            get => _.GetAbilityScore(Object, NWScript.ABILITY_CONSTITUTION);
+            set => throw new NotImplementedException();
+        }
+        public int Wisdom
+        {
+            get => _.GetAbilityScore(Object, NWScript.ABILITY_WISDOM);
+            set => throw new NotImplementedException();
+        }
+        public int Intelligence
+        {
+            get => _.GetAbilityScore(Object, NWScript.ABILITY_INTELLIGENCE);
+            set => throw new NotImplementedException();
+        }
+        public int Charisma
+        {
+            get => _.GetAbilityScore(Object, NWScript.ABILITY_CHARISMA);
+            set => throw new NotImplementedException();
+        }
 
         public int XP
         {
-            get => _script.GetXP(Object);
-            set => _script.SetXP(Object, value);
+            get => _.GetXP(Object);
+            set => _.SetXP(Object, value);
         }
 
         public void AssignCommand(ActionDelegate action)
         {
-            _script.AssignCommand(Object, action);
+            _.AssignCommand(Object, action);
         }
     }
 }

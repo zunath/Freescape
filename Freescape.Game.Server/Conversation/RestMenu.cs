@@ -15,7 +15,7 @@ namespace Freescape.Game.Server.Conversation
                 "Option 2");
 
             dialog.AddPage("MainPage", page);
-            return null;
+            return dialog;
         }
 
         public void Initialize()

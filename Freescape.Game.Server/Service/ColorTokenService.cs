@@ -5,11 +5,11 @@ namespace Freescape.Game.Server.Helper
 {
     public class ColorTokenService : IColorTokenService
     {
-        private readonly INWScript _script;
+        private readonly INWScript _;
 
         public ColorTokenService(INWScript script)
         {
-            _script = script;
+            _ = script;
         }
 
 
@@ -47,9 +47,9 @@ namespace Freescape.Game.Server.Helper
         //
         public string Custom(int nRed, int nGreen, int nBlue)
         {
-            return "<c" + _script.GetSubString(ColorArray, nRed, 1) +
-                    _script.GetSubString(ColorArray, nGreen, 1) +
-                    _script.GetSubString(ColorArray, nBlue, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, nRed, 1) +
+                    _.GetSubString(ColorArray, nGreen, 1) +
+                    _.GetSubString(ColorArray, nBlue, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -76,9 +76,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Black()
         {
-            return "<c" + _script.GetSubString(ColorArray, 0, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 0, 1) +
+                    _.GetSubString(ColorArray, 0, 1) +
+                    _.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -88,9 +88,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Blue()
         {
-            return "<c" + _script.GetSubString(ColorArray, 0, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 0, 1) +
+                    _.GetSubString(ColorArray, 0, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -100,9 +100,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Gray()
         {
-            return "<c" + _script.GetSubString(ColorArray, 127, 1) +
-                    _script.GetSubString(ColorArray, 127, 1) +
-                    _script.GetSubString(ColorArray, 127, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 127, 1) +
+                    _.GetSubString(ColorArray, 127, 1) +
+                    _.GetSubString(ColorArray, 127, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -112,9 +112,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Green()
         {
-            return "<c" + _script.GetSubString(ColorArray, 0, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 0, 1) +
+                    _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -124,9 +124,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string LightPurple()
         {
-            return "<c" + _script.GetSubString(ColorArray, 175, 1) +
-                    _script.GetSubString(ColorArray, 48, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 175, 1) +
+                    _.GetSubString(ColorArray, 48, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -136,9 +136,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Orange()
         {
-            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 127, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 127, 1) +
+                    _.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -148,9 +148,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Pink()
         {
-            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 0, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -160,9 +160,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Purple()
         {
-            return "<c" + _script.GetSubString(ColorArray, 127, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 127, 1) +
+                    _.GetSubString(ColorArray, 0, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -172,9 +172,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Red()
         {
-            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 0, 1) +
+                    _.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -184,9 +184,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string White()
         {
-            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -196,9 +196,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Yellow()
         {
-            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 0, 1) + ">";
         }
 
 
@@ -210,9 +210,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Cyan()
         {
-            return "<c" + _script.GetSubString(ColorArray, 0, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 0, 1) +
+                    _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
 
@@ -230,9 +230,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Combat()
         {
-            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 102, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 102, 1) +
+                    _.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -243,9 +243,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Dialog()
         {
-            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -256,9 +256,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string DialogAction()
         {
-            return "<c" + _script.GetSubString(ColorArray, 1, 1) +
-                    _script.GetSubString(ColorArray, 254, 1) +
-                    _script.GetSubString(ColorArray, 1, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 1, 1) +
+                    _.GetSubString(ColorArray, 254, 1) +
+                    _.GetSubString(ColorArray, 1, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -269,9 +269,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string DialogCheck()
         {
-            return "<c" + _script.GetSubString(ColorArray, 254, 1) +
-                    _script.GetSubString(ColorArray, 1, 1) +
-                    _script.GetSubString(ColorArray, 1, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 254, 1) +
+                    _.GetSubString(ColorArray, 1, 1) +
+                    _.GetSubString(ColorArray, 1, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -282,9 +282,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string DialogHighlight()
         {
-            return "<c" + _script.GetSubString(ColorArray, 1, 1) +
-                    _script.GetSubString(ColorArray, 1, 1) +
-                    _script.GetSubString(ColorArray, 254, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 1, 1) +
+                    _.GetSubString(ColorArray, 1, 1) +
+                    _.GetSubString(ColorArray, 254, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -295,9 +295,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string DialogReply()
         {
-            return "<c" + _script.GetSubString(ColorArray, 102, 1) +
-                    _script.GetSubString(ColorArray, 178, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 102, 1) +
+                    _.GetSubString(ColorArray, 178, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -308,9 +308,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string DM()
         {
-            return "<c" + _script.GetSubString(ColorArray, 16, 1) +
-                    _script.GetSubString(ColorArray, 223, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 16, 1) +
+                    _.GetSubString(ColorArray, 223, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -321,9 +321,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string GameEngine()
         {
-            return "<c" + _script.GetSubString(ColorArray, 204, 1) +
-                    _script.GetSubString(ColorArray, 119, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 204, 1) +
+                    _.GetSubString(ColorArray, 119, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -334,9 +334,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string SavingThrow()
         {
-            return "<c" + _script.GetSubString(ColorArray, 102, 1) +
-                    _script.GetSubString(ColorArray, 204, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 102, 1) +
+                    _.GetSubString(ColorArray, 204, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -347,9 +347,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Script()
         {
-            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -360,9 +360,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Server()
         {
-            return "<c" + _script.GetSubString(ColorArray, 176, 1) +
-                    _script.GetSubString(ColorArray, 176, 1) +
-                    _script.GetSubString(ColorArray, 176, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 176, 1) +
+                    _.GetSubString(ColorArray, 176, 1) +
+                    _.GetSubString(ColorArray, 176, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -373,9 +373,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Shout()
         {
-            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 239, 1) +
-                    _script.GetSubString(ColorArray, 80, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 239, 1) +
+                    _.GetSubString(ColorArray, 80, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -386,9 +386,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string SkillCheck()
         {
-            return "<c" + _script.GetSubString(ColorArray, 0, 1) +
-                    _script.GetSubString(ColorArray, 102, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 0, 1) +
+                    _.GetSubString(ColorArray, 102, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -399,9 +399,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Talk()
         {
-            return "<c" + _script.GetSubString(ColorArray, 240, 1) +
-                    _script.GetSubString(ColorArray, 240, 1) +
-                    _script.GetSubString(ColorArray, 240, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 240, 1) +
+                    _.GetSubString(ColorArray, 240, 1) +
+                    _.GetSubString(ColorArray, 240, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -412,9 +412,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Tell()
         {
-            return "<c" + _script.GetSubString(ColorArray, 32, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 32, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 32, 1) +
+                    _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 32, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -425,9 +425,9 @@ namespace Freescape.Game.Server.Helper
         //
         public  string Whisper()
         {
-            return "<c" + _script.GetSubString(ColorArray, 128, 1) +
-                    _script.GetSubString(ColorArray, 128, 1) +
-                    _script.GetSubString(ColorArray, 128, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, 128, 1) +
+                    _.GetSubString(ColorArray, 128, 1) +
+                    _.GetSubString(ColorArray, 128, 1) + ">";
         }
 
 
@@ -438,7 +438,7 @@ namespace Freescape.Game.Server.Helper
 
 
         ///////////////////////////////////////////////////////////////////////////////
-        // _script.GetNamePCColor()
+        // _.GetNamePCColor()
         //
         // Returns the name of oPC, surrounded by color tokens, so the color of
         // the name is the lighter blue often used in NWN game engine messages.
@@ -446,24 +446,24 @@ namespace Freescape.Game.Server.Helper
         //
         public  string GetNamePCColor(NWObject oPC)
         {
-            return "<c" + _script.GetSubString(ColorArray, 153, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) +
-                    _script.GetSubString(ColorArray, 255, 1) + ">" +
-                    _script.GetName(oPC.Object) + "</c>";
+            return "<c" + _.GetSubString(ColorArray, 153, 1) +
+                    _.GetSubString(ColorArray, 255, 1) +
+                    _.GetSubString(ColorArray, 255, 1) + ">" +
+                    _.GetName(oPC.Object) + "</c>";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // _script.GetNameNPCColor()
+        // _.GetNameNPCColor()
         //
         // Returns the name of oNPC, surrounded by color tokens, so the color of
         // the name is the shade of purple often used in NWN game engine messages.
         //
         public string GetNameNPCColor(NWObject oNPC)
         {
-            return "<c" + _script.GetSubString(ColorArray, 204, 1) +
-                    _script.GetSubString(ColorArray, 153, 1) +
-                    _script.GetSubString(ColorArray, 204, 1) + ">" +
-                    _script.GetName(oNPC.Object) + "</c>";
+            return "<c" + _.GetSubString(ColorArray, 204, 1) +
+                    _.GetSubString(ColorArray, 153, 1) +
+                    _.GetSubString(ColorArray, 204, 1) + ">" +
+                    _.GetName(oNPC.Object) + "</c>";
         }
 
     }

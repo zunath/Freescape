@@ -11,12 +11,12 @@ namespace Freescape.Game.Server.Event.Dialog
 {
     public class AppearsWhen: IRegisteredEvent
     {
-        private readonly INWScript _nw;
+        private readonly INWScript _;
         private readonly IDialogService _dialog;
 
         public AppearsWhen(INWScript nw, IDialogService dialogService)
         {
-            _nw = nw;
+            _ = nw;
             _dialog = dialogService;
         }
 
@@ -26,7 +26,7 @@ namespace Freescape.Game.Server.Event.Dialog
             int nodeID = (int)args[1];
 
             NWObject target = NWObject.Wrap(Object.OBJECT_SELF);
-            NWPlayer player = NWPlayer.Wrap(_nw.GetPCSpeaker());
+            NWPlayer player = NWPlayer.Wrap(_.GetPCSpeaker());
             PlayerDialog dialog = _dialog.LoadPlayerDialog(player.GlobalID);
             DialogPage page = dialog.CurrentPage;
             int currentSelectionNumber = nodeID + 1;
@@ -85,12 +85,12 @@ namespace Freescape.Game.Server.Event.Dialog
                 page = dialog.CurrentPage;
                 newNodeText = page.Header;
 
-                _nw.SetCustomToken(90000 + dialogOffset, newNodeText);
+                _.SetCustomToken(90000 + dialogOffset, newNodeText);
                 target.SetLocalInt("CONVERSATION_SHOW_NODE", 1);
                 return true;
             }
 
-            _nw.SetCustomToken(90001 + nodeID + dialogOffset, newNodeText);
+            _.SetCustomToken(90001 + nodeID + dialogOffset, newNodeText);
             target.SetLocalInt("CONVERSATION_SHOW_NODE", displayNode ? 1 : 0);
             return true;
 

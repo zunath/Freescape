@@ -72,7 +72,8 @@ namespace Freescape.Game.Server
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
             builder.RegisterType<NWScript>().As<INWScript>().SingleInstance();
             builder.RegisterType<ColorTokenService>().As<IColorTokenService>().SingleInstance();
-            
+            builder.RegisterType<PlayerInitializationService>().As<IPlayerInitializationService>();
+
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);
             RegisterInterfaceImplementations<IConversation>(builder);

@@ -100,7 +100,7 @@ namespace Freescape.Game.Server.Data
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TerritoryFlagPermission> TerritoryFlagPermissions { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Attribute>()

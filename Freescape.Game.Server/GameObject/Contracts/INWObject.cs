@@ -16,6 +16,8 @@ namespace Freescape.Game.Server.GameObject.Contracts
         string Resref { get; }
         string Tag { get; set; }
 
+        void DestroyAllInventoryItems();
+
         void DeleteLocalFloat(string name);
         void DeleteLocalInt(string name);
         void DeleteLocalLocation(string name);

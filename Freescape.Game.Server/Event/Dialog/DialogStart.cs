@@ -6,20 +6,20 @@ namespace Freescape.Game.Server.Event.Dialog
 {
     public class DialogStart: IRegisteredEvent
     {
-        private readonly INWScript _script;
+        private readonly INWScript _;
         private readonly IDialogService _dialog;
 
         public DialogStart(INWScript script, IDialogService dialogService)
         {
-            _script = script;
+            _ = script;
             _dialog = dialogService;
         }
 
         public bool Run(params object[] args)
         {
             NWObject npc = NWObject.Wrap(Object.OBJECT_SELF);
-            NWPlayer pc = NWPlayer.Wrap(_script.GetLastUsedBy());
-            if (!pc.IsValid) pc = NWPlayer.Wrap(_script.GetPCSpeaker());
+            NWPlayer pc = NWPlayer.Wrap(_.GetLastUsedBy());
+            if (!pc.IsValid) pc = NWPlayer.Wrap(_.GetPCSpeaker());
 
             string conversation = npc.GetLocalString("CONVERSATION");
 
@@ -29,7 +29,7 @@ namespace Freescape.Game.Server.Event.Dialog
             }
             else
             {
-                _script.ActionStartConversation(pc.Object, "", NWScript.TRUE, NWScript.FALSE);
+                _.ActionStartConversation(pc.Object, "", NWScript.TRUE, NWScript.FALSE);
             }
 
             return true;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Helper;
@@ -12,7 +13,7 @@ namespace Freescape.Game.Server.Service
 {
     public class DialogService: IDialogService
     {
-        private readonly INWScript _script;
+        private readonly INWScript _;
         private readonly IColorTokenService _colorToken;
         private const int NumberOfDialogs = 99;
 
@@ -21,7 +22,7 @@ namespace Freescape.Game.Server.Service
 
         public DialogService(INWScript script, IColorTokenService colorToken)
         {
-            _script = script;
+            _ = script;
             _colorToken = colorToken;
             _playerDialogs = new Dictionary<string, PlayerDialog>();
             _dialogFilesInUse = new Dictionary<int, bool>();
@@ -74,10 +75,17 @@ namespace Freescape.Game.Server.Service
 
         public void LoadConversation(NWPlayer player, NWObject talkTo, string @class, int dialogNumber)
         {
-            Type type = Type.GetType("Conversation." + @class);
+            string @namespace = Assembly.GetExecutingAssembly().GetName().Name + ".Conversation." + @class;
+            Type type = Type.GetType(@namespace);
+
             IConversation convo = App.ResolveByInterface<IConversation>(type);
 
             PlayerDialog dialog = convo.SetUp(player);
+            if (dialog == null)
+            {
+                throw new NullReferenceException(nameof(dialog) + " cannot be null.");
+            }
+
             if (dialogNumber > 0)
                 dialog.DialogNumber = dialogNumber;
 
@@ -88,27 +96,31 @@ namespace Freescape.Game.Server.Service
 
         public void StartConversation(NWPlayer player, NWObject talkTo, string @class)
         {
+            Console.WriteLine("Loading conversation"); // todo debug
             LoadConversation(player, talkTo, @class, -1);
+
+            Console.WriteLine("Getting player dialog"); // todo debug
             PlayerDialog dialog = _playerDialogs[player.GlobalID];
-            
+
+            Console.WriteLine("Checking for dialog number");
             if (dialog.DialogNumber <= 0)
             {
-                _script.FloatingTextStringOnCreature(_colorToken.Red() + "ERROR: No dialog files are available for use." + _colorToken.End(), player.Object, FALSE);
+                _.FloatingTextStringOnCreature(_colorToken.Red() + "ERROR: No dialog files are available for use." + _colorToken.End(), player.Object, FALSE);
                 return;
             }
 
             // NPC conversations
             NWCreature talkToCreature = (NWCreature) talkTo;
-            if (_script.GetObjectType(talkTo.Object) == OBJECT_TYPE_CREATURE &&
+            if (_.GetObjectType(talkTo.Object) == OBJECT_TYPE_CREATURE &&
                 !talkToCreature.IsPlayer &&
                 !talkToCreature.IsDM)
             {
-                _script.BeginConversation("dialog" + dialog.DialogNumber);
+                _.BeginConversation("dialog" + dialog.DialogNumber);
             }
             // Everything else
             else
             {
-                player.AssignCommand(() => _script.ActionStartConversation(talkTo.Object, "dialog"));
+                player.AssignCommand(() => _.ActionStartConversation(talkTo.Object, "dialog"));
             }
         }
 

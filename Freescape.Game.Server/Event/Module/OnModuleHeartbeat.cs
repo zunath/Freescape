@@ -7,10 +7,6 @@ namespace Freescape.Game.Server.Event.Module
     {
         public bool Run(params object[] args)
         {
-            var nwscript = new NWScript();
-
-            Console.WriteLine(nwscript.Random(10)); // todo debug
-
             return true;
 
         }

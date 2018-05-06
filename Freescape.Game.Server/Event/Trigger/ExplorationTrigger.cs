@@ -8,34 +8,34 @@ namespace Freescape.Game.Server.Event.Trigger
 {
     public class ExplorationTrigger: IRegisteredEvent
     {
-        private readonly INWScript _script;
+        private readonly INWScript _;
         private readonly IColorTokenService _colorToken;
 
         public ExplorationTrigger(INWScript script, IColorTokenService colorTokenService)
         {
-            _script = script;
+            _ = script;
             _colorToken = colorTokenService;
         }
 
         public bool Run(params object[] args)
         {
-            NWCreature oPC = NWCreature.Wrap(_script.GetEnteringObject());
+            NWCreature oPC = NWCreature.Wrap(_.GetEnteringObject());
             if (!oPC.IsPlayer) return false;
 
-            string triggerID = _script.GetLocalString(Object.OBJECT_SELF, "TRIGGER_ID");
+            string triggerID = _.GetLocalString(Object.OBJECT_SELF, "TRIGGER_ID");
             if (string.IsNullOrWhiteSpace(triggerID))
             {
                 triggerID = Guid.NewGuid().ToString();
-                _script.SetLocalString(Object.OBJECT_SELF, "TRIGGER_ID", triggerID);
+                _.SetLocalString(Object.OBJECT_SELF, "TRIGGER_ID", triggerID);
             }
 
-            if (_script.GetLocalInt(oPC.Object, triggerID) == 1) return false;
+            if (_.GetLocalInt(oPC.Object, triggerID) == 1) return false;
 
-            string message = _script.GetLocalString(Object.OBJECT_SELF, "DISPLAY_TEXT");
-            _script.SendMessageToPC(oPC.Object, _colorToken.Cyan() + message + _colorToken.End());
-            _script.SetLocalInt(oPC.Object, triggerID, 1);
+            string message = _.GetLocalString(Object.OBJECT_SELF, "DISPLAY_TEXT");
+            _.SendMessageToPC(oPC.Object, _colorToken.Cyan() + message + _colorToken.End());
+            _.SetLocalInt(oPC.Object, triggerID, 1);
 
-            _script.AssignCommand(oPC.Object, () => _script.PlaySound("gui_prompt"));
+            _.AssignCommand(oPC.Object, () => _.PlaySound("gui_prompt"));
 
             return true;
         }
