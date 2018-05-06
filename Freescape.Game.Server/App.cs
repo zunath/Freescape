@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
 using Autofac;
+using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.Data;
-using Freescape.Game.Server.Events;
+using Freescape.Game.Server.Event;
+using Freescape.Game.Server.Service;
+using Freescape.Game.Server.Service.Contracts;
 
 namespace Freescape.Game.Server
 {
@@ -16,19 +19,46 @@ namespace Freescape.Game.Server
             BuildIOCContainer();
         }
 
-        public static void RunEvent<T>(params object[] args)
+        public static bool RunEvent<T>(params object[] args)
             where T: IRegisteredEvent
         {
             IRegisteredEvent @event = _container.ResolveNamed<IRegisteredEvent>(typeof(T).ToString());
-            @event.Run(args);
+            return @event.Run(args);
         }
-        
+
+        public static T Get<T>()
+        {
+            if (!typeof(T).IsInterface)
+            {
+                throw new Exception(nameof(T) + " must be an interface.");
+            }
+
+            return _container.ResolveNamed<T>(typeof(T).ToString());
+        }
+
+        public static T Get<T>(Type type)
+        {
+            if (!typeof(T).IsInterface)
+            {
+                throw new Exception(nameof(T) + " must be an interface.");
+            }
+            
+            return _container.ResolveNamed<T>(type.ToString());
+        }
+
         private static void BuildIOCContainer()
         {
             var builder = new ContainerBuilder();
+
+            // Types
             builder.RegisterType<DataContext>();
 
+            // Services
+            builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
+            
+            // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);
+            RegisterInterfaceImplementations<IConversation>(builder);
 
             _container = builder.Build();
         }

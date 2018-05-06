@@ -1,5 +1,5 @@
 ﻿using Freescape.Game.Server;
-using Freescape.Game.Server.Events.Dialog;
+using Freescape.Game.Server.Event.Dialog;
 
 // ReSharper disable once CheckNamespace
 namespace NWN.Scripts
@@ -9,9 +9,9 @@ namespace NWN.Scripts
 #pragma warning restore IDE1006 // Naming Styles
     {
         // ReSharper disable once UnusedMember.Local
-        private static void Main()
+        private static int Main()
         {
-            App.RunEvent<AppearsWhen>();
+            return App.RunEvent<AppearsWhen>() ? 1 : 0;
         }
     }
 }

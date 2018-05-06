@@ -1,8 +1,9 @@
-﻿namespace NWN
+﻿// ReSharper disable once CheckNamespace
+namespace NWN
 {
     public partial class NWScript
     {
-        public static void AssignCommand(NWN.Object oActionSubject, ActionDelegate aActionToAssign)
+        public static void AssignCommand(Object oActionSubject, ActionDelegate aActionToAssign)
         {
             Internal.ClosureAssignCommand(oActionSubject, aActionToAssign);
         }

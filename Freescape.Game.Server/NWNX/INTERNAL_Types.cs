@@ -1,10 +1,11 @@
 ﻿using System;
 
+// ReSharper disable once CheckNamespace
 namespace NWN
 {
     public class Object
     {
-        public static NWN.Object OBJECT_SELF { get { return Internal.OBJECT_SELF; } }
+        public static Object OBJECT_SELF { get { return Internal.OBJECT_SELF; } }
 
         public uint m_ObjId = Internal.OBJECT_INVALID;
 

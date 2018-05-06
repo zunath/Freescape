@@ -1,4 +1,5 @@
-﻿namespace NWN
+﻿// ReSharper disable once CheckNamespace
+namespace NWN
 {
     public class Events
     {

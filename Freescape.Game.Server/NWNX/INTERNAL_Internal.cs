@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
+// ReSharper disable once CheckNamespace
 namespace NWN
 {
     public class Internal
     {
         public const uint OBJECT_INVALID = 0x7F000000;
 
-        public static NWN.Object OBJECT_SELF { get; private set; } = OBJECT_INVALID;
+        public static Object OBJECT_SELF { get; private set; } = OBJECT_INVALID;
 
-        private static Stack<NWN.Object> s_ScriptContexts = new Stack<NWN.Object>();
+        private static Stack<Object> s_ScriptContexts = new Stack<Object>();
 
         private static void PushScriptContext(uint oid)
         {
@@ -25,22 +25,22 @@ namespace NWN
             OBJECT_SELF = s_ScriptContexts.Count == 0 ? OBJECT_INVALID : s_ScriptContexts.Peek();
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void CallBuiltIn(int id);
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void StackPushInteger(int value);
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void StackPushFloat(float value);
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void StackPushString(string value);
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void StackPushObject_Native(uint value);
 
-        public static void StackPushObject(NWN.Object value, bool defAsObjSelf)
+        public static void StackPushObject(Object value, bool defAsObjSelf)
         {
             if (value == null)
             {
@@ -50,135 +50,135 @@ namespace NWN
             StackPushObject_Native(value.m_ObjId);
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern static void StackPushVector_Native(NWN.Vector value);
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public extern static void StackPushVector_Native(Vector value);
 
-        public static void StackPushVector(NWN.Vector? value)
+        public static void StackPushVector(Vector? value)
         {
             if (!value.HasValue)
             {
-                value = new NWN.Vector(0.0f, 0.0f, 0.0f);
+                value = new Vector(0.0f, 0.0f, 0.0f);
             }
 
             StackPushVector_Native(value.Value);
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void StackPushEffect_Native(IntPtr value);
 
-        public static void StackPushEffect(NWN.Effect value)
+        public static void StackPushEffect(Effect value)
         {
             StackPushEffect_Native(value.m_Handle);
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void StackPushEvent_Native(IntPtr value);
 
-        public static void StackPushEvent(NWN.Event value)
+        public static void StackPushEvent(Event value)
         {
             StackPushEvent_Native(value.m_Handle);
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void StackPushLocation_Native(IntPtr value);
 
-        public static void StackPushLocation(NWN.Location value)
+        public static void StackPushLocation(Location value)
         {
             StackPushLocation_Native(value.m_Handle);
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void StackPushTalent_Native(IntPtr value);
 
-        public static void StackPushTalent(NWN.Talent value)
+        public static void StackPushTalent(Talent value)
         {
             StackPushTalent_Native(value.m_Handle);
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void StackPushItemProperty_Native(IntPtr value);
 
-        public static void StackPushItemProperty(NWN.ItemProperty value)
+        public static void StackPushItemProperty(ItemProperty value)
         {
             StackPushItemProperty_Native(value.m_Handle);
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static int StackPopInteger();
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static float StackPopFloat();
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static string StackPopString();
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static uint StackPopObject_Native();
 
-        public static NWN.Object StackPopObject()
+        public static Object StackPopObject()
         {
             return StackPopObject_Native();
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern static NWN.Vector StackPopVector();
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public extern static Vector StackPopVector();
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static IntPtr StackPopEffect_Native();
 
-        public static NWN.Effect StackPopEffect()
+        public static Effect StackPopEffect()
         {
-            return new NWN.Effect { m_Handle = StackPopEffect_Native() };
+            return new Effect { m_Handle = StackPopEffect_Native() };
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static IntPtr StackPopEvent_Native();
 
-        public static NWN.Event StackPopEvent()
+        public static Event StackPopEvent()
         {
-            return new NWN.Event { m_Handle = StackPopEvent_Native() };
+            return new Event { m_Handle = StackPopEvent_Native() };
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static IntPtr StackPopLocation_Native();
 
-        public static NWN.Location StackPopLocation()
+        public static Location StackPopLocation()
         {
-            return new NWN.Location { m_Handle = StackPopLocation_Native() };
+            return new Location { m_Handle = StackPopLocation_Native() };
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static IntPtr StackPopTalent_Native();
 
-        public static NWN.Talent StackPopTalent()
+        public static Talent StackPopTalent()
         {
-            return new NWN.Talent { m_Handle = StackPopTalent_Native() };
+            return new Talent { m_Handle = StackPopTalent_Native() };
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static IntPtr StackPopItemProperty_Native();
 
-        public static NWN.ItemProperty StackPopItemProperty()
+        public static ItemProperty StackPopItemProperty()
         {
-            return new NWN.ItemProperty { m_Handle = StackPopItemProperty_Native() };
+            return new ItemProperty { m_Handle = StackPopItemProperty_Native() };
         }
 
         private struct Closure
         {
-            public NWN.Object m_Object;
+            public Object m_Object;
             public ActionDelegate m_Func;
         }
 
         private static ulong m_NextEventId = 0;
         private static Dictionary<ulong, Closure> m_Closures = new Dictionary<ulong, Closure>();
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void BeginClosure(uint oid);
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         private extern static int ClosureAssignCommand_Native(uint oid, ulong eventId);
 
-        public static void ClosureAssignCommand(NWN.Object obj, ActionDelegate func)
+        public static void ClosureAssignCommand(Object obj, ActionDelegate func)
         {
             if (ClosureAssignCommand_Native(obj.m_ObjId, m_NextEventId) != 0)
             {
@@ -186,10 +186,10 @@ namespace NWN
             }
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         private extern static int ClosureDelayCommand_Native(uint oid, float duration, ulong eventId);
 
-        public static void ClosureDelayCommand(NWN.Object obj, float duration, ActionDelegate func)
+        public static void ClosureDelayCommand(Object obj, float duration, ActionDelegate func)
         {
             if (ClosureDelayCommand_Native(obj.m_ObjId, duration, m_NextEventId) != 0)
             {
@@ -197,10 +197,10 @@ namespace NWN
             }
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         private extern static int ClosureActionDoCommand_Native(uint oid, ulong eventId);
 
-        public static void ClosureActionDoCommand(NWN.Object obj, ActionDelegate func)
+        public static void ClosureActionDoCommand(Object obj, ActionDelegate func)
         {
             if (ClosureActionDoCommand_Native(obj.m_ObjId, m_NextEventId) != 0)
             {
@@ -217,19 +217,19 @@ namespace NWN
             m_Closures.Remove(eventId);
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void FreeEffect(IntPtr ptr);
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void FreeEvent(IntPtr ptr);
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void FreeLocation(IntPtr ptr);
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void FreeTalent(IntPtr ptr);
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public extern static void FreeItemProperty(IntPtr ptr);
     }
 }

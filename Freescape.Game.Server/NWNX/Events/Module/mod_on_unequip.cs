@@ -1,5 +1,5 @@
 ﻿using Freescape.Game.Server;
-using Freescape.Game.Server.Events.Module;
+using Freescape.Game.Server.Event.Module;
 
 
 // ReSharper disable once CheckNamespace

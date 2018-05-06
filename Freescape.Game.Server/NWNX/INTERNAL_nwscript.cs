@@ -1,4 +1,5 @@
-﻿namespace NWN
+﻿// ReSharper disable once CheckNamespace
+namespace NWN
 {
     public partial class NWScript
     {
@@ -5665,16 +5666,16 @@
         //  Return value on error: 0
         public static int Random(int nMaxInteger)
         {
-            NWN.Internal.StackPushInteger(nMaxInteger);
-            NWN.Internal.CallBuiltIn(0);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nMaxInteger);
+            Internal.CallBuiltIn(0);
+            return Internal.StackPopInteger();
         }
 
         //  Output sString to the log file.
         public static void PrintString(string sString)
         {
-            NWN.Internal.StackPushString(sString);
-            NWN.Internal.CallBuiltIn(1);
+            Internal.StackPushString(sString);
+            Internal.CallBuiltIn(1);
         }
 
         //  Output a formatted float to the log file.
@@ -5682,10 +5683,10 @@
         //  - nDecimals should be a value from 0 to 9 inclusive.
         public static void PrintFloat(float fFloat, int nWidth = 18, int nDecimals = 9)
         {
-            NWN.Internal.StackPushInteger(nDecimals);
-            NWN.Internal.StackPushInteger(nWidth);
-            NWN.Internal.StackPushFloat(fFloat);
-            NWN.Internal.CallBuiltIn(2);
+            Internal.StackPushInteger(nDecimals);
+            Internal.StackPushInteger(nWidth);
+            Internal.StackPushFloat(fFloat);
+            Internal.CallBuiltIn(2);
         }
 
         //  Convert fFloat into a string.
@@ -5693,25 +5694,25 @@
         //  - nDecimals should be a value from 0 to 9 inclusive.
         public static string FloatToString(float fFloat, int nWidth = 18, int nDecimals = 9)
         {
-            NWN.Internal.StackPushInteger(nDecimals);
-            NWN.Internal.StackPushInteger(nWidth);
-            NWN.Internal.StackPushFloat(fFloat);
-            NWN.Internal.CallBuiltIn(3);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nDecimals);
+            Internal.StackPushInteger(nWidth);
+            Internal.StackPushFloat(fFloat);
+            Internal.CallBuiltIn(3);
+            return Internal.StackPopString();
         }
 
         //  Output nInteger to the log file.
         public static void PrintInteger(int nInteger)
         {
-            NWN.Internal.StackPushInteger(nInteger);
-            NWN.Internal.CallBuiltIn(4);
+            Internal.StackPushInteger(nInteger);
+            Internal.CallBuiltIn(4);
         }
 
         //  Output oObject's ID to the log file.
-        public static void PrintObject(NWN.Object oObject)
+        public static void PrintObject(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(5);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(5);
         }
 
         //  Assign aActionToAssign to oActionSubject.
@@ -5728,11 +5729,11 @@
         //  DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
         //  Make oTarget run sScript and then return execution to the calling script.
         //  If sScript does not specify a compiled script, nothing happens.
-        public static void ExecuteScript(string sScript, NWN.Object oTarget)
+        public static void ExecuteScript(string sScript, Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushString(sScript);
-            NWN.Internal.CallBuiltIn(8);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushString(sScript);
+            Internal.CallBuiltIn(8);
         }
 
         //  Clear all the actions of the caller.
@@ -5743,8 +5744,8 @@
         //    engage in dialog, or other actions that they would normally have to wait for.
         public static void ClearAllActions(int nClearCombatState = FALSE)
         {
-            NWN.Internal.StackPushInteger(nClearCombatState);
-            NWN.Internal.CallBuiltIn(9);
+            Internal.StackPushInteger(nClearCombatState);
+            Internal.CallBuiltIn(9);
         }
 
         //  Cause the caller to face fDirection.
@@ -5753,8 +5754,8 @@
         //    predefined. (0.0f=East, 90.0f=North, 180.0f=West, 270.0f=South)
         public static void SetFacing(float fDirection)
         {
-            NWN.Internal.StackPushFloat(fDirection);
-            NWN.Internal.CallBuiltIn(10);
+            Internal.StackPushFloat(fDirection);
+            Internal.CallBuiltIn(10);
         }
 
         //  Set the calendar to the specified date.
@@ -5769,10 +5770,10 @@
         //     the calender being set to a year of 1352, a month of 9 and a day of 10.
         public static void SetCalendar(int nYear, int nMonth, int nDay)
         {
-            NWN.Internal.StackPushInteger(nDay);
-            NWN.Internal.StackPushInteger(nMonth);
-            NWN.Internal.StackPushInteger(nYear);
-            NWN.Internal.CallBuiltIn(11);
+            Internal.StackPushInteger(nDay);
+            Internal.StackPushInteger(nMonth);
+            Internal.StackPushInteger(nYear);
+            Internal.CallBuiltIn(11);
         }
 
         //  Set the time to the time specified.
@@ -5791,60 +5792,60 @@
         //     and the time being set to 18 hours, 10 minutes, 10 milliseconds.
         public static void SetTime(int nHour, int nMinute, int nSecond, int nMillisecond)
         {
-            NWN.Internal.StackPushInteger(nMillisecond);
-            NWN.Internal.StackPushInteger(nSecond);
-            NWN.Internal.StackPushInteger(nMinute);
-            NWN.Internal.StackPushInteger(nHour);
-            NWN.Internal.CallBuiltIn(12);
+            Internal.StackPushInteger(nMillisecond);
+            Internal.StackPushInteger(nSecond);
+            Internal.StackPushInteger(nMinute);
+            Internal.StackPushInteger(nHour);
+            Internal.CallBuiltIn(12);
         }
 
         //  Get the current calendar year.
         public static int GetCalendarYear()
         {
-            NWN.Internal.CallBuiltIn(13);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(13);
+            return Internal.StackPopInteger();
         }
 
         //  Get the current calendar month.
         public static int GetCalendarMonth()
         {
-            NWN.Internal.CallBuiltIn(14);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(14);
+            return Internal.StackPopInteger();
         }
 
         //  Get the current calendar day.
         public static int GetCalendarDay()
         {
-            NWN.Internal.CallBuiltIn(15);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(15);
+            return Internal.StackPopInteger();
         }
 
         //  Get the current hour.
         public static int GetTimeHour()
         {
-            NWN.Internal.CallBuiltIn(16);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(16);
+            return Internal.StackPopInteger();
         }
 
         //  Get the current minute
         public static int GetTimeMinute()
         {
-            NWN.Internal.CallBuiltIn(17);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(17);
+            return Internal.StackPopInteger();
         }
 
         //  Get the current second
         public static int GetTimeSecond()
         {
-            NWN.Internal.CallBuiltIn(18);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(18);
+            return Internal.StackPopInteger();
         }
 
         //  Get the current millisecond
         public static int GetTimeMillisecond()
         {
-            NWN.Internal.CallBuiltIn(19);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(19);
+            return Internal.StackPopInteger();
         }
 
         //  The action subject will generate a random location near its current location
@@ -5855,7 +5856,7 @@
         //    "ActionRandomWalk failed."
         public static void ActionRandomWalk()
         {
-            NWN.Internal.CallBuiltIn(20);
+            Internal.CallBuiltIn(20);
         }
 
         //  The action subject will move to lDestination.
@@ -5864,11 +5865,11 @@
         //  - bRun: If this is TRUE, the action subject will run rather than walk
         //  * No return value, but if an error occurs the log file will contain
         //    "MoveToPoint failed."
-        public static void ActionMoveToLocation(NWN.Location lDestination, int bRun = FALSE)
+        public static void ActionMoveToLocation(Location lDestination, int bRun = FALSE)
         {
-            NWN.Internal.StackPushInteger(bRun);
-            NWN.Internal.StackPushLocation(lDestination);
-            NWN.Internal.CallBuiltIn(21);
+            Internal.StackPushInteger(bRun);
+            Internal.StackPushLocation(lDestination);
+            Internal.CallBuiltIn(21);
         }
 
         //  Cause the action subject to move to a certain distance from oMoveTo.
@@ -5878,12 +5879,12 @@
         //  - fRange: This is the desired distance between the action subject and oMoveTo
         //  * No return value, but if an error occurs the log file will contain
         //    "ActionMoveToObject failed."
-        public static void ActionMoveToObject(NWN.Object oMoveTo, int bRun = FALSE, float fRange = 1.0f)
+        public static void ActionMoveToObject(Object oMoveTo, int bRun = FALSE, float fRange = 1.0f)
         {
-            NWN.Internal.StackPushFloat(fRange);
-            NWN.Internal.StackPushInteger(bRun);
-            NWN.Internal.StackPushObject(oMoveTo, false);
-            NWN.Internal.CallBuiltIn(22);
+            Internal.StackPushFloat(fRange);
+            Internal.StackPushInteger(bRun);
+            Internal.StackPushObject(oMoveTo, false);
+            Internal.CallBuiltIn(22);
         }
 
         //  Cause the action subject to move to a certain distance away from oFleeFrom.
@@ -5895,21 +5896,21 @@
         //    between themselves and oFleeFrom
         //  * No return value, but if an error occurs the log file will contain
         //    "ActionMoveAwayFromObject failed."
-        public static void ActionMoveAwayFromObject(NWN.Object oFleeFrom, int bRun = FALSE, float fMoveAwayRange = 40.0f)
+        public static void ActionMoveAwayFromObject(Object oFleeFrom, int bRun = FALSE, float fMoveAwayRange = 40.0f)
         {
-            NWN.Internal.StackPushFloat(fMoveAwayRange);
-            NWN.Internal.StackPushInteger(bRun);
-            NWN.Internal.StackPushObject(oFleeFrom, false);
-            NWN.Internal.CallBuiltIn(23);
+            Internal.StackPushFloat(fMoveAwayRange);
+            Internal.StackPushInteger(bRun);
+            Internal.StackPushObject(oFleeFrom, false);
+            Internal.CallBuiltIn(23);
         }
 
         //  Get the area that oTarget is currently in
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetArea(NWN.Object oTarget)
+        public static Object GetArea(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(24);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(24);
+            return Internal.StackPopObject();
         }
 
         //  The value returned by this function depends on the object type of the caller:
@@ -5920,58 +5921,58 @@
         //  * Return value on error: OBJECT_INVALID
         //   When used for doors, this should only be called from the OnAreaTransitionClick
         //   event.  Otherwise, it should only be called in OnEnter scripts.
-        public static NWN.Object GetEnteringObject()
+        public static Object GetEnteringObject()
         {
-            NWN.Internal.CallBuiltIn(25);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(25);
+            return Internal.StackPopObject();
         }
 
         //  Get the object that last left the caller.  This function works on triggers,
         //  areas of effect, modules, areas and encounters.
         //  * Return value on error: OBJECT_INVALID
         //  Should only be called in OnExit scripts.
-        public static NWN.Object GetExitingObject()
+        public static Object GetExitingObject()
         {
-            NWN.Internal.CallBuiltIn(26);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(26);
+            return Internal.StackPopObject();
         }
 
         //  Get the position of oTarget
         //  * Return value on error: vector (0.0f, 0.0f, 0.0f)
-        public static NWN.Vector GetPosition(NWN.Object oTarget)
+        public static Vector GetPosition(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(27);
-            return NWN.Internal.StackPopVector();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(27);
+            return Internal.StackPopVector();
         }
 
         //  Get the direction in which oTarget is facing, expressed as a float between
         //  0.0f and 360.0f
         //  * Return value on error: -1.0f
-        public static float GetFacing(NWN.Object oTarget)
+        public static float GetFacing(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(28);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(28);
+            return Internal.StackPopFloat();
         }
 
         //  Get the possessor of oItem
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetItemPossessor(NWN.Object oItem)
+        public static Object GetItemPossessor(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(29);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(29);
+            return Internal.StackPopObject();
         }
 
         //  Get the object possessed by oCreature with the tag sItemTag
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetItemPossessedBy(NWN.Object oCreature, string sItemTag)
+        public static Object GetItemPossessedBy(Object oCreature, string sItemTag)
         {
-            NWN.Internal.StackPushString(sItemTag);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(30);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushString(sItemTag);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(30);
+            return Internal.StackPopObject();
         }
 
         //  Create an item with the template sItemTemplate in oTarget's inventory.
@@ -5982,14 +5983,14 @@
         //  If the item created was merged into an existing stack of similar items,
         //  the function will return the merged stack object. If the merged stack
         //  overflowed, the function will return the overflowed stack that was created.
-        public static NWN.Object CreateItemOnObject(string sItemTemplate, NWN.Object oTarget = null, int nStackSize = 1, string sNewTag = "")
+        public static Object CreateItemOnObject(string sItemTemplate, Object oTarget = null, int nStackSize = 1, string sNewTag = "")
         {
-            NWN.Internal.StackPushString(sNewTag);
-            NWN.Internal.StackPushInteger(nStackSize);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushString(sItemTemplate);
-            NWN.Internal.CallBuiltIn(31);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushString(sNewTag);
+            Internal.StackPushInteger(nStackSize);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushString(sItemTemplate);
+            Internal.CallBuiltIn(31);
+            return Internal.StackPopObject();
         }
 
         //  Equip oItem into nInventorySlot.
@@ -6007,55 +6008,55 @@
         //        2) The item must already be identified (if magical). 
         //        3) The creature has the level required to equip the item (if magical and ILR is on).
         //        4) The creature possesses the required feats to equip the item (such as weapon proficiencies).
-        public static void ActionEquipItem(NWN.Object oItem, int nInventorySlot)
+        public static void ActionEquipItem(Object oItem, int nInventorySlot)
         {
-            NWN.Internal.StackPushInteger(nInventorySlot);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(32);
+            Internal.StackPushInteger(nInventorySlot);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(32);
         }
 
         //  Unequip oItem from whatever slot it is currently in.
-        public static void ActionUnequipItem(NWN.Object oItem)
+        public static void ActionUnequipItem(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(33);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(33);
         }
 
         //  Pick up oItem from the ground.
         //  * No return value, but if an error occurs the log file will contain
         //    "ActionPickUpItem failed."
-        public static void ActionPickUpItem(NWN.Object oItem)
+        public static void ActionPickUpItem(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(34);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(34);
         }
 
         //  Put down oItem on the ground.
         //  * No return value, but if an error occurs the log file will contain
         //    "ActionPutDownItem failed."
-        public static void ActionPutDownItem(NWN.Object oItem)
+        public static void ActionPutDownItem(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(35);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(35);
         }
 
         //  Get the last attacker of oAttackee.  This should only be used ONLY in the
         //  OnAttacked events for creatures, placeables and doors.
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetLastAttacker(NWN.Object oAttackee = null)
+        public static Object GetLastAttacker(Object oAttackee = null)
         {
-            NWN.Internal.StackPushObject(oAttackee, false);
-            NWN.Internal.CallBuiltIn(36);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oAttackee, false);
+            Internal.CallBuiltIn(36);
+            return Internal.StackPopObject();
         }
 
         //  Attack oAttackee.
         //  - bPassive: If this is TRUE, attack is in passive mode.
-        public static void ActionAttack(NWN.Object oAttackee, int bPassive = FALSE)
+        public static void ActionAttack(Object oAttackee, int bPassive = FALSE)
         {
-            NWN.Internal.StackPushInteger(bPassive);
-            NWN.Internal.StackPushObject(oAttackee, false);
-            NWN.Internal.CallBuiltIn(37);
+            Internal.StackPushInteger(bPassive);
+            Internal.StackPushObject(oAttackee, false);
+            Internal.CallBuiltIn(37);
         }
 
         //  Get the creature nearest to oTarget, subject to all the criteria specified.
@@ -6084,18 +6085,18 @@
         //  - nThirdCriteriaValue: This is used in the same way as nFirstCriteriaValue to
         //    further specify the type of creature that we are looking for.
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetNearestCreature(int nFirstCriteriaType, int nFirstCriteriaValue, NWN.Object oTarget = null, int nNth = 1, int nSecondCriteriaType = -1, int nSecondCriteriaValue = -1, int nThirdCriteriaType = -1, int nThirdCriteriaValue = -1)
+        public static Object GetNearestCreature(int nFirstCriteriaType, int nFirstCriteriaValue, Object oTarget = null, int nNth = 1, int nSecondCriteriaType = -1, int nSecondCriteriaValue = -1, int nThirdCriteriaType = -1, int nThirdCriteriaValue = -1)
         {
-            NWN.Internal.StackPushInteger(nThirdCriteriaValue);
-            NWN.Internal.StackPushInteger(nThirdCriteriaType);
-            NWN.Internal.StackPushInteger(nSecondCriteriaValue);
-            NWN.Internal.StackPushInteger(nSecondCriteriaType);
-            NWN.Internal.StackPushInteger(nNth);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushInteger(nFirstCriteriaValue);
-            NWN.Internal.StackPushInteger(nFirstCriteriaType);
-            NWN.Internal.CallBuiltIn(38);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(nThirdCriteriaValue);
+            Internal.StackPushInteger(nThirdCriteriaType);
+            Internal.StackPushInteger(nSecondCriteriaValue);
+            Internal.StackPushInteger(nSecondCriteriaType);
+            Internal.StackPushInteger(nNth);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushInteger(nFirstCriteriaValue);
+            Internal.StackPushInteger(nFirstCriteriaType);
+            Internal.CallBuiltIn(38);
+            return Internal.StackPopObject();
         }
 
         //  Add a speak action to the action subject.
@@ -6103,9 +6104,9 @@
         //  - nTalkVolume: TALKVOLUME_*
         public static void ActionSpeakString(string sStringToSpeak, int nTalkVolume = TALKVOLUME_TALK)
         {
-            NWN.Internal.StackPushInteger(nTalkVolume);
-            NWN.Internal.StackPushString(sStringToSpeak);
-            NWN.Internal.CallBuiltIn(39);
+            Internal.StackPushInteger(nTalkVolume);
+            Internal.StackPushString(sStringToSpeak);
+            Internal.CallBuiltIn(39);
         }
 
         //  Cause the action subject to play an animation
@@ -6115,41 +6116,41 @@
         //    Forget animations)
         public static void ActionPlayAnimation(int nAnimation, float fSpeed = 1.0f, float fDurationSeconds = 0.0f)
         {
-            NWN.Internal.StackPushFloat(fDurationSeconds);
-            NWN.Internal.StackPushFloat(fSpeed);
-            NWN.Internal.StackPushInteger(nAnimation);
-            NWN.Internal.CallBuiltIn(40);
+            Internal.StackPushFloat(fDurationSeconds);
+            Internal.StackPushFloat(fSpeed);
+            Internal.StackPushInteger(nAnimation);
+            Internal.CallBuiltIn(40);
         }
 
         //  Get the distance from the caller to oObject in metres.
         //  * Return value on error: -1.0f
-        public static float GetDistanceToObject(NWN.Object oObject)
+        public static float GetDistanceToObject(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(41);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(41);
+            return Internal.StackPopFloat();
         }
 
         //  * Returns TRUE if oObject is a valid object.
-        public static int GetIsObjectValid(NWN.Object oObject)
+        public static int GetIsObjectValid(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(42);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(42);
+            return Internal.StackPopInteger();
         }
 
         //  Cause the action subject to open oDoor
-        public static void ActionOpenDoor(NWN.Object oDoor)
+        public static void ActionOpenDoor(Object oDoor)
         {
-            NWN.Internal.StackPushObject(oDoor, false);
-            NWN.Internal.CallBuiltIn(43);
+            Internal.StackPushObject(oDoor, false);
+            Internal.CallBuiltIn(43);
         }
 
         //  Cause the action subject to close oDoor
-        public static void ActionCloseDoor(NWN.Object oDoor)
+        public static void ActionCloseDoor(Object oDoor)
         {
-            NWN.Internal.StackPushObject(oDoor, false);
-            NWN.Internal.CallBuiltIn(44);
+            Internal.StackPushObject(oDoor, false);
+            Internal.CallBuiltIn(44);
         }
 
         //  Change the direction in which the camera is facing
@@ -6170,11 +6171,11 @@
         //  Pitch 1-89
         public static void SetCameraFacing(float fDirection, float fDistance = -1.0f, float fPitch = -1.0f, int nTransitionType = CAMERA_TRANSITION_TYPE_SNAP)
         {
-            NWN.Internal.StackPushInteger(nTransitionType);
-            NWN.Internal.StackPushFloat(fPitch);
-            NWN.Internal.StackPushFloat(fDistance);
-            NWN.Internal.StackPushFloat(fDirection);
-            NWN.Internal.CallBuiltIn(45);
+            Internal.StackPushInteger(nTransitionType);
+            Internal.StackPushFloat(fPitch);
+            Internal.StackPushFloat(fDistance);
+            Internal.StackPushFloat(fDirection);
+            Internal.CallBuiltIn(45);
         }
 
         //  Play sSoundName
@@ -6182,16 +6183,16 @@
         //  This will play a mono sound from the location of the object running the command.
         public static void PlaySound(string sSoundName)
         {
-            NWN.Internal.StackPushString(sSoundName);
-            NWN.Internal.CallBuiltIn(46);
+            Internal.StackPushString(sSoundName);
+            Internal.CallBuiltIn(46);
         }
 
         //  Get the object at which the caller last cast a spell
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetSpellTargetObject()
+        public static Object GetSpellTargetObject()
         {
-            NWN.Internal.CallBuiltIn(47);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(47);
+            return Internal.StackPopObject();
         }
 
         //  This action casts a spell at oTarget.
@@ -6205,179 +6206,179 @@
         //  - bInstantSpell: If this is TRUE, the spell is cast immediately. This allows
         //    the end-user to simulate a high-level magic-user having lots of advance
         //    warning of impending trouble
-        public static void ActionCastSpellAtObject(int nSpell, NWN.Object oTarget, int nMetaMagic = METAMAGIC_ANY, int bCheat = FALSE, int nDomainLevel = 0, int nProjectilePathType = PROJECTILE_PATH_TYPE_DEFAULT, int bInstantSpell = FALSE)
+        public static void ActionCastSpellAtObject(int nSpell, Object oTarget, int nMetaMagic = METAMAGIC_ANY, int bCheat = FALSE, int nDomainLevel = 0, int nProjectilePathType = PROJECTILE_PATH_TYPE_DEFAULT, int bInstantSpell = FALSE)
         {
-            NWN.Internal.StackPushInteger(bInstantSpell);
-            NWN.Internal.StackPushInteger(nProjectilePathType);
-            NWN.Internal.StackPushInteger(nDomainLevel);
-            NWN.Internal.StackPushInteger(bCheat);
-            NWN.Internal.StackPushInteger(nMetaMagic);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.CallBuiltIn(48);
+            Internal.StackPushInteger(bInstantSpell);
+            Internal.StackPushInteger(nProjectilePathType);
+            Internal.StackPushInteger(nDomainLevel);
+            Internal.StackPushInteger(bCheat);
+            Internal.StackPushInteger(nMetaMagic);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushInteger(nSpell);
+            Internal.CallBuiltIn(48);
         }
 
         //  Get the current hitpoints of oObject
         //  * Return value on error: 0
-        public static int GetCurrentHitPoints(NWN.Object oObject = null)
+        public static int GetCurrentHitPoints(Object oObject = null)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(49);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(49);
+            return Internal.StackPopInteger();
         }
 
         //  Get the maximum hitpoints of oObject
         //  * Return value on error: 0
-        public static int GetMaxHitPoints(NWN.Object oObject = null)
+        public static int GetMaxHitPoints(Object oObject = null)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(50);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(50);
+            return Internal.StackPopInteger();
         }
 
         //  Get oObject's local integer variable sVarName
         //  * Return value on error: 0
-        public static int GetLocalInt(NWN.Object oObject, string sVarName)
+        public static int GetLocalInt(Object oObject, string sVarName)
         {
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(51);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(51);
+            return Internal.StackPopInteger();
         }
 
         //  Get oObject's local float variable sVarName
         //  * Return value on error: 0.0f
-        public static float GetLocalFloat(NWN.Object oObject, string sVarName)
+        public static float GetLocalFloat(Object oObject, string sVarName)
         {
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(52);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(52);
+            return Internal.StackPopFloat();
         }
 
         //  Get oObject's local string variable sVarName
         //  * Return value on error: ""
-        public static string GetLocalString(NWN.Object oObject, string sVarName)
+        public static string GetLocalString(Object oObject, string sVarName)
         {
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(53);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(53);
+            return Internal.StackPopString();
         }
 
         //  Get oObject's local object variable sVarName
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetLocalObject(NWN.Object oObject, string sVarName)
+        public static Object GetLocalObject(Object oObject, string sVarName)
         {
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(54);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(54);
+            return Internal.StackPopObject();
         }
 
         //  Set oObject's local integer variable sVarName to nValue
-        public static void SetLocalInt(NWN.Object oObject, string sVarName, int nValue)
+        public static void SetLocalInt(Object oObject, string sVarName, int nValue)
         {
-            NWN.Internal.StackPushInteger(nValue);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(55);
+            Internal.StackPushInteger(nValue);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(55);
         }
 
         //  Set oObject's local float variable sVarName to nValue
-        public static void SetLocalFloat(NWN.Object oObject, string sVarName, float fValue)
+        public static void SetLocalFloat(Object oObject, string sVarName, float fValue)
         {
-            NWN.Internal.StackPushFloat(fValue);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(56);
+            Internal.StackPushFloat(fValue);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(56);
         }
 
         //  Set oObject's local string variable sVarName to nValue
-        public static void SetLocalString(NWN.Object oObject, string sVarName, string sValue)
+        public static void SetLocalString(Object oObject, string sVarName, string sValue)
         {
-            NWN.Internal.StackPushString(sValue);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(57);
+            Internal.StackPushString(sValue);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(57);
         }
 
         //  Set oObject's local object variable sVarName to nValue
-        public static void SetLocalObject(NWN.Object oObject, string sVarName, NWN.Object oValue)
+        public static void SetLocalObject(Object oObject, string sVarName, Object oValue)
         {
-            NWN.Internal.StackPushObject(oValue, false);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(58);
+            Internal.StackPushObject(oValue, false);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(58);
         }
 
         //  Get the length of sString
         //  * Return value on error: -1
         public static int GetStringLength(string sString)
         {
-            NWN.Internal.StackPushString(sString);
-            NWN.Internal.CallBuiltIn(59);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushString(sString);
+            Internal.CallBuiltIn(59);
+            return Internal.StackPopInteger();
         }
 
         //  Convert sString into upper case
         //  * Return value on error: ""
         public static string GetStringUpperCase(string sString)
         {
-            NWN.Internal.StackPushString(sString);
-            NWN.Internal.CallBuiltIn(60);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushString(sString);
+            Internal.CallBuiltIn(60);
+            return Internal.StackPopString();
         }
 
         //  Convert sString into lower case
         //  * Return value on error: ""
         public static string GetStringLowerCase(string sString)
         {
-            NWN.Internal.StackPushString(sString);
-            NWN.Internal.CallBuiltIn(61);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushString(sString);
+            Internal.CallBuiltIn(61);
+            return Internal.StackPopString();
         }
 
         //  Get nCount characters from the right end of sString
         //  * Return value on error: ""
         public static string GetStringRight(string sString, int nCount)
         {
-            NWN.Internal.StackPushInteger(nCount);
-            NWN.Internal.StackPushString(sString);
-            NWN.Internal.CallBuiltIn(62);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nCount);
+            Internal.StackPushString(sString);
+            Internal.CallBuiltIn(62);
+            return Internal.StackPopString();
         }
 
         //  Get nCounter characters from the left end of sString
         //  * Return value on error: ""
         public static string GetStringLeft(string sString, int nCount)
         {
-            NWN.Internal.StackPushInteger(nCount);
-            NWN.Internal.StackPushString(sString);
-            NWN.Internal.CallBuiltIn(63);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nCount);
+            Internal.StackPushString(sString);
+            Internal.CallBuiltIn(63);
+            return Internal.StackPopString();
         }
 
         //  Insert sString into sDestination at nPosition
         //  * Return value on error: ""
         public static string InsertString(string sDestination, string sString, int nPosition)
         {
-            NWN.Internal.StackPushInteger(nPosition);
-            NWN.Internal.StackPushString(sString);
-            NWN.Internal.StackPushString(sDestination);
-            NWN.Internal.CallBuiltIn(64);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nPosition);
+            Internal.StackPushString(sString);
+            Internal.StackPushString(sDestination);
+            Internal.CallBuiltIn(64);
+            return Internal.StackPopString();
         }
 
         //  Get nCount characters from sString, starting at nStart
         //  * Return value on error: ""
         public static string GetSubString(string sString, int nStart, int nCount)
         {
-            NWN.Internal.StackPushInteger(nCount);
-            NWN.Internal.StackPushInteger(nStart);
-            NWN.Internal.StackPushString(sString);
-            NWN.Internal.CallBuiltIn(65);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nCount);
+            Internal.StackPushInteger(nStart);
+            Internal.StackPushString(sString);
+            Internal.CallBuiltIn(65);
+            return Internal.StackPopString();
         }
 
         //  Find the position of sSubstring inside sString
@@ -6385,116 +6386,116 @@
         //  * Return value on error: -1
         public static int FindSubString(string sString, string sSubString, int nStart = 0)
         {
-            NWN.Internal.StackPushInteger(nStart);
-            NWN.Internal.StackPushString(sSubString);
-            NWN.Internal.StackPushString(sString);
-            NWN.Internal.CallBuiltIn(66);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nStart);
+            Internal.StackPushString(sSubString);
+            Internal.StackPushString(sString);
+            Internal.CallBuiltIn(66);
+            return Internal.StackPopInteger();
         }
 
         //  math operations
         //  Maths operation: absolute value of fValue
         public static float fabs(float fValue)
         {
-            NWN.Internal.StackPushFloat(fValue);
-            NWN.Internal.CallBuiltIn(67);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fValue);
+            Internal.CallBuiltIn(67);
+            return Internal.StackPopFloat();
         }
 
         //  Maths operation: cosine of fValue
         public static float cos(float fValue)
         {
-            NWN.Internal.StackPushFloat(fValue);
-            NWN.Internal.CallBuiltIn(68);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fValue);
+            Internal.CallBuiltIn(68);
+            return Internal.StackPopFloat();
         }
 
         //  Maths operation: sine of fValue
         public static float sin(float fValue)
         {
-            NWN.Internal.StackPushFloat(fValue);
-            NWN.Internal.CallBuiltIn(69);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fValue);
+            Internal.CallBuiltIn(69);
+            return Internal.StackPopFloat();
         }
 
         //  Maths operation: tan of fValue
         public static float tan(float fValue)
         {
-            NWN.Internal.StackPushFloat(fValue);
-            NWN.Internal.CallBuiltIn(70);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fValue);
+            Internal.CallBuiltIn(70);
+            return Internal.StackPopFloat();
         }
 
         //  Maths operation: arccosine of fValue
         //  * Returns zero if fValue > 1 or fValue < -1
         public static float acos(float fValue)
         {
-            NWN.Internal.StackPushFloat(fValue);
-            NWN.Internal.CallBuiltIn(71);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fValue);
+            Internal.CallBuiltIn(71);
+            return Internal.StackPopFloat();
         }
 
         //  Maths operation: arcsine of fValue
         //  * Returns zero if fValue >1 or fValue < -1
         public static float asin(float fValue)
         {
-            NWN.Internal.StackPushFloat(fValue);
-            NWN.Internal.CallBuiltIn(72);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fValue);
+            Internal.CallBuiltIn(72);
+            return Internal.StackPopFloat();
         }
 
         //  Maths operation: arctan of fValue
         public static float atan(float fValue)
         {
-            NWN.Internal.StackPushFloat(fValue);
-            NWN.Internal.CallBuiltIn(73);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fValue);
+            Internal.CallBuiltIn(73);
+            return Internal.StackPopFloat();
         }
 
         //  Maths operation: log of fValue
         //  * Returns zero if fValue <= zero
         public static float log(float fValue)
         {
-            NWN.Internal.StackPushFloat(fValue);
-            NWN.Internal.CallBuiltIn(74);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fValue);
+            Internal.CallBuiltIn(74);
+            return Internal.StackPopFloat();
         }
 
         //  Maths operation: fValue is raised to the power of fExponent
         //  * Returns zero if fValue ==0 and fExponent <0
         public static float pow(float fValue, float fExponent)
         {
-            NWN.Internal.StackPushFloat(fExponent);
-            NWN.Internal.StackPushFloat(fValue);
-            NWN.Internal.CallBuiltIn(75);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fExponent);
+            Internal.StackPushFloat(fValue);
+            Internal.CallBuiltIn(75);
+            return Internal.StackPopFloat();
         }
 
         //  Maths operation: square root of fValue
         //  * Returns zero if fValue <0
         public static float sqrt(float fValue)
         {
-            NWN.Internal.StackPushFloat(fValue);
-            NWN.Internal.CallBuiltIn(76);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fValue);
+            Internal.CallBuiltIn(76);
+            return Internal.StackPopFloat();
         }
 
         //  Maths operation: integer absolute value of nValue
         //  * Return value on error: 0
         public static int abs(int nValue)
         {
-            NWN.Internal.StackPushInteger(nValue);
-            NWN.Internal.CallBuiltIn(77);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nValue);
+            Internal.CallBuiltIn(77);
+            return Internal.StackPopInteger();
         }
 
         //  Create a Heal effect. This should be applied as an instantaneous effect.
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nDamageToHeal < 0.
-        public static NWN.Effect EffectHeal(int nDamageToHeal)
+        public static Effect EffectHeal(int nDamageToHeal)
         {
-            NWN.Internal.StackPushInteger(nDamageToHeal);
-            NWN.Internal.CallBuiltIn(78);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nDamageToHeal);
+            Internal.CallBuiltIn(78);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Damage effect
@@ -6502,23 +6503,23 @@
         //    instantaneous effect.
         //  - nDamageType: DAMAGE_TYPE_*
         //  - nDamagePower: DAMAGE_POWER_*
-        public static NWN.Effect EffectDamage(int nDamageAmount, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL)
+        public static Effect EffectDamage(int nDamageAmount, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL)
         {
-            NWN.Internal.StackPushInteger(nDamagePower);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.StackPushInteger(nDamageAmount);
-            NWN.Internal.CallBuiltIn(79);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nDamagePower);
+            Internal.StackPushInteger(nDamageType);
+            Internal.StackPushInteger(nDamageAmount);
+            Internal.CallBuiltIn(79);
+            return Internal.StackPopEffect();
         }
 
         //  Create an Ability Increase effect
         //  - bAbilityToIncrease: ABILITY_*
-        public static NWN.Effect EffectAbilityIncrease(int nAbilityToIncrease, int nModifyBy)
+        public static Effect EffectAbilityIncrease(int nAbilityToIncrease, int nModifyBy)
         {
-            NWN.Internal.StackPushInteger(nModifyBy);
-            NWN.Internal.StackPushInteger(nAbilityToIncrease);
-            NWN.Internal.CallBuiltIn(80);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nModifyBy);
+            Internal.StackPushInteger(nAbilityToIncrease);
+            Internal.CallBuiltIn(80);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Damage Resistance effect that removes the first nAmount points of
@@ -6526,20 +6527,20 @@
         //  - nDamageType: DAMAGE_TYPE_*
         //  - nAmount
         //  - nLimit
-        public static NWN.Effect EffectDamageResistance(int nDamageType, int nAmount, int nLimit = 0)
+        public static Effect EffectDamageResistance(int nDamageType, int nAmount, int nLimit = 0)
         {
-            NWN.Internal.StackPushInteger(nLimit);
-            NWN.Internal.StackPushInteger(nAmount);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.CallBuiltIn(81);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nLimit);
+            Internal.StackPushInteger(nAmount);
+            Internal.StackPushInteger(nDamageType);
+            Internal.CallBuiltIn(81);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Resurrection effect. This should be applied as an instantaneous effect.
-        public static NWN.Effect EffectResurrection()
+        public static Effect EffectResurrection()
         {
-            NWN.Internal.CallBuiltIn(82);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(82);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Summon Creature effect.  The creature is created and placed into the
@@ -6551,230 +6552,230 @@
         //  - nUseAppearAnimation: should this creature play it's "appear" animation when it is
         //    summoned. If zero, it will just fade in somewhere near the target.  If the value is 1
         //    it will use the appear animation, and if it's 2 it will use appear2 (which doesn't exist for most creatures)
-        public static NWN.Effect EffectSummonCreature(string sCreatureResref, int nVisualEffectId = VFX_NONE, float fDelaySeconds = 0.0f, int nUseAppearAnimation = 0)
+        public static Effect EffectSummonCreature(string sCreatureResref, int nVisualEffectId = VFX_NONE, float fDelaySeconds = 0.0f, int nUseAppearAnimation = 0)
         {
-            NWN.Internal.StackPushInteger(nUseAppearAnimation);
-            NWN.Internal.StackPushFloat(fDelaySeconds);
-            NWN.Internal.StackPushInteger(nVisualEffectId);
-            NWN.Internal.StackPushString(sCreatureResref);
-            NWN.Internal.CallBuiltIn(83);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nUseAppearAnimation);
+            Internal.StackPushFloat(fDelaySeconds);
+            Internal.StackPushInteger(nVisualEffectId);
+            Internal.StackPushString(sCreatureResref);
+            Internal.CallBuiltIn(83);
+            return Internal.StackPopEffect();
         }
 
         //  Get the level at which this creature cast it's last spell (or spell-like ability)
         //  * Return value on error, or if oCreature has not yet cast a spell: 0;
-        public static int GetCasterLevel(NWN.Object oCreature)
+        public static int GetCasterLevel(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(84);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(84);
+            return Internal.StackPopInteger();
         }
 
         //  Get the first in-game effect on oCreature.
-        public static NWN.Effect GetFirstEffect(NWN.Object oCreature)
+        public static Effect GetFirstEffect(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(85);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(85);
+            return Internal.StackPopEffect();
         }
 
         //  Get the next in-game effect on oCreature.
-        public static NWN.Effect GetNextEffect(NWN.Object oCreature)
+        public static Effect GetNextEffect(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(86);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(86);
+            return Internal.StackPopEffect();
         }
 
         //  Remove eEffect from oCreature.
         //  * No return value
-        public static void RemoveEffect(NWN.Object oCreature, NWN.Effect eEffect)
+        public static void RemoveEffect(Object oCreature, Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(87);
+            Internal.StackPushEffect(eEffect);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(87);
         }
 
         //  * Returns TRUE if eEffect is a valid effect. The effect must have been applied to
         //  * an object or else it will return FALSE
-        public static int GetIsEffectValid(NWN.Effect eEffect)
+        public static int GetIsEffectValid(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(88);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(88);
+            return Internal.StackPopInteger();
         }
 
         //  Get the duration type (DURATION_TYPE_*) of eEffect.
         //  * Return value if eEffect is not valid: -1
-        public static int GetEffectDurationType(NWN.Effect eEffect)
+        public static int GetEffectDurationType(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(89);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(89);
+            return Internal.StackPopInteger();
         }
 
         //  Get the subtype (SUBTYPE_*) of eEffect.
         //  * Return value on error: 0
-        public static int GetEffectSubType(NWN.Effect eEffect)
+        public static int GetEffectSubType(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(90);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(90);
+            return Internal.StackPopInteger();
         }
 
         //  Get the object that created eEffect.
         //  * Returns OBJECT_INVALID if eEffect is not a valid effect.
-        public static NWN.Object GetEffectCreator(NWN.Effect eEffect)
+        public static Object GetEffectCreator(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(91);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(91);
+            return Internal.StackPopObject();
         }
 
         //  Convert nInteger into a string.
         //  * Return value on error: ""
         public static string IntToString(int nInteger)
         {
-            NWN.Internal.StackPushInteger(nInteger);
-            NWN.Internal.CallBuiltIn(92);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nInteger);
+            Internal.CallBuiltIn(92);
+            return Internal.StackPopString();
         }
 
         //  Get the first object in oArea.
         //  If no valid area is specified, it will use the caller's area.
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetFirstObjectInArea(NWN.Object oArea = null)
+        public static Object GetFirstObjectInArea(Object oArea = null)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(93);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(93);
+            return Internal.StackPopObject();
         }
 
         //  Get the next object in oArea.
         //  If no valid area is specified, it will use the caller's area.
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetNextObjectInArea(NWN.Object oArea = null)
+        public static Object GetNextObjectInArea(Object oArea = null)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(94);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(94);
+            return Internal.StackPopObject();
         }
 
         //  Get the total from rolling (nNumDice x d2 dice).
         //  - nNumDice: If this is less than 1, the value 1 will be used.
         public static int d2(int nNumDice = 1)
         {
-            NWN.Internal.StackPushInteger(nNumDice);
-            NWN.Internal.CallBuiltIn(95);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nNumDice);
+            Internal.CallBuiltIn(95);
+            return Internal.StackPopInteger();
         }
 
         //  Get the total from rolling (nNumDice x d3 dice).
         //  - nNumDice: If this is less than 1, the value 1 will be used.
         public static int d3(int nNumDice = 1)
         {
-            NWN.Internal.StackPushInteger(nNumDice);
-            NWN.Internal.CallBuiltIn(96);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nNumDice);
+            Internal.CallBuiltIn(96);
+            return Internal.StackPopInteger();
         }
 
         //  Get the total from rolling (nNumDice x d4 dice).
         //  - nNumDice: If this is less than 1, the value 1 will be used.
         public static int d4(int nNumDice = 1)
         {
-            NWN.Internal.StackPushInteger(nNumDice);
-            NWN.Internal.CallBuiltIn(97);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nNumDice);
+            Internal.CallBuiltIn(97);
+            return Internal.StackPopInteger();
         }
 
         //  Get the total from rolling (nNumDice x d6 dice).
         //  - nNumDice: If this is less than 1, the value 1 will be used.
         public static int d6(int nNumDice = 1)
         {
-            NWN.Internal.StackPushInteger(nNumDice);
-            NWN.Internal.CallBuiltIn(98);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nNumDice);
+            Internal.CallBuiltIn(98);
+            return Internal.StackPopInteger();
         }
 
         //  Get the total from rolling (nNumDice x d8 dice).
         //  - nNumDice: If this is less than 1, the value 1 will be used.
         public static int d8(int nNumDice = 1)
         {
-            NWN.Internal.StackPushInteger(nNumDice);
-            NWN.Internal.CallBuiltIn(99);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nNumDice);
+            Internal.CallBuiltIn(99);
+            return Internal.StackPopInteger();
         }
 
         //  Get the total from rolling (nNumDice x d10 dice).
         //  - nNumDice: If this is less than 1, the value 1 will be used.
         public static int d10(int nNumDice = 1)
         {
-            NWN.Internal.StackPushInteger(nNumDice);
-            NWN.Internal.CallBuiltIn(100);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nNumDice);
+            Internal.CallBuiltIn(100);
+            return Internal.StackPopInteger();
         }
 
         //  Get the total from rolling (nNumDice x d12 dice).
         //  - nNumDice: If this is less than 1, the value 1 will be used.
         public static int d12(int nNumDice = 1)
         {
-            NWN.Internal.StackPushInteger(nNumDice);
-            NWN.Internal.CallBuiltIn(101);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nNumDice);
+            Internal.CallBuiltIn(101);
+            return Internal.StackPopInteger();
         }
 
         //  Get the total from rolling (nNumDice x d20 dice).
         //  - nNumDice: If this is less than 1, the value 1 will be used.
         public static int d20(int nNumDice = 1)
         {
-            NWN.Internal.StackPushInteger(nNumDice);
-            NWN.Internal.CallBuiltIn(102);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nNumDice);
+            Internal.CallBuiltIn(102);
+            return Internal.StackPopInteger();
         }
 
         //  Get the total from rolling (nNumDice x d100 dice).
         //  - nNumDice: If this is less than 1, the value 1 will be used.
         public static int d100(int nNumDice = 1)
         {
-            NWN.Internal.StackPushInteger(nNumDice);
-            NWN.Internal.CallBuiltIn(103);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nNumDice);
+            Internal.CallBuiltIn(103);
+            return Internal.StackPopInteger();
         }
 
         //  Get the magnitude of vVector; this can be used to determine the
         //  distance between two points.
         //  * Return value on error: 0.0f
-        public static float VectorMagnitude(NWN.Vector? vVector)
+        public static float VectorMagnitude(Vector? vVector)
         {
-            NWN.Internal.StackPushVector(vVector);
-            NWN.Internal.CallBuiltIn(104);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushVector(vVector);
+            Internal.CallBuiltIn(104);
+            return Internal.StackPopFloat();
         }
 
         //  Get the metamagic type (METAMAGIC_*) of the last spell cast by the caller
         //  * Return value if the caster is not a valid object: -1
         public static int GetMetaMagicFeat()
         {
-            NWN.Internal.CallBuiltIn(105);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(105);
+            return Internal.StackPopInteger();
         }
 
         //  Get the object type (OBJECT_TYPE_*) of oTarget
         //  * Return value if oTarget is not a valid object: -1
-        public static int GetObjectType(NWN.Object oTarget)
+        public static int GetObjectType(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(106);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(106);
+            return Internal.StackPopInteger();
         }
 
         //  Get the racial type (RACIAL_TYPE_*) of oCreature
         //  * Return value if oCreature is not a valid creature: RACIAL_TYPE_INVALID
-        public static int GetRacialType(NWN.Object oCreature)
+        public static int GetRacialType(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(107);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(107);
+            return Internal.StackPopInteger();
         }
 
         //  Do a Fortitude Save check for the given DC
@@ -6787,14 +6788,14 @@
         //  Returns: 2 if the target was immune to the save type specified
         //  Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass
         //  GetAreaOfEffectCreator() into oSaveVersus!!
-        public static int FortitudeSave(NWN.Object oCreature, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, NWN.Object oSaveVersus = null)
+        public static int FortitudeSave(Object oCreature, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, Object oSaveVersus = null)
         {
-            NWN.Internal.StackPushObject(oSaveVersus, false);
-            NWN.Internal.StackPushInteger(nSaveType);
-            NWN.Internal.StackPushInteger(nDC);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(108);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSaveVersus, false);
+            Internal.StackPushInteger(nSaveType);
+            Internal.StackPushInteger(nDC);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(108);
+            return Internal.StackPopInteger();
         }
 
         //  Does a Reflex Save check for the given DC
@@ -6807,14 +6808,14 @@
         //  Returns: 2 if the target was immune to the save type specified
         //  Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass
         //  GetAreaOfEffectCreator() into oSaveVersus!!
-        public static int ReflexSave(NWN.Object oCreature, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, NWN.Object oSaveVersus = null)
+        public static int ReflexSave(Object oCreature, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, Object oSaveVersus = null)
         {
-            NWN.Internal.StackPushObject(oSaveVersus, false);
-            NWN.Internal.StackPushInteger(nSaveType);
-            NWN.Internal.StackPushInteger(nDC);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(109);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSaveVersus, false);
+            Internal.StackPushInteger(nSaveType);
+            Internal.StackPushInteger(nDC);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(109);
+            return Internal.StackPopInteger();
         }
 
         //  Does a Will Save check for the given DC
@@ -6827,52 +6828,52 @@
         //  Returns: 2 if the target was immune to the save type specified
         //  Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass
         //  GetAreaOfEffectCreator() into oSaveVersus!!
-        public static int WillSave(NWN.Object oCreature, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, NWN.Object oSaveVersus = null)
+        public static int WillSave(Object oCreature, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, Object oSaveVersus = null)
         {
-            NWN.Internal.StackPushObject(oSaveVersus, false);
-            NWN.Internal.StackPushInteger(nSaveType);
-            NWN.Internal.StackPushInteger(nDC);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(110);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSaveVersus, false);
+            Internal.StackPushInteger(nSaveType);
+            Internal.StackPushInteger(nDC);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(110);
+            return Internal.StackPopInteger();
         }
 
         //  Get the DC to save against for a spell (10 + spell level + relevant ability
         //  bonus).  This can be called by a creature or by an Area of Effect object.
         public static int GetSpellSaveDC()
         {
-            NWN.Internal.CallBuiltIn(111);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(111);
+            return Internal.StackPopInteger();
         }
 
         //  Set the subtype of eEffect to Magical and return eEffect.
         //  (Effects default to magical if the subtype is not set)
         //  Magical effects are removed by resting, and by dispel magic
-        public static NWN.Effect MagicalEffect(NWN.Effect eEffect)
+        public static Effect MagicalEffect(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(112);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(112);
+            return Internal.StackPopEffect();
         }
 
         //  Set the subtype of eEffect to Supernatural and return eEffect.
         //  (Effects default to magical if the subtype is not set)
         //  Permanent supernatural effects are not removed by resting
-        public static NWN.Effect SupernaturalEffect(NWN.Effect eEffect)
+        public static Effect SupernaturalEffect(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(113);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(113);
+            return Internal.StackPopEffect();
         }
 
         //  Set the subtype of eEffect to Extraordinary and return eEffect.
         //  (Effects default to magical if the subtype is not set)
         //  Extraordinary effects are removed by resting, but not by dispel magic
-        public static NWN.Effect ExtraordinaryEffect(NWN.Effect eEffect)
+        public static Effect ExtraordinaryEffect(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(114);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(114);
+            return Internal.StackPopEffect();
         }
 
         //  Create an AC Increase effect
@@ -6880,25 +6881,25 @@
         //  - nModifyType: AC_*_BONUS
         //  - nDamageType: DAMAGE_TYPE_*
         //    * Default value for nDamageType should only ever be used in this function prototype.
-        public static NWN.Effect EffectACIncrease(int nValue, int nModifyType = AC_DODGE_BONUS, int nDamageType = AC_VS_DAMAGE_TYPE_ALL)
+        public static Effect EffectACIncrease(int nValue, int nModifyType = AC_DODGE_BONUS, int nDamageType = AC_VS_DAMAGE_TYPE_ALL)
         {
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.StackPushInteger(nModifyType);
-            NWN.Internal.StackPushInteger(nValue);
-            NWN.Internal.CallBuiltIn(115);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nDamageType);
+            Internal.StackPushInteger(nModifyType);
+            Internal.StackPushInteger(nValue);
+            Internal.CallBuiltIn(115);
+            return Internal.StackPopEffect();
         }
 
         //  If oObject is a creature, this will return that creature's armour class
         //  If oObject is an item, door or placeable, this will return zero.
         //  - nForFutureUse: this parameter is not currently used
         //  * Return value if oObject is not a creature, item, door or placeable: -1
-        public static int GetAC(NWN.Object oObject, int nForFutureUse = 0)
+        public static int GetAC(Object oObject, int nForFutureUse = 0)
         {
-            NWN.Internal.StackPushInteger(nForFutureUse);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(116);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nForFutureUse);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(116);
+            return Internal.StackPopInteger();
         }
 
         //  Create a Saving Throw Increase effect
@@ -6909,24 +6910,24 @@
         //           SAVING_THROW_WILL 
         //  - nValue: size of the Saving Throw increase
         //  - nSaveType: SAVING_THROW_TYPE_* (e.g. SAVING_THROW_TYPE_ACID )
-        public static NWN.Effect EffectSavingThrowIncrease(int nSave, int nValue, int nSaveType = SAVING_THROW_TYPE_ALL)
+        public static Effect EffectSavingThrowIncrease(int nSave, int nValue, int nSaveType = SAVING_THROW_TYPE_ALL)
         {
-            NWN.Internal.StackPushInteger(nSaveType);
-            NWN.Internal.StackPushInteger(nValue);
-            NWN.Internal.StackPushInteger(nSave);
-            NWN.Internal.CallBuiltIn(117);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nSaveType);
+            Internal.StackPushInteger(nValue);
+            Internal.StackPushInteger(nSave);
+            Internal.CallBuiltIn(117);
+            return Internal.StackPopEffect();
         }
 
         //  Create an Attack Increase effect
         //  - nBonus: size of attack bonus
         //  - nModifierType: ATTACK_BONUS_*
-        public static NWN.Effect EffectAttackIncrease(int nBonus, int nModifierType = ATTACK_BONUS_MISC)
+        public static Effect EffectAttackIncrease(int nBonus, int nModifierType = ATTACK_BONUS_MISC)
         {
-            NWN.Internal.StackPushInteger(nModifierType);
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.CallBuiltIn(118);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nModifierType);
+            Internal.StackPushInteger(nBonus);
+            Internal.CallBuiltIn(118);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Damage Reduction effect
@@ -6934,13 +6935,13 @@
         //  - nDamagePower: DAMAGE_POWER_*
         //  - nLimit: How much damage the effect can absorb before disappearing.
         //    Set to zero for infinite
-        public static NWN.Effect EffectDamageReduction(int nAmount, int nDamagePower, int nLimit = 0)
+        public static Effect EffectDamageReduction(int nAmount, int nDamagePower, int nLimit = 0)
         {
-            NWN.Internal.StackPushInteger(nLimit);
-            NWN.Internal.StackPushInteger(nDamagePower);
-            NWN.Internal.StackPushInteger(nAmount);
-            NWN.Internal.CallBuiltIn(119);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nLimit);
+            Internal.StackPushInteger(nDamagePower);
+            Internal.StackPushInteger(nAmount);
+            Internal.CallBuiltIn(119);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Damage Increase effect
@@ -6948,79 +6949,79 @@
         //  - nDamageType: DAMAGE_TYPE_*
         //  NOTE! You *must* use the DAMAGE_BONUS_* constants! Using other values may
         //        result in odd behaviour.
-        public static NWN.Effect EffectDamageIncrease(int nBonus, int nDamageType = DAMAGE_TYPE_MAGICAL)
+        public static Effect EffectDamageIncrease(int nBonus, int nDamageType = DAMAGE_TYPE_MAGICAL)
         {
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.CallBuiltIn(120);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nDamageType);
+            Internal.StackPushInteger(nBonus);
+            Internal.CallBuiltIn(120);
+            return Internal.StackPopEffect();
         }
 
         //  Convert nRounds into a number of seconds
         //  A round is always 6.0 seconds
         public static float RoundsToSeconds(int nRounds)
         {
-            NWN.Internal.StackPushInteger(nRounds);
-            NWN.Internal.CallBuiltIn(121);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushInteger(nRounds);
+            Internal.CallBuiltIn(121);
+            return Internal.StackPopFloat();
         }
 
         //  Convert nHours into a number of seconds
         //  The result will depend on how many minutes there are per hour (game-time)
         public static float HoursToSeconds(int nHours)
         {
-            NWN.Internal.StackPushInteger(nHours);
-            NWN.Internal.CallBuiltIn(122);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushInteger(nHours);
+            Internal.CallBuiltIn(122);
+            return Internal.StackPopFloat();
         }
 
         //  Convert nTurns into a number of seconds
         //  A turn is always 60.0 seconds
         public static float TurnsToSeconds(int nTurns)
         {
-            NWN.Internal.StackPushInteger(nTurns);
-            NWN.Internal.CallBuiltIn(123);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushInteger(nTurns);
+            Internal.CallBuiltIn(123);
+            return Internal.StackPopFloat();
         }
 
         //  Get an integer between 0 and 100 (inclusive) to represent oCreature's
         //  Law/Chaos alignment
         //  (100=law, 0=chaos)
         //  * Return value if oCreature is not a valid creature: -1
-        public static int GetLawChaosValue(NWN.Object oCreature)
+        public static int GetLawChaosValue(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(124);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(124);
+            return Internal.StackPopInteger();
         }
 
         //  Get an integer between 0 and 100 (inclusive) to represent oCreature's
         //  Good/Evil alignment
         //  (100=good, 0=evil)
         //  * Return value if oCreature is not a valid creature: -1
-        public static int GetGoodEvilValue(NWN.Object oCreature)
+        public static int GetGoodEvilValue(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(125);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(125);
+            return Internal.StackPopInteger();
         }
 
         //  Return an ALIGNMENT_* constant to represent oCreature's law/chaos alignment
         //  * Return value if oCreature is not a valid creature: -1
-        public static int GetAlignmentLawChaos(NWN.Object oCreature)
+        public static int GetAlignmentLawChaos(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(126);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(126);
+            return Internal.StackPopInteger();
         }
 
         //  Return an ALIGNMENT_* constant to represent oCreature's good/evil alignment
         //  * Return value if oCreature is not a valid creature: -1
-        public static int GetAlignmentGoodEvil(NWN.Object oCreature)
+        public static int GetAlignmentGoodEvil(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(127);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(127);
+            return Internal.StackPopInteger();
         }
 
         //  Get the first object in nShape
@@ -7048,16 +7049,16 @@
         //  - vOrigin: This is only used for cylinders and cones, and specifies the
         //    origin of the effect(normally the spell-caster's position).
         //  Return value on error: OBJECT_INVALID
-        public static NWN.Object GetFirstObjectInShape(int nShape, float fSize, NWN.Location lTarget, int bLineOfSight = FALSE, int nObjectFilter = OBJECT_TYPE_CREATURE, NWN.Vector? vOrigin = null)
+        public static Object GetFirstObjectInShape(int nShape, float fSize, Location lTarget, int bLineOfSight = FALSE, int nObjectFilter = OBJECT_TYPE_CREATURE, Vector? vOrigin = null)
         {
-            NWN.Internal.StackPushVector(vOrigin);
-            NWN.Internal.StackPushInteger(nObjectFilter);
-            NWN.Internal.StackPushInteger(bLineOfSight);
-            NWN.Internal.StackPushLocation(lTarget);
-            NWN.Internal.StackPushFloat(fSize);
-            NWN.Internal.StackPushInteger(nShape);
-            NWN.Internal.CallBuiltIn(128);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushVector(vOrigin);
+            Internal.StackPushInteger(nObjectFilter);
+            Internal.StackPushInteger(bLineOfSight);
+            Internal.StackPushLocation(lTarget);
+            Internal.StackPushFloat(fSize);
+            Internal.StackPushInteger(nShape);
+            Internal.CallBuiltIn(128);
+            return Internal.StackPopObject();
         }
 
         //  Get the next object in nShape
@@ -7084,25 +7085,25 @@
         //  - vOrigin: This is only used for cylinders and cones, and specifies the origin
         //    of the effect (normally the spell-caster's position).
         //  Return value on error: OBJECT_INVALID
-        public static NWN.Object GetNextObjectInShape(int nShape, float fSize, NWN.Location lTarget, int bLineOfSight = FALSE, int nObjectFilter = OBJECT_TYPE_CREATURE, NWN.Vector? vOrigin = null)
+        public static Object GetNextObjectInShape(int nShape, float fSize, Location lTarget, int bLineOfSight = FALSE, int nObjectFilter = OBJECT_TYPE_CREATURE, Vector? vOrigin = null)
         {
-            NWN.Internal.StackPushVector(vOrigin);
-            NWN.Internal.StackPushInteger(nObjectFilter);
-            NWN.Internal.StackPushInteger(bLineOfSight);
-            NWN.Internal.StackPushLocation(lTarget);
-            NWN.Internal.StackPushFloat(fSize);
-            NWN.Internal.StackPushInteger(nShape);
-            NWN.Internal.CallBuiltIn(129);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushVector(vOrigin);
+            Internal.StackPushInteger(nObjectFilter);
+            Internal.StackPushInteger(bLineOfSight);
+            Internal.StackPushLocation(lTarget);
+            Internal.StackPushFloat(fSize);
+            Internal.StackPushInteger(nShape);
+            Internal.CallBuiltIn(129);
+            return Internal.StackPopObject();
         }
 
         //  Create an Entangle effect
         //  When applied, this effect will restrict the creature's movement and apply a
         //  (-2) to all attacks and a -4 to AC.
-        public static NWN.Effect EffectEntangle()
+        public static Effect EffectEntangle()
         {
-            NWN.Internal.CallBuiltIn(130);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(130);
+            return Internal.StackPopEffect();
         }
 
         //  Causes object oObject to run the event evToRun. The script on the object that is
@@ -7118,11 +7119,11 @@
         //                           for the object.
         //     EventUserDefined()  - This creates on OnUserDefined event. The script for handling this event
         //                           can be set in the Scripts Tab of the Properties menu for the object/area/module.
-        public static void SignalEvent(NWN.Object oObject, NWN.Event evToRun)
+        public static void SignalEvent(Object oObject, Event evToRun)
         {
-            NWN.Internal.StackPushEvent(evToRun);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(131);
+            Internal.StackPushEvent(evToRun);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(131);
         }
 
         //  Create an event of the type nUserDefinedEventNumber
@@ -7138,61 +7139,61 @@
         //  From inside the OnUserDefined script call:
         //     GetUserDefinedEventNumber() to retrieve the value of nUserDefinedEventNumber
         //     that was used when the event was signaled.
-        public static NWN.Event EventUserDefined(int nUserDefinedEventNumber)
+        public static Event EventUserDefined(int nUserDefinedEventNumber)
         {
-            NWN.Internal.StackPushInteger(nUserDefinedEventNumber);
-            NWN.Internal.CallBuiltIn(132);
-            return NWN.Internal.StackPopEvent();
+            Internal.StackPushInteger(nUserDefinedEventNumber);
+            Internal.CallBuiltIn(132);
+            return Internal.StackPopEvent();
         }
 
         //  Create a Death effect
         //  - nSpectacularDeath: if this is TRUE, the creature to which this effect is
         //    applied will die in an extraordinary fashion
         //  - nDisplayFeedback
-        public static NWN.Effect EffectDeath(int nSpectacularDeath = FALSE, int nDisplayFeedback = TRUE)
+        public static Effect EffectDeath(int nSpectacularDeath = FALSE, int nDisplayFeedback = TRUE)
         {
-            NWN.Internal.StackPushInteger(nDisplayFeedback);
-            NWN.Internal.StackPushInteger(nSpectacularDeath);
-            NWN.Internal.CallBuiltIn(133);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nDisplayFeedback);
+            Internal.StackPushInteger(nSpectacularDeath);
+            Internal.CallBuiltIn(133);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Knockdown effect
         //  This effect knocks creatures off their feet, they will sit until the effect
         //  is removed. This should be applied as a temporary effect with a 3 second
         //  duration minimum (1 second to fall, 1 second sitting, 1 second to get up).
-        public static NWN.Effect EffectKnockdown()
+        public static Effect EffectKnockdown()
         {
-            NWN.Internal.CallBuiltIn(134);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(134);
+            return Internal.StackPopEffect();
         }
 
         //  Give oItem to oGiveTo
         //  If oItem is not a valid item, or oGiveTo is not a valid object, nothing will
         //  happen.
-        public static void ActionGiveItem(NWN.Object oItem, NWN.Object oGiveTo)
+        public static void ActionGiveItem(Object oItem, Object oGiveTo)
         {
-            NWN.Internal.StackPushObject(oGiveTo, false);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(135);
+            Internal.StackPushObject(oGiveTo, false);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(135);
         }
 
         //  Take oItem from oTakeFrom
         //  If oItem is not a valid item, or oTakeFrom is not a valid object, nothing
         //  will happen.
-        public static void ActionTakeItem(NWN.Object oItem, NWN.Object oTakeFrom)
+        public static void ActionTakeItem(Object oItem, Object oTakeFrom)
         {
-            NWN.Internal.StackPushObject(oTakeFrom, false);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(136);
+            Internal.StackPushObject(oTakeFrom, false);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(136);
         }
 
         //  Normalize vVector
-        public static NWN.Vector VectorNormalize(NWN.Vector? vVector)
+        public static Vector VectorNormalize(Vector? vVector)
         {
-            NWN.Internal.StackPushVector(vVector);
-            NWN.Internal.CallBuiltIn(137);
-            return NWN.Internal.StackPopVector();
+            Internal.StackPushVector(vVector);
+            Internal.CallBuiltIn(137);
+            return Internal.StackPopVector();
         }
 
         //  Create a Curse effect.
@@ -7202,16 +7203,16 @@
         //  - nIntMod: intelligence modifier
         //  - nWisMod: wisdom modifier
         //  - nChaMod: charisma modifier
-        public static NWN.Effect EffectCurse(int nStrMod = 1, int nDexMod = 1, int nConMod = 1, int nIntMod = 1, int nWisMod = 1, int nChaMod = 1)
+        public static Effect EffectCurse(int nStrMod = 1, int nDexMod = 1, int nConMod = 1, int nIntMod = 1, int nWisMod = 1, int nChaMod = 1)
         {
-            NWN.Internal.StackPushInteger(nChaMod);
-            NWN.Internal.StackPushInteger(nWisMod);
-            NWN.Internal.StackPushInteger(nIntMod);
-            NWN.Internal.StackPushInteger(nConMod);
-            NWN.Internal.StackPushInteger(nDexMod);
-            NWN.Internal.StackPushInteger(nStrMod);
-            NWN.Internal.CallBuiltIn(138);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nChaMod);
+            Internal.StackPushInteger(nWisMod);
+            Internal.StackPushInteger(nIntMod);
+            Internal.StackPushInteger(nConMod);
+            Internal.StackPushInteger(nDexMod);
+            Internal.StackPushInteger(nStrMod);
+            Internal.CallBuiltIn(138);
+            return Internal.StackPopEffect();
         }
 
         //  Get the ability score of type nAbility for a creature (otherwise 0)
@@ -7220,93 +7221,93 @@
         //  - nBaseAbilityScore: if set to true will return the base ability score without
         //                       bonuses (e.g. ability bonuses granted from equipped items).
         //  Return value on error: 0
-        public static int GetAbilityScore(NWN.Object oCreature, int nAbilityType, int nBaseAbilityScore = FALSE)
+        public static int GetAbilityScore(Object oCreature, int nAbilityType, int nBaseAbilityScore = FALSE)
         {
-            NWN.Internal.StackPushInteger(nBaseAbilityScore);
-            NWN.Internal.StackPushInteger(nAbilityType);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(139);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nBaseAbilityScore);
+            Internal.StackPushInteger(nAbilityType);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(139);
+            return Internal.StackPopInteger();
         }
 
         //  * Returns TRUE if oCreature is a dead NPC, dead PC or a dying PC.
-        public static int GetIsDead(NWN.Object oCreature)
+        public static int GetIsDead(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(140);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(140);
+            return Internal.StackPopInteger();
         }
 
         //  Output vVector to the logfile.
         //  - vVector
         //  - bPrepend: if this is TRUE, the message will be prefixed with "PRINTVECTOR:"
-        public static void PrintVector(NWN.Vector? vVector, int bPrepend)
+        public static void PrintVector(Vector? vVector, int bPrepend)
         {
-            NWN.Internal.StackPushInteger(bPrepend);
-            NWN.Internal.StackPushVector(vVector);
-            NWN.Internal.CallBuiltIn(141);
+            Internal.StackPushInteger(bPrepend);
+            Internal.StackPushVector(vVector);
+            Internal.CallBuiltIn(141);
         }
 
         //  Create a vector with the specified values for x, y and z
-        public static NWN.Vector Vector(float x = 0.0f, float y = 0.0f, float z = 0.0f)
+        public static Vector Vector(float x = 0.0f, float y = 0.0f, float z = 0.0f)
         {
-            NWN.Internal.StackPushFloat(z);
-            NWN.Internal.StackPushFloat(y);
-            NWN.Internal.StackPushFloat(x);
-            NWN.Internal.CallBuiltIn(142);
-            return NWN.Internal.StackPopVector();
+            Internal.StackPushFloat(z);
+            Internal.StackPushFloat(y);
+            Internal.StackPushFloat(x);
+            Internal.CallBuiltIn(142);
+            return Internal.StackPopVector();
         }
 
         //  Cause the caller to face vTarget
-        public static void SetFacingPoint(NWN.Vector? vTarget)
+        public static void SetFacingPoint(Vector? vTarget)
         {
-            NWN.Internal.StackPushVector(vTarget);
-            NWN.Internal.CallBuiltIn(143);
+            Internal.StackPushVector(vTarget);
+            Internal.CallBuiltIn(143);
         }
 
         //  Convert fAngle to a vector
-        public static NWN.Vector AngleToVector(float fAngle)
+        public static Vector AngleToVector(float fAngle)
         {
-            NWN.Internal.StackPushFloat(fAngle);
-            NWN.Internal.CallBuiltIn(144);
-            return NWN.Internal.StackPopVector();
+            Internal.StackPushFloat(fAngle);
+            Internal.CallBuiltIn(144);
+            return Internal.StackPopVector();
         }
 
         //  Convert vVector to an angle
-        public static float VectorToAngle(NWN.Vector? vVector)
+        public static float VectorToAngle(Vector? vVector)
         {
-            NWN.Internal.StackPushVector(vVector);
-            NWN.Internal.CallBuiltIn(145);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushVector(vVector);
+            Internal.CallBuiltIn(145);
+            return Internal.StackPopFloat();
         }
 
         //  The caller will perform a Melee Touch Attack on oTarget
         //  This is not an action, and it assumes the caller is already within range of
         //  oTarget
         //  * Returns 0 on a miss, 1 on a hit and 2 on a critical hit
-        public static int TouchAttackMelee(NWN.Object oTarget, int bDisplayFeedback = TRUE)
+        public static int TouchAttackMelee(Object oTarget, int bDisplayFeedback = TRUE)
         {
-            NWN.Internal.StackPushInteger(bDisplayFeedback);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(146);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(bDisplayFeedback);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(146);
+            return Internal.StackPopInteger();
         }
 
         //  The caller will perform a Ranged Touch Attack on oTarget
         //  * Returns 0 on a miss, 1 on a hit and 2 on a critical hit
-        public static int TouchAttackRanged(NWN.Object oTarget, int bDisplayFeedback = TRUE)
+        public static int TouchAttackRanged(Object oTarget, int bDisplayFeedback = TRUE)
         {
-            NWN.Internal.StackPushInteger(bDisplayFeedback);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(147);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(bDisplayFeedback);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(147);
+            return Internal.StackPopInteger();
         }
 
         //  Create a Paralyze effect
-        public static NWN.Effect EffectParalyze()
+        public static Effect EffectParalyze()
         {
-            NWN.Internal.CallBuiltIn(148);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(148);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Spell Immunity effect.
@@ -7316,53 +7317,53 @@
         //  - nImmunityToSpell: SPELL_*
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nImmunityToSpell is
         //    invalid.
-        public static NWN.Effect EffectSpellImmunity(int nImmunityToSpell = SPELL_ALL_SPELLS)
+        public static Effect EffectSpellImmunity(int nImmunityToSpell = SPELL_ALL_SPELLS)
         {
-            NWN.Internal.StackPushInteger(nImmunityToSpell);
-            NWN.Internal.CallBuiltIn(149);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nImmunityToSpell);
+            Internal.CallBuiltIn(149);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Deaf effect
-        public static NWN.Effect EffectDeaf()
+        public static Effect EffectDeaf()
         {
-            NWN.Internal.CallBuiltIn(150);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(150);
+            return Internal.StackPopEffect();
         }
 
         //  Get the distance in metres between oObjectA and oObjectB.
         //  * Return value if either object is invalid: 0.0f
-        public static float GetDistanceBetween(NWN.Object oObjectA, NWN.Object oObjectB)
+        public static float GetDistanceBetween(Object oObjectA, Object oObjectB)
         {
-            NWN.Internal.StackPushObject(oObjectB, false);
-            NWN.Internal.StackPushObject(oObjectA, false);
-            NWN.Internal.CallBuiltIn(151);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushObject(oObjectB, false);
+            Internal.StackPushObject(oObjectA, false);
+            Internal.CallBuiltIn(151);
+            return Internal.StackPopFloat();
         }
 
         //  Set oObject's local location variable sVarname to lValue
-        public static void SetLocalLocation(NWN.Object oObject, string sVarName, NWN.Location lValue)
+        public static void SetLocalLocation(Object oObject, string sVarName, Location lValue)
         {
-            NWN.Internal.StackPushLocation(lValue);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(152);
+            Internal.StackPushLocation(lValue);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(152);
         }
 
         //  Get oObject's local location variable sVarname
-        public static NWN.Location GetLocalLocation(NWN.Object oObject, string sVarName)
+        public static Location GetLocalLocation(Object oObject, string sVarName)
         {
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(153);
-            return NWN.Internal.StackPopLocation();
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(153);
+            return Internal.StackPopLocation();
         }
 
         //  Create a Sleep effect
-        public static NWN.Effect EffectSleep()
+        public static Effect EffectSleep()
         {
-            NWN.Internal.CallBuiltIn(154);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(154);
+            return Internal.StackPopEffect();
         }
 
         //  Get the object which is in oCreature's specified inventory slot
@@ -7370,81 +7371,81 @@
         //  - oCreature
         //  * Returns OBJECT_INVALID if oCreature is not a valid creature or there is no
         //    item in nInventorySlot.
-        public static NWN.Object GetItemInSlot(int nInventorySlot, NWN.Object oCreature = null)
+        public static Object GetItemInSlot(int nInventorySlot, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nInventorySlot);
-            NWN.Internal.CallBuiltIn(155);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nInventorySlot);
+            Internal.CallBuiltIn(155);
+            return Internal.StackPopObject();
         }
 
         //  Create a Charm effect
-        public static NWN.Effect EffectCharmed()
+        public static Effect EffectCharmed()
         {
-            NWN.Internal.CallBuiltIn(156);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(156);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Confuse effect
-        public static NWN.Effect EffectConfused()
+        public static Effect EffectConfused()
         {
-            NWN.Internal.CallBuiltIn(157);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(157);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Frighten effect
-        public static NWN.Effect EffectFrightened()
+        public static Effect EffectFrightened()
         {
-            NWN.Internal.CallBuiltIn(158);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(158);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Dominate effect
-        public static NWN.Effect EffectDominated()
+        public static Effect EffectDominated()
         {
-            NWN.Internal.CallBuiltIn(159);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(159);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Daze effect
-        public static NWN.Effect EffectDazed()
+        public static Effect EffectDazed()
         {
-            NWN.Internal.CallBuiltIn(160);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(160);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Stun effect
-        public static NWN.Effect EffectStunned()
+        public static Effect EffectStunned()
         {
-            NWN.Internal.CallBuiltIn(161);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(161);
+            return Internal.StackPopEffect();
         }
 
         //  Set whether oTarget's action stack can be modified
-        public static void SetCommandable(int bCommandable, NWN.Object oTarget = null)
+        public static void SetCommandable(int bCommandable, Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushInteger(bCommandable);
-            NWN.Internal.CallBuiltIn(162);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushInteger(bCommandable);
+            Internal.CallBuiltIn(162);
         }
 
         //  Determine whether oTarget's action stack can be modified.
-        public static int GetCommandable(NWN.Object oTarget = null)
+        public static int GetCommandable(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(163);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(163);
+            return Internal.StackPopInteger();
         }
 
         //  Create a Regenerate effect.
         //  - nAmount: amount of damage to be regenerated per time interval
         //  - fIntervalSeconds: length of interval in seconds
-        public static NWN.Effect EffectRegenerate(int nAmount, float fIntervalSeconds)
+        public static Effect EffectRegenerate(int nAmount, float fIntervalSeconds)
         {
-            NWN.Internal.StackPushFloat(fIntervalSeconds);
-            NWN.Internal.StackPushInteger(nAmount);
-            NWN.Internal.CallBuiltIn(164);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushFloat(fIntervalSeconds);
+            Internal.StackPushInteger(nAmount);
+            Internal.CallBuiltIn(164);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Movement Speed Increase effect.
@@ -7453,40 +7454,40 @@
         //     0 = no change in speed
         //    50 = 50% faster
         //    99 = almost twice as fast
-        public static NWN.Effect EffectMovementSpeedIncrease(int nPercentChange)
+        public static Effect EffectMovementSpeedIncrease(int nPercentChange)
         {
-            NWN.Internal.StackPushInteger(nPercentChange);
-            NWN.Internal.CallBuiltIn(165);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nPercentChange);
+            Internal.CallBuiltIn(165);
+            return Internal.StackPopEffect();
         }
 
         //  Get the number of hitdice for oCreature.
         //  * Return value if oCreature is not a valid creature: 0
-        public static int GetHitDice(NWN.Object oCreature)
+        public static int GetHitDice(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(166);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(166);
+            return Internal.StackPopInteger();
         }
 
         //  The action subject will follow oFollow until a ClearAllActions() is called.
         //  - oFollow: this is the object to be followed
         //  - fFollowDistance: follow distance in metres
         //  * No return value
-        public static void ActionForceFollowObject(NWN.Object oFollow, float fFollowDistance = 0.0f)
+        public static void ActionForceFollowObject(Object oFollow, float fFollowDistance = 0.0f)
         {
-            NWN.Internal.StackPushFloat(fFollowDistance);
-            NWN.Internal.StackPushObject(oFollow, false);
-            NWN.Internal.CallBuiltIn(167);
+            Internal.StackPushFloat(fFollowDistance);
+            Internal.StackPushObject(oFollow, false);
+            Internal.CallBuiltIn(167);
         }
 
         //  Get the Tag of oObject
         //  * Return value if oObject is not a valid object: ""
-        public static string GetTag(NWN.Object oObject)
+        public static string GetTag(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(168);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(168);
+            return Internal.StackPopString();
         }
 
         //  Do a Spell Resistance check between oCaster and oTarget, returning TRUE if
@@ -7496,86 +7497,86 @@
         //  * Return value if spell resisted: 1
         //  * Return value if spell resisted via magic immunity: 2
         //  * Return value if spell resisted via spell absorption: 3
-        public static int ResistSpell(NWN.Object oCaster, NWN.Object oTarget)
+        public static int ResistSpell(Object oCaster, Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushObject(oCaster, false);
-            NWN.Internal.CallBuiltIn(169);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushObject(oCaster, false);
+            Internal.CallBuiltIn(169);
+            return Internal.StackPopInteger();
         }
 
         //  Get the effect type (EFFECT_TYPE_*) of eEffect.
         //  * Return value if eEffect is invalid: EFFECT_INVALIDEFFECT
-        public static int GetEffectType(NWN.Effect eEffect)
+        public static int GetEffectType(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(170);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(170);
+            return Internal.StackPopInteger();
         }
 
         //  Create an Area Of Effect effect in the area of the creature it is applied to.
         //  If the scripts are not specified, default ones will be used.
-        public static NWN.Effect EffectAreaOfEffect(int nAreaEffectId, string sOnEnterScript = "", string sHeartbeatScript = "", string sOnExitScript = "")
+        public static Effect EffectAreaOfEffect(int nAreaEffectId, string sOnEnterScript = "", string sHeartbeatScript = "", string sOnExitScript = "")
         {
-            NWN.Internal.StackPushString(sOnExitScript);
-            NWN.Internal.StackPushString(sHeartbeatScript);
-            NWN.Internal.StackPushString(sOnEnterScript);
-            NWN.Internal.StackPushInteger(nAreaEffectId);
-            NWN.Internal.CallBuiltIn(171);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushString(sOnExitScript);
+            Internal.StackPushString(sHeartbeatScript);
+            Internal.StackPushString(sOnEnterScript);
+            Internal.StackPushInteger(nAreaEffectId);
+            Internal.CallBuiltIn(171);
+            return Internal.StackPopEffect();
         }
 
         //  * Returns TRUE if the Faction Ids of the two objects are the same
-        public static int GetFactionEqual(NWN.Object oFirstObject, NWN.Object oSecondObject = null)
+        public static int GetFactionEqual(Object oFirstObject, Object oSecondObject = null)
         {
-            NWN.Internal.StackPushObject(oSecondObject, false);
-            NWN.Internal.StackPushObject(oFirstObject, false);
-            NWN.Internal.CallBuiltIn(172);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSecondObject, false);
+            Internal.StackPushObject(oFirstObject, false);
+            Internal.CallBuiltIn(172);
+            return Internal.StackPopInteger();
         }
 
         //  Make oObjectToChangeFaction join the faction of oMemberOfFactionToJoin.
         //  NB. ** This will only work for two NPCs **
-        public static void ChangeFaction(NWN.Object oObjectToChangeFaction, NWN.Object oMemberOfFactionToJoin)
+        public static void ChangeFaction(Object oObjectToChangeFaction, Object oMemberOfFactionToJoin)
         {
-            NWN.Internal.StackPushObject(oMemberOfFactionToJoin, false);
-            NWN.Internal.StackPushObject(oObjectToChangeFaction, false);
-            NWN.Internal.CallBuiltIn(173);
+            Internal.StackPushObject(oMemberOfFactionToJoin, false);
+            Internal.StackPushObject(oObjectToChangeFaction, false);
+            Internal.CallBuiltIn(173);
         }
 
         //  * Returns TRUE if oObject is listening for something
-        public static int GetIsListening(NWN.Object oObject)
+        public static int GetIsListening(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(174);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(174);
+            return Internal.StackPopInteger();
         }
 
         //  Set whether oObject is listening.
-        public static void SetListening(NWN.Object oObject, int bValue)
+        public static void SetListening(Object oObject, int bValue)
         {
-            NWN.Internal.StackPushInteger(bValue);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(175);
+            Internal.StackPushInteger(bValue);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(175);
         }
 
         //  Set the string for oObject to listen for.
         //  Note: this does not set oObject to be listening.
-        public static void SetListenPattern(NWN.Object oObject, string sPattern, int nNumber = 0)
+        public static void SetListenPattern(Object oObject, string sPattern, int nNumber = 0)
         {
-            NWN.Internal.StackPushInteger(nNumber);
-            NWN.Internal.StackPushString(sPattern);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(176);
+            Internal.StackPushInteger(nNumber);
+            Internal.StackPushString(sPattern);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(176);
         }
 
         //  * Returns TRUE if sStringToTest matches sPattern.
         public static int TestStringAgainstPattern(string sPattern, string sStringToTest)
         {
-            NWN.Internal.StackPushString(sStringToTest);
-            NWN.Internal.StackPushString(sPattern);
-            NWN.Internal.CallBuiltIn(177);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushString(sStringToTest);
+            Internal.StackPushString(sPattern);
+            Internal.CallBuiltIn(177);
+            return Internal.StackPopInteger();
         }
 
         //  Get the appropriate matched string (this should only be used in
@@ -7583,159 +7584,159 @@
         //  * Returns the appropriate matched string, otherwise returns ""
         public static string GetMatchedSubstring(int nString)
         {
-            NWN.Internal.StackPushInteger(nString);
-            NWN.Internal.CallBuiltIn(178);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nString);
+            Internal.CallBuiltIn(178);
+            return Internal.StackPopString();
         }
 
         //  Get the number of string parameters available.
         //  * Returns -1 if no string matched (this could be because of a dialogue event)
         public static int GetMatchedSubstringsCount()
         {
-            NWN.Internal.CallBuiltIn(179);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(179);
+            return Internal.StackPopInteger();
         }
 
         //  * Create a Visual Effect that can be applied to an object.
         //  - nVisualEffectId
         //  - nMissEffect: if this is TRUE, a random vector near or past the target will
         //    be generated, on which to play the effect
-        public static NWN.Effect EffectVisualEffect(int nVisualEffectId, int nMissEffect = FALSE)
+        public static Effect EffectVisualEffect(int nVisualEffectId, int nMissEffect = FALSE)
         {
-            NWN.Internal.StackPushInteger(nMissEffect);
-            NWN.Internal.StackPushInteger(nVisualEffectId);
-            NWN.Internal.CallBuiltIn(180);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nMissEffect);
+            Internal.StackPushInteger(nVisualEffectId);
+            Internal.CallBuiltIn(180);
+            return Internal.StackPopEffect();
         }
 
         //  Get the weakest member of oFactionMember's faction.
         //  * Returns OBJECT_INVALID if oFactionMember's faction is invalid.
-        public static NWN.Object GetFactionWeakestMember(NWN.Object oFactionMember = null, int bMustBeVisible = TRUE)
+        public static Object GetFactionWeakestMember(Object oFactionMember = null, int bMustBeVisible = TRUE)
         {
-            NWN.Internal.StackPushInteger(bMustBeVisible);
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(181);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(bMustBeVisible);
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(181);
+            return Internal.StackPopObject();
         }
 
         //  Get the strongest member of oFactionMember's faction.
         //  * Returns OBJECT_INVALID if oFactionMember's faction is invalid.
-        public static NWN.Object GetFactionStrongestMember(NWN.Object oFactionMember = null, int bMustBeVisible = TRUE)
+        public static Object GetFactionStrongestMember(Object oFactionMember = null, int bMustBeVisible = TRUE)
         {
-            NWN.Internal.StackPushInteger(bMustBeVisible);
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(182);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(bMustBeVisible);
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(182);
+            return Internal.StackPopObject();
         }
 
         //  Get the member of oFactionMember's faction that has taken the most hit points
         //  of damage.
         //  * Returns OBJECT_INVALID if oFactionMember's faction is invalid.
-        public static NWN.Object GetFactionMostDamagedMember(NWN.Object oFactionMember = null, int bMustBeVisible = TRUE)
+        public static Object GetFactionMostDamagedMember(Object oFactionMember = null, int bMustBeVisible = TRUE)
         {
-            NWN.Internal.StackPushInteger(bMustBeVisible);
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(183);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(bMustBeVisible);
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(183);
+            return Internal.StackPopObject();
         }
 
         //  Get the member of oFactionMember's faction that has taken the fewest hit
         //  points of damage.
         //  * Returns OBJECT_INVALID if oFactionMember's faction is invalid.
-        public static NWN.Object GetFactionLeastDamagedMember(NWN.Object oFactionMember = null, int bMustBeVisible = TRUE)
+        public static Object GetFactionLeastDamagedMember(Object oFactionMember = null, int bMustBeVisible = TRUE)
         {
-            NWN.Internal.StackPushInteger(bMustBeVisible);
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(184);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(bMustBeVisible);
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(184);
+            return Internal.StackPopObject();
         }
 
         //  Get the amount of gold held by oFactionMember's faction.
         //  * Returns -1 if oFactionMember's faction is invalid.
-        public static int GetFactionGold(NWN.Object oFactionMember)
+        public static int GetFactionGold(Object oFactionMember)
         {
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(185);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(185);
+            return Internal.StackPopInteger();
         }
 
         //  Get an integer between 0 and 100 (inclusive) that represents how
         //  oSourceFactionMember's faction feels about oTarget.
         //  * Return value on error: -1
-        public static int GetFactionAverageReputation(NWN.Object oSourceFactionMember, NWN.Object oTarget)
+        public static int GetFactionAverageReputation(Object oSourceFactionMember, Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushObject(oSourceFactionMember, false);
-            NWN.Internal.CallBuiltIn(186);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushObject(oSourceFactionMember, false);
+            Internal.CallBuiltIn(186);
+            return Internal.StackPopInteger();
         }
 
         //  Get an integer between 0 and 100 (inclusive) that represents the average
         //  good/evil alignment of oFactionMember's faction.
         //  * Return value on error: -1
-        public static int GetFactionAverageGoodEvilAlignment(NWN.Object oFactionMember)
+        public static int GetFactionAverageGoodEvilAlignment(Object oFactionMember)
         {
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(187);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(187);
+            return Internal.StackPopInteger();
         }
 
         //  Get an integer between 0 and 100 (inclusive) that represents the average
         //  law/chaos alignment of oFactionMember's faction.
         //  * Return value on error: -1
-        public static int GetFactionAverageLawChaosAlignment(NWN.Object oFactionMember)
+        public static int GetFactionAverageLawChaosAlignment(Object oFactionMember)
         {
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(188);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(188);
+            return Internal.StackPopInteger();
         }
 
         //  Get the average level of the members of the faction.
         //  * Return value on error: -1
-        public static int GetFactionAverageLevel(NWN.Object oFactionMember)
+        public static int GetFactionAverageLevel(Object oFactionMember)
         {
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(189);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(189);
+            return Internal.StackPopInteger();
         }
 
         //  Get the average XP of the members of the faction.
         //  * Return value on error: -1
-        public static int GetFactionAverageXP(NWN.Object oFactionMember)
+        public static int GetFactionAverageXP(Object oFactionMember)
         {
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(190);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(190);
+            return Internal.StackPopInteger();
         }
 
         //  Get the most frequent class in the faction - this can be compared with the
         //  constants CLASS_TYPE_*.
         //  * Return value on error: -1
-        public static int GetFactionMostFrequentClass(NWN.Object oFactionMember)
+        public static int GetFactionMostFrequentClass(Object oFactionMember)
         {
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(191);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(191);
+            return Internal.StackPopInteger();
         }
 
         //  Get the object faction member with the lowest armour class.
         //  * Returns OBJECT_INVALID if oFactionMember's faction is invalid.
-        public static NWN.Object GetFactionWorstAC(NWN.Object oFactionMember = null, int bMustBeVisible = TRUE)
+        public static Object GetFactionWorstAC(Object oFactionMember = null, int bMustBeVisible = TRUE)
         {
-            NWN.Internal.StackPushInteger(bMustBeVisible);
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(192);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(bMustBeVisible);
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(192);
+            return Internal.StackPopObject();
         }
 
         //  Get the object faction member with the highest armour class.
         //  * Returns OBJECT_INVALID if oFactionMember's faction is invalid.
-        public static NWN.Object GetFactionBestAC(NWN.Object oFactionMember = null, int bMustBeVisible = TRUE)
+        public static Object GetFactionBestAC(Object oFactionMember = null, int bMustBeVisible = TRUE)
         {
-            NWN.Internal.StackPushInteger(bMustBeVisible);
-            NWN.Internal.StackPushObject(oFactionMember, false);
-            NWN.Internal.CallBuiltIn(193);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(bMustBeVisible);
+            Internal.StackPushObject(oFactionMember, false);
+            Internal.CallBuiltIn(193);
+            return Internal.StackPopObject();
         }
 
         //  Sit in oChair.
@@ -7750,10 +7751,10 @@
         //     object oChair = OBJECT_SELF;
         //     AssignCommand(GetLastUsedBy(),ActionSit(oChair));
         //  }
-        public static void ActionSit(NWN.Object oChair)
+        public static void ActionSit(Object oChair)
         {
-            NWN.Internal.StackPushObject(oChair, false);
-            NWN.Internal.CallBuiltIn(194);
+            Internal.StackPushObject(oChair, false);
+            Internal.CallBuiltIn(194);
         }
 
         //  In an onConversation script this gets the number of the string pattern
@@ -7761,25 +7762,25 @@
         //  * Returns -1 if no string matched
         public static int GetListenPatternNumber()
         {
-            NWN.Internal.CallBuiltIn(195);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(195);
+            return Internal.StackPopInteger();
         }
 
         //  Jump to an object ID, or as near to it as possible.
-        public static void ActionJumpToObject(NWN.Object oToJumpTo, int bWalkStraightLineToPoint = TRUE)
+        public static void ActionJumpToObject(Object oToJumpTo, int bWalkStraightLineToPoint = TRUE)
         {
-            NWN.Internal.StackPushInteger(bWalkStraightLineToPoint);
-            NWN.Internal.StackPushObject(oToJumpTo, false);
-            NWN.Internal.CallBuiltIn(196);
+            Internal.StackPushInteger(bWalkStraightLineToPoint);
+            Internal.StackPushObject(oToJumpTo, false);
+            Internal.CallBuiltIn(196);
         }
 
         //  Get the first waypoint with the specified tag.
         //  * Returns OBJECT_INVALID if the waypoint cannot be found.
-        public static NWN.Object GetWaypointByTag(string sWaypointTag)
+        public static Object GetWaypointByTag(string sWaypointTag)
         {
-            NWN.Internal.StackPushString(sWaypointTag);
-            NWN.Internal.CallBuiltIn(197);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushString(sWaypointTag);
+            Internal.CallBuiltIn(197);
+            return Internal.StackPopObject();
         }
 
         //  Get the destination object for the given object.
@@ -7790,11 +7791,11 @@
         //  your own scripted purposes.
         // 
         //  * Returns OBJECT_INVALID if oTransition does not hold a target.
-        public static NWN.Object GetTransitionTarget(NWN.Object oTransition)
+        public static Object GetTransitionTarget(Object oTransition)
         {
-            NWN.Internal.StackPushObject(oTransition, false);
-            NWN.Internal.CallBuiltIn(198);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oTransition, false);
+            Internal.CallBuiltIn(198);
+            return Internal.StackPopObject();
         }
 
         //  Link the two supplied effects, returning eChildEffect as a child of
@@ -7806,12 +7807,12 @@
         //  Visual Effects are not considered "valid" effects for the purposes of
         //  determining if an effect will be removed or not and as such should never be
         //  packaged *only* with other visual effects in a link.
-        public static NWN.Effect EffectLinkEffects(NWN.Effect eChildEffect, NWN.Effect eParentEffect)
+        public static Effect EffectLinkEffects(Effect eChildEffect, Effect eParentEffect)
         {
-            NWN.Internal.StackPushEffect(eParentEffect);
-            NWN.Internal.StackPushEffect(eChildEffect);
-            NWN.Internal.CallBuiltIn(199);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushEffect(eParentEffect);
+            Internal.StackPushEffect(eChildEffect);
+            Internal.CallBuiltIn(199);
+            return Internal.StackPopEffect();
         }
 
         //  Get the nNth object with the specified tag.
@@ -7819,12 +7820,12 @@
         //  - nNth: the nth object with this tag may be requested
         //  * Returns OBJECT_INVALID if the object cannot be found.
         //  Note: The module cannot be retrieved by GetObjectByTag(), use GetModule() instead.
-        public static NWN.Object GetObjectByTag(string sTag, int nNth = 0)
+        public static Object GetObjectByTag(string sTag, int nNth = 0)
         {
-            NWN.Internal.StackPushInteger(nNth);
-            NWN.Internal.StackPushString(sTag);
-            NWN.Internal.CallBuiltIn(200);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(nNth);
+            Internal.StackPushString(sTag);
+            Internal.CallBuiltIn(200);
+            return Internal.StackPopObject();
         }
 
         //  Adjust the alignment of oSubject.
@@ -7850,20 +7851,20 @@
         //                      diminished affect all members of oSubject's party (if oSubject is a Player).
         //                      When FALSE the shift only affects oSubject.
         //  * No return value
-        public static void AdjustAlignment(NWN.Object oSubject, int nAlignment, int nShift, int bAllPartyMembers = TRUE)
+        public static void AdjustAlignment(Object oSubject, int nAlignment, int nShift, int bAllPartyMembers = TRUE)
         {
-            NWN.Internal.StackPushInteger(bAllPartyMembers);
-            NWN.Internal.StackPushInteger(nShift);
-            NWN.Internal.StackPushInteger(nAlignment);
-            NWN.Internal.StackPushObject(oSubject, false);
-            NWN.Internal.CallBuiltIn(201);
+            Internal.StackPushInteger(bAllPartyMembers);
+            Internal.StackPushInteger(nShift);
+            Internal.StackPushInteger(nAlignment);
+            Internal.StackPushObject(oSubject, false);
+            Internal.CallBuiltIn(201);
         }
 
         //  Do nothing for fSeconds seconds.
         public static void ActionWait(float fSeconds)
         {
-            NWN.Internal.StackPushFloat(fSeconds);
-            NWN.Internal.CallBuiltIn(202);
+            Internal.StackPushFloat(fSeconds);
+            Internal.CallBuiltIn(202);
         }
 
         //  Set the transition bitmap of a player; this should only be called in area
@@ -7878,9 +7879,9 @@
         //    area transition bitmap
         public static void SetAreaTransitionBMP(int nPredefinedAreaTransition, string sCustomAreaTransitionBMP = "")
         {
-            NWN.Internal.StackPushString(sCustomAreaTransitionBMP);
-            NWN.Internal.StackPushInteger(nPredefinedAreaTransition);
-            NWN.Internal.CallBuiltIn(203);
+            Internal.StackPushString(sCustomAreaTransitionBMP);
+            Internal.StackPushInteger(nPredefinedAreaTransition);
+            Internal.CallBuiltIn(203);
         }
 
         //  Starts a conversation with oObjectToConverseWith - this will cause their
@@ -7889,25 +7890,25 @@
         //  - sDialogResRef: If this is blank, the creature's own dialogue file will be used
         //  - bPrivateConversation
         //  Turn off bPlayHello if you don't want the initial greeting to play
-        public static void ActionStartConversation(NWN.Object oObjectToConverseWith, string sDialogResRef = "", int bPrivateConversation = FALSE, int bPlayHello = TRUE)
+        public static void ActionStartConversation(Object oObjectToConverseWith, string sDialogResRef = "", int bPrivateConversation = FALSE, int bPlayHello = TRUE)
         {
-            NWN.Internal.StackPushInteger(bPlayHello);
-            NWN.Internal.StackPushInteger(bPrivateConversation);
-            NWN.Internal.StackPushString(sDialogResRef);
-            NWN.Internal.StackPushObject(oObjectToConverseWith, false);
-            NWN.Internal.CallBuiltIn(204);
+            Internal.StackPushInteger(bPlayHello);
+            Internal.StackPushInteger(bPrivateConversation);
+            Internal.StackPushString(sDialogResRef);
+            Internal.StackPushObject(oObjectToConverseWith, false);
+            Internal.CallBuiltIn(204);
         }
 
         //  Pause the current conversation.
         public static void ActionPauseConversation()
         {
-            NWN.Internal.CallBuiltIn(205);
+            Internal.CallBuiltIn(205);
         }
 
         //  Resume a conversation after it has been paused.
         public static void ActionResumeConversation()
         {
-            NWN.Internal.CallBuiltIn(206);
+            Internal.CallBuiltIn(206);
         }
 
         //  Create a Beam effect.
@@ -7918,14 +7919,14 @@
         //    past the target
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nBeamVisualEffect is
         //    not valid.
-        public static NWN.Effect EffectBeam(int nBeamVisualEffect, NWN.Object oEffector, int nBodyPart, int bMissEffect = FALSE)
+        public static Effect EffectBeam(int nBeamVisualEffect, Object oEffector, int nBodyPart, int bMissEffect = FALSE)
         {
-            NWN.Internal.StackPushInteger(bMissEffect);
-            NWN.Internal.StackPushInteger(nBodyPart);
-            NWN.Internal.StackPushObject(oEffector, false);
-            NWN.Internal.StackPushInteger(nBeamVisualEffect);
-            NWN.Internal.CallBuiltIn(207);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(bMissEffect);
+            Internal.StackPushInteger(nBodyPart);
+            Internal.StackPushObject(oEffector, false);
+            Internal.StackPushInteger(nBeamVisualEffect);
+            Internal.CallBuiltIn(207);
+            return Internal.StackPopEffect();
         }
 
         //  Get an integer between 0 and 100 (inclusive) that represents how oSource
@@ -7934,12 +7935,12 @@
         //  -> 11-89 means oSource is neutral to oTarget
         //  -> 90-100 means oSource is friendly to oTarget
         //  * Returns -1 if oSource or oTarget does not identify a valid object
-        public static int GetReputation(NWN.Object oSource, NWN.Object oTarget)
+        public static int GetReputation(Object oSource, Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.CallBuiltIn(208);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushObject(oSource, false);
+            Internal.CallBuiltIn(208);
+            return Internal.StackPopInteger();
         }
 
         //  Adjust how oSourceFactionMember's faction feels about oTarget by the
@@ -7955,22 +7956,22 @@
         //        parameter as in the following call which should succeed: 
         //        AdjustReputation(oPC,oNPC,-100);
         //  Note: Will fail if oSourceFactionMember is a plot object.
-        public static void AdjustReputation(NWN.Object oTarget, NWN.Object oSourceFactionMember, int nAdjustment)
+        public static void AdjustReputation(Object oTarget, Object oSourceFactionMember, int nAdjustment)
         {
-            NWN.Internal.StackPushInteger(nAdjustment);
-            NWN.Internal.StackPushObject(oSourceFactionMember, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(209);
+            Internal.StackPushInteger(nAdjustment);
+            Internal.StackPushObject(oSourceFactionMember, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(209);
         }
 
         //  Get the creature that is currently sitting on the specified object.
         //  - oChair
         //  * Returns OBJECT_INVALID if oChair is not a valid placeable.
-        public static NWN.Object GetSittingCreature(NWN.Object oChair)
+        public static Object GetSittingCreature(Object oChair)
         {
-            NWN.Internal.StackPushObject(oChair, false);
-            NWN.Internal.CallBuiltIn(210);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oChair, false);
+            Internal.CallBuiltIn(210);
+            return Internal.StackPopObject();
         }
 
         //  Get the creature that is going to attack oTarget.
@@ -7978,90 +7979,90 @@
         //  not be used in any case except when getting a "going to be attacked" shout
         //  from the master creature (and this creature is a henchman)
         //  * Returns OBJECT_INVALID if oTarget is not a valid creature.
-        public static NWN.Object GetGoingToBeAttackedBy(NWN.Object oTarget)
+        public static Object GetGoingToBeAttackedBy(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(211);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(211);
+            return Internal.StackPopObject();
         }
 
         //  Create a Spell Resistance Increase effect.
         //  - nValue: size of spell resistance increase
-        public static NWN.Effect EffectSpellResistanceIncrease(int nValue)
+        public static Effect EffectSpellResistanceIncrease(int nValue)
         {
-            NWN.Internal.StackPushInteger(nValue);
-            NWN.Internal.CallBuiltIn(212);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nValue);
+            Internal.CallBuiltIn(212);
+            return Internal.StackPopEffect();
         }
 
         //  Get the location of oObject.
-        public static NWN.Location GetLocation(NWN.Object oObject)
+        public static Location GetLocation(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(213);
-            return NWN.Internal.StackPopLocation();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(213);
+            return Internal.StackPopLocation();
         }
 
         //  The subject will jump to lLocation instantly (even between areas).
         //  If lLocation is invalid, nothing will happen.
-        public static void ActionJumpToLocation(NWN.Location lLocation)
+        public static void ActionJumpToLocation(Location lLocation)
         {
-            NWN.Internal.StackPushLocation(lLocation);
-            NWN.Internal.CallBuiltIn(214);
+            Internal.StackPushLocation(lLocation);
+            Internal.CallBuiltIn(214);
         }
 
         //  Create a location.
-        public static NWN.Location Location(NWN.Object oArea, NWN.Vector? vPosition, float fOrientation)
+        public static Location Location(Object oArea, Vector? vPosition, float fOrientation)
         {
-            NWN.Internal.StackPushFloat(fOrientation);
-            NWN.Internal.StackPushVector(vPosition);
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(215);
-            return NWN.Internal.StackPopLocation();
+            Internal.StackPushFloat(fOrientation);
+            Internal.StackPushVector(vPosition);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(215);
+            return Internal.StackPopLocation();
         }
 
         //  Apply eEffect at lLocation.
-        public static void ApplyEffectAtLocation(int nDurationType, NWN.Effect eEffect, NWN.Location lLocation, float fDuration = 0.0f)
+        public static void ApplyEffectAtLocation(int nDurationType, Effect eEffect, Location lLocation, float fDuration = 0.0f)
         {
-            NWN.Internal.StackPushFloat(fDuration);
-            NWN.Internal.StackPushLocation(lLocation);
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.StackPushInteger(nDurationType);
-            NWN.Internal.CallBuiltIn(216);
+            Internal.StackPushFloat(fDuration);
+            Internal.StackPushLocation(lLocation);
+            Internal.StackPushEffect(eEffect);
+            Internal.StackPushInteger(nDurationType);
+            Internal.CallBuiltIn(216);
         }
 
         //  * Returns TRUE if oCreature is a Player Controlled character.
-        public static int GetIsPC(NWN.Object oCreature)
+        public static int GetIsPC(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(217);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(217);
+            return Internal.StackPopInteger();
         }
 
         //  Convert fFeet into a number of meters.
         public static float FeetToMeters(float fFeet)
         {
-            NWN.Internal.StackPushFloat(fFeet);
-            NWN.Internal.CallBuiltIn(218);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fFeet);
+            Internal.CallBuiltIn(218);
+            return Internal.StackPopFloat();
         }
 
         //  Convert fYards into a number of meters.
         public static float YardsToMeters(float fYards)
         {
-            NWN.Internal.StackPushFloat(fYards);
-            NWN.Internal.CallBuiltIn(219);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushFloat(fYards);
+            Internal.CallBuiltIn(219);
+            return Internal.StackPopFloat();
         }
 
         //  Apply eEffect to oTarget.
-        public static void ApplyEffectToObject(int nDurationType, NWN.Effect eEffect, NWN.Object oTarget, float fDuration = 0.0f)
+        public static void ApplyEffectToObject(int nDurationType, Effect eEffect, Object oTarget, float fDuration = 0.0f)
         {
-            NWN.Internal.StackPushFloat(fDuration);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.StackPushInteger(nDurationType);
-            NWN.Internal.CallBuiltIn(220);
+            Internal.StackPushFloat(fDuration);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushEffect(eEffect);
+            Internal.StackPushInteger(nDurationType);
+            Internal.CallBuiltIn(220);
         }
 
         //  The caller will immediately speak sStringToSpeak (this is different from
@@ -8070,40 +8071,40 @@
         //  - nTalkVolume: TALKVOLUME_*
         public static void SpeakString(string sStringToSpeak, int nTalkVolume = TALKVOLUME_TALK)
         {
-            NWN.Internal.StackPushInteger(nTalkVolume);
-            NWN.Internal.StackPushString(sStringToSpeak);
-            NWN.Internal.CallBuiltIn(221);
+            Internal.StackPushInteger(nTalkVolume);
+            Internal.StackPushString(sStringToSpeak);
+            Internal.CallBuiltIn(221);
         }
 
         //  Get the location of the caller's last spell target.
-        public static NWN.Location GetSpellTargetLocation()
+        public static Location GetSpellTargetLocation()
         {
-            NWN.Internal.CallBuiltIn(222);
-            return NWN.Internal.StackPopLocation();
+            Internal.CallBuiltIn(222);
+            return Internal.StackPopLocation();
         }
 
         //  Get the position vector from lLocation.
-        public static NWN.Vector GetPositionFromLocation(NWN.Location lLocation)
+        public static Vector GetPositionFromLocation(Location lLocation)
         {
-            NWN.Internal.StackPushLocation(lLocation);
-            NWN.Internal.CallBuiltIn(223);
-            return NWN.Internal.StackPopVector();
+            Internal.StackPushLocation(lLocation);
+            Internal.CallBuiltIn(223);
+            return Internal.StackPopVector();
         }
 
         //  Get the area's object ID from lLocation.
-        public static NWN.Object GetAreaFromLocation(NWN.Location lLocation)
+        public static Object GetAreaFromLocation(Location lLocation)
         {
-            NWN.Internal.StackPushLocation(lLocation);
-            NWN.Internal.CallBuiltIn(224);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushLocation(lLocation);
+            Internal.CallBuiltIn(224);
+            return Internal.StackPopObject();
         }
 
         //  Get the orientation value from lLocation.
-        public static float GetFacingFromLocation(NWN.Location lLocation)
+        public static float GetFacingFromLocation(Location lLocation)
         {
-            NWN.Internal.StackPushLocation(lLocation);
-            NWN.Internal.CallBuiltIn(225);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushLocation(lLocation);
+            Internal.CallBuiltIn(225);
+            return Internal.StackPopFloat();
         }
 
         //  Get the creature nearest to lLocation, subject to all the criteria specified.
@@ -8132,18 +8133,18 @@
         //  - nThirdCriteriaValue: This is used in the same way as nFirstCriteriaValue to
         //    further specify the type of creature that we are looking for.
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetNearestCreatureToLocation(int nFirstCriteriaType, int nFirstCriteriaValue, NWN.Location lLocation, int nNth = 1, int nSecondCriteriaType = -1, int nSecondCriteriaValue = -1, int nThirdCriteriaType = -1, int nThirdCriteriaValue = -1)
+        public static Object GetNearestCreatureToLocation(int nFirstCriteriaType, int nFirstCriteriaValue, Location lLocation, int nNth = 1, int nSecondCriteriaType = -1, int nSecondCriteriaValue = -1, int nThirdCriteriaType = -1, int nThirdCriteriaValue = -1)
         {
-            NWN.Internal.StackPushInteger(nThirdCriteriaValue);
-            NWN.Internal.StackPushInteger(nThirdCriteriaType);
-            NWN.Internal.StackPushInteger(nSecondCriteriaValue);
-            NWN.Internal.StackPushInteger(nSecondCriteriaType);
-            NWN.Internal.StackPushInteger(nNth);
-            NWN.Internal.StackPushLocation(lLocation);
-            NWN.Internal.StackPushInteger(nFirstCriteriaValue);
-            NWN.Internal.StackPushInteger(nFirstCriteriaType);
-            NWN.Internal.CallBuiltIn(226);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(nThirdCriteriaValue);
+            Internal.StackPushInteger(nThirdCriteriaType);
+            Internal.StackPushInteger(nSecondCriteriaValue);
+            Internal.StackPushInteger(nSecondCriteriaType);
+            Internal.StackPushInteger(nNth);
+            Internal.StackPushLocation(lLocation);
+            Internal.StackPushInteger(nFirstCriteriaValue);
+            Internal.StackPushInteger(nFirstCriteriaType);
+            Internal.CallBuiltIn(226);
+            return Internal.StackPopObject();
         }
 
         //  Get the Nth object nearest to oTarget that is of the specified type.
@@ -8151,13 +8152,13 @@
         //  - oTarget
         //  - nNth
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetNearestObject(int nObjectType = OBJECT_TYPE_ALL, NWN.Object oTarget = null, int nNth = 1)
+        public static Object GetNearestObject(int nObjectType = OBJECT_TYPE_ALL, Object oTarget = null, int nNth = 1)
         {
-            NWN.Internal.StackPushInteger(nNth);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushInteger(nObjectType);
-            NWN.Internal.CallBuiltIn(227);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(nNth);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushInteger(nObjectType);
+            Internal.CallBuiltIn(227);
+            return Internal.StackPopObject();
         }
 
         //  Get the nNth object nearest to lLocation that is of the specified type.
@@ -8165,56 +8166,56 @@
         //  - lLocation
         //  - nNth
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetNearestObjectToLocation(int nObjectType, NWN.Location lLocation, int nNth = 1)
+        public static Object GetNearestObjectToLocation(int nObjectType, Location lLocation, int nNth = 1)
         {
-            NWN.Internal.StackPushInteger(nNth);
-            NWN.Internal.StackPushLocation(lLocation);
-            NWN.Internal.StackPushInteger(nObjectType);
-            NWN.Internal.CallBuiltIn(228);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(nNth);
+            Internal.StackPushLocation(lLocation);
+            Internal.StackPushInteger(nObjectType);
+            Internal.CallBuiltIn(228);
+            return Internal.StackPopObject();
         }
 
         //  Get the nth Object nearest to oTarget that has sTag as its tag.
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetNearestObjectByTag(string sTag, NWN.Object oTarget = null, int nNth = 1)
+        public static Object GetNearestObjectByTag(string sTag, Object oTarget = null, int nNth = 1)
         {
-            NWN.Internal.StackPushInteger(nNth);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushString(sTag);
-            NWN.Internal.CallBuiltIn(229);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(nNth);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushString(sTag);
+            Internal.CallBuiltIn(229);
+            return Internal.StackPopObject();
         }
 
         //  Convert nInteger into a floating point number.
         public static float IntToFloat(int nInteger)
         {
-            NWN.Internal.StackPushInteger(nInteger);
-            NWN.Internal.CallBuiltIn(230);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushInteger(nInteger);
+            Internal.CallBuiltIn(230);
+            return Internal.StackPopFloat();
         }
 
         //  Convert fFloat into the nearest integer.
         public static int FloatToInt(float fFloat)
         {
-            NWN.Internal.StackPushFloat(fFloat);
-            NWN.Internal.CallBuiltIn(231);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushFloat(fFloat);
+            Internal.CallBuiltIn(231);
+            return Internal.StackPopInteger();
         }
 
         //  Convert sNumber into an integer.
         public static int StringToInt(string sNumber)
         {
-            NWN.Internal.StackPushString(sNumber);
-            NWN.Internal.CallBuiltIn(232);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushString(sNumber);
+            Internal.CallBuiltIn(232);
+            return Internal.StackPopInteger();
         }
 
         //  Convert sNumber into a floating point number.
         public static float StringToFloat(string sNumber)
         {
-            NWN.Internal.StackPushString(sNumber);
-            NWN.Internal.CallBuiltIn(233);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushString(sNumber);
+            Internal.CallBuiltIn(233);
+            return Internal.StackPopFloat();
         }
 
         //  Cast spell nSpell at lTargetLocation.
@@ -8227,59 +8228,59 @@
         //  - bInstantSpell: If this is TRUE, the spell is cast immediately; this allows
         //    the end-user to simulate
         //    a high-level magic user having lots of advance warning of impending trouble.
-        public static void ActionCastSpellAtLocation(int nSpell, NWN.Location lTargetLocation, int nMetaMagic = METAMAGIC_ANY, int bCheat = FALSE, int nProjectilePathType = PROJECTILE_PATH_TYPE_DEFAULT, int bInstantSpell = FALSE)
+        public static void ActionCastSpellAtLocation(int nSpell, Location lTargetLocation, int nMetaMagic = METAMAGIC_ANY, int bCheat = FALSE, int nProjectilePathType = PROJECTILE_PATH_TYPE_DEFAULT, int bInstantSpell = FALSE)
         {
-            NWN.Internal.StackPushInteger(bInstantSpell);
-            NWN.Internal.StackPushInteger(nProjectilePathType);
-            NWN.Internal.StackPushInteger(bCheat);
-            NWN.Internal.StackPushInteger(nMetaMagic);
-            NWN.Internal.StackPushLocation(lTargetLocation);
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.CallBuiltIn(234);
+            Internal.StackPushInteger(bInstantSpell);
+            Internal.StackPushInteger(nProjectilePathType);
+            Internal.StackPushInteger(bCheat);
+            Internal.StackPushInteger(nMetaMagic);
+            Internal.StackPushLocation(lTargetLocation);
+            Internal.StackPushInteger(nSpell);
+            Internal.CallBuiltIn(234);
         }
 
         //  * Returns TRUE if oSource considers oTarget as an enemy.
-        public static int GetIsEnemy(NWN.Object oTarget, NWN.Object oSource = null)
+        public static int GetIsEnemy(Object oTarget, Object oSource = null)
         {
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(235);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(235);
+            return Internal.StackPopInteger();
         }
 
         //  * Returns TRUE if oSource considers oTarget as a friend.
-        public static int GetIsFriend(NWN.Object oTarget, NWN.Object oSource = null)
+        public static int GetIsFriend(Object oTarget, Object oSource = null)
         {
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(236);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(236);
+            return Internal.StackPopInteger();
         }
 
         //  * Returns TRUE if oSource considers oTarget as neutral.
-        public static int GetIsNeutral(NWN.Object oTarget, NWN.Object oSource = null)
+        public static int GetIsNeutral(Object oTarget, Object oSource = null)
         {
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(237);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(237);
+            return Internal.StackPopInteger();
         }
 
         //  Get the PC that is involved in the conversation.
         //  * Returns OBJECT_INVALID on error.
-        public static NWN.Object GetPCSpeaker()
+        public static Object GetPCSpeaker()
         {
-            NWN.Internal.CallBuiltIn(238);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(238);
+            return Internal.StackPopObject();
         }
 
         //  Get a string from the talk table using nStrRef.
         public static string GetStringByStrRef(int nStrRef, int nGender = GENDER_MALE)
         {
-            NWN.Internal.StackPushInteger(nGender);
-            NWN.Internal.StackPushInteger(nStrRef);
-            NWN.Internal.CallBuiltIn(239);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nGender);
+            Internal.StackPushInteger(nStrRef);
+            Internal.CallBuiltIn(239);
+            return Internal.StackPopString();
         }
 
         //  Causes the creature to speak a translated string.
@@ -8287,26 +8288,26 @@
         //  - nTalkVolume: TALKVOLUME_*
         public static void ActionSpeakStringByStrRef(int nStrRef, int nTalkVolume = TALKVOLUME_TALK)
         {
-            NWN.Internal.StackPushInteger(nTalkVolume);
-            NWN.Internal.StackPushInteger(nStrRef);
-            NWN.Internal.CallBuiltIn(240);
+            Internal.StackPushInteger(nTalkVolume);
+            Internal.StackPushInteger(nStrRef);
+            Internal.CallBuiltIn(240);
         }
 
         //  Destroy oObject (irrevocably).
         //  This will not work on modules and areas.
-        public static void DestroyObject(NWN.Object oDestroy, float fDelay = 0.0f)
+        public static void DestroyObject(Object oDestroy, float fDelay = 0.0f)
         {
-            NWN.Internal.StackPushFloat(fDelay);
-            NWN.Internal.StackPushObject(oDestroy, false);
-            NWN.Internal.CallBuiltIn(241);
+            Internal.StackPushFloat(fDelay);
+            Internal.StackPushObject(oDestroy, false);
+            Internal.CallBuiltIn(241);
         }
 
         //  Get the module.
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetModule()
+        public static Object GetModule()
         {
-            NWN.Internal.CallBuiltIn(242);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(242);
+            return Internal.StackPopObject();
         }
 
         //  Create an object of the specified type at lLocation.
@@ -8316,15 +8317,15 @@
         //  - lLocation
         //  - bUseAppearAnimation
         //  - sNewTag - if this string is not empty, it will replace the default tag from the template
-        public static NWN.Object CreateObject(int nObjectType, string sTemplate, NWN.Location lLocation, int bUseAppearAnimation = FALSE, string sNewTag = "")
+        public static Object CreateObject(int nObjectType, string sTemplate, Location lLocation, int bUseAppearAnimation = FALSE, string sNewTag = "")
         {
-            NWN.Internal.StackPushString(sNewTag);
-            NWN.Internal.StackPushInteger(bUseAppearAnimation);
-            NWN.Internal.StackPushLocation(lLocation);
-            NWN.Internal.StackPushString(sTemplate);
-            NWN.Internal.StackPushInteger(nObjectType);
-            NWN.Internal.CallBuiltIn(243);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushString(sNewTag);
+            Internal.StackPushInteger(bUseAppearAnimation);
+            Internal.StackPushLocation(lLocation);
+            Internal.StackPushString(sTemplate);
+            Internal.StackPushInteger(nObjectType);
+            Internal.CallBuiltIn(243);
+            return Internal.StackPopObject();
         }
 
         //  Create an event which triggers the "SpellCastAt" script
@@ -8342,79 +8343,79 @@
         //      GetLastSpellCaster() to get the object that cast the spell (oCaster).
         //      GetLastSpell() to get the type of spell cast (nSpell)
         //      GetLastSpellHarmful() to determine if the spell cast at the object was harmful.
-        public static NWN.Event EventSpellCastAt(NWN.Object oCaster, int nSpell, int bHarmful = TRUE)
+        public static Event EventSpellCastAt(Object oCaster, int nSpell, int bHarmful = TRUE)
         {
-            NWN.Internal.StackPushInteger(bHarmful);
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.StackPushObject(oCaster, false);
-            NWN.Internal.CallBuiltIn(244);
-            return NWN.Internal.StackPopEvent();
+            Internal.StackPushInteger(bHarmful);
+            Internal.StackPushInteger(nSpell);
+            Internal.StackPushObject(oCaster, false);
+            Internal.CallBuiltIn(244);
+            return Internal.StackPopEvent();
         }
 
         //  This is for use in a "Spell Cast" script, it gets who cast the spell.
         //  The spell could have been cast by a creature, placeable or door.
         //  * Returns OBJECT_INVALID if the caller is not a creature, placeable or door.
-        public static NWN.Object GetLastSpellCaster()
+        public static Object GetLastSpellCaster()
         {
-            NWN.Internal.CallBuiltIn(245);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(245);
+            return Internal.StackPopObject();
         }
 
         //  This is for use in a "Spell Cast" script, it gets the ID of the spell that
         //  was cast.
         public static int GetLastSpell()
         {
-            NWN.Internal.CallBuiltIn(246);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(246);
+            return Internal.StackPopInteger();
         }
 
         //  This is for use in a user-defined script, it gets the event number.
         public static int GetUserDefinedEventNumber()
         {
-            NWN.Internal.CallBuiltIn(247);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(247);
+            return Internal.StackPopInteger();
         }
 
         //  This is for use in a Spell script, it gets the ID of the spell that is being
         //  cast (SPELL_*).
         public static int GetSpellId()
         {
-            NWN.Internal.CallBuiltIn(248);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(248);
+            return Internal.StackPopInteger();
         }
 
         //  Generate a random name.
         //  nNameType: The type of random name to be generated (NAME_*)
         public static string RandomName(int nNameType = NAME_FIRST_GENERIC_MALE)
         {
-            NWN.Internal.StackPushInteger(nNameType);
-            NWN.Internal.CallBuiltIn(249);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nNameType);
+            Internal.CallBuiltIn(249);
+            return Internal.StackPopString();
         }
 
         //  Create a Poison effect.
         //  - nPoisonType: POISON_*
-        public static NWN.Effect EffectPoison(int nPoisonType)
+        public static Effect EffectPoison(int nPoisonType)
         {
-            NWN.Internal.StackPushInteger(nPoisonType);
-            NWN.Internal.CallBuiltIn(250);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nPoisonType);
+            Internal.CallBuiltIn(250);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Disease effect.
         //  - nDiseaseType: DISEASE_*
-        public static NWN.Effect EffectDisease(int nDiseaseType)
+        public static Effect EffectDisease(int nDiseaseType)
         {
-            NWN.Internal.StackPushInteger(nDiseaseType);
-            NWN.Internal.CallBuiltIn(251);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nDiseaseType);
+            Internal.CallBuiltIn(251);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Silence effect.
-        public static NWN.Effect EffectSilence()
+        public static Effect EffectSilence()
         {
-            NWN.Internal.CallBuiltIn(252);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(252);
+            return Internal.StackPopEffect();
         }
 
         //  Set the name of oObject.
@@ -8425,80 +8426,80 @@
         //        Setting an object's name to "" will make the object
         //        revert to using the name it had originally before any
         //        SetName() calls were made on the object.
-        public static string GetName(NWN.Object oObject, int bOriginalName = FALSE)
+        public static string GetName(Object oObject, int bOriginalName = FALSE)
         {
-            NWN.Internal.StackPushInteger(bOriginalName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(253);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(bOriginalName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(253);
+            return Internal.StackPopString();
         }
 
         //  Use this in a conversation script to get the person with whom you are conversing.
         //  * Returns OBJECT_INVALID if the caller is not a valid creature.
-        public static NWN.Object GetLastSpeaker()
+        public static Object GetLastSpeaker()
         {
-            NWN.Internal.CallBuiltIn(254);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(254);
+            return Internal.StackPopObject();
         }
 
         //  Use this in an OnDialog script to start up the dialog tree.
         //  - sResRef: if this is not specified, the default dialog file will be used
         //  - oObjectToDialog: if this is not specified the person that triggered the
         //    event will be used
-        public static int BeginConversation(string sResRef = "", NWN.Object oObjectToDialog = null)
+        public static int BeginConversation(string sResRef = "", Object oObjectToDialog = null)
         {
-            NWN.Internal.StackPushObject(oObjectToDialog, false);
-            NWN.Internal.StackPushString(sResRef);
-            NWN.Internal.CallBuiltIn(255);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObjectToDialog, false);
+            Internal.StackPushString(sResRef);
+            Internal.CallBuiltIn(255);
+            return Internal.StackPopInteger();
         }
 
         //  Use this in an OnPerception script to get the object that was perceived.
         //  * Returns OBJECT_INVALID if the caller is not a valid creature.
-        public static NWN.Object GetLastPerceived()
+        public static Object GetLastPerceived()
         {
-            NWN.Internal.CallBuiltIn(256);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(256);
+            return Internal.StackPopObject();
         }
 
         //  Use this in an OnPerception script to determine whether the object that was
         //  perceived was heard.
         public static int GetLastPerceptionHeard()
         {
-            NWN.Internal.CallBuiltIn(257);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(257);
+            return Internal.StackPopInteger();
         }
 
         //  Use this in an OnPerception script to determine whether the object that was
         //  perceived has become inaudible.
         public static int GetLastPerceptionInaudible()
         {
-            NWN.Internal.CallBuiltIn(258);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(258);
+            return Internal.StackPopInteger();
         }
 
         //  Use this in an OnPerception script to determine whether the object that was
         //  perceived was seen.
         public static int GetLastPerceptionSeen()
         {
-            NWN.Internal.CallBuiltIn(259);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(259);
+            return Internal.StackPopInteger();
         }
 
         //  Use this in an OnClosed script to get the object that closed the door or placeable.
         //  * Returns OBJECT_INVALID if the caller is not a valid door or placeable.
-        public static NWN.Object GetLastClosedBy()
+        public static Object GetLastClosedBy()
         {
-            NWN.Internal.CallBuiltIn(260);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(260);
+            return Internal.StackPopObject();
         }
 
         //  Use this in an OnPerception script to determine whether the object that was
         //  perceived has vanished.
         public static int GetLastPerceptionVanished()
         {
-            NWN.Internal.CallBuiltIn(261);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(261);
+            return Internal.StackPopInteger();
         }
 
         //  Get the first object within oPersistentObject.
@@ -8507,13 +8508,13 @@
         //  - nPersistentZone: PERSISTENT_ZONE_ACTIVE. [This could also take the value
         //    PERSISTENT_ZONE_FOLLOW, but this is no longer used.]
         //  * Returns OBJECT_INVALID if no object is found.
-        public static NWN.Object GetFirstInPersistentObject(NWN.Object oPersistentObject = null, int nResidentObjectType = OBJECT_TYPE_CREATURE, int nPersistentZone = PERSISTENT_ZONE_ACTIVE)
+        public static Object GetFirstInPersistentObject(Object oPersistentObject = null, int nResidentObjectType = OBJECT_TYPE_CREATURE, int nPersistentZone = PERSISTENT_ZONE_ACTIVE)
         {
-            NWN.Internal.StackPushInteger(nPersistentZone);
-            NWN.Internal.StackPushInteger(nResidentObjectType);
-            NWN.Internal.StackPushObject(oPersistentObject, false);
-            NWN.Internal.CallBuiltIn(262);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(nPersistentZone);
+            Internal.StackPushInteger(nResidentObjectType);
+            Internal.StackPushObject(oPersistentObject, false);
+            Internal.CallBuiltIn(262);
+            return Internal.StackPopObject();
         }
 
         //  Get the next object within oPersistentObject.
@@ -8522,93 +8523,93 @@
         //  - nPersistentZone: PERSISTENT_ZONE_ACTIVE. [This could also take the value
         //    PERSISTENT_ZONE_FOLLOW, but this is no longer used.]
         //  * Returns OBJECT_INVALID if no object is found.
-        public static NWN.Object GetNextInPersistentObject(NWN.Object oPersistentObject = null, int nResidentObjectType = OBJECT_TYPE_CREATURE, int nPersistentZone = PERSISTENT_ZONE_ACTIVE)
+        public static Object GetNextInPersistentObject(Object oPersistentObject = null, int nResidentObjectType = OBJECT_TYPE_CREATURE, int nPersistentZone = PERSISTENT_ZONE_ACTIVE)
         {
-            NWN.Internal.StackPushInteger(nPersistentZone);
-            NWN.Internal.StackPushInteger(nResidentObjectType);
-            NWN.Internal.StackPushObject(oPersistentObject, false);
-            NWN.Internal.CallBuiltIn(263);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(nPersistentZone);
+            Internal.StackPushInteger(nResidentObjectType);
+            Internal.StackPushObject(oPersistentObject, false);
+            Internal.CallBuiltIn(263);
+            return Internal.StackPopObject();
         }
 
         //  This returns the creator of oAreaOfEffectObject.
         //  * Returns OBJECT_INVALID if oAreaOfEffectObject is not a valid Area of Effect object.
-        public static NWN.Object GetAreaOfEffectCreator(NWN.Object oAreaOfEffectObject = null)
+        public static Object GetAreaOfEffectCreator(Object oAreaOfEffectObject = null)
         {
-            NWN.Internal.StackPushObject(oAreaOfEffectObject, false);
-            NWN.Internal.CallBuiltIn(264);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oAreaOfEffectObject, false);
+            Internal.CallBuiltIn(264);
+            return Internal.StackPopObject();
         }
 
         //  Delete oObject's local integer variable sVarName
-        public static void DeleteLocalInt(NWN.Object oObject, string sVarName)
+        public static void DeleteLocalInt(Object oObject, string sVarName)
         {
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(265);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(265);
         }
 
         //  Delete oObject's local float variable sVarName
-        public static void DeleteLocalFloat(NWN.Object oObject, string sVarName)
+        public static void DeleteLocalFloat(Object oObject, string sVarName)
         {
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(266);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(266);
         }
 
         //  Delete oObject's local string variable sVarName
-        public static void DeleteLocalString(NWN.Object oObject, string sVarName)
+        public static void DeleteLocalString(Object oObject, string sVarName)
         {
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(267);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(267);
         }
 
         //  Delete oObject's local object variable sVarName
-        public static void DeleteLocalObject(NWN.Object oObject, string sVarName)
+        public static void DeleteLocalObject(Object oObject, string sVarName)
         {
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(268);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(268);
         }
 
         //  Delete oObject's local location variable sVarName
-        public static void DeleteLocalLocation(NWN.Object oObject, string sVarName)
+        public static void DeleteLocalLocation(Object oObject, string sVarName)
         {
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(269);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(269);
         }
 
         //  Create a Haste effect.
-        public static NWN.Effect EffectHaste()
+        public static Effect EffectHaste()
         {
-            NWN.Internal.CallBuiltIn(270);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(270);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Slow effect.
-        public static NWN.Effect EffectSlow()
+        public static Effect EffectSlow()
         {
-            NWN.Internal.CallBuiltIn(271);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(271);
+            return Internal.StackPopEffect();
         }
 
         //  Convert oObject into a hexadecimal string.
-        public static string ObjectToString(NWN.Object oObject)
+        public static string ObjectToString(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(272);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(272);
+            return Internal.StackPopString();
         }
 
         //  Create an Immunity effect.
         //  - nImmunityType: IMMUNITY_TYPE_*
-        public static NWN.Effect EffectImmunity(int nImmunityType)
+        public static Effect EffectImmunity(int nImmunityType)
         {
-            NWN.Internal.StackPushInteger(nImmunityType);
-            NWN.Internal.CallBuiltIn(273);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nImmunityType);
+            Internal.CallBuiltIn(273);
+            return Internal.StackPopEffect();
         }
 
         //  - oCreature
@@ -8616,131 +8617,131 @@
         //  - oVersus: if this is specified, then we also check for the race and
         //    alignment of oVersus
         //  * Returns TRUE if oCreature has immunity of type nImmunity versus oVersus.
-        public static int GetIsImmune(NWN.Object oCreature, int nImmunityType, NWN.Object oVersus = null)
+        public static int GetIsImmune(Object oCreature, int nImmunityType, Object oVersus = null)
         {
-            NWN.Internal.StackPushObject(oVersus, false);
-            NWN.Internal.StackPushInteger(nImmunityType);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(274);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oVersus, false);
+            Internal.StackPushInteger(nImmunityType);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(274);
+            return Internal.StackPopInteger();
         }
 
         //  Creates a Damage Immunity Increase effect.
         //  - nDamageType: DAMAGE_TYPE_*
         //  - nPercentImmunity
-        public static NWN.Effect EffectDamageImmunityIncrease(int nDamageType, int nPercentImmunity)
+        public static Effect EffectDamageImmunityIncrease(int nDamageType, int nPercentImmunity)
         {
-            NWN.Internal.StackPushInteger(nPercentImmunity);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.CallBuiltIn(275);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nPercentImmunity);
+            Internal.StackPushInteger(nDamageType);
+            Internal.CallBuiltIn(275);
+            return Internal.StackPopEffect();
         }
 
         //  Determine whether oEncounter is active.
-        public static int GetEncounterActive(NWN.Object oEncounter = null)
+        public static int GetEncounterActive(Object oEncounter = null)
         {
-            NWN.Internal.StackPushObject(oEncounter, false);
-            NWN.Internal.CallBuiltIn(276);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oEncounter, false);
+            Internal.CallBuiltIn(276);
+            return Internal.StackPopInteger();
         }
 
         //  Set oEncounter's active state to nNewValue.
         //  - nNewValue: TRUE/FALSE
         //  - oEncounter
-        public static void SetEncounterActive(int nNewValue, NWN.Object oEncounter = null)
+        public static void SetEncounterActive(int nNewValue, Object oEncounter = null)
         {
-            NWN.Internal.StackPushObject(oEncounter, false);
-            NWN.Internal.StackPushInteger(nNewValue);
-            NWN.Internal.CallBuiltIn(277);
+            Internal.StackPushObject(oEncounter, false);
+            Internal.StackPushInteger(nNewValue);
+            Internal.CallBuiltIn(277);
         }
 
         //  Get the maximum number of times that oEncounter will spawn.
-        public static int GetEncounterSpawnsMax(NWN.Object oEncounter = null)
+        public static int GetEncounterSpawnsMax(Object oEncounter = null)
         {
-            NWN.Internal.StackPushObject(oEncounter, false);
-            NWN.Internal.CallBuiltIn(278);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oEncounter, false);
+            Internal.CallBuiltIn(278);
+            return Internal.StackPopInteger();
         }
 
         //  Set the maximum number of times that oEncounter can spawn
-        public static void SetEncounterSpawnsMax(int nNewValue, NWN.Object oEncounter = null)
+        public static void SetEncounterSpawnsMax(int nNewValue, Object oEncounter = null)
         {
-            NWN.Internal.StackPushObject(oEncounter, false);
-            NWN.Internal.StackPushInteger(nNewValue);
-            NWN.Internal.CallBuiltIn(279);
+            Internal.StackPushObject(oEncounter, false);
+            Internal.StackPushInteger(nNewValue);
+            Internal.CallBuiltIn(279);
         }
 
         //  Get the number of times that oEncounter has spawned so far
-        public static int GetEncounterSpawnsCurrent(NWN.Object oEncounter = null)
+        public static int GetEncounterSpawnsCurrent(Object oEncounter = null)
         {
-            NWN.Internal.StackPushObject(oEncounter, false);
-            NWN.Internal.CallBuiltIn(280);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oEncounter, false);
+            Internal.CallBuiltIn(280);
+            return Internal.StackPopInteger();
         }
 
         //  Set the number of times that oEncounter has spawned so far
-        public static void SetEncounterSpawnsCurrent(int nNewValue, NWN.Object oEncounter = null)
+        public static void SetEncounterSpawnsCurrent(int nNewValue, Object oEncounter = null)
         {
-            NWN.Internal.StackPushObject(oEncounter, false);
-            NWN.Internal.StackPushInteger(nNewValue);
-            NWN.Internal.CallBuiltIn(281);
+            Internal.StackPushObject(oEncounter, false);
+            Internal.StackPushInteger(nNewValue);
+            Internal.CallBuiltIn(281);
         }
 
         //  Use this in an OnItemAcquired script to get the item that was acquired.
         //  * Returns OBJECT_INVALID if the module is not valid.
-        public static NWN.Object GetModuleItemAcquired()
+        public static Object GetModuleItemAcquired()
         {
-            NWN.Internal.CallBuiltIn(282);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(282);
+            return Internal.StackPopObject();
         }
 
         //  Use this in an OnItemAcquired script to get the creatre that previously
         //  possessed the item.
         //  * Returns OBJECT_INVALID if the item was picked up from the ground.
-        public static NWN.Object GetModuleItemAcquiredFrom()
+        public static Object GetModuleItemAcquiredFrom()
         {
-            NWN.Internal.CallBuiltIn(283);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(283);
+            return Internal.StackPopObject();
         }
 
         //  Set the value for a custom token.
         public static void SetCustomToken(int nCustomTokenNumber, string sTokenValue)
         {
-            NWN.Internal.StackPushString(sTokenValue);
-            NWN.Internal.StackPushInteger(nCustomTokenNumber);
-            NWN.Internal.CallBuiltIn(284);
+            Internal.StackPushString(sTokenValue);
+            Internal.StackPushInteger(nCustomTokenNumber);
+            Internal.CallBuiltIn(284);
         }
 
         //  Determine whether oCreature has nFeat, and nFeat is useable.
         //  - nFeat: FEAT_*
         //  - oCreature
-        public static int GetHasFeat(int nFeat, NWN.Object oCreature = null)
+        public static int GetHasFeat(int nFeat, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nFeat);
-            NWN.Internal.CallBuiltIn(285);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nFeat);
+            Internal.CallBuiltIn(285);
+            return Internal.StackPopInteger();
         }
 
         //  Determine whether oCreature has nSkill, and nSkill is useable.
         //  - nSkill: SKILL_*
         //  - oCreature
-        public static int GetHasSkill(int nSkill, NWN.Object oCreature = null)
+        public static int GetHasSkill(int nSkill, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nSkill);
-            NWN.Internal.CallBuiltIn(286);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nSkill);
+            Internal.CallBuiltIn(286);
+            return Internal.StackPopInteger();
         }
 
         //  Use nFeat on oTarget.
         //  - nFeat: FEAT_*
         //  - oTarget
-        public static void ActionUseFeat(int nFeat, NWN.Object oTarget)
+        public static void ActionUseFeat(int nFeat, Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushInteger(nFeat);
-            NWN.Internal.CallBuiltIn(287);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushInteger(nFeat);
+            Internal.CallBuiltIn(287);
         }
 
         //  Runs the action "UseSkill" on the current creature
@@ -8749,58 +8750,58 @@
         //  - oTarget
         //  - nSubSkill: SUBSKILL_*
         //  - oItemUsed: Item to use in conjunction with the skill
-        public static void ActionUseSkill(int nSkill, NWN.Object oTarget, int nSubSkill = 0, NWN.Object oItemUsed = null)
+        public static void ActionUseSkill(int nSkill, Object oTarget, int nSubSkill = 0, Object oItemUsed = null)
         {
-            NWN.Internal.StackPushObject(oItemUsed, false);
-            NWN.Internal.StackPushInteger(nSubSkill);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushInteger(nSkill);
-            NWN.Internal.CallBuiltIn(288);
+            Internal.StackPushObject(oItemUsed, false);
+            Internal.StackPushInteger(nSubSkill);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushInteger(nSkill);
+            Internal.CallBuiltIn(288);
         }
 
         //  Determine whether oSource sees oTarget.
         //  NOTE: This *only* works on creatures, as visibility lists are not
         //        maintained for non-creature objects.
-        public static int GetObjectSeen(NWN.Object oTarget, NWN.Object oSource = null)
+        public static int GetObjectSeen(Object oTarget, Object oSource = null)
         {
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(289);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(289);
+            return Internal.StackPopInteger();
         }
 
         //  Determine whether oSource hears oTarget.
         //  NOTE: This *only* works on creatures, as visibility lists are not
         //        maintained for non-creature objects.
-        public static int GetObjectHeard(NWN.Object oTarget, NWN.Object oSource = null)
+        public static int GetObjectHeard(Object oTarget, Object oSource = null)
         {
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(290);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(290);
+            return Internal.StackPopInteger();
         }
 
         //  Use this in an OnPlayerDeath module script to get the last player that died.
-        public static NWN.Object GetLastPlayerDied()
+        public static Object GetLastPlayerDied()
         {
-            NWN.Internal.CallBuiltIn(291);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(291);
+            return Internal.StackPopObject();
         }
 
         //  Use this in an OnItemLost script to get the item that was lost/dropped.
         //  * Returns OBJECT_INVALID if the module is not valid.
-        public static NWN.Object GetModuleItemLost()
+        public static Object GetModuleItemLost()
         {
-            NWN.Internal.CallBuiltIn(292);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(292);
+            return Internal.StackPopObject();
         }
 
         //  Use this in an OnItemLost script to get the creature that lost the item.
         //  * Returns OBJECT_INVALID if the module is not valid.
-        public static NWN.Object GetModuleItemLostBy()
+        public static Object GetModuleItemLostBy()
         {
-            NWN.Internal.CallBuiltIn(293);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(293);
+            return Internal.StackPopObject();
         }
 
         //  Do aActionToDo.
@@ -8814,37 +8815,37 @@
         // 
         //  To specify the OnConversation script that should run, view the Creature Properties on
         //  the creature and click on the Scripts Tab. Then specify a script for the OnConversation event.
-        public static NWN.Event EventConversation()
+        public static Event EventConversation()
         {
-            NWN.Internal.CallBuiltIn(295);
-            return NWN.Internal.StackPopEvent();
+            Internal.CallBuiltIn(295);
+            return Internal.StackPopEvent();
         }
 
         //  Set the difficulty level of oEncounter.
         //  - nEncounterDifficulty: ENCOUNTER_DIFFICULTY_*
         //  - oEncounter
-        public static void SetEncounterDifficulty(int nEncounterDifficulty, NWN.Object oEncounter = null)
+        public static void SetEncounterDifficulty(int nEncounterDifficulty, Object oEncounter = null)
         {
-            NWN.Internal.StackPushObject(oEncounter, false);
-            NWN.Internal.StackPushInteger(nEncounterDifficulty);
-            NWN.Internal.CallBuiltIn(296);
+            Internal.StackPushObject(oEncounter, false);
+            Internal.StackPushInteger(nEncounterDifficulty);
+            Internal.CallBuiltIn(296);
         }
 
         //  Get the difficulty level of oEncounter.
-        public static int GetEncounterDifficulty(NWN.Object oEncounter = null)
+        public static int GetEncounterDifficulty(Object oEncounter = null)
         {
-            NWN.Internal.StackPushObject(oEncounter, false);
-            NWN.Internal.CallBuiltIn(297);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oEncounter, false);
+            Internal.CallBuiltIn(297);
+            return Internal.StackPopInteger();
         }
 
         //  Get the distance between lLocationA and lLocationB.
-        public static float GetDistanceBetweenLocations(NWN.Location lLocationA, NWN.Location lLocationB)
+        public static float GetDistanceBetweenLocations(Location lLocationA, Location lLocationB)
         {
-            NWN.Internal.StackPushLocation(lLocationB);
-            NWN.Internal.StackPushLocation(lLocationA);
-            NWN.Internal.CallBuiltIn(298);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushLocation(lLocationB);
+            Internal.StackPushLocation(lLocationA);
+            Internal.CallBuiltIn(298);
+            return Internal.StackPopFloat();
         }
 
         //  Use this in spell scripts to get nDamage adjusted by oTarget's reflex and
@@ -8854,15 +8855,15 @@
         //  - nDC: Difficulty check
         //  - nSaveType: SAVING_THROW_TYPE_*
         //  - oSaveVersus
-        public static int GetReflexAdjustedDamage(int nDamage, NWN.Object oTarget, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, NWN.Object oSaveVersus = null)
+        public static int GetReflexAdjustedDamage(int nDamage, Object oTarget, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, Object oSaveVersus = null)
         {
-            NWN.Internal.StackPushObject(oSaveVersus, false);
-            NWN.Internal.StackPushInteger(nSaveType);
-            NWN.Internal.StackPushInteger(nDC);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushInteger(nDamage);
-            NWN.Internal.CallBuiltIn(299);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSaveVersus, false);
+            Internal.StackPushInteger(nSaveType);
+            Internal.StackPushInteger(nDC);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushInteger(nDamage);
+            Internal.CallBuiltIn(299);
+            return Internal.StackPopInteger();
         }
 
         //  Play nAnimation immediately.
@@ -8871,37 +8872,37 @@
         //  - fSeconds
         public static void PlayAnimation(int nAnimation, float fSpeed = 1.0f, float fSeconds = 0.0f)
         {
-            NWN.Internal.StackPushFloat(fSeconds);
-            NWN.Internal.StackPushFloat(fSpeed);
-            NWN.Internal.StackPushInteger(nAnimation);
-            NWN.Internal.CallBuiltIn(300);
+            Internal.StackPushFloat(fSeconds);
+            Internal.StackPushFloat(fSpeed);
+            Internal.StackPushInteger(nAnimation);
+            Internal.CallBuiltIn(300);
         }
 
         //  Create a Spell Talent.
         //  - nSpell: SPELL_*
-        public static NWN.Talent TalentSpell(int nSpell)
+        public static Talent TalentSpell(int nSpell)
         {
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.CallBuiltIn(301);
-            return NWN.Internal.StackPopTalent();
+            Internal.StackPushInteger(nSpell);
+            Internal.CallBuiltIn(301);
+            return Internal.StackPopTalent();
         }
 
         //  Create a Feat Talent.
         //  - nFeat: FEAT_*
-        public static NWN.Talent TalentFeat(int nFeat)
+        public static Talent TalentFeat(int nFeat)
         {
-            NWN.Internal.StackPushInteger(nFeat);
-            NWN.Internal.CallBuiltIn(302);
-            return NWN.Internal.StackPopTalent();
+            Internal.StackPushInteger(nFeat);
+            Internal.CallBuiltIn(302);
+            return Internal.StackPopTalent();
         }
 
         //  Create a Skill Talent.
         //  - nSkill: SKILL_*
-        public static NWN.Talent TalentSkill(int nSkill)
+        public static Talent TalentSkill(int nSkill)
         {
-            NWN.Internal.StackPushInteger(nSkill);
-            NWN.Internal.CallBuiltIn(303);
-            return NWN.Internal.StackPopTalent();
+            Internal.StackPushInteger(nSkill);
+            Internal.CallBuiltIn(303);
+            return Internal.StackPopTalent();
         }
 
         //  Determines whether oObject has any effects applied by nSpell
@@ -8910,41 +8911,41 @@
         //  * The spell id on effects is only valid if the effect is created
         //    when the spell script runs. If it is created in a delayed command
         //    then the spell id on the effect will be invalid.
-        public static int GetHasSpellEffect(int nSpell, NWN.Object oObject = null)
+        public static int GetHasSpellEffect(int nSpell, Object oObject = null)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.CallBuiltIn(304);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.StackPushInteger(nSpell);
+            Internal.CallBuiltIn(304);
+            return Internal.StackPopInteger();
         }
 
         //  Get the spell (SPELL_*) that applied eSpellEffect.
         //  * Returns -1 if eSpellEffect was applied outside a spell script.
-        public static int GetEffectSpellId(NWN.Effect eSpellEffect)
+        public static int GetEffectSpellId(Effect eSpellEffect)
         {
-            NWN.Internal.StackPushEffect(eSpellEffect);
-            NWN.Internal.CallBuiltIn(305);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushEffect(eSpellEffect);
+            Internal.CallBuiltIn(305);
+            return Internal.StackPopInteger();
         }
 
         //  Determine whether oCreature has tTalent.
-        public static int GetCreatureHasTalent(NWN.Talent tTalent, NWN.Object oCreature = null)
+        public static int GetCreatureHasTalent(Talent tTalent, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushTalent(tTalent);
-            NWN.Internal.CallBuiltIn(306);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushTalent(tTalent);
+            Internal.CallBuiltIn(306);
+            return Internal.StackPopInteger();
         }
 
         //  Get a random talent of oCreature, within nCategory.
         //  - nCategory: TALENT_CATEGORY_*
         //  - oCreature
-        public static NWN.Talent GetCreatureTalentRandom(int nCategory, NWN.Object oCreature = null)
+        public static Talent GetCreatureTalentRandom(int nCategory, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nCategory);
-            NWN.Internal.CallBuiltIn(307);
-            return NWN.Internal.StackPopTalent();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nCategory);
+            Internal.CallBuiltIn(307);
+            return Internal.StackPopTalent();
         }
 
         //  Get the best talent (i.e. closest to nCRMax without going over) of oCreature,
@@ -8952,63 +8953,63 @@
         //  - nCategory: TALENT_CATEGORY_*
         //  - nCRMax: Challenge Rating of the talent
         //  - oCreature
-        public static NWN.Talent GetCreatureTalentBest(int nCategory, int nCRMax, NWN.Object oCreature = null)
+        public static Talent GetCreatureTalentBest(int nCategory, int nCRMax, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nCRMax);
-            NWN.Internal.StackPushInteger(nCategory);
-            NWN.Internal.CallBuiltIn(308);
-            return NWN.Internal.StackPopTalent();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nCRMax);
+            Internal.StackPushInteger(nCategory);
+            Internal.CallBuiltIn(308);
+            return Internal.StackPopTalent();
         }
 
         //  Use tChosenTalent on oTarget.
-        public static void ActionUseTalentOnObject(NWN.Talent tChosenTalent, NWN.Object oTarget)
+        public static void ActionUseTalentOnObject(Talent tChosenTalent, Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushTalent(tChosenTalent);
-            NWN.Internal.CallBuiltIn(309);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushTalent(tChosenTalent);
+            Internal.CallBuiltIn(309);
         }
 
         //  Use tChosenTalent at lTargetLocation.
-        public static void ActionUseTalentAtLocation(NWN.Talent tChosenTalent, NWN.Location lTargetLocation)
+        public static void ActionUseTalentAtLocation(Talent tChosenTalent, Location lTargetLocation)
         {
-            NWN.Internal.StackPushLocation(lTargetLocation);
-            NWN.Internal.StackPushTalent(tChosenTalent);
-            NWN.Internal.CallBuiltIn(310);
+            Internal.StackPushLocation(lTargetLocation);
+            Internal.StackPushTalent(tChosenTalent);
+            Internal.CallBuiltIn(310);
         }
 
         //  Get the gold piece value of oItem.
         //  * Returns 0 if oItem is not a valid item.
-        public static int GetGoldPieceValue(NWN.Object oItem)
+        public static int GetGoldPieceValue(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(311);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(311);
+            return Internal.StackPopInteger();
         }
 
         //  * Returns TRUE if oCreature is of a playable racial type.
-        public static int GetIsPlayableRacialType(NWN.Object oCreature)
+        public static int GetIsPlayableRacialType(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(312);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(312);
+            return Internal.StackPopInteger();
         }
 
         //  Jump to lDestination.  The action is added to the TOP of the action queue.
-        public static void JumpToLocation(NWN.Location lDestination)
+        public static void JumpToLocation(Location lDestination)
         {
-            NWN.Internal.StackPushLocation(lDestination);
-            NWN.Internal.CallBuiltIn(313);
+            Internal.StackPushLocation(lDestination);
+            Internal.CallBuiltIn(313);
         }
 
         //  Create a Temporary Hitpoints effect.
         //  - nHitPoints: a positive integer
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nHitPoints < 0.
-        public static NWN.Effect EffectTemporaryHitpoints(int nHitPoints)
+        public static Effect EffectTemporaryHitpoints(int nHitPoints)
         {
-            NWN.Internal.StackPushInteger(nHitPoints);
-            NWN.Internal.CallBuiltIn(314);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nHitPoints);
+            Internal.CallBuiltIn(314);
+            return Internal.StackPopEffect();
         }
 
         //  Get the number of ranks that oTarget has in nSkill.
@@ -9018,72 +9019,72 @@
         //                    has (i.e. not including any bonuses from ability scores, feats, etc).
         //  * Returns -1 if oTarget doesn't have nSkill.
         //  * Returns 0 if nSkill is untrained.
-        public static int GetSkillRank(int nSkill, NWN.Object oTarget = null, int nBaseSkillRank = FALSE)
+        public static int GetSkillRank(int nSkill, Object oTarget = null, int nBaseSkillRank = FALSE)
         {
-            NWN.Internal.StackPushInteger(nBaseSkillRank);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushInteger(nSkill);
-            NWN.Internal.CallBuiltIn(315);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nBaseSkillRank);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushInteger(nSkill);
+            Internal.CallBuiltIn(315);
+            return Internal.StackPopInteger();
         }
 
         //  Get the attack target of oCreature.
         //  This only works when oCreature is in combat.
-        public static NWN.Object GetAttackTarget(NWN.Object oCreature = null)
+        public static Object GetAttackTarget(Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(316);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(316);
+            return Internal.StackPopObject();
         }
 
         //  Get the attack type (SPECIAL_ATTACK_*) of oCreature's last attack.
         //  This only works when oCreature is in combat.
-        public static int GetLastAttackType(NWN.Object oCreature = null)
+        public static int GetLastAttackType(Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(317);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(317);
+            return Internal.StackPopInteger();
         }
 
         //  Get the attack mode (COMBAT_MODE_*) of oCreature's last attack.
         //  This only works when oCreature is in combat.
-        public static int GetLastAttackMode(NWN.Object oCreature = null)
+        public static int GetLastAttackMode(Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(318);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(318);
+            return Internal.StackPopInteger();
         }
 
         //  Get the master of oAssociate.
-        public static NWN.Object GetMaster(NWN.Object oAssociate = null)
+        public static Object GetMaster(Object oAssociate = null)
         {
-            NWN.Internal.StackPushObject(oAssociate, false);
-            NWN.Internal.CallBuiltIn(319);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oAssociate, false);
+            Internal.CallBuiltIn(319);
+            return Internal.StackPopObject();
         }
 
         //  * Returns TRUE if oCreature is in combat.
-        public static int GetIsInCombat(NWN.Object oCreature = null)
+        public static int GetIsInCombat(Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(320);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(320);
+            return Internal.StackPopInteger();
         }
 
         //  Get the last command (ASSOCIATE_COMMAND_*) issued to oAssociate.
-        public static int GetLastAssociateCommand(NWN.Object oAssociate = null)
+        public static int GetLastAssociateCommand(Object oAssociate = null)
         {
-            NWN.Internal.StackPushObject(oAssociate, false);
-            NWN.Internal.CallBuiltIn(321);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oAssociate, false);
+            Internal.CallBuiltIn(321);
+            return Internal.StackPopInteger();
         }
 
         //  Give nGP gold to oCreature.
-        public static void GiveGoldToCreature(NWN.Object oCreature, int nGP)
+        public static void GiveGoldToCreature(Object oCreature, int nGP)
         {
-            NWN.Internal.StackPushInteger(nGP);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(322);
+            Internal.StackPushInteger(nGP);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(322);
         }
 
         //  Set the destroyable status of the caller.
@@ -9093,26 +9094,26 @@
         //  - bSelectableWhenDead: If this is TRUE, the caller is selectable after death.
         public static void SetIsDestroyable(int bDestroyable, int bRaiseable = TRUE, int bSelectableWhenDead = FALSE)
         {
-            NWN.Internal.StackPushInteger(bSelectableWhenDead);
-            NWN.Internal.StackPushInteger(bRaiseable);
-            NWN.Internal.StackPushInteger(bDestroyable);
-            NWN.Internal.CallBuiltIn(323);
+            Internal.StackPushInteger(bSelectableWhenDead);
+            Internal.StackPushInteger(bRaiseable);
+            Internal.StackPushInteger(bDestroyable);
+            Internal.CallBuiltIn(323);
         }
 
         //  Set the locked state of oTarget, which can be a door or a placeable object.
-        public static void SetLocked(NWN.Object oTarget, int bLocked)
+        public static void SetLocked(Object oTarget, int bLocked)
         {
-            NWN.Internal.StackPushInteger(bLocked);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(324);
+            Internal.StackPushInteger(bLocked);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(324);
         }
 
         //  Get the locked state of oTarget, which can be a door or a placeable object.
-        public static int GetLocked(NWN.Object oTarget)
+        public static int GetLocked(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(325);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(325);
+            return Internal.StackPopInteger();
         }
 
         //  Use this in a trigger's OnClick event script to get the object that last
@@ -9120,133 +9121,133 @@
         //  This is identical to GetEnteringObject.
         //  GetClickingObject() should not be called from a placeable's OnClick event,
         //  instead use GetPlaceableLastClickedBy();
-        public static NWN.Object GetClickingObject()
+        public static Object GetClickingObject()
         {
-            NWN.Internal.CallBuiltIn(326);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(326);
+            return Internal.StackPopObject();
         }
 
         //  Initialise oTarget to listen for the standard Associates commands.
-        public static void SetAssociateListenPatterns(NWN.Object oTarget = null)
+        public static void SetAssociateListenPatterns(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(327);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(327);
         }
 
         //  Get the last weapon that oCreature used in an attack.
         //  * Returns OBJECT_INVALID if oCreature did not attack, or has no weapon equipped.
-        public static NWN.Object GetLastWeaponUsed(NWN.Object oCreature)
+        public static Object GetLastWeaponUsed(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(328);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(328);
+            return Internal.StackPopObject();
         }
 
         //  Use oPlaceable.
-        public static void ActionInteractObject(NWN.Object oPlaceable)
+        public static void ActionInteractObject(Object oPlaceable)
         {
-            NWN.Internal.StackPushObject(oPlaceable, false);
-            NWN.Internal.CallBuiltIn(329);
+            Internal.StackPushObject(oPlaceable, false);
+            Internal.CallBuiltIn(329);
         }
 
         //  Get the last object that used the placeable object that is calling this function.
         //  * Returns OBJECT_INVALID if it is called by something other than a placeable or
         //    a door.
-        public static NWN.Object GetLastUsedBy()
+        public static Object GetLastUsedBy()
         {
-            NWN.Internal.CallBuiltIn(330);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(330);
+            return Internal.StackPopObject();
         }
 
         //  Returns the ability modifier for the specified ability
         //  Get oCreature's ability modifier for nAbility.
         //  - nAbility: ABILITY_*
         //  - oCreature
-        public static int GetAbilityModifier(int nAbility, NWN.Object oCreature = null)
+        public static int GetAbilityModifier(int nAbility, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nAbility);
-            NWN.Internal.CallBuiltIn(331);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nAbility);
+            Internal.CallBuiltIn(331);
+            return Internal.StackPopInteger();
         }
 
         //  Determined whether oItem has been identified.
-        public static int GetIdentified(NWN.Object oItem)
+        public static int GetIdentified(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(332);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(332);
+            return Internal.StackPopInteger();
         }
 
         //  Set whether oItem has been identified.
-        public static void SetIdentified(NWN.Object oItem, int bIdentified)
+        public static void SetIdentified(Object oItem, int bIdentified)
         {
-            NWN.Internal.StackPushInteger(bIdentified);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(333);
+            Internal.StackPushInteger(bIdentified);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(333);
         }
 
         //  Summon an Animal Companion
-        public static void SummonAnimalCompanion(NWN.Object oMaster = null)
+        public static void SummonAnimalCompanion(Object oMaster = null)
         {
-            NWN.Internal.StackPushObject(oMaster, false);
-            NWN.Internal.CallBuiltIn(334);
+            Internal.StackPushObject(oMaster, false);
+            Internal.CallBuiltIn(334);
         }
 
         //  Summon a Familiar
-        public static void SummonFamiliar(NWN.Object oMaster = null)
+        public static void SummonFamiliar(Object oMaster = null)
         {
-            NWN.Internal.StackPushObject(oMaster, false);
-            NWN.Internal.CallBuiltIn(335);
+            Internal.StackPushObject(oMaster, false);
+            Internal.CallBuiltIn(335);
         }
 
         //  Get the last blocking door encountered by the caller of this function.
         //  * Returns OBJECT_INVALID if the caller is not a valid creature.
-        public static NWN.Object GetBlockingDoor()
+        public static Object GetBlockingDoor()
         {
-            NWN.Internal.CallBuiltIn(336);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(336);
+            return Internal.StackPopObject();
         }
 
         //  - oTargetDoor
         //  - nDoorAction: DOOR_ACTION_*
         //  * Returns TRUE if nDoorAction can be performed on oTargetDoor.
-        public static int GetIsDoorActionPossible(NWN.Object oTargetDoor, int nDoorAction)
+        public static int GetIsDoorActionPossible(Object oTargetDoor, int nDoorAction)
         {
-            NWN.Internal.StackPushInteger(nDoorAction);
-            NWN.Internal.StackPushObject(oTargetDoor, false);
-            NWN.Internal.CallBuiltIn(337);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nDoorAction);
+            Internal.StackPushObject(oTargetDoor, false);
+            Internal.CallBuiltIn(337);
+            return Internal.StackPopInteger();
         }
 
         //  Perform nDoorAction on oTargetDoor.
-        public static void DoDoorAction(NWN.Object oTargetDoor, int nDoorAction)
+        public static void DoDoorAction(Object oTargetDoor, int nDoorAction)
         {
-            NWN.Internal.StackPushInteger(nDoorAction);
-            NWN.Internal.StackPushObject(oTargetDoor, false);
-            NWN.Internal.CallBuiltIn(338);
+            Internal.StackPushInteger(nDoorAction);
+            Internal.StackPushObject(oTargetDoor, false);
+            Internal.CallBuiltIn(338);
         }
 
         //  Get the first item in oTarget's inventory (start to cycle through oTarget's
         //  inventory).
         //  * Returns OBJECT_INVALID if the caller is not a creature, item, placeable or store,
         //    or if no item is found.
-        public static NWN.Object GetFirstItemInInventory(NWN.Object oTarget = null)
+        public static Object GetFirstItemInInventory(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(339);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(339);
+            return Internal.StackPopObject();
         }
 
         //  Get the next item in oTarget's inventory (continue to cycle through oTarget's
         //  inventory).
         //  * Returns OBJECT_INVALID if the caller is not a creature, item, placeable or store,
         //    or if no item is found.
-        public static NWN.Object GetNextItemInInventory(NWN.Object oTarget = null)
+        public static Object GetNextItemInInventory(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(340);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(340);
+            return Internal.StackPopObject();
         }
 
         //  A creature can have up to three classes.  This function determines the
@@ -9256,12 +9257,12 @@
         //  * Returns CLASS_TYPE_INVALID if the oCreature does not have a class in
         //    nClassPosition (i.e. a single-class creature will only have a value in
         //    nClassLocation=1) or if oCreature is not a valid creature.
-        public static int GetClassByPosition(int nClassPosition, NWN.Object oCreature = null)
+        public static int GetClassByPosition(int nClassPosition, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nClassPosition);
-            NWN.Internal.CallBuiltIn(341);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nClassPosition);
+            Internal.CallBuiltIn(341);
+            return Internal.StackPopInteger();
         }
 
         //  A creature can have up to three classes.  This function determines the
@@ -9271,93 +9272,93 @@
         //  * Returns 0 if oCreature does not have a class in nClassPosition
         //    (i.e. a single-class creature will only have a value in nClassLocation=1)
         //    or if oCreature is not a valid creature.
-        public static int GetLevelByPosition(int nClassPosition, NWN.Object oCreature = null)
+        public static int GetLevelByPosition(int nClassPosition, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nClassPosition);
-            NWN.Internal.CallBuiltIn(342);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nClassPosition);
+            Internal.CallBuiltIn(342);
+            return Internal.StackPopInteger();
         }
 
         //  Determine the levels that oCreature holds in nClassType.
         //  - nClassType: CLASS_TYPE_*
         //  - oCreature
-        public static int GetLevelByClass(int nClassType, NWN.Object oCreature = null)
+        public static int GetLevelByClass(int nClassType, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nClassType);
-            NWN.Internal.CallBuiltIn(343);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nClassType);
+            Internal.CallBuiltIn(343);
+            return Internal.StackPopInteger();
         }
 
         //  Get the amount of damage of type nDamageType that has been dealt to the caller.
         //  - nDamageType: DAMAGE_TYPE_*
         public static int GetDamageDealtByType(int nDamageType)
         {
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.CallBuiltIn(344);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nDamageType);
+            Internal.CallBuiltIn(344);
+            return Internal.StackPopInteger();
         }
 
         //  Get the total amount of damage that has been dealt to the caller.
         public static int GetTotalDamageDealt()
         {
-            NWN.Internal.CallBuiltIn(345);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(345);
+            return Internal.StackPopInteger();
         }
 
         //  Get the last object that damaged oObject
         //  * Returns OBJECT_INVALID if the passed in object is not a valid object.
-        public static NWN.Object GetLastDamager(NWN.Object oObject = null)
+        public static Object GetLastDamager(Object oObject = null)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(346);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(346);
+            return Internal.StackPopObject();
         }
 
         //  Get the last object that disarmed the trap on the caller.
         //  * Returns OBJECT_INVALID if the caller is not a valid placeable, trigger or
         //    door.
-        public static NWN.Object GetLastDisarmed()
+        public static Object GetLastDisarmed()
         {
-            NWN.Internal.CallBuiltIn(347);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(347);
+            return Internal.StackPopObject();
         }
 
         //  Get the last object that disturbed the inventory of the caller.
         //  * Returns OBJECT_INVALID if the caller is not a valid creature or placeable.
-        public static NWN.Object GetLastDisturbed()
+        public static Object GetLastDisturbed()
         {
-            NWN.Internal.CallBuiltIn(348);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(348);
+            return Internal.StackPopObject();
         }
 
         //  Get the last object that locked the caller.
         //  * Returns OBJECT_INVALID if the caller is not a valid door or placeable.
-        public static NWN.Object GetLastLocked()
+        public static Object GetLastLocked()
         {
-            NWN.Internal.CallBuiltIn(349);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(349);
+            return Internal.StackPopObject();
         }
 
         //  Get the last object that unlocked the caller.
         //  * Returns OBJECT_INVALID if the caller is not a valid door or placeable.
-        public static NWN.Object GetLastUnlocked()
+        public static Object GetLastUnlocked()
         {
-            NWN.Internal.CallBuiltIn(350);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(350);
+            return Internal.StackPopObject();
         }
 
         //  Create a Skill Increase effect.
         //  - nSkill: SKILL_*
         //  - nValue
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nSkill is invalid.
-        public static NWN.Effect EffectSkillIncrease(int nSkill, int nValue)
+        public static Effect EffectSkillIncrease(int nSkill, int nValue)
         {
-            NWN.Internal.StackPushInteger(nValue);
-            NWN.Internal.StackPushInteger(nSkill);
-            NWN.Internal.CallBuiltIn(351);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nValue);
+            Internal.StackPushInteger(nSkill);
+            Internal.CallBuiltIn(351);
+            return Internal.StackPopEffect();
         }
 
         //  Get the type of disturbance (INVENTORY_DISTURB_*) that caused the caller's
@@ -9365,110 +9366,110 @@
         //  placeables.
         public static int GetInventoryDisturbType()
         {
-            NWN.Internal.CallBuiltIn(352);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(352);
+            return Internal.StackPopInteger();
         }
 
         //  get the item that caused the caller's OnInventoryDisturbed script to fire.
         //  * Returns OBJECT_INVALID if the caller is not a valid object.
-        public static NWN.Object GetInventoryDisturbItem()
+        public static Object GetInventoryDisturbItem()
         {
-            NWN.Internal.CallBuiltIn(353);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(353);
+            return Internal.StackPopObject();
         }
 
         //  Get the henchman belonging to oMaster.
         //  * Return OBJECT_INVALID if oMaster does not have a henchman.
         //  -nNth: Which henchman to return.
-        public static NWN.Object GetHenchman(NWN.Object oMaster = null, int nNth = 1)
+        public static Object GetHenchman(Object oMaster = null, int nNth = 1)
         {
-            NWN.Internal.StackPushInteger(nNth);
-            NWN.Internal.StackPushObject(oMaster, false);
-            NWN.Internal.CallBuiltIn(354);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(nNth);
+            Internal.StackPushObject(oMaster, false);
+            Internal.CallBuiltIn(354);
+            return Internal.StackPopObject();
         }
 
         //  Set eEffect to be versus a specific alignment.
         //  - eEffect
         //  - nLawChaos: ALIGNMENT_LAWFUL/ALIGNMENT_CHAOTIC/ALIGNMENT_ALL
         //  - nGoodEvil: ALIGNMENT_GOOD/ALIGNMENT_EVIL/ALIGNMENT_ALL
-        public static NWN.Effect VersusAlignmentEffect(NWN.Effect eEffect, int nLawChaos = ALIGNMENT_ALL, int nGoodEvil = ALIGNMENT_ALL)
+        public static Effect VersusAlignmentEffect(Effect eEffect, int nLawChaos = ALIGNMENT_ALL, int nGoodEvil = ALIGNMENT_ALL)
         {
-            NWN.Internal.StackPushInteger(nGoodEvil);
-            NWN.Internal.StackPushInteger(nLawChaos);
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(355);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nGoodEvil);
+            Internal.StackPushInteger(nLawChaos);
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(355);
+            return Internal.StackPopEffect();
         }
 
         //  Set eEffect to be versus nRacialType.
         //  - eEffect
         //  - nRacialType: RACIAL_TYPE_*
-        public static NWN.Effect VersusRacialTypeEffect(NWN.Effect eEffect, int nRacialType)
+        public static Effect VersusRacialTypeEffect(Effect eEffect, int nRacialType)
         {
-            NWN.Internal.StackPushInteger(nRacialType);
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(356);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nRacialType);
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(356);
+            return Internal.StackPopEffect();
         }
 
         //  Set eEffect to be versus traps.
-        public static NWN.Effect VersusTrapEffect(NWN.Effect eEffect)
+        public static Effect VersusTrapEffect(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(357);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(357);
+            return Internal.StackPopEffect();
         }
 
         //  Get the gender of oCreature.
-        public static int GetGender(NWN.Object oCreature)
+        public static int GetGender(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(358);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(358);
+            return Internal.StackPopInteger();
         }
 
         //  * Returns TRUE if tTalent is valid.
-        public static int GetIsTalentValid(NWN.Talent tTalent)
+        public static int GetIsTalentValid(Talent tTalent)
         {
-            NWN.Internal.StackPushTalent(tTalent);
-            NWN.Internal.CallBuiltIn(359);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushTalent(tTalent);
+            Internal.CallBuiltIn(359);
+            return Internal.StackPopInteger();
         }
 
         //  Causes the action subject to move away from lMoveAwayFrom.
-        public static void ActionMoveAwayFromLocation(NWN.Location lMoveAwayFrom, int bRun = FALSE, float fMoveAwayRange = 40.0f)
+        public static void ActionMoveAwayFromLocation(Location lMoveAwayFrom, int bRun = FALSE, float fMoveAwayRange = 40.0f)
         {
-            NWN.Internal.StackPushFloat(fMoveAwayRange);
-            NWN.Internal.StackPushInteger(bRun);
-            NWN.Internal.StackPushLocation(lMoveAwayFrom);
-            NWN.Internal.CallBuiltIn(360);
+            Internal.StackPushFloat(fMoveAwayRange);
+            Internal.StackPushInteger(bRun);
+            Internal.StackPushLocation(lMoveAwayFrom);
+            Internal.CallBuiltIn(360);
         }
 
         //  Get the target that the caller attempted to attack - this should be used in
         //  conjunction with GetAttackTarget(). This value is set every time an attack is
         //  made, and is reset at the end of combat.
         //  * Returns OBJECT_INVALID if the caller is not a valid creature.
-        public static NWN.Object GetAttemptedAttackTarget()
+        public static Object GetAttemptedAttackTarget()
         {
-            NWN.Internal.CallBuiltIn(361);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(361);
+            return Internal.StackPopObject();
         }
 
         //  Get the type (TALENT_TYPE_*) of tTalent.
-        public static int GetTypeFromTalent(NWN.Talent tTalent)
+        public static int GetTypeFromTalent(Talent tTalent)
         {
-            NWN.Internal.StackPushTalent(tTalent);
-            NWN.Internal.CallBuiltIn(362);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushTalent(tTalent);
+            Internal.CallBuiltIn(362);
+            return Internal.StackPopInteger();
         }
 
         //  Get the ID of tTalent.  This could be a SPELL_*, FEAT_* or SKILL_*.
-        public static int GetIdFromTalent(NWN.Talent tTalent)
+        public static int GetIdFromTalent(Talent tTalent)
         {
-            NWN.Internal.StackPushTalent(tTalent);
-            NWN.Internal.CallBuiltIn(363);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushTalent(tTalent);
+            Internal.CallBuiltIn(363);
+            return Internal.StackPopInteger();
         }
 
         //  Get the associate of type nAssociateType belonging to oMaster.
@@ -9476,30 +9477,30 @@
         //  - nMaster
         //  - nTh: Which associate of the specified type to return
         //  * Returns OBJECT_INVALID if no such associate exists.
-        public static NWN.Object GetAssociate(int nAssociateType, NWN.Object oMaster = null, int nTh = 1)
+        public static Object GetAssociate(int nAssociateType, Object oMaster = null, int nTh = 1)
         {
-            NWN.Internal.StackPushInteger(nTh);
-            NWN.Internal.StackPushObject(oMaster, false);
-            NWN.Internal.StackPushInteger(nAssociateType);
-            NWN.Internal.CallBuiltIn(364);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(nTh);
+            Internal.StackPushObject(oMaster, false);
+            Internal.StackPushInteger(nAssociateType);
+            Internal.CallBuiltIn(364);
+            return Internal.StackPopObject();
         }
 
         //  Add oHenchman as a henchman to oMaster
         //  If oHenchman is either a DM or a player character, this will have no effect.
-        public static void AddHenchman(NWN.Object oMaster, NWN.Object oHenchman = null)
+        public static void AddHenchman(Object oMaster, Object oHenchman = null)
         {
-            NWN.Internal.StackPushObject(oHenchman, false);
-            NWN.Internal.StackPushObject(oMaster, false);
-            NWN.Internal.CallBuiltIn(365);
+            Internal.StackPushObject(oHenchman, false);
+            Internal.StackPushObject(oMaster, false);
+            Internal.CallBuiltIn(365);
         }
 
         //  Remove oHenchman from the service of oMaster, returning them to their original faction.
-        public static void RemoveHenchman(NWN.Object oMaster, NWN.Object oHenchman = null)
+        public static void RemoveHenchman(Object oMaster, Object oHenchman = null)
         {
-            NWN.Internal.StackPushObject(oHenchman, false);
-            NWN.Internal.StackPushObject(oMaster, false);
-            NWN.Internal.CallBuiltIn(366);
+            Internal.StackPushObject(oHenchman, false);
+            Internal.StackPushObject(oMaster, false);
+            Internal.CallBuiltIn(366);
         }
 
         //  Add a journal quest entry to oCreature.
@@ -9512,15 +9513,15 @@
         //    everyone in the world
         //  - bAllowOverrideHigher: If this is TRUE, you can set the state to a lower
         //    number than the one it is currently on
-        public static void AddJournalQuestEntry(string szPlotID, int nState, NWN.Object oCreature, int bAllPartyMembers = TRUE, int bAllPlayers = FALSE, int bAllowOverrideHigher = FALSE)
+        public static void AddJournalQuestEntry(string szPlotID, int nState, Object oCreature, int bAllPartyMembers = TRUE, int bAllPlayers = FALSE, int bAllowOverrideHigher = FALSE)
         {
-            NWN.Internal.StackPushInteger(bAllowOverrideHigher);
-            NWN.Internal.StackPushInteger(bAllPlayers);
-            NWN.Internal.StackPushInteger(bAllPartyMembers);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nState);
-            NWN.Internal.StackPushString(szPlotID);
-            NWN.Internal.CallBuiltIn(367);
+            Internal.StackPushInteger(bAllowOverrideHigher);
+            Internal.StackPushInteger(bAllPlayers);
+            Internal.StackPushInteger(bAllPartyMembers);
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nState);
+            Internal.StackPushString(szPlotID);
+            Internal.CallBuiltIn(367);
         }
 
         //  Remove a journal quest entry from oCreature.
@@ -9530,191 +9531,191 @@
         //    journal of everyone in the party
         //  - bAllPlayers: If this is TRUE, the entry will be removed from the journal of
         //    everyone in the world
-        public static void RemoveJournalQuestEntry(string szPlotID, NWN.Object oCreature, int bAllPartyMembers = TRUE, int bAllPlayers = FALSE)
+        public static void RemoveJournalQuestEntry(string szPlotID, Object oCreature, int bAllPartyMembers = TRUE, int bAllPlayers = FALSE)
         {
-            NWN.Internal.StackPushInteger(bAllPlayers);
-            NWN.Internal.StackPushInteger(bAllPartyMembers);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushString(szPlotID);
-            NWN.Internal.CallBuiltIn(368);
+            Internal.StackPushInteger(bAllPlayers);
+            Internal.StackPushInteger(bAllPartyMembers);
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushString(szPlotID);
+            Internal.CallBuiltIn(368);
         }
 
         //  Get the public part of the CD Key that oPlayer used when logging in.
         //  - nSinglePlayerCDKey: If set to TRUE, the player's public CD Key will 
         //    be returned when the player is playing in single player mode 
         //    (otherwise returns an empty string in single player mode).
-        public static string GetPCPublicCDKey(NWN.Object oPlayer, int nSinglePlayerCDKey = FALSE)
+        public static string GetPCPublicCDKey(Object oPlayer, int nSinglePlayerCDKey = FALSE)
         {
-            NWN.Internal.StackPushInteger(nSinglePlayerCDKey);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(369);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nSinglePlayerCDKey);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(369);
+            return Internal.StackPopString();
         }
 
         //  Get the IP address from which oPlayer has connected.
-        public static string GetPCIPAddress(NWN.Object oPlayer)
+        public static string GetPCIPAddress(Object oPlayer)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(370);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(370);
+            return Internal.StackPopString();
         }
 
         //  Get the name of oPlayer.
-        public static string GetPCPlayerName(NWN.Object oPlayer)
+        public static string GetPCPlayerName(Object oPlayer)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(371);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(371);
+            return Internal.StackPopString();
         }
 
         //  Sets oPlayer and oTarget to like each other.
-        public static void SetPCLike(NWN.Object oPlayer, NWN.Object oTarget)
+        public static void SetPCLike(Object oPlayer, Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(372);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(372);
         }
 
         //  Sets oPlayer and oTarget to dislike each other.
-        public static void SetPCDislike(NWN.Object oPlayer, NWN.Object oTarget)
+        public static void SetPCDislike(Object oPlayer, Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(373);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(373);
         }
 
         //  Send a server message (szMessage) to the oPlayer.
-        public static void SendMessageToPC(NWN.Object oPlayer, string szMessage)
+        public static void SendMessageToPC(Object oPlayer, string szMessage)
         {
-            NWN.Internal.StackPushString(szMessage);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(374);
+            Internal.StackPushString(szMessage);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(374);
         }
 
         //  Get the target at which the caller attempted to cast a spell.
         //  This value is set every time a spell is cast and is reset at the end of
         //  combat.
         //  * Returns OBJECT_INVALID if the caller is not a valid creature.
-        public static NWN.Object GetAttemptedSpellTarget()
+        public static Object GetAttemptedSpellTarget()
         {
-            NWN.Internal.CallBuiltIn(375);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(375);
+            return Internal.StackPopObject();
         }
 
         //  Get the last creature that opened the caller.
         //  * Returns OBJECT_INVALID if the caller is not a valid door, placeable or store.
-        public static NWN.Object GetLastOpenedBy()
+        public static Object GetLastOpenedBy()
         {
-            NWN.Internal.CallBuiltIn(376);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(376);
+            return Internal.StackPopObject();
         }
 
         //  Determines the number of times that oCreature has nSpell memorised.
         //  - nSpell: SPELL_*
         //  - oCreature
-        public static int GetHasSpell(int nSpell, NWN.Object oCreature = null)
+        public static int GetHasSpell(int nSpell, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.CallBuiltIn(377);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nSpell);
+            Internal.CallBuiltIn(377);
+            return Internal.StackPopInteger();
         }
 
         //  Open oStore for oPC.
         //  - nBonusMarkUp is added to the stores default mark up percentage on items sold (-100 to 100)
         //  - nBonusMarkDown is added to the stores default mark down percentage on items bought (-100 to 100)
-        public static void OpenStore(NWN.Object oStore, NWN.Object oPC, int nBonusMarkUp = 0, int nBonusMarkDown = 0)
+        public static void OpenStore(Object oStore, Object oPC, int nBonusMarkUp = 0, int nBonusMarkDown = 0)
         {
-            NWN.Internal.StackPushInteger(nBonusMarkDown);
-            NWN.Internal.StackPushInteger(nBonusMarkUp);
-            NWN.Internal.StackPushObject(oPC, false);
-            NWN.Internal.StackPushObject(oStore, false);
-            NWN.Internal.CallBuiltIn(378);
+            Internal.StackPushInteger(nBonusMarkDown);
+            Internal.StackPushInteger(nBonusMarkUp);
+            Internal.StackPushObject(oPC, false);
+            Internal.StackPushObject(oStore, false);
+            Internal.CallBuiltIn(378);
         }
 
         //  Create a Turned effect.
         //  Turned effects are supernatural by default.
-        public static NWN.Effect EffectTurned()
+        public static Effect EffectTurned()
         {
-            NWN.Internal.CallBuiltIn(379);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(379);
+            return Internal.StackPopEffect();
         }
 
         //  Get the first member of oMemberOfFaction's faction (start to cycle through
         //  oMemberOfFaction's faction).
         //  * Returns OBJECT_INVALID if oMemberOfFaction's faction is invalid.
-        public static NWN.Object GetFirstFactionMember(NWN.Object oMemberOfFaction, int bPCOnly = TRUE)
+        public static Object GetFirstFactionMember(Object oMemberOfFaction, int bPCOnly = TRUE)
         {
-            NWN.Internal.StackPushInteger(bPCOnly);
-            NWN.Internal.StackPushObject(oMemberOfFaction, false);
-            NWN.Internal.CallBuiltIn(380);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(bPCOnly);
+            Internal.StackPushObject(oMemberOfFaction, false);
+            Internal.CallBuiltIn(380);
+            return Internal.StackPopObject();
         }
 
         //  Get the next member of oMemberOfFaction's faction (continue to cycle through
         //  oMemberOfFaction's faction).
         //  * Returns OBJECT_INVALID if oMemberOfFaction's faction is invalid.
-        public static NWN.Object GetNextFactionMember(NWN.Object oMemberOfFaction, int bPCOnly = TRUE)
+        public static Object GetNextFactionMember(Object oMemberOfFaction, int bPCOnly = TRUE)
         {
-            NWN.Internal.StackPushInteger(bPCOnly);
-            NWN.Internal.StackPushObject(oMemberOfFaction, false);
-            NWN.Internal.CallBuiltIn(381);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(bPCOnly);
+            Internal.StackPushObject(oMemberOfFaction, false);
+            Internal.CallBuiltIn(381);
+            return Internal.StackPopObject();
         }
 
         //  Force the action subject to move to lDestination.
-        public static void ActionForceMoveToLocation(NWN.Location lDestination, int bRun = FALSE, float fTimeout = 30.0f)
+        public static void ActionForceMoveToLocation(Location lDestination, int bRun = FALSE, float fTimeout = 30.0f)
         {
-            NWN.Internal.StackPushFloat(fTimeout);
-            NWN.Internal.StackPushInteger(bRun);
-            NWN.Internal.StackPushLocation(lDestination);
-            NWN.Internal.CallBuiltIn(382);
+            Internal.StackPushFloat(fTimeout);
+            Internal.StackPushInteger(bRun);
+            Internal.StackPushLocation(lDestination);
+            Internal.CallBuiltIn(382);
         }
 
         //  Force the action subject to move to oMoveTo.
-        public static void ActionForceMoveToObject(NWN.Object oMoveTo, int bRun = FALSE, float fRange = 1.0f, float fTimeout = 30.0f)
+        public static void ActionForceMoveToObject(Object oMoveTo, int bRun = FALSE, float fRange = 1.0f, float fTimeout = 30.0f)
         {
-            NWN.Internal.StackPushFloat(fTimeout);
-            NWN.Internal.StackPushFloat(fRange);
-            NWN.Internal.StackPushInteger(bRun);
-            NWN.Internal.StackPushObject(oMoveTo, false);
-            NWN.Internal.CallBuiltIn(383);
+            Internal.StackPushFloat(fTimeout);
+            Internal.StackPushFloat(fRange);
+            Internal.StackPushInteger(bRun);
+            Internal.StackPushObject(oMoveTo, false);
+            Internal.CallBuiltIn(383);
         }
 
         //  Get the experience assigned in the journal editor for szPlotID.
         public static int GetJournalQuestExperience(string szPlotID)
         {
-            NWN.Internal.StackPushString(szPlotID);
-            NWN.Internal.CallBuiltIn(384);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushString(szPlotID);
+            Internal.CallBuiltIn(384);
+            return Internal.StackPopInteger();
         }
 
         //  Jump to oToJumpTo (the action is added to the top of the action queue).
-        public static void JumpToObject(NWN.Object oToJumpTo, int nWalkStraightLineToPoint = 1)
+        public static void JumpToObject(Object oToJumpTo, int nWalkStraightLineToPoint = 1)
         {
-            NWN.Internal.StackPushInteger(nWalkStraightLineToPoint);
-            NWN.Internal.StackPushObject(oToJumpTo, false);
-            NWN.Internal.CallBuiltIn(385);
+            Internal.StackPushInteger(nWalkStraightLineToPoint);
+            Internal.StackPushObject(oToJumpTo, false);
+            Internal.CallBuiltIn(385);
         }
 
         //  Set whether oMapPin is enabled.
         //  - oMapPin
         //  - nEnabled: 0=Off, 1=On
-        public static void SetMapPinEnabled(NWN.Object oMapPin, int nEnabled)
+        public static void SetMapPinEnabled(Object oMapPin, int nEnabled)
         {
-            NWN.Internal.StackPushInteger(nEnabled);
-            NWN.Internal.StackPushObject(oMapPin, false);
-            NWN.Internal.CallBuiltIn(386);
+            Internal.StackPushInteger(nEnabled);
+            Internal.StackPushObject(oMapPin, false);
+            Internal.CallBuiltIn(386);
         }
 
         //  Create a Hit Point Change When Dying effect.
         //  - fHitPointChangePerRound: this can be positive or negative, but not zero.
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if fHitPointChangePerRound is 0.
-        public static NWN.Effect EffectHitPointChangeWhenDying(float fHitPointChangePerRound)
+        public static Effect EffectHitPointChangeWhenDying(float fHitPointChangePerRound)
         {
-            NWN.Internal.StackPushFloat(fHitPointChangePerRound);
-            NWN.Internal.CallBuiltIn(387);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushFloat(fHitPointChangePerRound);
+            Internal.CallBuiltIn(387);
+            return Internal.StackPopEffect();
         }
 
         //  Spawn a GUI panel for the client that controls oPC.
@@ -9722,19 +9723,19 @@
         //  - nGUIPanel: GUI_PANEL_*
         //  * Nothing happens if oPC is not a player character or if an invalid value is
         //    used for nGUIPanel.
-        public static void PopUpGUIPanel(NWN.Object oPC, int nGUIPanel)
+        public static void PopUpGUIPanel(Object oPC, int nGUIPanel)
         {
-            NWN.Internal.StackPushInteger(nGUIPanel);
-            NWN.Internal.StackPushObject(oPC, false);
-            NWN.Internal.CallBuiltIn(388);
+            Internal.StackPushInteger(nGUIPanel);
+            Internal.StackPushObject(oPC, false);
+            Internal.CallBuiltIn(388);
         }
 
         //  Clear all personal feelings that oSource has about oTarget.
-        public static void ClearPersonalReputation(NWN.Object oTarget, NWN.Object oSource = null)
+        public static void ClearPersonalReputation(Object oTarget, Object oSource = null)
         {
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(389);
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(389);
         }
 
         //  oSource will temporarily be friends towards oTarget.
@@ -9750,13 +9751,13 @@
         //  Note: If bDecays is TRUE, the personal reputation amount decreases in size
         //  over fDurationInSeconds. Friendship will only be in effect as long as
         //  (faction reputation + total personal reputation) >= REPUTATION_TYPE_FRIEND.
-        public static void SetIsTemporaryFriend(NWN.Object oTarget, NWN.Object oSource = null, int bDecays = FALSE, float fDurationInSeconds = 180.0f)
+        public static void SetIsTemporaryFriend(Object oTarget, Object oSource = null, int bDecays = FALSE, float fDurationInSeconds = 180.0f)
         {
-            NWN.Internal.StackPushFloat(fDurationInSeconds);
-            NWN.Internal.StackPushInteger(bDecays);
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(390);
+            Internal.StackPushFloat(fDurationInSeconds);
+            Internal.StackPushInteger(bDecays);
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(390);
         }
 
         //  Make oSource into a temporary enemy of oTarget using personal reputation.
@@ -9769,13 +9770,13 @@
         //  Note: If bDecays is TRUE, the personal reputation amount decreases in size
         //  over fDurationInSeconds. Enmity will only be in effect as long as
         //  (faction reputation + total personal reputation) <= REPUTATION_TYPE_ENEMY.
-        public static void SetIsTemporaryEnemy(NWN.Object oTarget, NWN.Object oSource = null, int bDecays = FALSE, float fDurationInSeconds = 180.0f)
+        public static void SetIsTemporaryEnemy(Object oTarget, Object oSource = null, int bDecays = FALSE, float fDurationInSeconds = 180.0f)
         {
-            NWN.Internal.StackPushFloat(fDurationInSeconds);
-            NWN.Internal.StackPushInteger(bDecays);
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(391);
+            Internal.StackPushFloat(fDurationInSeconds);
+            Internal.StackPushInteger(bDecays);
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(391);
         }
 
         //  Make oSource temporarily neutral to oTarget using personal reputation.
@@ -9789,37 +9790,37 @@
         //  over fDurationInSeconds. Neutrality will only be in effect as long as
         //  (faction reputation + total personal reputation) > REPUTATION_TYPE_ENEMY and
         //  (faction reputation + total personal reputation) < REPUTATION_TYPE_FRIEND.
-        public static void SetIsTemporaryNeutral(NWN.Object oTarget, NWN.Object oSource = null, int bDecays = FALSE, float fDurationInSeconds = 180.0f)
+        public static void SetIsTemporaryNeutral(Object oTarget, Object oSource = null, int bDecays = FALSE, float fDurationInSeconds = 180.0f)
         {
-            NWN.Internal.StackPushFloat(fDurationInSeconds);
-            NWN.Internal.StackPushInteger(bDecays);
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(392);
+            Internal.StackPushFloat(fDurationInSeconds);
+            Internal.StackPushInteger(bDecays);
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(392);
         }
 
         //  Gives nXpAmount to oCreature.
-        public static void GiveXPToCreature(NWN.Object oCreature, int nXpAmount)
+        public static void GiveXPToCreature(Object oCreature, int nXpAmount)
         {
-            NWN.Internal.StackPushInteger(nXpAmount);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(393);
+            Internal.StackPushInteger(nXpAmount);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(393);
         }
 
         //  Sets oCreature's experience to nXpAmount.
-        public static void SetXP(NWN.Object oCreature, int nXpAmount)
+        public static void SetXP(Object oCreature, int nXpAmount)
         {
-            NWN.Internal.StackPushInteger(nXpAmount);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(394);
+            Internal.StackPushInteger(nXpAmount);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(394);
         }
 
         //  Get oCreature's experience.
-        public static int GetXP(NWN.Object oCreature)
+        public static int GetXP(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(395);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(395);
+            return Internal.StackPopInteger();
         }
 
         //  Convert nInteger to hex, returning the hex value as a string.
@@ -9827,18 +9828,18 @@
         //    (8 digits in total).
         public static string IntToHexString(int nInteger)
         {
-            NWN.Internal.StackPushInteger(nInteger);
-            NWN.Internal.CallBuiltIn(396);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nInteger);
+            Internal.CallBuiltIn(396);
+            return Internal.StackPopString();
         }
 
         //  Get the base item type (BASE_ITEM_*) of oItem.
         //  * Returns BASE_ITEM_INVALID if oItem is an invalid item.
-        public static int GetBaseItemType(NWN.Object oItem)
+        public static int GetBaseItemType(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(397);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(397);
+            return Internal.StackPopInteger();
         }
 
         //  Determines whether oItem has nProperty.
@@ -9846,12 +9847,12 @@
         //  - nProperty: ITEM_PROPERTY_*
         //  * Returns FALSE if oItem is not a valid item, or if oItem does not have
         //    nProperty.
-        public static int GetItemHasItemProperty(NWN.Object oItem, int nProperty)
+        public static int GetItemHasItemProperty(Object oItem, int nProperty)
         {
-            NWN.Internal.StackPushInteger(nProperty);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(398);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nProperty);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(398);
+            return Internal.StackPopInteger();
         }
 
         //  The creature will equip the melee weapon in its possession that can do the
@@ -9861,11 +9862,11 @@
         //  round to run simulation.
         //  - oVersus: You can try to get the most damaging weapon against oVersus
         //  - bOffHand
-        public static void ActionEquipMostDamagingMelee(NWN.Object oVersus = null, int bOffHand = FALSE)
+        public static void ActionEquipMostDamagingMelee(Object oVersus = null, int bOffHand = FALSE)
         {
-            NWN.Internal.StackPushInteger(bOffHand);
-            NWN.Internal.StackPushObject(oVersus, false);
-            NWN.Internal.CallBuiltIn(399);
+            Internal.StackPushInteger(bOffHand);
+            Internal.StackPushObject(oVersus, false);
+            Internal.CallBuiltIn(399);
         }
 
         //  The creature will equip the range weapon in its possession that can do the
@@ -9873,19 +9874,19 @@
         //  If no valid range weapon can be found, it will equip the most damaging melee
         //  weapon.
         //  - oVersus: You can try to get the most damaging weapon against oVersus
-        public static void ActionEquipMostDamagingRanged(NWN.Object oVersus = null)
+        public static void ActionEquipMostDamagingRanged(Object oVersus = null)
         {
-            NWN.Internal.StackPushObject(oVersus, false);
-            NWN.Internal.CallBuiltIn(400);
+            Internal.StackPushObject(oVersus, false);
+            Internal.CallBuiltIn(400);
         }
 
         //  Get the Armour Class of oItem.
         //  * Return 0 if the oItem is not a valid item, or if oItem has no armour value.
-        public static int GetItemACValue(NWN.Object oItem)
+        public static int GetItemACValue(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(401);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(401);
+            return Internal.StackPopInteger();
         }
 
         //  The creature will rest if not in combat and no enemies are nearby.
@@ -9897,175 +9898,175 @@
         //                                      but is in a different room behind a closed door.
         public static void ActionRest(int bCreatureToEnemyLineOfSightCheck = FALSE)
         {
-            NWN.Internal.StackPushInteger(bCreatureToEnemyLineOfSightCheck);
-            NWN.Internal.CallBuiltIn(402);
+            Internal.StackPushInteger(bCreatureToEnemyLineOfSightCheck);
+            Internal.CallBuiltIn(402);
         }
 
         //  Expose/Hide the entire map of oArea for oPlayer.
         //  - oArea: The area that the map will be exposed/hidden for.
         //  - oPlayer: The player the map will be exposed/hidden for.
         //  - bExplored: TRUE/FALSE. Whether the map should be completely explored or hidden.
-        public static void ExploreAreaForPlayer(NWN.Object oArea, NWN.Object oPlayer, int bExplored = TRUE)
+        public static void ExploreAreaForPlayer(Object oArea, Object oPlayer, int bExplored = TRUE)
         {
-            NWN.Internal.StackPushInteger(bExplored);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(403);
+            Internal.StackPushInteger(bExplored);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(403);
         }
 
         //  The creature will equip the armour in its possession that has the highest
         //  armour class.
         public static void ActionEquipMostEffectiveArmor()
         {
-            NWN.Internal.CallBuiltIn(404);
+            Internal.CallBuiltIn(404);
         }
 
         //  * Returns TRUE if it is currently day.
         public static int GetIsDay()
         {
-            NWN.Internal.CallBuiltIn(405);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(405);
+            return Internal.StackPopInteger();
         }
 
         //  * Returns TRUE if it is currently night.
         public static int GetIsNight()
         {
-            NWN.Internal.CallBuiltIn(406);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(406);
+            return Internal.StackPopInteger();
         }
 
         //  * Returns TRUE if it is currently dawn.
         public static int GetIsDawn()
         {
-            NWN.Internal.CallBuiltIn(407);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(407);
+            return Internal.StackPopInteger();
         }
 
         //  * Returns TRUE if it is currently dusk.
         public static int GetIsDusk()
         {
-            NWN.Internal.CallBuiltIn(408);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(408);
+            return Internal.StackPopInteger();
         }
 
         //  * Returns TRUE if oCreature was spawned from an encounter.
-        public static int GetIsEncounterCreature(NWN.Object oCreature = null)
+        public static int GetIsEncounterCreature(Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(409);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(409);
+            return Internal.StackPopInteger();
         }
 
         //  Use this in an OnPlayerDying module script to get the last player who is dying.
-        public static NWN.Object GetLastPlayerDying()
+        public static Object GetLastPlayerDying()
         {
-            NWN.Internal.CallBuiltIn(410);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(410);
+            return Internal.StackPopObject();
         }
 
         //  Get the starting location of the module.
-        public static NWN.Location GetStartingLocation()
+        public static Location GetStartingLocation()
         {
-            NWN.Internal.CallBuiltIn(411);
-            return NWN.Internal.StackPopLocation();
+            Internal.CallBuiltIn(411);
+            return Internal.StackPopLocation();
         }
 
         //  Make oCreatureToChange join one of the standard factions.
         //  ** This will only work on an NPC **
         //  - nStandardFaction: STANDARD_FACTION_*
-        public static void ChangeToStandardFaction(NWN.Object oCreatureToChange, int nStandardFaction)
+        public static void ChangeToStandardFaction(Object oCreatureToChange, int nStandardFaction)
         {
-            NWN.Internal.StackPushInteger(nStandardFaction);
-            NWN.Internal.StackPushObject(oCreatureToChange, false);
-            NWN.Internal.CallBuiltIn(412);
+            Internal.StackPushInteger(nStandardFaction);
+            Internal.StackPushObject(oCreatureToChange, false);
+            Internal.CallBuiltIn(412);
         }
 
         //  Play oSound.
-        public static void SoundObjectPlay(NWN.Object oSound)
+        public static void SoundObjectPlay(Object oSound)
         {
-            NWN.Internal.StackPushObject(oSound, false);
-            NWN.Internal.CallBuiltIn(413);
+            Internal.StackPushObject(oSound, false);
+            Internal.CallBuiltIn(413);
         }
 
         //  Stop playing oSound.
-        public static void SoundObjectStop(NWN.Object oSound)
+        public static void SoundObjectStop(Object oSound)
         {
-            NWN.Internal.StackPushObject(oSound, false);
-            NWN.Internal.CallBuiltIn(414);
+            Internal.StackPushObject(oSound, false);
+            Internal.CallBuiltIn(414);
         }
 
         //  Set the volume of oSound.
         //  - oSound
         //  - nVolume: 0-127
-        public static void SoundObjectSetVolume(NWN.Object oSound, int nVolume)
+        public static void SoundObjectSetVolume(Object oSound, int nVolume)
         {
-            NWN.Internal.StackPushInteger(nVolume);
-            NWN.Internal.StackPushObject(oSound, false);
-            NWN.Internal.CallBuiltIn(415);
+            Internal.StackPushInteger(nVolume);
+            Internal.StackPushObject(oSound, false);
+            Internal.CallBuiltIn(415);
         }
 
         //  Set the position of oSound.
-        public static void SoundObjectSetPosition(NWN.Object oSound, NWN.Vector? vPosition)
+        public static void SoundObjectSetPosition(Object oSound, Vector? vPosition)
         {
-            NWN.Internal.StackPushVector(vPosition);
-            NWN.Internal.StackPushObject(oSound, false);
-            NWN.Internal.CallBuiltIn(416);
+            Internal.StackPushVector(vPosition);
+            Internal.StackPushObject(oSound, false);
+            Internal.CallBuiltIn(416);
         }
 
         //  Immediately speak a conversation one-liner.
         //  - sDialogResRef
         //  - oTokenTarget: This must be specified if there are creature-specific tokens
         //    in the string.
-        public static void SpeakOneLinerConversation(string sDialogResRef = "", NWN.Object oTokenTarget = null)
+        public static void SpeakOneLinerConversation(string sDialogResRef = "", Object oTokenTarget = null)
         {
-            NWN.Internal.StackPushObject(oTokenTarget, false);
-            NWN.Internal.StackPushString(sDialogResRef);
-            NWN.Internal.CallBuiltIn(417);
+            Internal.StackPushObject(oTokenTarget, false);
+            Internal.StackPushString(sDialogResRef);
+            Internal.CallBuiltIn(417);
         }
 
         //  Get the amount of gold possessed by oTarget.
-        public static int GetGold(NWN.Object oTarget = null)
+        public static int GetGold(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(418);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(418);
+            return Internal.StackPopInteger();
         }
 
         //  Use this in an OnRespawnButtonPressed module script to get the object id of
         //  the player who last pressed the respawn button.
-        public static NWN.Object GetLastRespawnButtonPresser()
+        public static Object GetLastRespawnButtonPresser()
         {
-            NWN.Internal.CallBuiltIn(419);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(419);
+            return Internal.StackPopObject();
         }
 
         //  * Returns TRUE if oCreature is the Dungeon Master.
         //  Note: This will return FALSE if oCreature is a DM Possessed creature.
         //  To determine if oCreature is a DM Possessed creature, use GetIsDMPossessed()
-        public static int GetIsDM(NWN.Object oCreature)
+        public static int GetIsDM(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(420);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(420);
+            return Internal.StackPopInteger();
         }
 
         //  Play a voice chat.
         //  - nVoiceChatID: VOICE_CHAT_*
         //  - oTarget
-        public static void PlayVoiceChat(int nVoiceChatID, NWN.Object oTarget = null)
+        public static void PlayVoiceChat(int nVoiceChatID, Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushInteger(nVoiceChatID);
-            NWN.Internal.CallBuiltIn(421);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushInteger(nVoiceChatID);
+            Internal.CallBuiltIn(421);
         }
 
         //  * Returns TRUE if the weapon equipped is capable of damaging oVersus.
-        public static int GetIsWeaponEffective(NWN.Object oVersus = null, int bOffHand = FALSE)
+        public static int GetIsWeaponEffective(Object oVersus = null, int bOffHand = FALSE)
         {
-            NWN.Internal.StackPushInteger(bOffHand);
-            NWN.Internal.StackPushObject(oVersus, false);
-            NWN.Internal.CallBuiltIn(422);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(bOffHand);
+            Internal.StackPushObject(oVersus, false);
+            Internal.CallBuiltIn(422);
+            return Internal.StackPopInteger();
         }
 
         //  Use this in a SpellCast script to determine whether the spell was considered
@@ -10073,172 +10074,172 @@
         //  * Returns TRUE if the last spell cast was harmful.
         public static int GetLastSpellHarmful()
         {
-            NWN.Internal.CallBuiltIn(423);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(423);
+            return Internal.StackPopInteger();
         }
 
         //  Activate oItem.
-        public static NWN.Event EventActivateItem(NWN.Object oItem, NWN.Location lTarget, NWN.Object oTarget = null)
+        public static Event EventActivateItem(Object oItem, Location lTarget, Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushLocation(lTarget);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(424);
-            return NWN.Internal.StackPopEvent();
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushLocation(lTarget);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(424);
+            return Internal.StackPopEvent();
         }
 
         //  Play the background music for oArea.
-        public static void MusicBackgroundPlay(NWN.Object oArea)
+        public static void MusicBackgroundPlay(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(425);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(425);
         }
 
         //  Stop the background music for oArea.
-        public static void MusicBackgroundStop(NWN.Object oArea)
+        public static void MusicBackgroundStop(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(426);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(426);
         }
 
         //  Set the delay for the background music for oArea.
         //  - oArea
         //  - nDelay: delay in milliseconds
-        public static void MusicBackgroundSetDelay(NWN.Object oArea, int nDelay)
+        public static void MusicBackgroundSetDelay(Object oArea, int nDelay)
         {
-            NWN.Internal.StackPushInteger(nDelay);
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(427);
+            Internal.StackPushInteger(nDelay);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(427);
         }
 
         //  Change the background day track for oArea to nTrack.
         //  - oArea
         //  - nTrack
-        public static void MusicBackgroundChangeDay(NWN.Object oArea, int nTrack)
+        public static void MusicBackgroundChangeDay(Object oArea, int nTrack)
         {
-            NWN.Internal.StackPushInteger(nTrack);
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(428);
+            Internal.StackPushInteger(nTrack);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(428);
         }
 
         //  Change the background night track for oArea to nTrack.
         //  - oArea
         //  - nTrack
-        public static void MusicBackgroundChangeNight(NWN.Object oArea, int nTrack)
+        public static void MusicBackgroundChangeNight(Object oArea, int nTrack)
         {
-            NWN.Internal.StackPushInteger(nTrack);
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(429);
+            Internal.StackPushInteger(nTrack);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(429);
         }
 
         //  Play the battle music for oArea.
-        public static void MusicBattlePlay(NWN.Object oArea)
+        public static void MusicBattlePlay(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(430);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(430);
         }
 
         //  Stop the battle music for oArea.
-        public static void MusicBattleStop(NWN.Object oArea)
+        public static void MusicBattleStop(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(431);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(431);
         }
 
         //  Change the battle track for oArea.
         //  - oArea
         //  - nTrack
-        public static void MusicBattleChange(NWN.Object oArea, int nTrack)
+        public static void MusicBattleChange(Object oArea, int nTrack)
         {
-            NWN.Internal.StackPushInteger(nTrack);
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(432);
+            Internal.StackPushInteger(nTrack);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(432);
         }
 
         //  Play the ambient sound for oArea.
-        public static void AmbientSoundPlay(NWN.Object oArea)
+        public static void AmbientSoundPlay(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(433);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(433);
         }
 
         //  Stop the ambient sound for oArea.
-        public static void AmbientSoundStop(NWN.Object oArea)
+        public static void AmbientSoundStop(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(434);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(434);
         }
 
         //  Change the ambient day track for oArea to nTrack.
         //  - oArea
         //  - nTrack
-        public static void AmbientSoundChangeDay(NWN.Object oArea, int nTrack)
+        public static void AmbientSoundChangeDay(Object oArea, int nTrack)
         {
-            NWN.Internal.StackPushInteger(nTrack);
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(435);
+            Internal.StackPushInteger(nTrack);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(435);
         }
 
         //  Change the ambient night track for oArea to nTrack.
         //  - oArea
         //  - nTrack
-        public static void AmbientSoundChangeNight(NWN.Object oArea, int nTrack)
+        public static void AmbientSoundChangeNight(Object oArea, int nTrack)
         {
-            NWN.Internal.StackPushInteger(nTrack);
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(436);
+            Internal.StackPushInteger(nTrack);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(436);
         }
 
         //  Get the object that killed the caller.
-        public static NWN.Object GetLastKiller()
+        public static Object GetLastKiller()
         {
-            NWN.Internal.CallBuiltIn(437);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(437);
+            return Internal.StackPopObject();
         }
 
         //  Use this in a spell script to get the item used to cast the spell.
-        public static NWN.Object GetSpellCastItem()
+        public static Object GetSpellCastItem()
         {
-            NWN.Internal.CallBuiltIn(438);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(438);
+            return Internal.StackPopObject();
         }
 
         //  Use this in an OnItemActivated module script to get the item that was activated.
-        public static NWN.Object GetItemActivated()
+        public static Object GetItemActivated()
         {
-            NWN.Internal.CallBuiltIn(439);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(439);
+            return Internal.StackPopObject();
         }
 
         //  Use this in an OnItemActivated module script to get the creature that
         //  activated the item.
-        public static NWN.Object GetItemActivator()
+        public static Object GetItemActivator()
         {
-            NWN.Internal.CallBuiltIn(440);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(440);
+            return Internal.StackPopObject();
         }
 
         //  Use this in an OnItemActivated module script to get the location of the item's
         //  target.
-        public static NWN.Location GetItemActivatedTargetLocation()
+        public static Location GetItemActivatedTargetLocation()
         {
-            NWN.Internal.CallBuiltIn(441);
-            return NWN.Internal.StackPopLocation();
+            Internal.CallBuiltIn(441);
+            return Internal.StackPopLocation();
         }
 
         //  Use this in an OnItemActivated module script to get the item's target.
-        public static NWN.Object GetItemActivatedTarget()
+        public static Object GetItemActivatedTarget()
         {
-            NWN.Internal.CallBuiltIn(442);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(442);
+            return Internal.StackPopObject();
         }
 
         //  * Returns TRUE if oObject (which is a placeable or a door) is currently open.
-        public static int GetIsOpen(NWN.Object oObject)
+        public static int GetIsOpen(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(443);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(443);
+            return Internal.StackPopInteger();
         }
 
         //  Take nAmount of gold from oCreatureToTakeFrom.
@@ -10246,64 +10247,64 @@
         //  - oCreatureToTakeFrom: If this is not a valid creature, nothing will happen.
         //  - bDestroy: If this is TRUE, the caller will not get the gold.  Instead, the
         //    gold will be destroyed and will vanish from the game.
-        public static void TakeGoldFromCreature(int nAmount, NWN.Object oCreatureToTakeFrom, int bDestroy = FALSE)
+        public static void TakeGoldFromCreature(int nAmount, Object oCreatureToTakeFrom, int bDestroy = FALSE)
         {
-            NWN.Internal.StackPushInteger(bDestroy);
-            NWN.Internal.StackPushObject(oCreatureToTakeFrom, false);
-            NWN.Internal.StackPushInteger(nAmount);
-            NWN.Internal.CallBuiltIn(444);
+            Internal.StackPushInteger(bDestroy);
+            Internal.StackPushObject(oCreatureToTakeFrom, false);
+            Internal.StackPushInteger(nAmount);
+            Internal.CallBuiltIn(444);
         }
 
         //  Determine whether oObject is in conversation.
-        public static int IsInConversation(NWN.Object oObject)
+        public static int IsInConversation(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(445);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(445);
+            return Internal.StackPopInteger();
         }
 
         //  Create an Ability Decrease effect.
         //  - nAbility: ABILITY_*
         //  - nModifyBy: This is the amount by which to decrement the ability
-        public static NWN.Effect EffectAbilityDecrease(int nAbility, int nModifyBy)
+        public static Effect EffectAbilityDecrease(int nAbility, int nModifyBy)
         {
-            NWN.Internal.StackPushInteger(nModifyBy);
-            NWN.Internal.StackPushInteger(nAbility);
-            NWN.Internal.CallBuiltIn(446);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nModifyBy);
+            Internal.StackPushInteger(nAbility);
+            Internal.CallBuiltIn(446);
+            return Internal.StackPopEffect();
         }
 
         //  Create an Attack Decrease effect.
         //  - nPenalty
         //  - nModifierType: ATTACK_BONUS_*
-        public static NWN.Effect EffectAttackDecrease(int nPenalty, int nModifierType = ATTACK_BONUS_MISC)
+        public static Effect EffectAttackDecrease(int nPenalty, int nModifierType = ATTACK_BONUS_MISC)
         {
-            NWN.Internal.StackPushInteger(nModifierType);
-            NWN.Internal.StackPushInteger(nPenalty);
-            NWN.Internal.CallBuiltIn(447);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nModifierType);
+            Internal.StackPushInteger(nPenalty);
+            Internal.CallBuiltIn(447);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Damage Decrease effect.
         //  - nPenalty
         //  - nDamageType: DAMAGE_TYPE_*
-        public static NWN.Effect EffectDamageDecrease(int nPenalty, int nDamageType = DAMAGE_TYPE_MAGICAL)
+        public static Effect EffectDamageDecrease(int nPenalty, int nDamageType = DAMAGE_TYPE_MAGICAL)
         {
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.StackPushInteger(nPenalty);
-            NWN.Internal.CallBuiltIn(448);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nDamageType);
+            Internal.StackPushInteger(nPenalty);
+            Internal.CallBuiltIn(448);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Damage Immunity Decrease effect.
         //  - nDamageType: DAMAGE_TYPE_*
         //  - nPercentImmunity
-        public static NWN.Effect EffectDamageImmunityDecrease(int nDamageType, int nPercentImmunity)
+        public static Effect EffectDamageImmunityDecrease(int nDamageType, int nPercentImmunity)
         {
-            NWN.Internal.StackPushInteger(nPercentImmunity);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.CallBuiltIn(449);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nPercentImmunity);
+            Internal.StackPushInteger(nDamageType);
+            Internal.CallBuiltIn(449);
+            return Internal.StackPopEffect();
         }
 
         //  Create an AC Decrease effect.
@@ -10311,13 +10312,13 @@
         //  - nModifyType: AC_*
         //  - nDamageType: DAMAGE_TYPE_*
         //    * Default value for nDamageType should only ever be used in this function prototype.
-        public static NWN.Effect EffectACDecrease(int nValue, int nModifyType = AC_DODGE_BONUS, int nDamageType = AC_VS_DAMAGE_TYPE_ALL)
+        public static Effect EffectACDecrease(int nValue, int nModifyType = AC_DODGE_BONUS, int nDamageType = AC_VS_DAMAGE_TYPE_ALL)
         {
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.StackPushInteger(nModifyType);
-            NWN.Internal.StackPushInteger(nValue);
-            NWN.Internal.CallBuiltIn(450);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nDamageType);
+            Internal.StackPushInteger(nModifyType);
+            Internal.StackPushInteger(nValue);
+            Internal.CallBuiltIn(450);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Movement Speed Decrease effect.
@@ -10326,11 +10327,11 @@
         //     0 = no change in speed
         //    50 = 50% slower
         //    99 = almost immobile
-        public static NWN.Effect EffectMovementSpeedDecrease(int nPercentChange)
+        public static Effect EffectMovementSpeedDecrease(int nPercentChange)
         {
-            NWN.Internal.StackPushInteger(nPercentChange);
-            NWN.Internal.CallBuiltIn(451);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nPercentChange);
+            Internal.CallBuiltIn(451);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Saving Throw Decrease effect.
@@ -10341,58 +10342,58 @@
         //           SAVING_THROW_WILL 
         //  - nValue: size of the Saving Throw decrease
         //  - nSaveType: SAVING_THROW_TYPE_* (e.g. SAVING_THROW_TYPE_ACID )
-        public static NWN.Effect EffectSavingThrowDecrease(int nSave, int nValue, int nSaveType = SAVING_THROW_TYPE_ALL)
+        public static Effect EffectSavingThrowDecrease(int nSave, int nValue, int nSaveType = SAVING_THROW_TYPE_ALL)
         {
-            NWN.Internal.StackPushInteger(nSaveType);
-            NWN.Internal.StackPushInteger(nValue);
-            NWN.Internal.StackPushInteger(nSave);
-            NWN.Internal.CallBuiltIn(452);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nSaveType);
+            Internal.StackPushInteger(nValue);
+            Internal.StackPushInteger(nSave);
+            Internal.CallBuiltIn(452);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Skill Decrease effect.
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nSkill is invalid.
-        public static NWN.Effect EffectSkillDecrease(int nSkill, int nValue)
+        public static Effect EffectSkillDecrease(int nSkill, int nValue)
         {
-            NWN.Internal.StackPushInteger(nValue);
-            NWN.Internal.StackPushInteger(nSkill);
-            NWN.Internal.CallBuiltIn(453);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nValue);
+            Internal.StackPushInteger(nSkill);
+            Internal.CallBuiltIn(453);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Spell Resistance Decrease effect.
-        public static NWN.Effect EffectSpellResistanceDecrease(int nValue)
+        public static Effect EffectSpellResistanceDecrease(int nValue)
         {
-            NWN.Internal.StackPushInteger(nValue);
-            NWN.Internal.CallBuiltIn(454);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nValue);
+            Internal.CallBuiltIn(454);
+            return Internal.StackPopEffect();
         }
 
         //  Determine whether oTarget is a plot object.
-        public static int GetPlotFlag(NWN.Object oTarget = null)
+        public static int GetPlotFlag(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(455);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(455);
+            return Internal.StackPopInteger();
         }
 
         //  Set oTarget's plot object status.
-        public static void SetPlotFlag(NWN.Object oTarget, int nPlotFlag)
+        public static void SetPlotFlag(Object oTarget, int nPlotFlag)
         {
-            NWN.Internal.StackPushInteger(nPlotFlag);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(456);
+            Internal.StackPushInteger(nPlotFlag);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(456);
         }
 
         //  Create an Invisibility effect.
         //  - nInvisibilityType: INVISIBILITY_TYPE_*
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nInvisibilityType
         //    is invalid.
-        public static NWN.Effect EffectInvisibility(int nInvisibilityType)
+        public static Effect EffectInvisibility(int nInvisibilityType)
         {
-            NWN.Internal.StackPushInteger(nInvisibilityType);
-            NWN.Internal.CallBuiltIn(457);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nInvisibilityType);
+            Internal.CallBuiltIn(457);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Concealment effect.
@@ -10400,95 +10401,95 @@
         //  - nMissChanceType: MISS_CHANCE_TYPE_*
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nPercentage < 1 or
         //    nPercentage > 100.
-        public static NWN.Effect EffectConcealment(int nPercentage, int nMissType = MISS_CHANCE_TYPE_NORMAL)
+        public static Effect EffectConcealment(int nPercentage, int nMissType = MISS_CHANCE_TYPE_NORMAL)
         {
-            NWN.Internal.StackPushInteger(nMissType);
-            NWN.Internal.StackPushInteger(nPercentage);
-            NWN.Internal.CallBuiltIn(458);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nMissType);
+            Internal.StackPushInteger(nPercentage);
+            Internal.CallBuiltIn(458);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Darkness effect.
-        public static NWN.Effect EffectDarkness()
+        public static Effect EffectDarkness()
         {
-            NWN.Internal.CallBuiltIn(459);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(459);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Dispel Magic All effect.
         //  If no parameter is specified, USE_CREATURE_LEVEL will be used. This will
         //  cause the dispel effect to use the level of the creature that created the
         //  effect.
-        public static NWN.Effect EffectDispelMagicAll(int nCasterLevel = USE_CREATURE_LEVEL)
+        public static Effect EffectDispelMagicAll(int nCasterLevel = USE_CREATURE_LEVEL)
         {
-            NWN.Internal.StackPushInteger(nCasterLevel);
-            NWN.Internal.CallBuiltIn(460);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nCasterLevel);
+            Internal.CallBuiltIn(460);
+            return Internal.StackPopEffect();
         }
 
         //  Create an Ultravision effect.
-        public static NWN.Effect EffectUltravision()
+        public static Effect EffectUltravision()
         {
-            NWN.Internal.CallBuiltIn(461);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(461);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Negative Level effect.
         //  - nNumLevels: the number of negative levels to apply.
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nNumLevels > 100.
-        public static NWN.Effect EffectNegativeLevel(int nNumLevels, int bHPBonus = FALSE)
+        public static Effect EffectNegativeLevel(int nNumLevels, int bHPBonus = FALSE)
         {
-            NWN.Internal.StackPushInteger(bHPBonus);
-            NWN.Internal.StackPushInteger(nNumLevels);
-            NWN.Internal.CallBuiltIn(462);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(bHPBonus);
+            Internal.StackPushInteger(nNumLevels);
+            Internal.CallBuiltIn(462);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Polymorph effect.
-        public static NWN.Effect EffectPolymorph(int nPolymorphSelection, int nLocked = FALSE)
+        public static Effect EffectPolymorph(int nPolymorphSelection, int nLocked = FALSE)
         {
-            NWN.Internal.StackPushInteger(nLocked);
-            NWN.Internal.StackPushInteger(nPolymorphSelection);
-            NWN.Internal.CallBuiltIn(463);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nLocked);
+            Internal.StackPushInteger(nPolymorphSelection);
+            Internal.CallBuiltIn(463);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Sanctuary effect.
         //  - nDifficultyClass: must be a non-zero, positive number
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nDifficultyClass <= 0.
-        public static NWN.Effect EffectSanctuary(int nDifficultyClass)
+        public static Effect EffectSanctuary(int nDifficultyClass)
         {
-            NWN.Internal.StackPushInteger(nDifficultyClass);
-            NWN.Internal.CallBuiltIn(464);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nDifficultyClass);
+            Internal.CallBuiltIn(464);
+            return Internal.StackPopEffect();
         }
 
         //  Create a True Seeing effect.
-        public static NWN.Effect EffectTrueSeeing()
+        public static Effect EffectTrueSeeing()
         {
-            NWN.Internal.CallBuiltIn(465);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(465);
+            return Internal.StackPopEffect();
         }
 
         //  Create a See Invisible effect.
-        public static NWN.Effect EffectSeeInvisible()
+        public static Effect EffectSeeInvisible()
         {
-            NWN.Internal.CallBuiltIn(466);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(466);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Time Stop effect.
-        public static NWN.Effect EffectTimeStop()
+        public static Effect EffectTimeStop()
         {
-            NWN.Internal.CallBuiltIn(467);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(467);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Blindness effect.
-        public static NWN.Effect EffectBlindness()
+        public static Effect EffectBlindness()
         {
-            NWN.Internal.CallBuiltIn(468);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(468);
+            return Internal.StackPopEffect();
         }
 
         //  Determine whether oSource has a friendly reaction towards oTarget, depending
@@ -10497,12 +10498,12 @@
         //  Note: If you just want to know how two objects feel about each other in terms
         //  of faction and personal reputation, use GetIsFriend() instead.
         //  * Returns TRUE if oSource has a friendly reaction towards oTarget
-        public static int GetIsReactionTypeFriendly(NWN.Object oTarget, NWN.Object oSource = null)
+        public static int GetIsReactionTypeFriendly(Object oTarget, Object oSource = null)
         {
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(469);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(469);
+            return Internal.StackPopInteger();
         }
 
         //  Determine whether oSource has a neutral reaction towards oTarget, depending
@@ -10511,12 +10512,12 @@
         //  Note: If you just want to know how two objects feel about each other in terms
         //  of faction and personal reputation, use GetIsNeutral() instead.
         //  * Returns TRUE if oSource has a neutral reaction towards oTarget
-        public static int GetIsReactionTypeNeutral(NWN.Object oTarget, NWN.Object oSource = null)
+        public static int GetIsReactionTypeNeutral(Object oTarget, Object oSource = null)
         {
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(470);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(470);
+            return Internal.StackPopInteger();
         }
 
         //  Determine whether oSource has a Hostile reaction towards oTarget, depending
@@ -10525,12 +10526,12 @@
         //  Note: If you just want to know how two objects feel about each other in terms
         //  of faction and personal reputation, use GetIsEnemy() instead.
         //  * Returns TRUE if oSource has a hostile reaction towards oTarget
-        public static int GetIsReactionTypeHostile(NWN.Object oTarget, NWN.Object oSource = null)
+        public static int GetIsReactionTypeHostile(Object oTarget, Object oSource = null)
         {
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(471);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSource, false);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(471);
+            return Internal.StackPopInteger();
         }
 
         //  Create a Spell Level Absorption effect.
@@ -10542,24 +10543,24 @@
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if:
         //    nMaxSpellLevelAbsorbed is not between -1 and 9 inclusive, or nSpellSchool
         //    is invalid.
-        public static NWN.Effect EffectSpellLevelAbsorption(int nMaxSpellLevelAbsorbed, int nTotalSpellLevelsAbsorbed = 0, int nSpellSchool = SPELL_SCHOOL_GENERAL)
+        public static Effect EffectSpellLevelAbsorption(int nMaxSpellLevelAbsorbed, int nTotalSpellLevelsAbsorbed = 0, int nSpellSchool = SPELL_SCHOOL_GENERAL)
         {
-            NWN.Internal.StackPushInteger(nSpellSchool);
-            NWN.Internal.StackPushInteger(nTotalSpellLevelsAbsorbed);
-            NWN.Internal.StackPushInteger(nMaxSpellLevelAbsorbed);
-            NWN.Internal.CallBuiltIn(472);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nSpellSchool);
+            Internal.StackPushInteger(nTotalSpellLevelsAbsorbed);
+            Internal.StackPushInteger(nMaxSpellLevelAbsorbed);
+            Internal.CallBuiltIn(472);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Dispel Magic Best effect.
         //  If no parameter is specified, USE_CREATURE_LEVEL will be used. This will
         //  cause the dispel effect to use the level of the creature that created the
         //  effect.
-        public static NWN.Effect EffectDispelMagicBest(int nCasterLevel = USE_CREATURE_LEVEL)
+        public static Effect EffectDispelMagicBest(int nCasterLevel = USE_CREATURE_LEVEL)
         {
-            NWN.Internal.StackPushInteger(nCasterLevel);
-            NWN.Internal.CallBuiltIn(473);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nCasterLevel);
+            Internal.CallBuiltIn(473);
+            return Internal.StackPopEffect();
         }
 
         //  Try to send oTarget to a new server defined by sIPaddress.
@@ -10575,22 +10576,22 @@
         //    information window telling them about the server, and they will not be
         //    allowed to save a copy of their character if they are using a local vault
         //    character.
-        public static void ActivatePortal(NWN.Object oTarget, string sIPaddress = "", string sPassword = "", string sWaypointTag = "", int bSeemless = FALSE)
+        public static void ActivatePortal(Object oTarget, string sIPaddress = "", string sPassword = "", string sWaypointTag = "", int bSeemless = FALSE)
         {
-            NWN.Internal.StackPushInteger(bSeemless);
-            NWN.Internal.StackPushString(sWaypointTag);
-            NWN.Internal.StackPushString(sPassword);
-            NWN.Internal.StackPushString(sIPaddress);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(474);
+            Internal.StackPushInteger(bSeemless);
+            Internal.StackPushString(sWaypointTag);
+            Internal.StackPushString(sPassword);
+            Internal.StackPushString(sIPaddress);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(474);
         }
 
         //  Get the number of stacked items that oItem comprises.
-        public static int GetNumStackedItems(NWN.Object oItem)
+        public static int GetNumStackedItems(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(475);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(475);
+            return Internal.StackPopInteger();
         }
 
         //  Use this on an NPC to cause all creatures within a 10-metre radius to stop
@@ -10599,7 +10600,7 @@
         //  or an object that is not a creature, nothing will happen.
         public static void SurrenderToEnemies()
         {
-            NWN.Internal.CallBuiltIn(476);
+            Internal.CallBuiltIn(476);
         }
 
         //  Create a Miss Chance effect.
@@ -10607,29 +10608,29 @@
         //  - nMissChanceType: MISS_CHANCE_TYPE_*
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nPercentage < 1 or
         //    nPercentage > 100.
-        public static NWN.Effect EffectMissChance(int nPercentage, int nMissChanceType = MISS_CHANCE_TYPE_NORMAL)
+        public static Effect EffectMissChance(int nPercentage, int nMissChanceType = MISS_CHANCE_TYPE_NORMAL)
         {
-            NWN.Internal.StackPushInteger(nMissChanceType);
-            NWN.Internal.StackPushInteger(nPercentage);
-            NWN.Internal.CallBuiltIn(477);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nMissChanceType);
+            Internal.StackPushInteger(nPercentage);
+            Internal.CallBuiltIn(477);
+            return Internal.StackPopEffect();
         }
 
         //  Get the number of Hitdice worth of Turn Resistance that oUndead may have.
         //  This will only work on undead creatures.
-        public static int GetTurnResistanceHD(NWN.Object oUndead = null)
+        public static int GetTurnResistanceHD(Object oUndead = null)
         {
-            NWN.Internal.StackPushObject(oUndead, false);
-            NWN.Internal.CallBuiltIn(478);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oUndead, false);
+            Internal.CallBuiltIn(478);
+            return Internal.StackPopInteger();
         }
 
         //  Get the size (CREATURE_SIZE_*) of oCreature.
-        public static int GetCreatureSize(NWN.Object oCreature)
+        public static int GetCreatureSize(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(479);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(479);
+            return Internal.StackPopInteger();
         }
 
         //  Create a Disappear/Appear effect.
@@ -10637,68 +10638,68 @@
         //  at lLocation.
         //  - nAnimation determines which appear and disappear animations to use. Most creatures
         //  only have animation 1, although a few have 2 (like beholders)
-        public static NWN.Effect EffectDisappearAppear(NWN.Location lLocation, int nAnimation = 1)
+        public static Effect EffectDisappearAppear(Location lLocation, int nAnimation = 1)
         {
-            NWN.Internal.StackPushInteger(nAnimation);
-            NWN.Internal.StackPushLocation(lLocation);
-            NWN.Internal.CallBuiltIn(480);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nAnimation);
+            Internal.StackPushLocation(lLocation);
+            Internal.CallBuiltIn(480);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Disappear effect to make the object "fly away" and then destroy
         //  itself.
         //  - nAnimation determines which appear and disappear animations to use. Most creatures
         //  only have animation 1, although a few have 2 (like beholders)
-        public static NWN.Effect EffectDisappear(int nAnimation = 1)
+        public static Effect EffectDisappear(int nAnimation = 1)
         {
-            NWN.Internal.StackPushInteger(nAnimation);
-            NWN.Internal.CallBuiltIn(481);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nAnimation);
+            Internal.CallBuiltIn(481);
+            return Internal.StackPopEffect();
         }
 
         //  Create an Appear effect to make the object "fly in".
         //  - nAnimation determines which appear and disappear animations to use. Most creatures
         //  only have animation 1, although a few have 2 (like beholders)
-        public static NWN.Effect EffectAppear(int nAnimation = 1)
+        public static Effect EffectAppear(int nAnimation = 1)
         {
-            NWN.Internal.StackPushInteger(nAnimation);
-            NWN.Internal.CallBuiltIn(482);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nAnimation);
+            Internal.CallBuiltIn(482);
+            return Internal.StackPopEffect();
         }
 
         //  The action subject will unlock oTarget, which can be a door or a placeable
         //  object.
-        public static void ActionUnlockObject(NWN.Object oTarget)
+        public static void ActionUnlockObject(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(483);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(483);
         }
 
         //  The action subject will lock oTarget, which can be a door or a placeable
         //  object.
-        public static void ActionLockObject(NWN.Object oTarget)
+        public static void ActionLockObject(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(484);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(484);
         }
 
         //  Create a Modify Attacks effect to add attacks.
         //  - nAttacks: maximum is 5, even with the effect stacked
         //  * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nAttacks > 5.
-        public static NWN.Effect EffectModifyAttacks(int nAttacks)
+        public static Effect EffectModifyAttacks(int nAttacks)
         {
-            NWN.Internal.StackPushInteger(nAttacks);
-            NWN.Internal.CallBuiltIn(485);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nAttacks);
+            Internal.CallBuiltIn(485);
+            return Internal.StackPopEffect();
         }
 
         //  Get the last trap detected by oTarget.
         //  * Return value on error: OBJECT_INVALID
-        public static NWN.Object GetLastTrapDetected(NWN.Object oTarget = null)
+        public static Object GetLastTrapDetected(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(486);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(486);
+            return Internal.StackPopObject();
         }
 
         //  Create a Damage Shield effect which does (nDamageAmount + nRandomAmount)
@@ -10708,13 +10709,13 @@
         //  - nDamageType: DAMAGE_TYPE_*
         //  NOTE! You *must* use the DAMAGE_BONUS_* constants! Using other values may
         //        result in odd behaviour.
-        public static NWN.Effect EffectDamageShield(int nDamageAmount, int nRandomAmount, int nDamageType)
+        public static Effect EffectDamageShield(int nDamageAmount, int nRandomAmount, int nDamageType)
         {
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.StackPushInteger(nRandomAmount);
-            NWN.Internal.StackPushInteger(nDamageAmount);
-            NWN.Internal.CallBuiltIn(487);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nDamageType);
+            Internal.StackPushInteger(nRandomAmount);
+            Internal.StackPushInteger(nDamageAmount);
+            Internal.CallBuiltIn(487);
+            return Internal.StackPopEffect();
         }
 
         //  Get the trap nearest to oTarget.
@@ -10723,129 +10724,129 @@
         //  - oTarget
         //  - nTrapDetected: if this is TRUE, the trap returned has to have been detected
         //    by oTarget.
-        public static NWN.Object GetNearestTrapToObject(NWN.Object oTarget = null, int nTrapDetected = TRUE)
+        public static Object GetNearestTrapToObject(Object oTarget = null, int nTrapDetected = TRUE)
         {
-            NWN.Internal.StackPushInteger(nTrapDetected);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(488);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(nTrapDetected);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(488);
+            return Internal.StackPopObject();
         }
 
         //  Get the name of oCreature's deity.
         //  * Returns "" if oCreature is invalid (or if the deity name is blank for
         //    oCreature).
-        public static string GetDeity(NWN.Object oCreature)
+        public static string GetDeity(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(489);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(489);
+            return Internal.StackPopString();
         }
 
         //  Get the name of oCreature's sub race.
         //  * Returns "" if oCreature is invalid (or if sub race is blank for oCreature).
-        public static string GetSubRace(NWN.Object oTarget)
+        public static string GetSubRace(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(490);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(490);
+            return Internal.StackPopString();
         }
 
         //  Get oTarget's base fortitude saving throw value (this will only work for
         //  creatures, doors, and placeables).
         //  * Returns 0 if oTarget is invalid.
-        public static int GetFortitudeSavingThrow(NWN.Object oTarget)
+        public static int GetFortitudeSavingThrow(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(491);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(491);
+            return Internal.StackPopInteger();
         }
 
         //  Get oTarget's base will saving throw value (this will only work for creatures,
         //  doors, and placeables).
         //  * Returns 0 if oTarget is invalid.
-        public static int GetWillSavingThrow(NWN.Object oTarget)
+        public static int GetWillSavingThrow(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(492);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(492);
+            return Internal.StackPopInteger();
         }
 
         //  Get oTarget's base reflex saving throw value (this will only work for
         //  creatures, doors, and placeables).
         //  * Returns 0 if oTarget is invalid.
-        public static int GetReflexSavingThrow(NWN.Object oTarget)
+        public static int GetReflexSavingThrow(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(493);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(493);
+            return Internal.StackPopInteger();
         }
 
         //  Get oCreature's challenge rating.
         //  * Returns 0.0 if oCreature is invalid.
-        public static float GetChallengeRating(NWN.Object oCreature)
+        public static float GetChallengeRating(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(494);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(494);
+            return Internal.StackPopFloat();
         }
 
         //  Get oCreature's age.
         //  * Returns 0 if oCreature is invalid.
-        public static int GetAge(NWN.Object oCreature)
+        public static int GetAge(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(495);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(495);
+            return Internal.StackPopInteger();
         }
 
         //  Get oCreature's movement rate.
         //  * Returns 0 if oCreature is invalid.
-        public static int GetMovementRate(NWN.Object oCreature)
+        public static int GetMovementRate(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(496);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(496);
+            return Internal.StackPopInteger();
         }
 
         //  Get oCreature's familiar creature type (FAMILIAR_CREATURE_TYPE_*).
         //  * Returns FAMILIAR_CREATURE_TYPE_NONE if oCreature is invalid or does not
         //    currently have a familiar.
-        public static int GetFamiliarCreatureType(NWN.Object oCreature)
+        public static int GetFamiliarCreatureType(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(497);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(497);
+            return Internal.StackPopInteger();
         }
 
         //  Get oCreature's animal companion creature type
         //  (ANIMAL_COMPANION_CREATURE_TYPE_*).
         //  * Returns ANIMAL_COMPANION_CREATURE_TYPE_NONE if oCreature is invalid or does
         //    not currently have an animal companion.
-        public static int GetAnimalCompanionCreatureType(NWN.Object oCreature)
+        public static int GetAnimalCompanionCreatureType(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(498);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(498);
+            return Internal.StackPopInteger();
         }
 
         //  Get oCreature's familiar's name.
         //  * Returns "" if oCreature is invalid, does not currently
         //  have a familiar or if the familiar's name is blank.
-        public static string GetFamiliarName(NWN.Object oCreature)
+        public static string GetFamiliarName(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(499);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(499);
+            return Internal.StackPopString();
         }
 
         //  Get oCreature's animal companion's name.
         //  * Returns "" if oCreature is invalid, does not currently
         //  have an animal companion or if the animal companion's name is blank.
-        public static string GetAnimalCompanionName(NWN.Object oTarget)
+        public static string GetAnimalCompanionName(Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(500);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(500);
+            return Internal.StackPopString();
         }
 
         //  The action subject will fake casting a spell at oTarget; the conjure and cast
@@ -10853,12 +10854,12 @@
         //  - nSpell
         //  - oTarget
         //  - nProjectilePathType: PROJECTILE_PATH_TYPE_*
-        public static void ActionCastFakeSpellAtObject(int nSpell, NWN.Object oTarget, int nProjectilePathType = PROJECTILE_PATH_TYPE_DEFAULT)
+        public static void ActionCastFakeSpellAtObject(int nSpell, Object oTarget, int nProjectilePathType = PROJECTILE_PATH_TYPE_DEFAULT)
         {
-            NWN.Internal.StackPushInteger(nProjectilePathType);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.CallBuiltIn(501);
+            Internal.StackPushInteger(nProjectilePathType);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushInteger(nSpell);
+            Internal.CallBuiltIn(501);
         }
 
         //  The action subject will fake casting a spell at lLocation; the conjure and
@@ -10866,21 +10867,21 @@
         //  - nSpell
         //  - lTarget
         //  - nProjectilePathType: PROJECTILE_PATH_TYPE_*
-        public static void ActionCastFakeSpellAtLocation(int nSpell, NWN.Location lTarget, int nProjectilePathType = PROJECTILE_PATH_TYPE_DEFAULT)
+        public static void ActionCastFakeSpellAtLocation(int nSpell, Location lTarget, int nProjectilePathType = PROJECTILE_PATH_TYPE_DEFAULT)
         {
-            NWN.Internal.StackPushInteger(nProjectilePathType);
-            NWN.Internal.StackPushLocation(lTarget);
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.CallBuiltIn(502);
+            Internal.StackPushInteger(nProjectilePathType);
+            Internal.StackPushLocation(lTarget);
+            Internal.StackPushInteger(nSpell);
+            Internal.CallBuiltIn(502);
         }
 
         //  Removes oAssociate from the service of oMaster, returning them to their
         //  original faction.
-        public static void RemoveSummonedAssociate(NWN.Object oMaster, NWN.Object oAssociate = null)
+        public static void RemoveSummonedAssociate(Object oMaster, Object oAssociate = null)
         {
-            NWN.Internal.StackPushObject(oAssociate, false);
-            NWN.Internal.StackPushObject(oMaster, false);
-            NWN.Internal.CallBuiltIn(503);
+            Internal.StackPushObject(oAssociate, false);
+            Internal.StackPushObject(oMaster, false);
+            Internal.CallBuiltIn(503);
         }
 
         //  Set the camera mode for oPlayer.
@@ -10888,26 +10889,26 @@
         //  - nCameraMode: CAMERA_MODE_*
         //  * If oPlayer is not player-controlled or nCameraMode is invalid, nothing
         //    happens.
-        public static void SetCameraMode(NWN.Object oPlayer, int nCameraMode)
+        public static void SetCameraMode(Object oPlayer, int nCameraMode)
         {
-            NWN.Internal.StackPushInteger(nCameraMode);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(504);
+            Internal.StackPushInteger(nCameraMode);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(504);
         }
 
         //  * Returns TRUE if oCreature is resting.
-        public static int GetIsResting(NWN.Object oCreature = null)
+        public static int GetIsResting(Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(505);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(505);
+            return Internal.StackPopInteger();
         }
 
         //  Get the last PC that has rested in the module.
-        public static NWN.Object GetLastPCRested()
+        public static Object GetLastPCRested()
         {
-            NWN.Internal.CallBuiltIn(506);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(506);
+            return Internal.StackPopObject();
         }
 
         //  Set the weather for oTarget.
@@ -10918,27 +10919,27 @@
         //    -> WEATHER_USER_AREA_SETTINGS will set the area back to random weather.
         //    -> WEATHER_CLEAR, WEATHER_RAIN, WEATHER_SNOW will make the weather go to
         //       the appropriate precipitation *without stopping*.
-        public static void SetWeather(NWN.Object oTarget, int nWeather)
+        public static void SetWeather(Object oTarget, int nWeather)
         {
-            NWN.Internal.StackPushInteger(nWeather);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(507);
+            Internal.StackPushInteger(nWeather);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(507);
         }
 
         //  Determine the type (REST_EVENTTYPE_REST_*) of the last rest event (as
         //  returned from the OnPCRested module event).
         public static int GetLastRestEventType()
         {
-            NWN.Internal.CallBuiltIn(508);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(508);
+            return Internal.StackPopInteger();
         }
 
         //  Shut down the currently loaded module and start a new one (moving all
         //  currently-connected players to the starting point.
         public static void StartNewModule(string sModuleName)
         {
-            NWN.Internal.StackPushString(sModuleName);
-            NWN.Internal.CallBuiltIn(509);
+            Internal.StackPushString(sModuleName);
+            Internal.CallBuiltIn(509);
         }
 
         //  Create a Swarm effect.
@@ -10950,36 +10951,36 @@
         //  - sCreatureTemplate2
         //  - sCreatureTemplate3
         //  - sCreatureTemplate4
-        public static NWN.Effect EffectSwarm(int nLooping, string sCreatureTemplate1, string sCreatureTemplate2 = "", string sCreatureTemplate3 = "", string sCreatureTemplate4 = "")
+        public static Effect EffectSwarm(int nLooping, string sCreatureTemplate1, string sCreatureTemplate2 = "", string sCreatureTemplate3 = "", string sCreatureTemplate4 = "")
         {
-            NWN.Internal.StackPushString(sCreatureTemplate4);
-            NWN.Internal.StackPushString(sCreatureTemplate3);
-            NWN.Internal.StackPushString(sCreatureTemplate2);
-            NWN.Internal.StackPushString(sCreatureTemplate1);
-            NWN.Internal.StackPushInteger(nLooping);
-            NWN.Internal.CallBuiltIn(510);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushString(sCreatureTemplate4);
+            Internal.StackPushString(sCreatureTemplate3);
+            Internal.StackPushString(sCreatureTemplate2);
+            Internal.StackPushString(sCreatureTemplate1);
+            Internal.StackPushInteger(nLooping);
+            Internal.CallBuiltIn(510);
+            return Internal.StackPopEffect();
         }
 
         //  * Returns TRUE if oItem is a ranged weapon.
-        public static int GetWeaponRanged(NWN.Object oItem)
+        public static int GetWeaponRanged(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(511);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(511);
+            return Internal.StackPopInteger();
         }
 
         //  Only if we are in a single player game, AutoSave the game.
         public static void DoSinglePlayerAutoSave()
         {
-            NWN.Internal.CallBuiltIn(512);
+            Internal.CallBuiltIn(512);
         }
 
         //  Get the game difficulty (GAME_DIFFICULTY_*).
         public static int GetGameDifficulty()
         {
-            NWN.Internal.CallBuiltIn(513);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(513);
+            return Internal.StackPopInteger();
         }
 
         //  Set the main light color on the tile at lTileLocation.
@@ -10987,12 +10988,12 @@
         //    the tile.
         //  - nMainLight1Color: TILE_MAIN_LIGHT_COLOR_*
         //  - nMainLight2Color: TILE_MAIN_LIGHT_COLOR_*
-        public static void SetTileMainLightColor(NWN.Location lTileLocation, int nMainLight1Color, int nMainLight2Color)
+        public static void SetTileMainLightColor(Location lTileLocation, int nMainLight1Color, int nMainLight2Color)
         {
-            NWN.Internal.StackPushInteger(nMainLight2Color);
-            NWN.Internal.StackPushInteger(nMainLight1Color);
-            NWN.Internal.StackPushLocation(lTileLocation);
-            NWN.Internal.CallBuiltIn(514);
+            Internal.StackPushInteger(nMainLight2Color);
+            Internal.StackPushInteger(nMainLight1Color);
+            Internal.StackPushLocation(lTileLocation);
+            Internal.CallBuiltIn(514);
         }
 
         //  Set the source light color on the tile at lTileLocation.
@@ -11000,64 +11001,64 @@
         //    the tile.
         //  - nSourceLight1Color: TILE_SOURCE_LIGHT_COLOR_*
         //  - nSourceLight2Color: TILE_SOURCE_LIGHT_COLOR_*
-        public static void SetTileSourceLightColor(NWN.Location lTileLocation, int nSourceLight1Color, int nSourceLight2Color)
+        public static void SetTileSourceLightColor(Location lTileLocation, int nSourceLight1Color, int nSourceLight2Color)
         {
-            NWN.Internal.StackPushInteger(nSourceLight2Color);
-            NWN.Internal.StackPushInteger(nSourceLight1Color);
-            NWN.Internal.StackPushLocation(lTileLocation);
-            NWN.Internal.CallBuiltIn(515);
+            Internal.StackPushInteger(nSourceLight2Color);
+            Internal.StackPushInteger(nSourceLight1Color);
+            Internal.StackPushLocation(lTileLocation);
+            Internal.CallBuiltIn(515);
         }
 
         //  All clients in oArea will recompute the static lighting.
         //  This can be used to update the lighting after changing any tile lights or if
         //  placeables with lights have been added/deleted.
-        public static void RecomputeStaticLighting(NWN.Object oArea)
+        public static void RecomputeStaticLighting(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(516);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(516);
         }
 
         //  Get the color (TILE_MAIN_LIGHT_COLOR_*) for the main light 1 of the tile at
         //  lTile.
         //  - lTile: the vector part of this is the tile grid (x,y) coordinate of the tile.
-        public static int GetTileMainLight1Color(NWN.Location lTile)
+        public static int GetTileMainLight1Color(Location lTile)
         {
-            NWN.Internal.StackPushLocation(lTile);
-            NWN.Internal.CallBuiltIn(517);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushLocation(lTile);
+            Internal.CallBuiltIn(517);
+            return Internal.StackPopInteger();
         }
 
         //  Get the color (TILE_MAIN_LIGHT_COLOR_*) for the main light 2 of the tile at
         //  lTile.
         //  - lTile: the vector part of this is the tile grid (x,y) coordinate of the
         //    tile.
-        public static int GetTileMainLight2Color(NWN.Location lTile)
+        public static int GetTileMainLight2Color(Location lTile)
         {
-            NWN.Internal.StackPushLocation(lTile);
-            NWN.Internal.CallBuiltIn(518);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushLocation(lTile);
+            Internal.CallBuiltIn(518);
+            return Internal.StackPopInteger();
         }
 
         //  Get the color (TILE_SOURCE_LIGHT_COLOR_*) for the source light 1 of the tile
         //  at lTile.
         //  - lTile: the vector part of this is the tile grid (x,y) coordinate of the
         //    tile.
-        public static int GetTileSourceLight1Color(NWN.Location lTile)
+        public static int GetTileSourceLight1Color(Location lTile)
         {
-            NWN.Internal.StackPushLocation(lTile);
-            NWN.Internal.CallBuiltIn(519);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushLocation(lTile);
+            Internal.CallBuiltIn(519);
+            return Internal.StackPopInteger();
         }
 
         //  Get the color (TILE_SOURCE_LIGHT_COLOR_*) for the source light 2 of the tile
         //  at lTile.
         //  - lTile: the vector part of this is the tile grid (x,y) coordinate of the
         //    tile.
-        public static int GetTileSourceLight2Color(NWN.Location lTile)
+        public static int GetTileSourceLight2Color(Location lTile)
         {
-            NWN.Internal.StackPushLocation(lTile);
-            NWN.Internal.CallBuiltIn(520);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushLocation(lTile);
+            Internal.CallBuiltIn(520);
+            return Internal.StackPopInteger();
         }
 
         //  Make the corresponding panel button on the player's client start or stop
@@ -11066,32 +11067,32 @@
         //  - nButton: PANEL_BUTTON_*
         //  - nEnableFlash: if this is TRUE nButton will start flashing.  It if is FALSE,
         //    nButton will stop flashing.
-        public static void SetPanelButtonFlash(NWN.Object oPlayer, int nButton, int nEnableFlash)
+        public static void SetPanelButtonFlash(Object oPlayer, int nButton, int nEnableFlash)
         {
-            NWN.Internal.StackPushInteger(nEnableFlash);
-            NWN.Internal.StackPushInteger(nButton);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(521);
+            Internal.StackPushInteger(nEnableFlash);
+            Internal.StackPushInteger(nButton);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(521);
         }
 
         //  Get the current action (ACTION_*) that oObject is executing.
-        public static int GetCurrentAction(NWN.Object oObject = null)
+        public static int GetCurrentAction(Object oObject = null)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(522);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(522);
+            return Internal.StackPopInteger();
         }
 
         //  Set how nStandardFaction feels about oCreature.
         //  - nStandardFaction: STANDARD_FACTION_*
         //  - nNewReputation: 0-100 (inclusive)
         //  - oCreature
-        public static void SetStandardFactionReputation(int nStandardFaction, int nNewReputation, NWN.Object oCreature = null)
+        public static void SetStandardFactionReputation(int nStandardFaction, int nNewReputation, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nNewReputation);
-            NWN.Internal.StackPushInteger(nStandardFaction);
-            NWN.Internal.CallBuiltIn(523);
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nNewReputation);
+            Internal.StackPushInteger(nStandardFaction);
+            Internal.CallBuiltIn(523);
         }
 
         //  Find out how nStandardFaction feels about oCreature.
@@ -11102,12 +11103,12 @@
         //  0-10   :  Hostile.
         //  11-89  :  Neutral.
         //  90-100 :  Friendly.
-        public static int GetStandardFactionReputation(int nStandardFaction, NWN.Object oCreature = null)
+        public static int GetStandardFactionReputation(int nStandardFaction, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nStandardFaction);
-            NWN.Internal.CallBuiltIn(524);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nStandardFaction);
+            Internal.CallBuiltIn(524);
+            return Internal.StackPopInteger();
         }
 
         //  Display floaty text above the specified creature.
@@ -11118,12 +11119,12 @@
         //  - bBroadcastToFaction: If this is TRUE then only creatures in the same faction
         //    as oCreatureToFloatAbove
         //    will see the floaty text, and only if they are within range (30 metres).
-        public static void FloatingTextStrRefOnCreature(int nStrRefToDisplay, NWN.Object oCreatureToFloatAbove, int bBroadcastToFaction = TRUE)
+        public static void FloatingTextStrRefOnCreature(int nStrRefToDisplay, Object oCreatureToFloatAbove, int bBroadcastToFaction = TRUE)
         {
-            NWN.Internal.StackPushInteger(bBroadcastToFaction);
-            NWN.Internal.StackPushObject(oCreatureToFloatAbove, false);
-            NWN.Internal.StackPushInteger(nStrRefToDisplay);
-            NWN.Internal.CallBuiltIn(525);
+            Internal.StackPushInteger(bBroadcastToFaction);
+            Internal.StackPushObject(oCreatureToFloatAbove, false);
+            Internal.StackPushInteger(nStrRefToDisplay);
+            Internal.CallBuiltIn(525);
         }
 
         //  Display floaty text above the specified creature.
@@ -11134,164 +11135,164 @@
         //  - bBroadcastToFaction: If this is TRUE then only creatures in the same faction
         //    as oCreatureToFloatAbove
         //    will see the floaty text, and only if they are within range (30 metres).
-        public static void FloatingTextStringOnCreature(string sStringToDisplay, NWN.Object oCreatureToFloatAbove, int bBroadcastToFaction = TRUE)
+        public static void FloatingTextStringOnCreature(string sStringToDisplay, Object oCreatureToFloatAbove, int bBroadcastToFaction = TRUE)
         {
-            NWN.Internal.StackPushInteger(bBroadcastToFaction);
-            NWN.Internal.StackPushObject(oCreatureToFloatAbove, false);
-            NWN.Internal.StackPushString(sStringToDisplay);
-            NWN.Internal.CallBuiltIn(526);
+            Internal.StackPushInteger(bBroadcastToFaction);
+            Internal.StackPushObject(oCreatureToFloatAbove, false);
+            Internal.StackPushString(sStringToDisplay);
+            Internal.CallBuiltIn(526);
         }
 
         //  - oTrapObject: a placeable, door or trigger
         //  * Returns TRUE if oTrapObject is disarmable.
-        public static int GetTrapDisarmable(NWN.Object oTrapObject)
+        public static int GetTrapDisarmable(Object oTrapObject)
         {
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(527);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(527);
+            return Internal.StackPopInteger();
         }
 
         //  - oTrapObject: a placeable, door or trigger
         //  * Returns TRUE if oTrapObject is detectable.
-        public static int GetTrapDetectable(NWN.Object oTrapObject)
+        public static int GetTrapDetectable(Object oTrapObject)
         {
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(528);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(528);
+            return Internal.StackPopInteger();
         }
 
         //  - oTrapObject: a placeable, door or trigger
         //  - oCreature
         //  * Returns TRUE if oCreature has detected oTrapObject
-        public static int GetTrapDetectedBy(NWN.Object oTrapObject, NWN.Object oCreature)
+        public static int GetTrapDetectedBy(Object oTrapObject, Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(529);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(529);
+            return Internal.StackPopInteger();
         }
 
         //  - oTrapObject: a placeable, door or trigger
         //  * Returns TRUE if oTrapObject has been flagged as visible to all creatures.
-        public static int GetTrapFlagged(NWN.Object oTrapObject)
+        public static int GetTrapFlagged(Object oTrapObject)
         {
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(530);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(530);
+            return Internal.StackPopInteger();
         }
 
         //  Get the trap base type (TRAP_BASE_TYPE_*) of oTrapObject.
         //  - oTrapObject: a placeable, door or trigger
-        public static int GetTrapBaseType(NWN.Object oTrapObject)
+        public static int GetTrapBaseType(Object oTrapObject)
         {
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(531);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(531);
+            return Internal.StackPopInteger();
         }
 
         //  - oTrapObject: a placeable, door or trigger
         //  * Returns TRUE if oTrapObject is one-shot (i.e. it does not reset itself
         //    after firing.
-        public static int GetTrapOneShot(NWN.Object oTrapObject)
+        public static int GetTrapOneShot(Object oTrapObject)
         {
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(532);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(532);
+            return Internal.StackPopInteger();
         }
 
         //  Get the creator of oTrapObject, the creature that set the trap.
         //  - oTrapObject: a placeable, door or trigger
         //  * Returns OBJECT_INVALID if oTrapObject was created in the toolset.
-        public static NWN.Object GetTrapCreator(NWN.Object oTrapObject)
+        public static Object GetTrapCreator(Object oTrapObject)
         {
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(533);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(533);
+            return Internal.StackPopObject();
         }
 
         //  Get the tag of the key that will disarm oTrapObject.
         //  - oTrapObject: a placeable, door or trigger
-        public static string GetTrapKeyTag(NWN.Object oTrapObject)
+        public static string GetTrapKeyTag(Object oTrapObject)
         {
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(534);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(534);
+            return Internal.StackPopString();
         }
 
         //  Get the DC for disarming oTrapObject.
         //  - oTrapObject: a placeable, door or trigger
-        public static int GetTrapDisarmDC(NWN.Object oTrapObject)
+        public static int GetTrapDisarmDC(Object oTrapObject)
         {
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(535);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(535);
+            return Internal.StackPopInteger();
         }
 
         //  Get the DC for detecting oTrapObject.
         //  - oTrapObject: a placeable, door or trigger
-        public static int GetTrapDetectDC(NWN.Object oTrapObject)
+        public static int GetTrapDetectDC(Object oTrapObject)
         {
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(536);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(536);
+            return Internal.StackPopInteger();
         }
 
         //  * Returns TRUE if a specific key is required to open the lock on oObject.
-        public static int GetLockKeyRequired(NWN.Object oObject)
+        public static int GetLockKeyRequired(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(537);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(537);
+            return Internal.StackPopInteger();
         }
 
         //  Get the tag of the key that will open the lock on oObject.
-        public static string GetLockKeyTag(NWN.Object oObject)
+        public static string GetLockKeyTag(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(538);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(538);
+            return Internal.StackPopString();
         }
 
         //  * Returns TRUE if the lock on oObject is lockable.
-        public static int GetLockLockable(NWN.Object oObject)
+        public static int GetLockLockable(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(539);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(539);
+            return Internal.StackPopInteger();
         }
 
         //  Get the DC for unlocking oObject.
-        public static int GetLockUnlockDC(NWN.Object oObject)
+        public static int GetLockUnlockDC(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(540);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(540);
+            return Internal.StackPopInteger();
         }
 
         //  Get the DC for locking oObject.
-        public static int GetLockLockDC(NWN.Object oObject)
+        public static int GetLockLockDC(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(541);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(541);
+            return Internal.StackPopInteger();
         }
 
         //  Get the last PC that levelled up.
-        public static NWN.Object GetPCLevellingUp()
+        public static Object GetPCLevellingUp()
         {
-            NWN.Internal.CallBuiltIn(542);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(542);
+            return Internal.StackPopObject();
         }
 
         //  - nFeat: FEAT_*
         //  - oObject
         //  * Returns TRUE if oObject has effects on it originating from nFeat.
-        public static int GetHasFeatEffect(int nFeat, NWN.Object oObject = null)
+        public static int GetHasFeatEffect(int nFeat, Object oObject = null)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.StackPushInteger(nFeat);
-            NWN.Internal.CallBuiltIn(543);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.StackPushInteger(nFeat);
+            Internal.CallBuiltIn(543);
+            return Internal.StackPopInteger();
         }
 
         //  Set the status of the illumination for oPlaceable.
@@ -11307,98 +11308,98 @@
         //  all the placeable illumination has been set.
         //  * If oPlaceable is not a placeable object, or oPlaceable is a placeable that
         //    doesn't have a light, nothing will happen.
-        public static void SetPlaceableIllumination(NWN.Object oPlaceable = null, int bIlluminate = TRUE)
+        public static void SetPlaceableIllumination(Object oPlaceable = null, int bIlluminate = TRUE)
         {
-            NWN.Internal.StackPushInteger(bIlluminate);
-            NWN.Internal.StackPushObject(oPlaceable, false);
-            NWN.Internal.CallBuiltIn(544);
+            Internal.StackPushInteger(bIlluminate);
+            Internal.StackPushObject(oPlaceable, false);
+            Internal.CallBuiltIn(544);
         }
 
         //  * Returns TRUE if the illumination for oPlaceable is on
-        public static int GetPlaceableIllumination(NWN.Object oPlaceable = null)
+        public static int GetPlaceableIllumination(Object oPlaceable = null)
         {
-            NWN.Internal.StackPushObject(oPlaceable, false);
-            NWN.Internal.CallBuiltIn(545);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oPlaceable, false);
+            Internal.CallBuiltIn(545);
+            return Internal.StackPopInteger();
         }
 
         //  - oPlaceable
         //  - nPlaceableAction: PLACEABLE_ACTION_*
         //  * Returns TRUE if nPlacebleAction is valid for oPlaceable.
-        public static int GetIsPlaceableObjectActionPossible(NWN.Object oPlaceable, int nPlaceableAction)
+        public static int GetIsPlaceableObjectActionPossible(Object oPlaceable, int nPlaceableAction)
         {
-            NWN.Internal.StackPushInteger(nPlaceableAction);
-            NWN.Internal.StackPushObject(oPlaceable, false);
-            NWN.Internal.CallBuiltIn(546);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nPlaceableAction);
+            Internal.StackPushObject(oPlaceable, false);
+            Internal.CallBuiltIn(546);
+            return Internal.StackPopInteger();
         }
 
         //  The caller performs nPlaceableAction on oPlaceable.
         //  - oPlaceable
         //  - nPlaceableAction: PLACEABLE_ACTION_*
-        public static void DoPlaceableObjectAction(NWN.Object oPlaceable, int nPlaceableAction)
+        public static void DoPlaceableObjectAction(Object oPlaceable, int nPlaceableAction)
         {
-            NWN.Internal.StackPushInteger(nPlaceableAction);
-            NWN.Internal.StackPushObject(oPlaceable, false);
-            NWN.Internal.CallBuiltIn(547);
+            Internal.StackPushInteger(nPlaceableAction);
+            Internal.StackPushObject(oPlaceable, false);
+            Internal.CallBuiltIn(547);
         }
 
         //  Get the first PC in the player list.
         //  This resets the position in the player list for GetNextPC().
-        public static NWN.Object GetFirstPC()
+        public static Object GetFirstPC()
         {
-            NWN.Internal.CallBuiltIn(548);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(548);
+            return Internal.StackPopObject();
         }
 
         //  Get the next PC in the player list.
         //  This picks up where the last GetFirstPC() or GetNextPC() left off.
-        public static NWN.Object GetNextPC()
+        public static Object GetNextPC()
         {
-            NWN.Internal.CallBuiltIn(549);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(549);
+            return Internal.StackPopObject();
         }
 
         //  Set whether or not the creature oDetector has detected the trapped object oTrap.
         //  - oTrap: A trapped trigger, placeable or door object.
         //  - oDetector: This is the creature that the detected status of the trap is being adjusted for.
         //  - bDetected: A Boolean that sets whether the trapped object has been detected or not.
-        public static int SetTrapDetectedBy(NWN.Object oTrap, NWN.Object oDetector, int bDetected = TRUE)
+        public static int SetTrapDetectedBy(Object oTrap, Object oDetector, int bDetected = TRUE)
         {
-            NWN.Internal.StackPushInteger(bDetected);
-            NWN.Internal.StackPushObject(oDetector, false);
-            NWN.Internal.StackPushObject(oTrap, false);
-            NWN.Internal.CallBuiltIn(550);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(bDetected);
+            Internal.StackPushObject(oDetector, false);
+            Internal.StackPushObject(oTrap, false);
+            Internal.CallBuiltIn(550);
+            return Internal.StackPopInteger();
         }
 
         //  Note: Only placeables, doors and triggers can be trapped.
         //  * Returns TRUE if oObject is trapped.
-        public static int GetIsTrapped(NWN.Object oObject)
+        public static int GetIsTrapped(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(551);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(551);
+            return Internal.StackPopInteger();
         }
 
         //  Create a Turn Resistance Decrease effect.
         //  - nHitDice: a positive number representing the number of hit dice for the
         // /  decrease
-        public static NWN.Effect EffectTurnResistanceDecrease(int nHitDice)
+        public static Effect EffectTurnResistanceDecrease(int nHitDice)
         {
-            NWN.Internal.StackPushInteger(nHitDice);
-            NWN.Internal.CallBuiltIn(552);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nHitDice);
+            Internal.CallBuiltIn(552);
+            return Internal.StackPopEffect();
         }
 
         //  Create a Turn Resistance Increase effect.
         //  - nHitDice: a positive number representing the number of hit dice for the
         //    increase
-        public static NWN.Effect EffectTurnResistanceIncrease(int nHitDice)
+        public static Effect EffectTurnResistanceIncrease(int nHitDice)
         {
-            NWN.Internal.StackPushInteger(nHitDice);
-            NWN.Internal.CallBuiltIn(553);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nHitDice);
+            Internal.CallBuiltIn(553);
+            return Internal.StackPopEffect();
         }
 
         //  Spawn in the Death GUI.
@@ -11412,22 +11413,22 @@
         //    be enabled on the Death GUI (Note: This button will not appear in single player games).
         //  - nHelpStringReference
         //  - sHelpString
-        public static void PopUpDeathGUIPanel(NWN.Object oPC, int bRespawnButtonEnabled = TRUE, int bWaitForHelpButtonEnabled = TRUE, int nHelpStringReference = 0, string sHelpString = "")
+        public static void PopUpDeathGUIPanel(Object oPC, int bRespawnButtonEnabled = TRUE, int bWaitForHelpButtonEnabled = TRUE, int nHelpStringReference = 0, string sHelpString = "")
         {
-            NWN.Internal.StackPushString(sHelpString);
-            NWN.Internal.StackPushInteger(nHelpStringReference);
-            NWN.Internal.StackPushInteger(bWaitForHelpButtonEnabled);
-            NWN.Internal.StackPushInteger(bRespawnButtonEnabled);
-            NWN.Internal.StackPushObject(oPC, false);
-            NWN.Internal.CallBuiltIn(554);
+            Internal.StackPushString(sHelpString);
+            Internal.StackPushInteger(nHelpStringReference);
+            Internal.StackPushInteger(bWaitForHelpButtonEnabled);
+            Internal.StackPushInteger(bRespawnButtonEnabled);
+            Internal.StackPushObject(oPC, false);
+            Internal.CallBuiltIn(554);
         }
 
         //  Disable oTrap.
         //  - oTrap: a placeable, door or trigger.
-        public static void SetTrapDisabled(NWN.Object oTrap)
+        public static void SetTrapDisabled(Object oTrap)
         {
-            NWN.Internal.StackPushObject(oTrap, false);
-            NWN.Internal.CallBuiltIn(555);
+            Internal.StackPushObject(oTrap, false);
+            Internal.CallBuiltIn(555);
         }
 
         //  Get the last object that was sent as a GetLastAttacker(), GetLastDamager(),
@@ -11441,41 +11442,41 @@
         //  4) Traps will not return the creature that set the trap.
         //  5) This value will never be overwritten by another non-creature object.
         //  6) This value will never be a dead/destroyed creature
-        public static NWN.Object GetLastHostileActor(NWN.Object oVictim = null)
+        public static Object GetLastHostileActor(Object oVictim = null)
         {
-            NWN.Internal.StackPushObject(oVictim, false);
-            NWN.Internal.CallBuiltIn(556);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oVictim, false);
+            Internal.CallBuiltIn(556);
+            return Internal.StackPopObject();
         }
 
         //  Force all the characters of the players who are currently in the game to
         //  be exported to their respective directories i.e. LocalVault/ServerVault/ etc.
         public static void ExportAllCharacters()
         {
-            NWN.Internal.CallBuiltIn(557);
+            Internal.CallBuiltIn(557);
         }
 
         //  Get the Day Track for oArea.
-        public static int MusicBackgroundGetDayTrack(NWN.Object oArea)
+        public static int MusicBackgroundGetDayTrack(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(558);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(558);
+            return Internal.StackPopInteger();
         }
 
         //  Get the Night Track for oArea.
-        public static int MusicBackgroundGetNightTrack(NWN.Object oArea)
+        public static int MusicBackgroundGetNightTrack(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(559);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(559);
+            return Internal.StackPopInteger();
         }
 
         //  Write sLogEntry as a timestamped entry into the log file
         public static void WriteTimestampedLogEntry(string sLogEntry)
         {
-            NWN.Internal.StackPushString(sLogEntry);
-            NWN.Internal.CallBuiltIn(560);
+            Internal.StackPushString(sLogEntry);
+            Internal.CallBuiltIn(560);
         }
 
         //  Get the module's name in the language of the server that's running it.
@@ -11483,154 +11484,154 @@
         //    empty string
         public static string GetModuleName()
         {
-            NWN.Internal.CallBuiltIn(561);
-            return NWN.Internal.StackPopString();
+            Internal.CallBuiltIn(561);
+            return Internal.StackPopString();
         }
 
         //  Get the player leader of the faction of which oMemberOfFaction is a member.
         //  * Returns OBJECT_INVALID if oMemberOfFaction is not a valid creature,
         //    or oMemberOfFaction is a member of a NPC faction.
-        public static NWN.Object GetFactionLeader(NWN.Object oMemberOfFaction)
+        public static Object GetFactionLeader(Object oMemberOfFaction)
         {
-            NWN.Internal.StackPushObject(oMemberOfFaction, false);
-            NWN.Internal.CallBuiltIn(562);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oMemberOfFaction, false);
+            Internal.CallBuiltIn(562);
+            return Internal.StackPopObject();
         }
 
         //  Sends szMessage to all the Dungeon Masters currently on the server.
         public static void SendMessageToAllDMs(string szMessage)
         {
-            NWN.Internal.StackPushString(szMessage);
-            NWN.Internal.CallBuiltIn(563);
+            Internal.StackPushString(szMessage);
+            Internal.CallBuiltIn(563);
         }
 
         //  End the currently running game, play sEndMovie then return all players to the
         //  game's main menu.
         public static void EndGame(string sEndMovie)
         {
-            NWN.Internal.StackPushString(sEndMovie);
-            NWN.Internal.CallBuiltIn(564);
+            Internal.StackPushString(sEndMovie);
+            Internal.CallBuiltIn(564);
         }
 
         //  Remove oPlayer from the server.
         //  You can optionally specify a reason to override the text shown to the player.
-        public static void BootPC(NWN.Object oPlayer, string sReason = "")
+        public static void BootPC(Object oPlayer, string sReason = "")
         {
-            NWN.Internal.StackPushString(sReason);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(565);
+            Internal.StackPushString(sReason);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(565);
         }
 
         //  Counterspell oCounterSpellTarget.
-        public static void ActionCounterSpell(NWN.Object oCounterSpellTarget)
+        public static void ActionCounterSpell(Object oCounterSpellTarget)
         {
-            NWN.Internal.StackPushObject(oCounterSpellTarget, false);
-            NWN.Internal.CallBuiltIn(566);
+            Internal.StackPushObject(oCounterSpellTarget, false);
+            Internal.CallBuiltIn(566);
         }
 
         //  Set the ambient day volume for oArea to nVolume.
         //  - oArea
         //  - nVolume: 0 - 100
-        public static void AmbientSoundSetDayVolume(NWN.Object oArea, int nVolume)
+        public static void AmbientSoundSetDayVolume(Object oArea, int nVolume)
         {
-            NWN.Internal.StackPushInteger(nVolume);
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(567);
+            Internal.StackPushInteger(nVolume);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(567);
         }
 
         //  Set the ambient night volume for oArea to nVolume.
         //  - oArea
         //  - nVolume: 0 - 100
-        public static void AmbientSoundSetNightVolume(NWN.Object oArea, int nVolume)
+        public static void AmbientSoundSetNightVolume(Object oArea, int nVolume)
         {
-            NWN.Internal.StackPushInteger(nVolume);
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(568);
+            Internal.StackPushInteger(nVolume);
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(568);
         }
 
         //  Get the Battle Track for oArea.
-        public static int MusicBackgroundGetBattleTrack(NWN.Object oArea)
+        public static int MusicBackgroundGetBattleTrack(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(569);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(569);
+            return Internal.StackPopInteger();
         }
 
         //  Determine whether oObject has an inventory.
         //  * Returns TRUE for creatures and stores, and checks to see if an item or placeable object is a container.
         //  * Returns FALSE for all other object types.
-        public static int GetHasInventory(NWN.Object oObject)
+        public static int GetHasInventory(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(570);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(570);
+            return Internal.StackPopInteger();
         }
 
         //  Get the duration (in seconds) of the sound attached to nStrRef
         //  * Returns 0.0f if no duration is stored or if no sound is attached
         public static float GetStrRefSoundDuration(int nStrRef)
         {
-            NWN.Internal.StackPushInteger(nStrRef);
-            NWN.Internal.CallBuiltIn(571);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushInteger(nStrRef);
+            Internal.CallBuiltIn(571);
+            return Internal.StackPopFloat();
         }
 
         //  Add oPC to oPartyLeader's party.  This will only work on two PCs.
         //  - oPC: player to add to a party
         //  - oPartyLeader: player already in the party
-        public static void AddToParty(NWN.Object oPC, NWN.Object oPartyLeader)
+        public static void AddToParty(Object oPC, Object oPartyLeader)
         {
-            NWN.Internal.StackPushObject(oPartyLeader, false);
-            NWN.Internal.StackPushObject(oPC, false);
-            NWN.Internal.CallBuiltIn(572);
+            Internal.StackPushObject(oPartyLeader, false);
+            Internal.StackPushObject(oPC, false);
+            Internal.CallBuiltIn(572);
         }
 
         //  Remove oPC from their current party. This will only work on a PC.
         //  - oPC: removes this player from whatever party they're currently in.
-        public static void RemoveFromParty(NWN.Object oPC)
+        public static void RemoveFromParty(Object oPC)
         {
-            NWN.Internal.StackPushObject(oPC, false);
-            NWN.Internal.CallBuiltIn(573);
+            Internal.StackPushObject(oPC, false);
+            Internal.CallBuiltIn(573);
         }
 
         //  Returns the stealth mode of the specified creature.
         //  - oCreature
         //  * Returns a constant STEALTH_MODE_*
-        public static int GetStealthMode(NWN.Object oCreature)
+        public static int GetStealthMode(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(574);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(574);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the detection mode of the specified creature.
         //  - oCreature
         //  * Returns a constant DETECT_MODE_*
-        public static int GetDetectMode(NWN.Object oCreature)
+        public static int GetDetectMode(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(575);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(575);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the defensive casting mode of the specified creature.
         //  - oCreature
         //  * Returns a constant DEFENSIVE_CASTING_MODE_*
-        public static int GetDefensiveCastingMode(NWN.Object oCreature)
+        public static int GetDefensiveCastingMode(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(576);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(576);
+            return Internal.StackPopInteger();
         }
 
         //  returns the appearance type of the specified creature.
         //  * returns a constant APPEARANCE_TYPE_* for valid creatures
         //  * returns APPEARANCE_TYPE_INVALID for non creatures/invalid creatures
-        public static int GetAppearanceType(NWN.Object oCreature)
+        public static int GetAppearanceType(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(577);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(577);
+            return Internal.StackPopInteger();
         }
 
         //  SpawnScriptDebugger() will cause the script debugger to be executed
@@ -11643,7 +11644,7 @@
         //  debugging the script.
         public static void SpawnScriptDebugger()
         {
-            NWN.Internal.CallBuiltIn(578);
+            Internal.CallBuiltIn(578);
         }
 
         //  in an onItemAcquired script, returns the size of the stack of the item
@@ -11651,45 +11652,45 @@
         //  * returns the stack size of the item acquired
         public static int GetModuleItemAcquiredStackSize()
         {
-            NWN.Internal.CallBuiltIn(579);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(579);
+            return Internal.StackPopInteger();
         }
 
         //  Decrement the remaining uses per day for this creature by one.
         //  - oCreature: creature to modify
         //  - nFeat: constant FEAT_*
-        public static void DecrementRemainingFeatUses(NWN.Object oCreature, int nFeat)
+        public static void DecrementRemainingFeatUses(Object oCreature, int nFeat)
         {
-            NWN.Internal.StackPushInteger(nFeat);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(580);
+            Internal.StackPushInteger(nFeat);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(580);
         }
 
         //  Decrement the remaining uses per day for this creature by one.
         //  - oCreature: creature to modify
         //  - nSpell: constant SPELL_*
-        public static void DecrementRemainingSpellUses(NWN.Object oCreature, int nSpell)
+        public static void DecrementRemainingSpellUses(Object oCreature, int nSpell)
         {
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(581);
+            Internal.StackPushInteger(nSpell);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(581);
         }
 
         //  returns the template used to create this object (if appropriate)
         //  * returns an empty string when no template found
-        public static string GetResRef(NWN.Object oObject)
+        public static string GetResRef(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(582);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(582);
+            return Internal.StackPopString();
         }
 
         //  returns an effect that will petrify the target
         //  * currently applies EffectParalyze and the stoneskin visual effect.
-        public static NWN.Effect EffectPetrify()
+        public static Effect EffectPetrify()
         {
-            NWN.Internal.CallBuiltIn(583);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(583);
+            return Internal.StackPopEffect();
         }
 
         //  duplicates the item and returns a new object
@@ -11703,183 +11704,183 @@
         //    other items.
         //  * if it is possible to merge this item with any others in the target location,
         //    then it will do so and return the merged object.
-        public static NWN.Object CopyItem(NWN.Object oItem, NWN.Object oTargetInventory = null, int bCopyVars = FALSE)
+        public static Object CopyItem(Object oItem, Object oTargetInventory = null, int bCopyVars = FALSE)
         {
-            NWN.Internal.StackPushInteger(bCopyVars);
-            NWN.Internal.StackPushObject(oTargetInventory, false);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(584);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(bCopyVars);
+            Internal.StackPushObject(oTargetInventory, false);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(584);
+            return Internal.StackPopObject();
         }
 
         //  returns an effect that is guaranteed to paralyze a creature.
         //  this effect is identical to EffectParalyze except that it cannot be resisted.
-        public static NWN.Effect EffectCutsceneParalyze()
+        public static Effect EffectCutsceneParalyze()
         {
-            NWN.Internal.CallBuiltIn(585);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(585);
+            return Internal.StackPopEffect();
         }
 
         //  returns TRUE if the item CAN be dropped
         //  Droppable items will appear on a creature's remains when the creature is killed.
-        public static int GetDroppableFlag(NWN.Object oItem)
+        public static int GetDroppableFlag(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(586);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(586);
+            return Internal.StackPopInteger();
         }
 
         //  returns TRUE if the placeable object is usable
-        public static int GetUseableFlag(NWN.Object oObject = null)
+        public static int GetUseableFlag(Object oObject = null)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(587);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(587);
+            return Internal.StackPopInteger();
         }
 
         //  returns TRUE if the item is stolen
-        public static int GetStolenFlag(NWN.Object oStolen)
+        public static int GetStolenFlag(Object oStolen)
         {
-            NWN.Internal.StackPushObject(oStolen, false);
-            NWN.Internal.CallBuiltIn(588);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oStolen, false);
+            Internal.CallBuiltIn(588);
+            return Internal.StackPopInteger();
         }
 
         //  This stores a float out to the specified campaign database
         //  The database name IS case sensitive and it must be the same for both set and get functions.
         //  The var name must be unique across the entire database, regardless of the variable type.
         //  If you want a variable to pertain to a specific player in the game, provide a player object.
-        public static void SetCampaignFloat(string sCampaignName, string sVarName, float flFloat, NWN.Object oPlayer = null)
+        public static void SetCampaignFloat(string sCampaignName, string sVarName, float flFloat, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushFloat(flFloat);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(589);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushFloat(flFloat);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(589);
         }
 
         //  This stores an int out to the specified campaign database
         //  The database name IS case sensitive and it must be the same for both set and get functions.
         //  The var name must be unique across the entire database, regardless of the variable type.
         //  If you want a variable to pertain to a specific player in the game, provide a player object.
-        public static void SetCampaignInt(string sCampaignName, string sVarName, int nInt, NWN.Object oPlayer = null)
+        public static void SetCampaignInt(string sCampaignName, string sVarName, int nInt, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushInteger(nInt);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(590);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushInteger(nInt);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(590);
         }
 
         //  This stores a vector out to the specified campaign database
         //  The database name IS case sensitive and it must be the same for both set and get functions.
         //  The var name must be unique across the entire database, regardless of the variable type.
         //  If you want a variable to pertain to a specific player in the game, provide a player object.
-        public static void SetCampaignVector(string sCampaignName, string sVarName, NWN.Vector? vVector, NWN.Object oPlayer = null)
+        public static void SetCampaignVector(string sCampaignName, string sVarName, Vector? vVector, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushVector(vVector);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(591);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushVector(vVector);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(591);
         }
 
         //  This stores a location out to the specified campaign database
         //  The database name IS case sensitive and it must be the same for both set and get functions.
         //  The var name must be unique across the entire database, regardless of the variable type.
         //  If you want a variable to pertain to a specific player in the game, provide a player object.
-        public static void SetCampaignLocation(string sCampaignName, string sVarName, NWN.Location locLocation, NWN.Object oPlayer = null)
+        public static void SetCampaignLocation(string sCampaignName, string sVarName, Location locLocation, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushLocation(locLocation);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(592);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushLocation(locLocation);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(592);
         }
 
         //  This stores a string out to the specified campaign database
         //  The database name IS case sensitive and it must be the same for both set and get functions.
         //  The var name must be unique across the entire database, regardless of the variable type.
         //  If you want a variable to pertain to a specific player in the game, provide a player object.
-        public static void SetCampaignString(string sCampaignName, string sVarName, string sString, NWN.Object oPlayer = null)
+        public static void SetCampaignString(string sCampaignName, string sVarName, string sString, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushString(sString);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(593);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushString(sString);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(593);
         }
 
         //  This will delete the entire campaign database if it exists.
         public static void DestroyCampaignDatabase(string sCampaignName)
         {
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(594);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(594);
         }
 
         //  This will read a float from the  specified campaign database
         //  The database name IS case sensitive and it must be the same for both set and get functions.
         //  The var name must be unique across the entire database, regardless of the variable type.
         //  If you want a variable to pertain to a specific player in the game, provide a player object.
-        public static float GetCampaignFloat(string sCampaignName, string sVarName, NWN.Object oPlayer = null)
+        public static float GetCampaignFloat(string sCampaignName, string sVarName, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(595);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(595);
+            return Internal.StackPopFloat();
         }
 
         //  This will read an int from the  specified campaign database
         //  The database name IS case sensitive and it must be the same for both set and get functions.
         //  The var name must be unique across the entire database, regardless of the variable type.
         //  If you want a variable to pertain to a specific player in the game, provide a player object.
-        public static int GetCampaignInt(string sCampaignName, string sVarName, NWN.Object oPlayer = null)
+        public static int GetCampaignInt(string sCampaignName, string sVarName, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(596);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(596);
+            return Internal.StackPopInteger();
         }
 
         //  This will read a vector from the  specified campaign database
         //  The database name IS case sensitive and it must be the same for both set and get functions.
         //  The var name must be unique across the entire database, regardless of the variable type.
         //  If you want a variable to pertain to a specific player in the game, provide a player object.
-        public static NWN.Vector GetCampaignVector(string sCampaignName, string sVarName, NWN.Object oPlayer = null)
+        public static Vector GetCampaignVector(string sCampaignName, string sVarName, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(597);
-            return NWN.Internal.StackPopVector();
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(597);
+            return Internal.StackPopVector();
         }
 
         //  This will read a location from the  specified campaign database
         //  The database name IS case sensitive and it must be the same for both set and get functions.
         //  The var name must be unique across the entire database, regardless of the variable type.
         //  If you want a variable to pertain to a specific player in the game, provide a player object.
-        public static NWN.Location GetCampaignLocation(string sCampaignName, string sVarName, NWN.Object oPlayer = null)
+        public static Location GetCampaignLocation(string sCampaignName, string sVarName, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(598);
-            return NWN.Internal.StackPopLocation();
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(598);
+            return Internal.StackPopLocation();
         }
 
         //  This will read a string from the  specified campaign database
         //  The database name IS case sensitive and it must be the same for both set and get functions.
         //  The var name must be unique across the entire database, regardless of the variable type.
         //  If you want a variable to pertain to a specific player in the game, provide a player object.
-        public static string GetCampaignString(string sCampaignName, string sVarName, NWN.Object oPlayer = null)
+        public static string GetCampaignString(string sCampaignName, string sVarName, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(599);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(599);
+            return Internal.StackPopString();
         }
 
         //  Duplicates the object specified by oSource.
@@ -11887,14 +11888,14 @@
         //  If an owner is specified and the object is an item, it will be put into their inventory
         //  If the object is a creature, they will be created at the location.
         //  If a new tag is specified, it will be assigned to the new object.
-        public static NWN.Object CopyObject(NWN.Object oSource, NWN.Location locLocation, NWN.Object oOwner = null, string sNewTag = "")
+        public static Object CopyObject(Object oSource, Location locLocation, Object oOwner = null, string sNewTag = "")
         {
-            NWN.Internal.StackPushString(sNewTag);
-            NWN.Internal.StackPushObject(oOwner, false);
-            NWN.Internal.StackPushLocation(locLocation);
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.CallBuiltIn(600);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushString(sNewTag);
+            Internal.StackPushObject(oOwner, false);
+            Internal.StackPushLocation(locLocation);
+            Internal.StackPushObject(oSource, false);
+            Internal.CallBuiltIn(600);
+            return Internal.StackPopObject();
         }
 
         //  This will remove ANY campaign variable. Regardless of type.
@@ -11902,56 +11903,56 @@
         //  the database, but flags it as deleted. Do not expect the database files to shrink in size
         //  from this command. If you want to 'pack' the database, you will have to do it externally
         //  from the game.
-        public static void DeleteCampaignVariable(string sCampaignName, string sVarName, NWN.Object oPlayer = null)
+        public static void DeleteCampaignVariable(string sCampaignName, string sVarName, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(601);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(601);
         }
 
         //  Stores an object with the given id.
         //  NOTE: this command can only be used for storing Creatures and Items.
         //  Returns 0 if it failled, 1 if it worked.
-        public static int StoreCampaignObject(string sCampaignName, string sVarName, NWN.Object oObject, NWN.Object oPlayer = null)
+        public static int StoreCampaignObject(string sCampaignName, string sVarName, Object oObject, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(602);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushObject(oObject, false);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(602);
+            return Internal.StackPopInteger();
         }
 
         //  Use RetrieveCampaign with the given id to restore it.
         //  If you specify an owner, the object will try to be created in their repository
         //  If the owner can't handle the item (or if it's a creature) it will be created on the ground.
-        public static NWN.Object RetrieveCampaignObject(string sCampaignName, string sVarName, NWN.Location locLocation, NWN.Object oOwner = null, NWN.Object oPlayer = null)
+        public static Object RetrieveCampaignObject(string sCampaignName, string sVarName, Location locLocation, Object oOwner = null, Object oPlayer = null)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushObject(oOwner, false);
-            NWN.Internal.StackPushLocation(locLocation);
-            NWN.Internal.StackPushString(sVarName);
-            NWN.Internal.StackPushString(sCampaignName);
-            NWN.Internal.CallBuiltIn(603);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushObject(oOwner, false);
+            Internal.StackPushLocation(locLocation);
+            Internal.StackPushString(sVarName);
+            Internal.StackPushString(sCampaignName);
+            Internal.CallBuiltIn(603);
+            return Internal.StackPopObject();
         }
 
         //  Returns an effect that is guaranteed to dominate a creature
         //  Like EffectDominated but cannot be resisted
-        public static NWN.Effect EffectCutsceneDominated()
+        public static Effect EffectCutsceneDominated()
         {
-            NWN.Internal.CallBuiltIn(604);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(604);
+            return Internal.StackPopEffect();
         }
 
         //  Returns stack size of an item
         //  - oItem: item to query
-        public static int GetItemStackSize(NWN.Object oItem)
+        public static int GetItemStackSize(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(605);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(605);
+            return Internal.StackPopInteger();
         }
 
         //  Sets stack size of an item.
@@ -11960,20 +11961,20 @@
         //    maximum stack size for the item type.  If a value less than 1 is passed it
         //    will set the stack to 1.  If a value greater than the max is passed
         //    then it will set the stack to the maximum size
-        public static void SetItemStackSize(NWN.Object oItem, int nSize)
+        public static void SetItemStackSize(Object oItem, int nSize)
         {
-            NWN.Internal.StackPushInteger(nSize);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(606);
+            Internal.StackPushInteger(nSize);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(606);
         }
 
         //  Returns charges left on an item
         //  - oItem: item to query
-        public static int GetItemCharges(NWN.Object oItem)
+        public static int GetItemCharges(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(607);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(607);
+            return Internal.StackPopInteger();
         }
 
         //  Sets charges left on an item.
@@ -11982,93 +11983,93 @@
         //    be set to 0.  If value greater than maximum is passed, # charges will
         //    be set to maximum.  If the # charges drops to 0 the item
         //    will be destroyed.
-        public static void SetItemCharges(NWN.Object oItem, int nCharges)
+        public static void SetItemCharges(Object oItem, int nCharges)
         {
-            NWN.Internal.StackPushInteger(nCharges);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(608);
+            Internal.StackPushInteger(nCharges);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(608);
         }
 
         //  ***********************  START OF ITEM PROPERTY FUNCTIONS  **********************
         //  adds an item property to the specified item
         //  Only temporary and permanent duration types are allowed.
-        public static void AddItemProperty(int nDurationType, NWN.ItemProperty ipProperty, NWN.Object oItem, float fDuration = 0.0f)
+        public static void AddItemProperty(int nDurationType, ItemProperty ipProperty, Object oItem, float fDuration = 0.0f)
         {
-            NWN.Internal.StackPushFloat(fDuration);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.StackPushItemProperty(ipProperty);
-            NWN.Internal.StackPushInteger(nDurationType);
-            NWN.Internal.CallBuiltIn(609);
+            Internal.StackPushFloat(fDuration);
+            Internal.StackPushObject(oItem, false);
+            Internal.StackPushItemProperty(ipProperty);
+            Internal.StackPushInteger(nDurationType);
+            Internal.CallBuiltIn(609);
         }
 
         //  removes an item property from the specified item
-        public static void RemoveItemProperty(NWN.Object oItem, NWN.ItemProperty ipProperty)
+        public static void RemoveItemProperty(Object oItem, ItemProperty ipProperty)
         {
-            NWN.Internal.StackPushItemProperty(ipProperty);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(610);
+            Internal.StackPushItemProperty(ipProperty);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(610);
         }
 
         //  if the item property is valid this will return true
-        public static int GetIsItemPropertyValid(NWN.ItemProperty ipProperty)
+        public static int GetIsItemPropertyValid(ItemProperty ipProperty)
         {
-            NWN.Internal.StackPushItemProperty(ipProperty);
-            NWN.Internal.CallBuiltIn(611);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushItemProperty(ipProperty);
+            Internal.CallBuiltIn(611);
+            return Internal.StackPopInteger();
         }
 
         //  Gets the first item property on an item
-        public static NWN.ItemProperty GetFirstItemProperty(NWN.Object oItem)
+        public static ItemProperty GetFirstItemProperty(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(612);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(612);
+            return Internal.StackPopItemProperty();
         }
 
         //  Will keep retrieving the next and the next item property on an Item,
         //  will return an invalid item property when the list is empty.
-        public static NWN.ItemProperty GetNextItemProperty(NWN.Object oItem)
+        public static ItemProperty GetNextItemProperty(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(613);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(613);
+            return Internal.StackPopItemProperty();
         }
 
         //  will return the item property type (ie. holy avenger)
-        public static int GetItemPropertyType(NWN.ItemProperty ip)
+        public static int GetItemPropertyType(ItemProperty ip)
         {
-            NWN.Internal.StackPushItemProperty(ip);
-            NWN.Internal.CallBuiltIn(614);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushItemProperty(ip);
+            Internal.CallBuiltIn(614);
+            return Internal.StackPopInteger();
         }
 
         //  will return the duration type of the item property
-        public static int GetItemPropertyDurationType(NWN.ItemProperty ip)
+        public static int GetItemPropertyDurationType(ItemProperty ip)
         {
-            NWN.Internal.StackPushItemProperty(ip);
-            NWN.Internal.CallBuiltIn(615);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushItemProperty(ip);
+            Internal.CallBuiltIn(615);
+            return Internal.StackPopInteger();
         }
 
         //  Returns Item property ability bonus.  You need to specify an
         //  ability constant(IP_CONST_ABILITY_*) and the bonus.  The bonus should
         //  be a positive integer between 1 and 12.
-        public static NWN.ItemProperty ItemPropertyAbilityBonus(int nAbility, int nBonus)
+        public static ItemProperty ItemPropertyAbilityBonus(int nAbility, int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.StackPushInteger(nAbility);
-            NWN.Internal.CallBuiltIn(616);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.StackPushInteger(nAbility);
+            Internal.CallBuiltIn(616);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property AC bonus.  You need to specify the bonus.
         //  The bonus should be a positive integer between 1 and 20. The modifier
         //  type depends on the item it is being applied to.
-        public static NWN.ItemProperty ItemPropertyACBonus(int nBonus)
+        public static ItemProperty ItemPropertyACBonus(int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.CallBuiltIn(617);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.CallBuiltIn(617);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property AC bonus vs. alignment group.  An example of
@@ -12076,12 +12077,12 @@
         //  alignment group constant(IP_CONST_ALIGNMENTGROUP_*) and the AC bonus.
         //  The AC bonus should be an integer between 1 and 20.  The modifier
         //  type depends on the item it is being applied to.
-        public static NWN.ItemProperty ItemPropertyACBonusVsAlign(int nAlignGroup, int nACBonus)
+        public static ItemProperty ItemPropertyACBonusVsAlign(int nAlignGroup, int nACBonus)
         {
-            NWN.Internal.StackPushInteger(nACBonus);
-            NWN.Internal.StackPushInteger(nAlignGroup);
-            NWN.Internal.CallBuiltIn(618);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nACBonus);
+            Internal.StackPushInteger(nAlignGroup);
+            Internal.CallBuiltIn(618);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property AC bonus vs. Damage type (ie. piercing).  You
@@ -12090,122 +12091,122 @@
         //  modifier type depends on the item it is being applied to.
         //  NOTE: Only the first 3 damage types may be used here, the 3 basic
         //        physical types.
-        public static NWN.ItemProperty ItemPropertyACBonusVsDmgType(int nDamageType, int nACBonus)
+        public static ItemProperty ItemPropertyACBonusVsDmgType(int nDamageType, int nACBonus)
         {
-            NWN.Internal.StackPushInteger(nACBonus);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.CallBuiltIn(619);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nACBonus);
+            Internal.StackPushInteger(nDamageType);
+            Internal.CallBuiltIn(619);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property AC bonus vs. Racial group.  You need to specify
         //  the racial group constant(IP_CONST_RACIALTYPE_*) and the AC bonus.  The AC
         //  bonus should be an integer between 1 and 20.  The modifier type depends
         //  on the item it is being applied to.
-        public static NWN.ItemProperty ItemPropertyACBonusVsRace(int nRace, int nACBonus)
+        public static ItemProperty ItemPropertyACBonusVsRace(int nRace, int nACBonus)
         {
-            NWN.Internal.StackPushInteger(nACBonus);
-            NWN.Internal.StackPushInteger(nRace);
-            NWN.Internal.CallBuiltIn(620);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nACBonus);
+            Internal.StackPushInteger(nRace);
+            Internal.CallBuiltIn(620);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property AC bonus vs. Specific alignment.  You need to
         //  specify the specific alignment constant(IP_CONST_ALIGNMENT_*) and the AC
         //  bonus.  The AC bonus should be an integer between 1 and 20.  The
         //  modifier type depends on the item it is being applied to.
-        public static NWN.ItemProperty ItemPropertyACBonusVsSAlign(int nAlign, int nACBonus)
+        public static ItemProperty ItemPropertyACBonusVsSAlign(int nAlign, int nACBonus)
         {
-            NWN.Internal.StackPushInteger(nACBonus);
-            NWN.Internal.StackPushInteger(nAlign);
-            NWN.Internal.CallBuiltIn(621);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nACBonus);
+            Internal.StackPushInteger(nAlign);
+            Internal.CallBuiltIn(621);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Enhancement bonus.  You need to specify the
         //  enhancement bonus.  The Enhancement bonus should be an integer between
         //  1 and 20.
-        public static NWN.ItemProperty ItemPropertyEnhancementBonus(int nEnhancementBonus)
+        public static ItemProperty ItemPropertyEnhancementBonus(int nEnhancementBonus)
         {
-            NWN.Internal.StackPushInteger(nEnhancementBonus);
-            NWN.Internal.CallBuiltIn(622);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nEnhancementBonus);
+            Internal.CallBuiltIn(622);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Enhancement bonus vs. an Alignment group.  You
         //  need to specify the alignment group constant(IP_CONST_ALIGNMENTGROUP_*)
         //  and the enhancement bonus.  The Enhancement bonus should be an integer
         //  between 1 and 20.
-        public static NWN.ItemProperty ItemPropertyEnhancementBonusVsAlign(int nAlignGroup, int nBonus)
+        public static ItemProperty ItemPropertyEnhancementBonusVsAlign(int nAlignGroup, int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.StackPushInteger(nAlignGroup);
-            NWN.Internal.CallBuiltIn(623);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.StackPushInteger(nAlignGroup);
+            Internal.CallBuiltIn(623);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Enhancement bonus vs. Racial group.  You need
         //  to specify the racial group constant(IP_CONST_RACIALTYPE_*) and the
         //  enhancement bonus.  The enhancement bonus should be an integer between
         //  1 and 20.
-        public static NWN.ItemProperty ItemPropertyEnhancementBonusVsRace(int nRace, int nBonus)
+        public static ItemProperty ItemPropertyEnhancementBonusVsRace(int nRace, int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.StackPushInteger(nRace);
-            NWN.Internal.CallBuiltIn(624);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.StackPushInteger(nRace);
+            Internal.CallBuiltIn(624);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Enhancement bonus vs. a specific alignment.  You
         //  need to specify the alignment constant(IP_CONST_ALIGNMENT_*) and the
         //  enhancement bonus.  The enhancement bonus should be an integer between
         //  1 and 20.
-        public static NWN.ItemProperty ItemPropertyEnhancementBonusVsSAlign(int nAlign, int nBonus)
+        public static ItemProperty ItemPropertyEnhancementBonusVsSAlign(int nAlign, int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.StackPushInteger(nAlign);
-            NWN.Internal.CallBuiltIn(625);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.StackPushInteger(nAlign);
+            Internal.CallBuiltIn(625);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Enhancment penalty.  You need to specify the
         //  enhancement penalty.  The enhancement penalty should be a POSITIVE
         //  integer between 1 and 5 (ie. 1 = -1).
-        public static NWN.ItemProperty ItemPropertyEnhancementPenalty(int nPenalty)
+        public static ItemProperty ItemPropertyEnhancementPenalty(int nPenalty)
         {
-            NWN.Internal.StackPushInteger(nPenalty);
-            NWN.Internal.CallBuiltIn(626);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nPenalty);
+            Internal.CallBuiltIn(626);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property weight reduction.  You need to specify the weight
         //  reduction constant(IP_CONST_REDUCEDWEIGHT_*).
-        public static NWN.ItemProperty ItemPropertyWeightReduction(int nReduction)
+        public static ItemProperty ItemPropertyWeightReduction(int nReduction)
         {
-            NWN.Internal.StackPushInteger(nReduction);
-            NWN.Internal.CallBuiltIn(627);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nReduction);
+            Internal.CallBuiltIn(627);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Bonus Feat.  You need to specify the the feat
         //  constant(IP_CONST_FEAT_*).
-        public static NWN.ItemProperty ItemPropertyBonusFeat(int nFeat)
+        public static ItemProperty ItemPropertyBonusFeat(int nFeat)
         {
-            NWN.Internal.StackPushInteger(nFeat);
-            NWN.Internal.CallBuiltIn(628);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nFeat);
+            Internal.CallBuiltIn(628);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Bonus level spell (Bonus spell of level).  You must
         //  specify the class constant(IP_CONST_CLASS_*) of the bonus spell(MUST BE a
         //  spell casting class) and the level of the bonus spell.  The level of the
         //  bonus spell should be an integer between 0 and 9.
-        public static NWN.ItemProperty ItemPropertyBonusLevelSpell(int nClass, int nSpellLevel)
+        public static ItemProperty ItemPropertyBonusLevelSpell(int nClass, int nSpellLevel)
         {
-            NWN.Internal.StackPushInteger(nSpellLevel);
-            NWN.Internal.StackPushInteger(nClass);
-            NWN.Internal.CallBuiltIn(629);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nSpellLevel);
+            Internal.StackPushInteger(nClass);
+            Internal.CallBuiltIn(629);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Cast spell.  You must specify the spell constant
@@ -12595,24 +12596,24 @@
         //           Special_Alcohol_Spirits
         //           Special_Alcohol_Wine
         // 
-        public static NWN.ItemProperty ItemPropertyCastSpell(int nSpell, int nNumUses)
+        public static ItemProperty ItemPropertyCastSpell(int nSpell, int nNumUses)
         {
-            NWN.Internal.StackPushInteger(nNumUses);
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.CallBuiltIn(630);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nNumUses);
+            Internal.StackPushInteger(nSpell);
+            Internal.CallBuiltIn(630);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property damage bonus.  You must specify the damage type constant
         //  (IP_CONST_DAMAGETYPE_*) and the amount of damage constant(IP_CONST_DAMAGEBONUS_*).
         //  NOTE: not all the damage types will work, use only the following: Acid, Bludgeoning,
         //        Cold, Electrical, Fire, Piercing, Slashing, Sonic.
-        public static NWN.ItemProperty ItemPropertyDamageBonus(int nDamageType, int nDamage)
+        public static ItemProperty ItemPropertyDamageBonus(int nDamageType, int nDamage)
         {
-            NWN.Internal.StackPushInteger(nDamage);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.CallBuiltIn(631);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nDamage);
+            Internal.StackPushInteger(nDamageType);
+            Internal.CallBuiltIn(631);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property damage bonus vs. Alignment groups.  You must specify the
@@ -12620,13 +12621,13 @@
         //  (IP_CONST_DAMAGETYPE_*) and the amount of damage constant(IP_CONST_DAMAGEBONUS_*).
         //  NOTE: not all the damage types will work, use only the following: Acid, Bludgeoning,
         //        Cold, Electrical, Fire, Piercing, Slashing, Sonic.
-        public static NWN.ItemProperty ItemPropertyDamageBonusVsAlign(int nAlignGroup, int nDamageType, int nDamage)
+        public static ItemProperty ItemPropertyDamageBonusVsAlign(int nAlignGroup, int nDamageType, int nDamage)
         {
-            NWN.Internal.StackPushInteger(nDamage);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.StackPushInteger(nAlignGroup);
-            NWN.Internal.CallBuiltIn(632);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nDamage);
+            Internal.StackPushInteger(nDamageType);
+            Internal.StackPushInteger(nAlignGroup);
+            Internal.CallBuiltIn(632);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property damage bonus vs. specific race.  You must specify the
@@ -12634,13 +12635,13 @@
         //  (IP_CONST_DAMAGETYPE_*) and the amount of damage constant(IP_CONST_DAMAGEBONUS_*).
         //  NOTE: not all the damage types will work, use only the following: Acid, Bludgeoning,
         //        Cold, Electrical, Fire, Piercing, Slashing, Sonic.
-        public static NWN.ItemProperty ItemPropertyDamageBonusVsRace(int nRace, int nDamageType, int nDamage)
+        public static ItemProperty ItemPropertyDamageBonusVsRace(int nRace, int nDamageType, int nDamage)
         {
-            NWN.Internal.StackPushInteger(nDamage);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.StackPushInteger(nRace);
-            NWN.Internal.CallBuiltIn(633);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nDamage);
+            Internal.StackPushInteger(nDamageType);
+            Internal.StackPushInteger(nRace);
+            Internal.CallBuiltIn(633);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property damage bonus vs. specific alignment.  You must specify the
@@ -12648,13 +12649,13 @@
         //  (IP_CONST_DAMAGETYPE_*) and the amount of damage constant(IP_CONST_DAMAGEBONUS_*).
         //  NOTE: not all the damage types will work, use only the following: Acid, Bludgeoning,
         //        Cold, Electrical, Fire, Piercing, Slashing, Sonic.
-        public static NWN.ItemProperty ItemPropertyDamageBonusVsSAlign(int nAlign, int nDamageType, int nDamage)
+        public static ItemProperty ItemPropertyDamageBonusVsSAlign(int nAlign, int nDamageType, int nDamage)
         {
-            NWN.Internal.StackPushInteger(nDamage);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.StackPushInteger(nAlign);
-            NWN.Internal.CallBuiltIn(634);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nDamage);
+            Internal.StackPushInteger(nDamageType);
+            Internal.StackPushInteger(nAlign);
+            Internal.CallBuiltIn(634);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property damage immunity.  You must specify the damage type constant
@@ -12662,105 +12663,105 @@
         //  constant(IP_CONST_DAMAGEIMMUNITY_*).
         //  NOTE: not all the damage types will work, use only the following: Acid, Bludgeoning,
         //        Cold, Electrical, Fire, Piercing, Slashing, Sonic.
-        public static NWN.ItemProperty ItemPropertyDamageImmunity(int nDamageType, int nImmuneBonus)
+        public static ItemProperty ItemPropertyDamageImmunity(int nDamageType, int nImmuneBonus)
         {
-            NWN.Internal.StackPushInteger(nImmuneBonus);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.CallBuiltIn(635);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nImmuneBonus);
+            Internal.StackPushInteger(nDamageType);
+            Internal.CallBuiltIn(635);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property damage penalty.  You must specify the damage penalty.
         //  The damage penalty should be a POSITIVE integer between 1 and 5 (ie. 1 = -1).
-        public static NWN.ItemProperty ItemPropertyDamagePenalty(int nPenalty)
+        public static ItemProperty ItemPropertyDamagePenalty(int nPenalty)
         {
-            NWN.Internal.StackPushInteger(nPenalty);
-            NWN.Internal.CallBuiltIn(636);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nPenalty);
+            Internal.CallBuiltIn(636);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property damage reduction.  You must specify the enhancment level
         //  (IP_CONST_DAMAGEREDUCTION_*) that is required to get past the damage reduction
         //  and the amount of HP of damage constant(IP_CONST_DAMAGESOAK_*) will be soaked
         //  up if your weapon is not of high enough enhancement.
-        public static NWN.ItemProperty ItemPropertyDamageReduction(int nEnhancement, int nHPSoak)
+        public static ItemProperty ItemPropertyDamageReduction(int nEnhancement, int nHPSoak)
         {
-            NWN.Internal.StackPushInteger(nHPSoak);
-            NWN.Internal.StackPushInteger(nEnhancement);
-            NWN.Internal.CallBuiltIn(637);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nHPSoak);
+            Internal.StackPushInteger(nEnhancement);
+            Internal.CallBuiltIn(637);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property damage resistance.  You must specify the damage type
         //  constant(IP_CONST_DAMAGETYPE_*) and the amount of HP of damage constant
         //  (IP_CONST_DAMAGERESIST_*) that will be resisted against each round.
-        public static NWN.ItemProperty ItemPropertyDamageResistance(int nDamageType, int nHPResist)
+        public static ItemProperty ItemPropertyDamageResistance(int nDamageType, int nHPResist)
         {
-            NWN.Internal.StackPushInteger(nHPResist);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.CallBuiltIn(638);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nHPResist);
+            Internal.StackPushInteger(nDamageType);
+            Internal.CallBuiltIn(638);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property damage vulnerability.  You must specify the damage type
         //  constant(IP_CONST_DAMAGETYPE_*) that you want the user to be extra vulnerable to
         //  and the percentage vulnerability constant(IP_CONST_DAMAGEVULNERABILITY_*).
-        public static NWN.ItemProperty ItemPropertyDamageVulnerability(int nDamageType, int nVulnerability)
+        public static ItemProperty ItemPropertyDamageVulnerability(int nDamageType, int nVulnerability)
         {
-            NWN.Internal.StackPushInteger(nVulnerability);
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.CallBuiltIn(639);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nVulnerability);
+            Internal.StackPushInteger(nDamageType);
+            Internal.CallBuiltIn(639);
+            return Internal.StackPopItemProperty();
         }
 
         //  Return Item property Darkvision.
-        public static NWN.ItemProperty ItemPropertyDarkvision()
+        public static ItemProperty ItemPropertyDarkvision()
         {
-            NWN.Internal.CallBuiltIn(640);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.CallBuiltIn(640);
+            return Internal.StackPopItemProperty();
         }
 
         //  Return Item property decrease ability score.  You must specify the ability
         //  constant(IP_CONST_ABILITY_*) and the modifier constant.  The modifier must be
         //  a POSITIVE integer between 1 and 10 (ie. 1 = -1).
-        public static NWN.ItemProperty ItemPropertyDecreaseAbility(int nAbility, int nModifier)
+        public static ItemProperty ItemPropertyDecreaseAbility(int nAbility, int nModifier)
         {
-            NWN.Internal.StackPushInteger(nModifier);
-            NWN.Internal.StackPushInteger(nAbility);
-            NWN.Internal.CallBuiltIn(641);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nModifier);
+            Internal.StackPushInteger(nAbility);
+            Internal.CallBuiltIn(641);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property decrease Armor Class.  You must specify the armor
         //  modifier type constant(IP_CONST_ACMODIFIERTYPE_*) and the armor class penalty.
         //  The penalty must be a POSITIVE integer between 1 and 5 (ie. 1 = -1).
-        public static NWN.ItemProperty ItemPropertyDecreaseAC(int nModifierType, int nPenalty)
+        public static ItemProperty ItemPropertyDecreaseAC(int nModifierType, int nPenalty)
         {
-            NWN.Internal.StackPushInteger(nPenalty);
-            NWN.Internal.StackPushInteger(nModifierType);
-            NWN.Internal.CallBuiltIn(642);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nPenalty);
+            Internal.StackPushInteger(nModifierType);
+            Internal.CallBuiltIn(642);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property decrease skill.  You must specify the constant for the
         //  skill to be decreased(SKILL_*) and the amount of the penalty.  The penalty
         //  must be a POSITIVE integer between 1 and 10 (ie. 1 = -1).
-        public static NWN.ItemProperty ItemPropertyDecreaseSkill(int nSkill, int nPenalty)
+        public static ItemProperty ItemPropertyDecreaseSkill(int nSkill, int nPenalty)
         {
-            NWN.Internal.StackPushInteger(nPenalty);
-            NWN.Internal.StackPushInteger(nSkill);
-            NWN.Internal.CallBuiltIn(643);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nPenalty);
+            Internal.StackPushInteger(nSkill);
+            Internal.CallBuiltIn(643);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property container reduced weight.  This is used for special
         //  containers that reduce the weight of the objects inside them.  You must
         //  specify the container weight reduction type constant(IP_CONST_CONTAINERWEIGHTRED_*).
-        public static NWN.ItemProperty ItemPropertyContainerReducedWeight(int nContainerType)
+        public static ItemProperty ItemPropertyContainerReducedWeight(int nContainerType)
         {
-            NWN.Internal.StackPushInteger(nContainerType);
-            NWN.Internal.CallBuiltIn(644);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nContainerType);
+            Internal.CallBuiltIn(644);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property extra melee damage type.  You must specify the extra
@@ -12768,11 +12769,11 @@
         //  NOTE: only the first 3 base types (piercing, slashing, & bludgeoning are applicable
         //        here.
         //  NOTE: It is also only applicable to melee weapons.
-        public static NWN.ItemProperty ItemPropertyExtraMeleeDamageType(int nDamageType)
+        public static ItemProperty ItemPropertyExtraMeleeDamageType(int nDamageType)
         {
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.CallBuiltIn(645);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nDamageType);
+            Internal.CallBuiltIn(645);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property extra ranged damage type.  You must specify the extra
@@ -12780,111 +12781,111 @@
         //  NOTE: only the first 3 base types (piercing, slashing, & bludgeoning are applicable
         //        here.
         //  NOTE: It is also only applicable to ranged weapons.
-        public static NWN.ItemProperty ItemPropertyExtraRangeDamageType(int nDamageType)
+        public static ItemProperty ItemPropertyExtraRangeDamageType(int nDamageType)
         {
-            NWN.Internal.StackPushInteger(nDamageType);
-            NWN.Internal.CallBuiltIn(646);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nDamageType);
+            Internal.CallBuiltIn(646);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property haste.
-        public static NWN.ItemProperty ItemPropertyHaste()
+        public static ItemProperty ItemPropertyHaste()
         {
-            NWN.Internal.CallBuiltIn(647);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.CallBuiltIn(647);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Holy Avenger.
-        public static NWN.ItemProperty ItemPropertyHolyAvenger()
+        public static ItemProperty ItemPropertyHolyAvenger()
         {
-            NWN.Internal.CallBuiltIn(648);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.CallBuiltIn(648);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property immunity to miscellaneous effects.  You must specify the
         //  effect to which the user is immune, it is a constant(IP_CONST_IMMUNITYMISC_*).
-        public static NWN.ItemProperty ItemPropertyImmunityMisc(int nImmunityType)
+        public static ItemProperty ItemPropertyImmunityMisc(int nImmunityType)
         {
-            NWN.Internal.StackPushInteger(nImmunityType);
-            NWN.Internal.CallBuiltIn(649);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nImmunityType);
+            Internal.CallBuiltIn(649);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property improved evasion.
-        public static NWN.ItemProperty ItemPropertyImprovedEvasion()
+        public static ItemProperty ItemPropertyImprovedEvasion()
         {
-            NWN.Internal.CallBuiltIn(650);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.CallBuiltIn(650);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property bonus spell resistance.  You must specify the bonus spell
         //  resistance constant(IP_CONST_SPELLRESISTANCEBONUS_*).
-        public static NWN.ItemProperty ItemPropertyBonusSpellResistance(int nBonus)
+        public static ItemProperty ItemPropertyBonusSpellResistance(int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.CallBuiltIn(651);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.CallBuiltIn(651);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property saving throw bonus vs. a specific effect or damage type.
         //  You must specify the save type constant(IP_CONST_SAVEVS_*) that the bonus is
         //  applied to and the bonus that is be applied.  The bonus must be an integer
         //  between 1 and 20.
-        public static NWN.ItemProperty ItemPropertyBonusSavingThrowVsX(int nBonusType, int nBonus)
+        public static ItemProperty ItemPropertyBonusSavingThrowVsX(int nBonusType, int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.StackPushInteger(nBonusType);
-            NWN.Internal.CallBuiltIn(652);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.StackPushInteger(nBonusType);
+            Internal.CallBuiltIn(652);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property saving throw bonus to the base type (ie. will, reflex,
         //  fortitude).  You must specify the base type constant(IP_CONST_SAVEBASETYPE_*)
         //  to which the user gets the bonus and the bonus that he/she will get.  The
         //  bonus must be an integer between 1 and 20.
-        public static NWN.ItemProperty ItemPropertyBonusSavingThrow(int nBaseSaveType, int nBonus)
+        public static ItemProperty ItemPropertyBonusSavingThrow(int nBaseSaveType, int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.StackPushInteger(nBaseSaveType);
-            NWN.Internal.CallBuiltIn(653);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.StackPushInteger(nBaseSaveType);
+            Internal.CallBuiltIn(653);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property keen.  This means a critical threat range of 19-20 on a
         //  weapon will be increased to 17-20 etc.
-        public static NWN.ItemProperty ItemPropertyKeen()
+        public static ItemProperty ItemPropertyKeen()
         {
-            NWN.Internal.CallBuiltIn(654);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.CallBuiltIn(654);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property light.  You must specify the intesity constant of the
         //  light(IP_CONST_LIGHTBRIGHTNESS_*) and the color constant of the light
         //  (IP_CONST_LIGHTCOLOR_*).
-        public static NWN.ItemProperty ItemPropertyLight(int nBrightness, int nColor)
+        public static ItemProperty ItemPropertyLight(int nBrightness, int nColor)
         {
-            NWN.Internal.StackPushInteger(nColor);
-            NWN.Internal.StackPushInteger(nBrightness);
-            NWN.Internal.CallBuiltIn(655);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nColor);
+            Internal.StackPushInteger(nBrightness);
+            Internal.CallBuiltIn(655);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Max range strength modification (ie. mighty).  You must
         //  specify the maximum modifier for strength that is allowed on a ranged weapon.
         //  The modifier must be a positive integer between 1 and 20.
-        public static NWN.ItemProperty ItemPropertyMaxRangeStrengthMod(int nModifier)
+        public static ItemProperty ItemPropertyMaxRangeStrengthMod(int nModifier)
         {
-            NWN.Internal.StackPushInteger(nModifier);
-            NWN.Internal.CallBuiltIn(656);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nModifier);
+            Internal.CallBuiltIn(656);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property no damage.  This means the weapon will do no damage in
         //  combat.
-        public static NWN.ItemProperty ItemPropertyNoDamage()
+        public static ItemProperty ItemPropertyNoDamage()
         {
-            NWN.Internal.CallBuiltIn(657);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.CallBuiltIn(657);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property on hit -> do effect property.  You must specify the on
@@ -12926,135 +12927,135 @@
         //                          constant(IP_CONST_ONHIT_DURATION_*)
         //       STUN              :nSpecial is the duration/percentage of effecting victim.
         //                          constant(IP_CONST_ONHIT_DURATION_*)
-        public static NWN.ItemProperty ItemPropertyOnHitProps(int nProperty, int nSaveDC, int nSpecial = 0)
+        public static ItemProperty ItemPropertyOnHitProps(int nProperty, int nSaveDC, int nSpecial = 0)
         {
-            NWN.Internal.StackPushInteger(nSpecial);
-            NWN.Internal.StackPushInteger(nSaveDC);
-            NWN.Internal.StackPushInteger(nProperty);
-            NWN.Internal.CallBuiltIn(658);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nSpecial);
+            Internal.StackPushInteger(nSaveDC);
+            Internal.StackPushInteger(nProperty);
+            Internal.CallBuiltIn(658);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property reduced saving throw vs. an effect or damage type.  You must
         //  specify the constant to which the penalty applies(IP_CONST_SAVEVS_*) and the
         //  penalty to be applied.  The penalty must be a POSITIVE integer between 1 and 20
         //  (ie. 1 = -1).
-        public static NWN.ItemProperty ItemPropertyReducedSavingThrowVsX(int nBaseSaveType, int nPenalty)
+        public static ItemProperty ItemPropertyReducedSavingThrowVsX(int nBaseSaveType, int nPenalty)
         {
-            NWN.Internal.StackPushInteger(nPenalty);
-            NWN.Internal.StackPushInteger(nBaseSaveType);
-            NWN.Internal.CallBuiltIn(659);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nPenalty);
+            Internal.StackPushInteger(nBaseSaveType);
+            Internal.CallBuiltIn(659);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property reduced saving to base type.  You must specify the base
         //  type to which the penalty applies (ie. will, reflex, or fortitude) and the penalty
         //  to be applied.  The constant for the base type starts with (IP_CONST_SAVEBASETYPE_*).
         //  The penalty must be a POSITIVE integer between 1 and 20 (ie. 1 = -1).
-        public static NWN.ItemProperty ItemPropertyReducedSavingThrow(int nBonusType, int nPenalty)
+        public static ItemProperty ItemPropertyReducedSavingThrow(int nBonusType, int nPenalty)
         {
-            NWN.Internal.StackPushInteger(nPenalty);
-            NWN.Internal.StackPushInteger(nBonusType);
-            NWN.Internal.CallBuiltIn(660);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nPenalty);
+            Internal.StackPushInteger(nBonusType);
+            Internal.CallBuiltIn(660);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property regeneration.  You must specify the regeneration amount.
         //  The amount must be an integer between 1 and 20.
-        public static NWN.ItemProperty ItemPropertyRegeneration(int nRegenAmount)
+        public static ItemProperty ItemPropertyRegeneration(int nRegenAmount)
         {
-            NWN.Internal.StackPushInteger(nRegenAmount);
-            NWN.Internal.CallBuiltIn(661);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nRegenAmount);
+            Internal.CallBuiltIn(661);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property skill bonus.  You must specify the skill to which the user
         //  will get a bonus(SKILL_*) and the amount of the bonus.  The bonus amount must
         //  be an integer between 1 and 50.
-        public static NWN.ItemProperty ItemPropertySkillBonus(int nSkill, int nBonus)
+        public static ItemProperty ItemPropertySkillBonus(int nSkill, int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.StackPushInteger(nSkill);
-            NWN.Internal.CallBuiltIn(662);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.StackPushInteger(nSkill);
+            Internal.CallBuiltIn(662);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property spell immunity vs. specific spell.  You must specify the
         //  spell to which the user will be immune(IP_CONST_IMMUNITYSPELL_*).
-        public static NWN.ItemProperty ItemPropertySpellImmunitySpecific(int nSpell)
+        public static ItemProperty ItemPropertySpellImmunitySpecific(int nSpell)
         {
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.CallBuiltIn(663);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nSpell);
+            Internal.CallBuiltIn(663);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property spell immunity vs. spell school.  You must specify the
         //  school to which the user will be immune(IP_CONST_SPELLSCHOOL_*).
-        public static NWN.ItemProperty ItemPropertySpellImmunitySchool(int nSchool)
+        public static ItemProperty ItemPropertySpellImmunitySchool(int nSchool)
         {
-            NWN.Internal.StackPushInteger(nSchool);
-            NWN.Internal.CallBuiltIn(664);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nSchool);
+            Internal.CallBuiltIn(664);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Thieves tools.  You must specify the modifier you wish
         //  the tools to have.  The modifier must be an integer between 1 and 12.
-        public static NWN.ItemProperty ItemPropertyThievesTools(int nModifier)
+        public static ItemProperty ItemPropertyThievesTools(int nModifier)
         {
-            NWN.Internal.StackPushInteger(nModifier);
-            NWN.Internal.CallBuiltIn(665);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nModifier);
+            Internal.CallBuiltIn(665);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Attack bonus.  You must specify an attack bonus.  The bonus
         //  must be an integer between 1 and 20.
-        public static NWN.ItemProperty ItemPropertyAttackBonus(int nBonus)
+        public static ItemProperty ItemPropertyAttackBonus(int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.CallBuiltIn(666);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.CallBuiltIn(666);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Attack bonus vs. alignment group.  You must specify the
         //  alignment group constant(IP_CONST_ALIGNMENTGROUP_*) and the attack bonus.  The
         //  bonus must be an integer between 1 and 20.
-        public static NWN.ItemProperty ItemPropertyAttackBonusVsAlign(int nAlignGroup, int nBonus)
+        public static ItemProperty ItemPropertyAttackBonusVsAlign(int nAlignGroup, int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.StackPushInteger(nAlignGroup);
-            NWN.Internal.CallBuiltIn(667);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.StackPushInteger(nAlignGroup);
+            Internal.CallBuiltIn(667);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property attack bonus vs. racial group.  You must specify the
         //  racial group constant(IP_CONST_RACIALTYPE_*) and the attack bonus.  The bonus
         //  must be an integer between 1 and 20.
-        public static NWN.ItemProperty ItemPropertyAttackBonusVsRace(int nRace, int nBonus)
+        public static ItemProperty ItemPropertyAttackBonusVsRace(int nRace, int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.StackPushInteger(nRace);
-            NWN.Internal.CallBuiltIn(668);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.StackPushInteger(nRace);
+            Internal.CallBuiltIn(668);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property attack bonus vs. a specific alignment.  You must specify
         //  the alignment you want the bonus to work against(IP_CONST_ALIGNMENT_*) and the
         //  attack bonus.  The bonus must be an integer between 1 and 20.
-        public static NWN.ItemProperty ItemPropertyAttackBonusVsSAlign(int nAlignment, int nBonus)
+        public static ItemProperty ItemPropertyAttackBonusVsSAlign(int nAlignment, int nBonus)
         {
-            NWN.Internal.StackPushInteger(nBonus);
-            NWN.Internal.StackPushInteger(nAlignment);
-            NWN.Internal.CallBuiltIn(669);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nBonus);
+            Internal.StackPushInteger(nAlignment);
+            Internal.CallBuiltIn(669);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property attack penalty.  You must specify the attack penalty.
         //  The penalty must be a POSITIVE integer between 1 and 5 (ie. 1 = -1).
-        public static NWN.ItemProperty ItemPropertyAttackPenalty(int nPenalty)
+        public static ItemProperty ItemPropertyAttackPenalty(int nPenalty)
         {
-            NWN.Internal.StackPushInteger(nPenalty);
-            NWN.Internal.CallBuiltIn(670);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nPenalty);
+            Internal.CallBuiltIn(670);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property unlimited ammo.  If you leave the parameter field blank
@@ -13062,80 +13063,80 @@
         //  you want the ammunition to do special damage (ie. +1d6 Fire, or +1 enhancement
         //  bonus).  For this parmeter you use the constants beginning with:
         //       (IP_CONST_UNLIMITEDAMMO_*).
-        public static NWN.ItemProperty ItemPropertyUnlimitedAmmo(int nAmmoDamage = IP_CONST_UNLIMITEDAMMO_BASIC)
+        public static ItemProperty ItemPropertyUnlimitedAmmo(int nAmmoDamage = IP_CONST_UNLIMITEDAMMO_BASIC)
         {
-            NWN.Internal.StackPushInteger(nAmmoDamage);
-            NWN.Internal.CallBuiltIn(671);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nAmmoDamage);
+            Internal.CallBuiltIn(671);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property limit use by alignment group.  You must specify the
         //  alignment group(s) that you want to be able to use this item(IP_CONST_ALIGNMENTGROUP_*).
-        public static NWN.ItemProperty ItemPropertyLimitUseByAlign(int nAlignGroup)
+        public static ItemProperty ItemPropertyLimitUseByAlign(int nAlignGroup)
         {
-            NWN.Internal.StackPushInteger(nAlignGroup);
-            NWN.Internal.CallBuiltIn(672);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nAlignGroup);
+            Internal.CallBuiltIn(672);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property limit use by class.  You must specify the class(es) who
         //  are able to use this item(IP_CONST_CLASS_*).
-        public static NWN.ItemProperty ItemPropertyLimitUseByClass(int nClass)
+        public static ItemProperty ItemPropertyLimitUseByClass(int nClass)
         {
-            NWN.Internal.StackPushInteger(nClass);
-            NWN.Internal.CallBuiltIn(673);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nClass);
+            Internal.CallBuiltIn(673);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property limit use by race.  You must specify the race(s) who are
         //  allowed to use this item(IP_CONST_RACIALTYPE_*).
-        public static NWN.ItemProperty ItemPropertyLimitUseByRace(int nRace)
+        public static ItemProperty ItemPropertyLimitUseByRace(int nRace)
         {
-            NWN.Internal.StackPushInteger(nRace);
-            NWN.Internal.CallBuiltIn(674);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nRace);
+            Internal.CallBuiltIn(674);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property limit use by specific alignment.  You must specify the
         //  alignment(s) of those allowed to use the item(IP_CONST_ALIGNMENT_*).
-        public static NWN.ItemProperty ItemPropertyLimitUseBySAlign(int nAlignment)
+        public static ItemProperty ItemPropertyLimitUseBySAlign(int nAlignment)
         {
-            NWN.Internal.StackPushInteger(nAlignment);
-            NWN.Internal.CallBuiltIn(675);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nAlignment);
+            Internal.CallBuiltIn(675);
+            return Internal.StackPopItemProperty();
         }
 
         //  replace this function it does nothing.
-        public static NWN.ItemProperty BadBadReplaceMeThisDoesNothing()
+        public static ItemProperty BadBadReplaceMeThisDoesNothing()
         {
-            NWN.Internal.CallBuiltIn(676);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.CallBuiltIn(676);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property vampiric regeneration.  You must specify the amount of
         //  regeneration.  The regen amount must be an integer between 1 and 20.
-        public static NWN.ItemProperty ItemPropertyVampiricRegeneration(int nRegenAmount)
+        public static ItemProperty ItemPropertyVampiricRegeneration(int nRegenAmount)
         {
-            NWN.Internal.StackPushInteger(nRegenAmount);
-            NWN.Internal.CallBuiltIn(677);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nRegenAmount);
+            Internal.CallBuiltIn(677);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Trap.  You must specify the trap level constant
         //  (IP_CONST_TRAPSTRENGTH_*) and the trap type constant(IP_CONST_TRAPTYPE_*).
-        public static NWN.ItemProperty ItemPropertyTrap(int nTrapLevel, int nTrapType)
+        public static ItemProperty ItemPropertyTrap(int nTrapLevel, int nTrapType)
         {
-            NWN.Internal.StackPushInteger(nTrapType);
-            NWN.Internal.StackPushInteger(nTrapLevel);
-            NWN.Internal.CallBuiltIn(678);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nTrapType);
+            Internal.StackPushInteger(nTrapLevel);
+            Internal.CallBuiltIn(678);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property true seeing.
-        public static NWN.ItemProperty ItemPropertyTrueSeeing()
+        public static ItemProperty ItemPropertyTrueSeeing()
         {
-            NWN.Internal.CallBuiltIn(679);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.CallBuiltIn(679);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Monster on hit apply effect property.  You must specify
@@ -13157,87 +13158,87 @@
         //        parameter.
         //  NOTE: These can only be applied to monster NATURAL weapons (ie. bite, claw,
         //        gore, and slam).  IT WILL NOT WORK ON NORMAL WEAPONS.
-        public static NWN.ItemProperty ItemPropertyOnMonsterHitProperties(int nProperty, int nSpecial = 0)
+        public static ItemProperty ItemPropertyOnMonsterHitProperties(int nProperty, int nSpecial = 0)
         {
-            NWN.Internal.StackPushInteger(nSpecial);
-            NWN.Internal.StackPushInteger(nProperty);
-            NWN.Internal.CallBuiltIn(680);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nSpecial);
+            Internal.StackPushInteger(nProperty);
+            Internal.CallBuiltIn(680);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property turn resistance.  You must specify the resistance bonus.
         //  The bonus must be an integer between 1 and 50.
-        public static NWN.ItemProperty ItemPropertyTurnResistance(int nModifier)
+        public static ItemProperty ItemPropertyTurnResistance(int nModifier)
         {
-            NWN.Internal.StackPushInteger(nModifier);
-            NWN.Internal.CallBuiltIn(681);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nModifier);
+            Internal.CallBuiltIn(681);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Massive Critical.  You must specify the extra damage
         //  constant(IP_CONST_DAMAGEBONUS_*) of the criticals.
-        public static NWN.ItemProperty ItemPropertyMassiveCritical(int nDamage)
+        public static ItemProperty ItemPropertyMassiveCritical(int nDamage)
         {
-            NWN.Internal.StackPushInteger(nDamage);
-            NWN.Internal.CallBuiltIn(682);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nDamage);
+            Internal.CallBuiltIn(682);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property free action.
-        public static NWN.ItemProperty ItemPropertyFreeAction()
+        public static ItemProperty ItemPropertyFreeAction()
         {
-            NWN.Internal.CallBuiltIn(683);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.CallBuiltIn(683);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property monster damage.  You must specify the amount of damage
         //  the monster's attack will do(IP_CONST_MONSTERDAMAGE_*).
         //  NOTE: These can only be applied to monster NATURAL weapons (ie. bite, claw,
         //        gore, and slam).  IT WILL NOT WORK ON NORMAL WEAPONS.
-        public static NWN.ItemProperty ItemPropertyMonsterDamage(int nDamage)
+        public static ItemProperty ItemPropertyMonsterDamage(int nDamage)
         {
-            NWN.Internal.StackPushInteger(nDamage);
-            NWN.Internal.CallBuiltIn(684);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nDamage);
+            Internal.CallBuiltIn(684);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property immunity to spell level.  You must specify the level of
         //  which that and below the user will be immune.  The level must be an integer
         //  between 1 and 9.  By putting in a 3 it will mean the user is immune to all
         //  3rd level and lower spells.
-        public static NWN.ItemProperty ItemPropertyImmunityToSpellLevel(int nLevel)
+        public static ItemProperty ItemPropertyImmunityToSpellLevel(int nLevel)
         {
-            NWN.Internal.StackPushInteger(nLevel);
-            NWN.Internal.CallBuiltIn(685);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nLevel);
+            Internal.CallBuiltIn(685);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property special walk.  If no parameters are specified it will
         //  automatically use the zombie walk.  This will apply the special walk animation
         //  to the user.
-        public static NWN.ItemProperty ItemPropertySpecialWalk(int nWalkType = 0)
+        public static ItemProperty ItemPropertySpecialWalk(int nWalkType = 0)
         {
-            NWN.Internal.StackPushInteger(nWalkType);
-            NWN.Internal.CallBuiltIn(686);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nWalkType);
+            Internal.CallBuiltIn(686);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property healers kit.  You must specify the level of the kit.
         //  The modifier must be an integer between 1 and 12.
-        public static NWN.ItemProperty ItemPropertyHealersKit(int nModifier)
+        public static ItemProperty ItemPropertyHealersKit(int nModifier)
         {
-            NWN.Internal.StackPushInteger(nModifier);
-            NWN.Internal.CallBuiltIn(687);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nModifier);
+            Internal.CallBuiltIn(687);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property weight increase.  You must specify the weight increase
         //  constant(IP_CONST_WEIGHTINCREASE_*).
-        public static NWN.ItemProperty ItemPropertyWeightIncrease(int nWeight)
+        public static ItemProperty ItemPropertyWeightIncrease(int nWeight)
         {
-            NWN.Internal.StackPushInteger(nWeight);
-            NWN.Internal.CallBuiltIn(688);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nWeight);
+            Internal.CallBuiltIn(688);
+            return Internal.StackPopItemProperty();
         }
 
         //  ***********************  END OF ITEM PROPERTY FUNCTIONS  **************************
@@ -13245,24 +13246,24 @@
         //  - oTarget: the creature using the skill
         //  - nSkill: the skill being used
         //  - nDifficulty: Difficulty class of skill
-        public static int GetIsSkillSuccessful(NWN.Object oTarget, int nSkill, int nDifficulty)
+        public static int GetIsSkillSuccessful(Object oTarget, int nSkill, int nDifficulty)
         {
-            NWN.Internal.StackPushInteger(nDifficulty);
-            NWN.Internal.StackPushInteger(nSkill);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(689);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nDifficulty);
+            Internal.StackPushInteger(nSkill);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(689);
+            return Internal.StackPopInteger();
         }
 
         //  Creates an effect that inhibits spells
         //  - nPercent - percentage of failure
         //  - nSpellSchool - the school of spells affected.
-        public static NWN.Effect EffectSpellFailure(int nPercent = 100, int nSpellSchool = SPELL_SCHOOL_GENERAL)
+        public static Effect EffectSpellFailure(int nPercent = 100, int nSpellSchool = SPELL_SCHOOL_GENERAL)
         {
-            NWN.Internal.StackPushInteger(nSpellSchool);
-            NWN.Internal.StackPushInteger(nPercent);
-            NWN.Internal.CallBuiltIn(690);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushInteger(nSpellSchool);
+            Internal.StackPushInteger(nPercent);
+            Internal.CallBuiltIn(690);
+            return Internal.StackPopEffect();
         }
 
         //  Causes the object to instantly speak a translated string.
@@ -13271,9 +13272,9 @@
         //  - nTalkVolume: TALKVOLUME_*
         public static void SpeakStringByStrRef(int nStrRef, int nTalkVolume = TALKVOLUME_TALK)
         {
-            NWN.Internal.StackPushInteger(nTalkVolume);
-            NWN.Internal.StackPushInteger(nStrRef);
-            NWN.Internal.CallBuiltIn(691);
+            Internal.StackPushInteger(nTalkVolume);
+            Internal.StackPushInteger(nStrRef);
+            Internal.CallBuiltIn(691);
         }
 
         //  Sets the given creature into cutscene mode.  This prevents the player from
@@ -13285,71 +13286,71 @@
         //  Note: SetCutsceneMode(oPlayer, TRUE) will also make the player 'plot' (unkillable).
         //  SetCutsceneMode(oPlayer, FALSE) will restore the player's plot flag to what it
         //  was when SetCutsceneMode(oPlayer, TRUE) was called.
-        public static void SetCutsceneMode(NWN.Object oCreature, int nInCutscene = TRUE, int nLeftClickingEnabled = FALSE)
+        public static void SetCutsceneMode(Object oCreature, int nInCutscene = TRUE, int nLeftClickingEnabled = FALSE)
         {
-            NWN.Internal.StackPushInteger(nLeftClickingEnabled);
-            NWN.Internal.StackPushInteger(nInCutscene);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(692);
+            Internal.StackPushInteger(nLeftClickingEnabled);
+            Internal.StackPushInteger(nInCutscene);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(692);
         }
 
         //  Gets the last player character to cancel from a cutscene.
-        public static NWN.Object GetLastPCToCancelCutscene()
+        public static Object GetLastPCToCancelCutscene()
         {
-            NWN.Internal.CallBuiltIn(693);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(693);
+            return Internal.StackPopObject();
         }
 
         //  Gets the length of the specified wavefile, in seconds
         //  Only works for sounds used for dialog.
         public static float GetDialogSoundLength(int nStrRef)
         {
-            NWN.Internal.StackPushInteger(nStrRef);
-            NWN.Internal.CallBuiltIn(694);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushInteger(nStrRef);
+            Internal.CallBuiltIn(694);
+            return Internal.StackPopFloat();
         }
 
         //  Fades the screen for the given creature/player from black to regular screen
         //  - oCreature: creature controlled by player that should fade from black
-        public static void FadeFromBlack(NWN.Object oCreature, float fSpeed = FADE_SPEED_MEDIUM)
+        public static void FadeFromBlack(Object oCreature, float fSpeed = FADE_SPEED_MEDIUM)
         {
-            NWN.Internal.StackPushFloat(fSpeed);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(695);
+            Internal.StackPushFloat(fSpeed);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(695);
         }
 
         //  Fades the screen for the given creature/player from regular screen to black
         //  - oCreature: creature controlled by player that should fade to black
-        public static void FadeToBlack(NWN.Object oCreature, float fSpeed = FADE_SPEED_MEDIUM)
+        public static void FadeToBlack(Object oCreature, float fSpeed = FADE_SPEED_MEDIUM)
         {
-            NWN.Internal.StackPushFloat(fSpeed);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(696);
+            Internal.StackPushFloat(fSpeed);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(696);
         }
 
         //  Removes any fading or black screen.
         //  - oCreature: creature controlled by player that should be cleared
-        public static void StopFade(NWN.Object oCreature)
+        public static void StopFade(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(697);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(697);
         }
 
         //  Sets the screen to black.  Can be used in preparation for a fade-in (FadeFromBlack)
         //  Can be cleared by either doing a FadeFromBlack, or by calling StopFade.
         //  - oCreature: creature controlled by player that should see black screen
-        public static void BlackScreen(NWN.Object oCreature)
+        public static void BlackScreen(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(698);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(698);
         }
 
         //  Returns the base attach bonus for the given creature.
-        public static int GetBaseAttackBonus(NWN.Object oCreature)
+        public static int GetBaseAttackBonus(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(699);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(699);
+            return Internal.StackPopInteger();
         }
 
         //  Set a creature's immortality flag.
@@ -13357,11 +13358,11 @@
         //  -bImmortal: TRUE = creature is immortal and cannot be killed (but still takes damage)
         //              FALSE = creature is not immortal and is damaged normally.
         //  This scripting command only works on Creature objects.
-        public static void SetImmortal(NWN.Object oCreature, int bImmortal)
+        public static void SetImmortal(Object oCreature, int bImmortal)
         {
-            NWN.Internal.StackPushInteger(bImmortal);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(700);
+            Internal.StackPushInteger(bImmortal);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(700);
         }
 
         //  Open's this creature's inventory panel for this player
@@ -13369,18 +13370,18 @@
         //  - oPlayer: the owner of this creature will see the panel pop up
         //  * DM's can view any creature's inventory
         //  * Players can view their own inventory, or that of their henchman, familiar or animal companion
-        public static void OpenInventory(NWN.Object oCreature, NWN.Object oPlayer)
+        public static void OpenInventory(Object oCreature, Object oPlayer)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(701);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(701);
         }
 
         //  Stores the current camera mode and position so that it can be restored (using
         //  RestoreCameraFacing())
         public static void StoreCameraFacing()
         {
-            NWN.Internal.CallBuiltIn(702);
+            Internal.CallBuiltIn(702);
         }
 
         //  Restores the camera mode and position to what they were last time StoreCameraFacing
@@ -13388,7 +13389,7 @@
         //  previous call to StoreCameraFacing.
         public static void RestoreCameraFacing()
         {
-            NWN.Internal.CallBuiltIn(703);
+            Internal.CallBuiltIn(703);
         }
 
         //  Levels up a creature using default settings.
@@ -13400,50 +13401,50 @@
         //    (ie: no Barbarian Savage/Wizard Divination combinations)
         //  If you turn on bReadyAllSpells, all memorized spells will be ready to cast without resting.
         //  if nPackage is PACKAGE_INVALID then it will use the starting package assigned to that class or just the class package
-        public static int LevelUpHenchman(NWN.Object oCreature, int nClass = CLASS_TYPE_INVALID, int bReadyAllSpells = FALSE, int nPackage = PACKAGE_INVALID)
+        public static int LevelUpHenchman(Object oCreature, int nClass = CLASS_TYPE_INVALID, int bReadyAllSpells = FALSE, int nPackage = PACKAGE_INVALID)
         {
-            NWN.Internal.StackPushInteger(nPackage);
-            NWN.Internal.StackPushInteger(bReadyAllSpells);
-            NWN.Internal.StackPushInteger(nClass);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(704);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nPackage);
+            Internal.StackPushInteger(bReadyAllSpells);
+            Internal.StackPushInteger(nClass);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(704);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the droppable flag on an item
         //  - oItem: the item to change
         //  - bDroppable: TRUE or FALSE, whether the item should be droppable
         //  Droppable items will appear on a creature's remains when the creature is killed.
-        public static void SetDroppableFlag(NWN.Object oItem, int bDroppable)
+        public static void SetDroppableFlag(Object oItem, int bDroppable)
         {
-            NWN.Internal.StackPushInteger(bDroppable);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(705);
+            Internal.StackPushInteger(bDroppable);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(705);
         }
 
         //  Gets the weight of an item, or the total carried weight of a creature in tenths
         //  of pounds (as per the baseitems.2da).
         //  - oTarget: the item or creature for which the weight is needed
-        public static int GetWeight(NWN.Object oTarget = null)
+        public static int GetWeight(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(706);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(706);
+            return Internal.StackPopInteger();
         }
 
         //  Gets the object that acquired the module item.  May be a creature, item, or placeable
-        public static NWN.Object GetModuleItemAcquiredBy()
+        public static Object GetModuleItemAcquiredBy()
         {
-            NWN.Internal.CallBuiltIn(707);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(707);
+            return Internal.StackPopObject();
         }
 
         //  Get the immortal flag on a creature
-        public static int GetImmortal(NWN.Object oTarget = null)
+        public static int GetImmortal(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(708);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(708);
+            return Internal.StackPopInteger();
         }
 
         //  Does a single attack on every hostile creature within 10ft. of the attacker
@@ -13457,9 +13458,9 @@
         //  - int bImproved: If TRUE, the improved version of whirlwind is used
         public static void DoWhirlwindAttack(int bDisplayFeedback = TRUE, int bImproved = FALSE)
         {
-            NWN.Internal.StackPushInteger(bImproved);
-            NWN.Internal.StackPushInteger(bDisplayFeedback);
-            NWN.Internal.CallBuiltIn(709);
+            Internal.StackPushInteger(bImproved);
+            Internal.StackPushInteger(bDisplayFeedback);
+            Internal.CallBuiltIn(709);
         }
 
         //  Gets a value from a 2DA file on the server and returns it as a string
@@ -13470,29 +13471,29 @@
         //  * returns an empty string if file, row, or column not found
         public static string Get2DAString(string s2DA, string sColumn, int nRow)
         {
-            NWN.Internal.StackPushInteger(nRow);
-            NWN.Internal.StackPushString(sColumn);
-            NWN.Internal.StackPushString(s2DA);
-            NWN.Internal.CallBuiltIn(710);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nRow);
+            Internal.StackPushString(sColumn);
+            Internal.StackPushString(s2DA);
+            Internal.CallBuiltIn(710);
+            return Internal.StackPopString();
         }
 
         //  Returns an effect of type EFFECT_TYPE_ETHEREAL which works just like EffectSanctuary
         //  except that the observers get no saving throw
-        public static NWN.Effect EffectEthereal()
+        public static Effect EffectEthereal()
         {
-            NWN.Internal.CallBuiltIn(711);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(711);
+            return Internal.StackPopEffect();
         }
 
         //  Gets the current AI Level that the creature is running at.
         //  Returns one of the following:
         //  AI_LEVEL_INVALID, AI_LEVEL_VERY_LOW, AI_LEVEL_LOW, AI_LEVEL_NORMAL, AI_LEVEL_HIGH, AI_LEVEL_VERY_HIGH
-        public static int GetAILevel(NWN.Object oTarget = null)
+        public static int GetAILevel(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(712);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(712);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the current AI Level of the creature to the value specified. Does not work on Players.
@@ -13505,157 +13506,157 @@
         //  AI_LEVEL_LOW      - Low priority, mildly stupid, but slightly more CPU usage for AI. Typically used when not in combat, but a player is in the area.
         //  AI_LEVEL_NORMAL   - Normal priority, average AI, but more CPU usage required for AI. Typically used when creature is in combat.
         //  AI_LEVEL_HIGH     - High priority, smartest AI, but extremely high CPU usage required for AI. Avoid using this. It is most likely only ever needed for cutscenes.
-        public static void SetAILevel(NWN.Object oTarget, int nAILevel)
+        public static void SetAILevel(Object oTarget, int nAILevel)
         {
-            NWN.Internal.StackPushInteger(nAILevel);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(713);
+            Internal.StackPushInteger(nAILevel);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(713);
         }
 
         //  This will return TRUE if the creature running the script is a familiar currently
         //  possessed by his master.
         //  returns FALSE if not or if the creature object is invalid
-        public static int GetIsPossessedFamiliar(NWN.Object oCreature)
+        public static int GetIsPossessedFamiliar(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(714);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(714);
+            return Internal.StackPopInteger();
         }
 
         //  This will cause a Player Creature to unpossess his/her familiar.  It will work if run
         //  on the player creature or the possessed familiar.  It does not work in conjunction with
         //  any DM possession.
-        public static void UnpossessFamiliar(NWN.Object oCreature)
+        public static void UnpossessFamiliar(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(715);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(715);
         }
 
         //  This will return TRUE if the area is flagged as either interior or underground.
-        public static int GetIsAreaInterior(NWN.Object oArea = null)
+        public static int GetIsAreaInterior(Object oArea = null)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(716);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(716);
+            return Internal.StackPopInteger();
         }
 
         //  Send a server message (szMessage) to the oPlayer.
-        public static void SendMessageToPCByStrRef(NWN.Object oPlayer, int nStrRef)
+        public static void SendMessageToPCByStrRef(Object oPlayer, int nStrRef)
         {
-            NWN.Internal.StackPushInteger(nStrRef);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(717);
+            Internal.StackPushInteger(nStrRef);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(717);
         }
 
         //  Increment the remaining uses per day for this creature by one.
         //  Total number of feats per day can not exceed the maximum.
         //  - oCreature: creature to modify
         //  - nFeat: constant FEAT_*
-        public static void IncrementRemainingFeatUses(NWN.Object oCreature, int nFeat)
+        public static void IncrementRemainingFeatUses(Object oCreature, int nFeat)
         {
-            NWN.Internal.StackPushInteger(nFeat);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(718);
+            Internal.StackPushInteger(nFeat);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(718);
         }
 
         //  Force the character of the player specified to be exported to its respective directory
         //  i.e. LocalVault/ServerVault/ etc.
-        public static void ExportSingleCharacter(NWN.Object oPlayer)
+        public static void ExportSingleCharacter(Object oPlayer)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(719);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(719);
         }
 
         //  This will play a sound that is associated with a stringRef, it will be a mono sound from the location of the object running the command.
         //  if nRunAsAction is off then the sound is forced to play intantly.
         public static void PlaySoundByStrRef(int nStrRef, int nRunAsAction = TRUE)
         {
-            NWN.Internal.StackPushInteger(nRunAsAction);
-            NWN.Internal.StackPushInteger(nStrRef);
-            NWN.Internal.CallBuiltIn(720);
+            Internal.StackPushInteger(nRunAsAction);
+            Internal.StackPushInteger(nStrRef);
+            Internal.CallBuiltIn(720);
         }
 
         //  Set the name of oCreature's sub race to sSubRace.
-        public static void SetSubRace(NWN.Object oCreature, string sSubRace)
+        public static void SetSubRace(Object oCreature, string sSubRace)
         {
-            NWN.Internal.StackPushString(sSubRace);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(721);
+            Internal.StackPushString(sSubRace);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(721);
         }
 
         //  Set the name of oCreature's Deity to sDeity.
-        public static void SetDeity(NWN.Object oCreature, string sDeity)
+        public static void SetDeity(Object oCreature, string sDeity)
         {
-            NWN.Internal.StackPushString(sDeity);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(722);
+            Internal.StackPushString(sDeity);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(722);
         }
 
         //  Returns TRUE if the creature oCreature is currently possessed by a DM character.
         //  Returns FALSE otherwise.
         //  Note: GetIsDMPossessed() will return FALSE if oCreature is the DM character.
         //  To determine if oCreature is a DM character use GetIsDM()
-        public static int GetIsDMPossessed(NWN.Object oCreature)
+        public static int GetIsDMPossessed(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(723);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(723);
+            return Internal.StackPopInteger();
         }
 
         //  Gets the current weather conditions for the area oArea.
         //    Returns: WEATHER_CLEAR, WEATHER_RAIN, WEATHER_SNOW, WEATHER_INVALID
         //    Note: If called on an Interior area, this will always return WEATHER_CLEAR.
-        public static int GetWeather(NWN.Object oArea)
+        public static int GetWeather(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(724);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(724);
+            return Internal.StackPopInteger();
         }
 
         //  Returns AREA_NATURAL if the area oArea is natural, AREA_ARTIFICIAL otherwise.
         //  Returns AREA_INVALID, on an error.
-        public static int GetIsAreaNatural(NWN.Object oArea)
+        public static int GetIsAreaNatural(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(725);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(725);
+            return Internal.StackPopInteger();
         }
 
         //  Returns AREA_ABOVEGROUND if the area oArea is above ground, AREA_UNDERGROUND otherwise.
         //  Returns AREA_INVALID, on an error.
-        public static int GetIsAreaAboveGround(NWN.Object oArea)
+        public static int GetIsAreaAboveGround(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(726);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(726);
+            return Internal.StackPopInteger();
         }
 
         //  Use this to get the item last equipped by a player character in OnPlayerEquipItem..
-        public static NWN.Object GetPCItemLastEquipped()
+        public static Object GetPCItemLastEquipped()
         {
-            NWN.Internal.CallBuiltIn(727);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(727);
+            return Internal.StackPopObject();
         }
 
         //  Use this to get the player character who last equipped an item in OnPlayerEquipItem..
-        public static NWN.Object GetPCItemLastEquippedBy()
+        public static Object GetPCItemLastEquippedBy()
         {
-            NWN.Internal.CallBuiltIn(728);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(728);
+            return Internal.StackPopObject();
         }
 
         //  Use this to get the item last unequipped by a player character in OnPlayerEquipItem..
-        public static NWN.Object GetPCItemLastUnequipped()
+        public static Object GetPCItemLastUnequipped()
         {
-            NWN.Internal.CallBuiltIn(729);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(729);
+            return Internal.StackPopObject();
         }
 
         //  Use this to get the player character who last unequipped an item in OnPlayerUnEquipItem..
-        public static NWN.Object GetPCItemLastUnequippedBy()
+        public static Object GetPCItemLastUnequippedBy()
         {
-            NWN.Internal.CallBuiltIn(730);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(730);
+            return Internal.StackPopObject();
         }
 
         //  Creates a new copy of an item, while making a single change to the appearance of the item.
@@ -13678,194 +13679,194 @@
         // 
         //  [1] When specifying per-part coloring, the value 255 is allowed and corresponds with the logical
         //  function 'clear colour override', which clears the per-part override for that part.
-        public static NWN.Object CopyItemAndModify(NWN.Object oItem, int nType, int nIndex, int nNewValue, int bCopyVars = FALSE)
+        public static Object CopyItemAndModify(Object oItem, int nType, int nIndex, int nNewValue, int bCopyVars = FALSE)
         {
-            NWN.Internal.StackPushInteger(bCopyVars);
-            NWN.Internal.StackPushInteger(nNewValue);
-            NWN.Internal.StackPushInteger(nIndex);
-            NWN.Internal.StackPushInteger(nType);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(731);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushInteger(bCopyVars);
+            Internal.StackPushInteger(nNewValue);
+            Internal.StackPushInteger(nIndex);
+            Internal.StackPushInteger(nType);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(731);
+            return Internal.StackPopObject();
         }
 
         //  Queries the current value of the appearance settings on an item. The parameters are
         //  identical to those of CopyItemAndModify().
-        public static int GetItemAppearance(NWN.Object oItem, int nType, int nIndex)
+        public static int GetItemAppearance(Object oItem, int nType, int nIndex)
         {
-            NWN.Internal.StackPushInteger(nIndex);
-            NWN.Internal.StackPushInteger(nType);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(732);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nIndex);
+            Internal.StackPushInteger(nType);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(732);
+            return Internal.StackPopInteger();
         }
 
         //  Creates an item property that (when applied to a weapon item) causes a spell to be cast
         //  when a successful strike is made, or (when applied to armor) is struck by an opponent.
         //  - nSpell uses the IP_CONST_ONHIT_CASTSPELL_* constants
-        public static NWN.ItemProperty ItemPropertyOnHitCastSpell(int nSpell, int nLevel)
+        public static ItemProperty ItemPropertyOnHitCastSpell(int nSpell, int nLevel)
         {
-            NWN.Internal.StackPushInteger(nLevel);
-            NWN.Internal.StackPushInteger(nSpell);
-            NWN.Internal.CallBuiltIn(733);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nLevel);
+            Internal.StackPushInteger(nSpell);
+            Internal.CallBuiltIn(733);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns the SubType number of the item property. See the 2DA files for value definitions.
-        public static int GetItemPropertySubType(NWN.ItemProperty iProperty)
+        public static int GetItemPropertySubType(ItemProperty iProperty)
         {
-            NWN.Internal.StackPushItemProperty(iProperty);
-            NWN.Internal.CallBuiltIn(734);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushItemProperty(iProperty);
+            Internal.CallBuiltIn(734);
+            return Internal.StackPopInteger();
         }
 
         //  Gets the status of ACTION_MODE_* modes on a creature.
-        public static int GetActionMode(NWN.Object oCreature, int nMode)
+        public static int GetActionMode(Object oCreature, int nMode)
         {
-            NWN.Internal.StackPushInteger(nMode);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(735);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nMode);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(735);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the status of modes ACTION_MODE_* on a creature.
-        public static void SetActionMode(NWN.Object oCreature, int nMode, int nStatus)
+        public static void SetActionMode(Object oCreature, int nMode, int nStatus)
         {
-            NWN.Internal.StackPushInteger(nStatus);
-            NWN.Internal.StackPushInteger(nMode);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(736);
+            Internal.StackPushInteger(nStatus);
+            Internal.StackPushInteger(nMode);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(736);
         }
 
         //  Returns the current arcane spell failure factor of a creature
-        public static int GetArcaneSpellFailure(NWN.Object oCreature)
+        public static int GetArcaneSpellFailure(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(737);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(737);
+            return Internal.StackPopInteger();
         }
 
         //  Makes a player examine the object oExamine. This causes the examination
         //  pop-up box to appear for the object specified.
-        public static void ActionExamine(NWN.Object oExamine)
+        public static void ActionExamine(Object oExamine)
         {
-            NWN.Internal.StackPushObject(oExamine, false);
-            NWN.Internal.CallBuiltIn(738);
+            Internal.StackPushObject(oExamine, false);
+            Internal.CallBuiltIn(738);
         }
 
         //  Creates a visual effect (ITEM_VISUAL_*) that may be applied to
         //  melee weapons only.
-        public static NWN.ItemProperty ItemPropertyVisualEffect(int nEffect)
+        public static ItemProperty ItemPropertyVisualEffect(int nEffect)
         {
-            NWN.Internal.StackPushInteger(nEffect);
-            NWN.Internal.CallBuiltIn(739);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nEffect);
+            Internal.CallBuiltIn(739);
+            return Internal.StackPopItemProperty();
         }
 
         //  Sets the lootable state of a *living* NPC creature.
         //  This function will *not* work on players or dead creatures.
-        public static void SetLootable(NWN.Object oCreature, int bLootable)
+        public static void SetLootable(Object oCreature, int bLootable)
         {
-            NWN.Internal.StackPushInteger(bLootable);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(740);
+            Internal.StackPushInteger(bLootable);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(740);
         }
 
         //  Returns the lootable state of a creature.
-        public static int GetLootable(NWN.Object oCreature)
+        public static int GetLootable(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(741);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(741);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the current movement rate factor
         //  of the cutscene 'camera man'.
         //  NOTE: This will be a value between 0.1, 2.0 (10%-200%)
-        public static float GetCutsceneCameraMoveRate(NWN.Object oCreature)
+        public static float GetCutsceneCameraMoveRate(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(742);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(742);
+            return Internal.StackPopFloat();
         }
 
         //  Sets the current movement rate factor for the cutscene
         //  camera man.
         //  NOTE: You can only set values between 0.1, 2.0 (10%-200%)
-        public static void SetCutsceneCameraMoveRate(NWN.Object oCreature, float fRate)
+        public static void SetCutsceneCameraMoveRate(Object oCreature, float fRate)
         {
-            NWN.Internal.StackPushFloat(fRate);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(743);
+            Internal.StackPushFloat(fRate);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(743);
         }
 
         //  Returns TRUE if the item is cursed and cannot be dropped
-        public static int GetItemCursedFlag(NWN.Object oItem)
+        public static int GetItemCursedFlag(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(744);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(744);
+            return Internal.StackPopInteger();
         }
 
         //  When cursed, items cannot be dropped
-        public static void SetItemCursedFlag(NWN.Object oItem, int nCursed)
+        public static void SetItemCursedFlag(Object oItem, int nCursed)
         {
-            NWN.Internal.StackPushInteger(nCursed);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(745);
+            Internal.StackPushInteger(nCursed);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(745);
         }
 
         //  Sets the maximum number of henchmen
         public static void SetMaxHenchmen(int nNumHenchmen)
         {
-            NWN.Internal.StackPushInteger(nNumHenchmen);
-            NWN.Internal.CallBuiltIn(746);
+            Internal.StackPushInteger(nNumHenchmen);
+            Internal.CallBuiltIn(746);
         }
 
         //  Gets the maximum number of henchmen
         public static int GetMaxHenchmen()
         {
-            NWN.Internal.CallBuiltIn(747);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(747);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the associate type of the specified creature.
         //  - Returns ASSOCIATE_TYPE_NONE if the creature is not the associate of anyone.
-        public static int GetAssociateType(NWN.Object oAssociate)
+        public static int GetAssociateType(Object oAssociate)
         {
-            NWN.Internal.StackPushObject(oAssociate, false);
-            NWN.Internal.CallBuiltIn(748);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oAssociate, false);
+            Internal.CallBuiltIn(748);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the spell resistance of the specified creature.
         //  - Returns 0 if the creature has no spell resistance or an invalid
         //    creature is passed in.
-        public static int GetSpellResistance(NWN.Object oCreature)
+        public static int GetSpellResistance(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(749);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(749);
+            return Internal.StackPopInteger();
         }
 
         //  Changes the current Day/Night cycle for this player to night
         //  - oPlayer: which player to change the lighting for
         //  - fTransitionTime: how long the transition should take
-        public static void DayToNight(NWN.Object oPlayer, float fTransitionTime = 0.0f)
+        public static void DayToNight(Object oPlayer, float fTransitionTime = 0.0f)
         {
-            NWN.Internal.StackPushFloat(fTransitionTime);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(750);
+            Internal.StackPushFloat(fTransitionTime);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(750);
         }
 
         //  Changes the current Day/Night cycle for this player to daylight
         //  - oPlayer: which player to change the lighting for
         //  - fTransitionTime: how long the transition should take
-        public static void NightToDay(NWN.Object oPlayer, float fTransitionTime = 0.0f)
+        public static void NightToDay(Object oPlayer, float fTransitionTime = 0.0f)
         {
-            NWN.Internal.StackPushFloat(fTransitionTime);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(751);
+            Internal.StackPushFloat(fTransitionTime);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(751);
         }
 
         //  Returns whether or not there is a direct line of sight
@@ -13873,12 +13874,12 @@
         // 
         //  PLEASE NOTE: This is an expensive function and may
         //               degrade performance if used frequently.
-        public static int LineOfSightObject(NWN.Object oSource, NWN.Object oTarget)
+        public static int LineOfSightObject(Object oSource, Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushObject(oSource, false);
-            NWN.Internal.CallBuiltIn(752);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushObject(oSource, false);
+            Internal.CallBuiltIn(752);
+            return Internal.StackPopInteger();
         }
 
         //  Returns whether or not there is a direct line of sight
@@ -13889,12 +13890,12 @@
         // 
         //  PLEASE NOTE: This is an expensive function and may
         //               degrade performance if used frequently.
-        public static int LineOfSightVector(NWN.Vector? vSource, NWN.Vector? vTarget)
+        public static int LineOfSightVector(Vector? vSource, Vector? vTarget)
         {
-            NWN.Internal.StackPushVector(vTarget);
-            NWN.Internal.StackPushVector(vSource);
-            NWN.Internal.CallBuiltIn(753);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushVector(vTarget);
+            Internal.StackPushVector(vSource);
+            Internal.CallBuiltIn(753);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the class that the spellcaster cast the
@@ -13903,219 +13904,219 @@
         //    no valid class (placeables, etc...)
         public static int GetLastSpellCastClass()
         {
-            NWN.Internal.CallBuiltIn(754);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(754);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the number of base attacks for the specified
         //  creatures. The range of values accepted are from
         //  1 to 6
         //  Note: This function does not work on Player Characters
-        public static void SetBaseAttackBonus(int nBaseAttackBonus, NWN.Object oCreature = null)
+        public static void SetBaseAttackBonus(int nBaseAttackBonus, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nBaseAttackBonus);
-            NWN.Internal.CallBuiltIn(755);
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nBaseAttackBonus);
+            Internal.CallBuiltIn(755);
         }
 
         //  Restores the number of base attacks back to it's
         //  original state.
-        public static void RestoreBaseAttackBonus(NWN.Object oCreature = null)
+        public static void RestoreBaseAttackBonus(Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(756);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(756);
         }
 
         //  Creates a cutscene ghost effect, this will allow creatures
         //  to pathfind through other creatures without bumping into them
         //  for the duration of the effect.
-        public static NWN.Effect EffectCutsceneGhost()
+        public static Effect EffectCutsceneGhost()
         {
-            NWN.Internal.CallBuiltIn(757);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(757);
+            return Internal.StackPopEffect();
         }
 
         //  Creates an item property that offsets the effect on arcane spell failure
         //  that a particular item has. Parameters come from the ITEM_PROP_ASF_* group.
-        public static NWN.ItemProperty ItemPropertyArcaneSpellFailure(int nModLevel)
+        public static ItemProperty ItemPropertyArcaneSpellFailure(int nModLevel)
         {
-            NWN.Internal.StackPushInteger(nModLevel);
-            NWN.Internal.CallBuiltIn(758);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nModLevel);
+            Internal.CallBuiltIn(758);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns the amount of gold a store currently has. -1 indicates it is not using gold.
         //  -2 indicates the store could not be located.
-        public static int GetStoreGold(NWN.Object oidStore)
+        public static int GetStoreGold(Object oidStore)
         {
-            NWN.Internal.StackPushObject(oidStore, false);
-            NWN.Internal.CallBuiltIn(759);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oidStore, false);
+            Internal.CallBuiltIn(759);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the amount of gold a store has. -1 means the store does not use gold.
-        public static void SetStoreGold(NWN.Object oidStore, int nGold)
+        public static void SetStoreGold(Object oidStore, int nGold)
         {
-            NWN.Internal.StackPushInteger(nGold);
-            NWN.Internal.StackPushObject(oidStore, false);
-            NWN.Internal.CallBuiltIn(760);
+            Internal.StackPushInteger(nGold);
+            Internal.StackPushObject(oidStore, false);
+            Internal.CallBuiltIn(760);
         }
 
         //  Gets the maximum amount a store will pay for any item. -1 means price unlimited.
         //  -2 indicates the store could not be located.
-        public static int GetStoreMaxBuyPrice(NWN.Object oidStore)
+        public static int GetStoreMaxBuyPrice(Object oidStore)
         {
-            NWN.Internal.StackPushObject(oidStore, false);
-            NWN.Internal.CallBuiltIn(761);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oidStore, false);
+            Internal.CallBuiltIn(761);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the maximum amount a store will pay for any item. -1 means price unlimited.
-        public static void SetStoreMaxBuyPrice(NWN.Object oidStore, int nMaxBuy)
+        public static void SetStoreMaxBuyPrice(Object oidStore, int nMaxBuy)
         {
-            NWN.Internal.StackPushInteger(nMaxBuy);
-            NWN.Internal.StackPushObject(oidStore, false);
-            NWN.Internal.CallBuiltIn(762);
+            Internal.StackPushInteger(nMaxBuy);
+            Internal.StackPushObject(oidStore, false);
+            Internal.CallBuiltIn(762);
         }
 
         //  Gets the amount a store charges for identifying an item. Default is 100. -1 means
         //  the store will not identify items.
         //  -2 indicates the store could not be located.
-        public static int GetStoreIdentifyCost(NWN.Object oidStore)
+        public static int GetStoreIdentifyCost(Object oidStore)
         {
-            NWN.Internal.StackPushObject(oidStore, false);
-            NWN.Internal.CallBuiltIn(763);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oidStore, false);
+            Internal.CallBuiltIn(763);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the amount a store charges for identifying an item. Default is 100. -1 means
         //  the store will not identify items.
-        public static void SetStoreIdentifyCost(NWN.Object oidStore, int nCost)
+        public static void SetStoreIdentifyCost(Object oidStore, int nCost)
         {
-            NWN.Internal.StackPushInteger(nCost);
-            NWN.Internal.StackPushObject(oidStore, false);
-            NWN.Internal.CallBuiltIn(764);
+            Internal.StackPushInteger(nCost);
+            Internal.StackPushObject(oidStore, false);
+            Internal.CallBuiltIn(764);
         }
 
         //  Sets the creature's appearance type to the value specified (uses the APPEARANCE_TYPE_XXX constants)
-        public static void SetCreatureAppearanceType(NWN.Object oCreature, int nAppearanceType)
+        public static void SetCreatureAppearanceType(Object oCreature, int nAppearanceType)
         {
-            NWN.Internal.StackPushInteger(nAppearanceType);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(765);
+            Internal.StackPushInteger(nAppearanceType);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(765);
         }
 
         //  Returns the default package selected for this creature to level up with
         //  - returns PACKAGE_INVALID if error occurs
-        public static int GetCreatureStartingPackage(NWN.Object oCreature)
+        public static int GetCreatureStartingPackage(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(766);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(766);
+            return Internal.StackPopInteger();
         }
 
         //  Returns an effect that when applied will paralyze the target's legs, rendering
         //  them unable to walk but otherwise unpenalized. This effect cannot be resisted.
-        public static NWN.Effect EffectCutsceneImmobilize()
+        public static Effect EffectCutsceneImmobilize()
         {
-            NWN.Internal.CallBuiltIn(767);
-            return NWN.Internal.StackPopEffect();
+            Internal.CallBuiltIn(767);
+            return Internal.StackPopEffect();
         }
 
         //  Is this creature in the given subarea? (trigger, area of effect object, etc..)
         //  This function will tell you if the creature has triggered an onEnter event,
         //  not if it is physically within the space of the subarea
-        public static int GetIsInSubArea(NWN.Object oCreature, NWN.Object oSubArea = null)
+        public static int GetIsInSubArea(Object oCreature, Object oSubArea = null)
         {
-            NWN.Internal.StackPushObject(oSubArea, false);
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(768);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oSubArea, false);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(768);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the Cost Table number of the item property. See the 2DA files for value definitions.
-        public static int GetItemPropertyCostTable(NWN.ItemProperty iProp)
+        public static int GetItemPropertyCostTable(ItemProperty iProp)
         {
-            NWN.Internal.StackPushItemProperty(iProp);
-            NWN.Internal.CallBuiltIn(769);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushItemProperty(iProp);
+            Internal.CallBuiltIn(769);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the Cost Table value (index of the cost table) of the item property.
         //  See the 2DA files for value definitions.
-        public static int GetItemPropertyCostTableValue(NWN.ItemProperty iProp)
+        public static int GetItemPropertyCostTableValue(ItemProperty iProp)
         {
-            NWN.Internal.StackPushItemProperty(iProp);
-            NWN.Internal.CallBuiltIn(770);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushItemProperty(iProp);
+            Internal.CallBuiltIn(770);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the Param1 number of the item property. See the 2DA files for value definitions.
-        public static int GetItemPropertyParam1(NWN.ItemProperty iProp)
+        public static int GetItemPropertyParam1(ItemProperty iProp)
         {
-            NWN.Internal.StackPushItemProperty(iProp);
-            NWN.Internal.CallBuiltIn(771);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushItemProperty(iProp);
+            Internal.CallBuiltIn(771);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the Param1 value of the item property. See the 2DA files for value definitions.
-        public static int GetItemPropertyParam1Value(NWN.ItemProperty iProp)
+        public static int GetItemPropertyParam1Value(ItemProperty iProp)
         {
-            NWN.Internal.StackPushItemProperty(iProp);
-            NWN.Internal.CallBuiltIn(772);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushItemProperty(iProp);
+            Internal.CallBuiltIn(772);
+            return Internal.StackPopInteger();
         }
 
         //  Is this creature able to be disarmed? (checks disarm flag on creature, and if
         //  the creature actually has a weapon equipped in their right hand that is droppable)
-        public static int GetIsCreatureDisarmable(NWN.Object oCreature)
+        public static int GetIsCreatureDisarmable(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(773);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(773);
+            return Internal.StackPopInteger();
         }
 
         //  Sets whether this item is 'stolen' or not
-        public static void SetStolenFlag(NWN.Object oItem, int nStolenFlag)
+        public static void SetStolenFlag(Object oItem, int nStolenFlag)
         {
-            NWN.Internal.StackPushInteger(nStolenFlag);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(774);
+            Internal.StackPushInteger(nStolenFlag);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(774);
         }
 
         //  Instantly gives this creature the benefits of a rest (restored hitpoints, spells, feats, etc..)
-        public static void ForceRest(NWN.Object oCreature)
+        public static void ForceRest(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(775);
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(775);
         }
 
         //  Forces this player's camera to be set to this height. Setting this value to zero will
         //  restore the camera to the racial default height.
-        public static void SetCameraHeight(NWN.Object oPlayer, float fHeight = 0.0f)
+        public static void SetCameraHeight(Object oPlayer, float fHeight = 0.0f)
         {
-            NWN.Internal.StackPushFloat(fHeight);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(776);
+            Internal.StackPushFloat(fHeight);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(776);
         }
 
         //  Changes the sky that is displayed in the specified area.
         //  nSkyBox = SKYBOX_* constants (associated with skyboxes.2da)
         //  If no valid area (or object) is specified, it uses the area of caller.
         //  If an object other than an area is specified, will use the area that the object is currently in.
-        public static void SetSkyBox(int nSkyBox, NWN.Object oArea = null)
+        public static void SetSkyBox(int nSkyBox, Object oArea = null)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.StackPushInteger(nSkyBox);
-            NWN.Internal.CallBuiltIn(777);
+            Internal.StackPushObject(oArea, false);
+            Internal.StackPushInteger(nSkyBox);
+            Internal.CallBuiltIn(777);
         }
 
         //  Returns the creature's currently set PhenoType (body type).
-        public static int GetPhenoType(NWN.Object oCreature)
+        public static int GetPhenoType(Object oCreature)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(778);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(778);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the creature's PhenoType (body type) to the type specified.
@@ -14127,11 +14128,11 @@
         //  custom PhenoType in your custom content.
         //  SetPhenoType will only work on part based creature (i.e. the starting
         //  default playable races).
-        public static void SetPhenoType(int nPhenoType, NWN.Object oCreature = null)
+        public static void SetPhenoType(int nPhenoType, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nPhenoType);
-            NWN.Internal.CallBuiltIn(779);
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nPhenoType);
+            Internal.CallBuiltIn(779);
         }
 
         //  Sets the fog color in the area specified.
@@ -14145,23 +14146,23 @@
         //  DD would represent the amount of blue in the color.
         //  If no valid area (or object) is specified, it uses the area of caller.
         //  If an object other than an area is specified, will use the area that the object is currently in.
-        public static void SetFogColor(int nFogType, int nFogColor, NWN.Object oArea = null)
+        public static void SetFogColor(int nFogType, int nFogColor, Object oArea = null)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.StackPushInteger(nFogColor);
-            NWN.Internal.StackPushInteger(nFogType);
-            NWN.Internal.CallBuiltIn(780);
+            Internal.StackPushObject(oArea, false);
+            Internal.StackPushInteger(nFogColor);
+            Internal.StackPushInteger(nFogType);
+            Internal.CallBuiltIn(780);
         }
 
         //  Gets the current cutscene state of the player specified by oCreature.
         //  Returns TRUE if the player is in cutscene mode.
         //  Returns FALSE if the player is not in cutscene mode, or on an error
         //  (such as specifying a non creature object).
-        public static int GetCutsceneMode(NWN.Object oCreature = null)
+        public static int GetCutsceneMode(Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(781);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(781);
+            return Internal.StackPopInteger();
         }
 
         //  Gets the skybox that is currently displayed in the specified area.
@@ -14169,11 +14170,11 @@
         //      SKYBOX_* constant
         //  If no valid area (or object) is specified, it uses the area of caller.
         //  If an object other than an area is specified, will use the area that the object is currently in.
-        public static int GetSkyBox(NWN.Object oArea = null)
+        public static int GetSkyBox(Object oArea = null)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(782);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(782);
+            return Internal.StackPopInteger();
         }
 
         //  Gets the fog color in the area specified.
@@ -14181,12 +14182,12 @@
         //     Valid values for nFogType are FOG_TYPE_SUN or FOG_TYPE_MOON.
         //  If no valid area (or object) is specified, it uses the area of caller.
         //  If an object other than an area is specified, will use the area that the object is currently in.
-        public static int GetFogColor(int nFogType, NWN.Object oArea = null)
+        public static int GetFogColor(int nFogType, Object oArea = null)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.StackPushInteger(nFogType);
-            NWN.Internal.CallBuiltIn(783);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.StackPushInteger(nFogType);
+            Internal.CallBuiltIn(783);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the fog amount in the area specified.
@@ -14194,12 +14195,12 @@
         //  nFogAmount = specifies the density that the fog is being set to.
         //  If no valid area (or object) is specified, it uses the area of caller.
         //  If an object other than an area is specified, will use the area that the object is currently in.
-        public static void SetFogAmount(int nFogType, int nFogAmount, NWN.Object oArea = null)
+        public static void SetFogAmount(int nFogType, int nFogAmount, Object oArea = null)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.StackPushInteger(nFogAmount);
-            NWN.Internal.StackPushInteger(nFogType);
-            NWN.Internal.CallBuiltIn(784);
+            Internal.StackPushObject(oArea, false);
+            Internal.StackPushInteger(nFogAmount);
+            Internal.StackPushInteger(nFogType);
+            Internal.CallBuiltIn(784);
         }
 
         //  Gets the fog amount in the area specified.
@@ -14207,30 +14208,30 @@
         //     Valid values for nFogType are FOG_TYPE_SUN or FOG_TYPE_MOON.
         //  If no valid area (or object) is specified, it uses the area of caller.
         //  If an object other than an area is specified, will use the area that the object is currently in.
-        public static int GetFogAmount(int nFogType, NWN.Object oArea = null)
+        public static int GetFogAmount(int nFogType, Object oArea = null)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.StackPushInteger(nFogType);
-            NWN.Internal.CallBuiltIn(785);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.StackPushInteger(nFogType);
+            Internal.CallBuiltIn(785);
+            return Internal.StackPopInteger();
         }
 
         //  returns TRUE if the item CAN be pickpocketed
-        public static int GetPickpocketableFlag(NWN.Object oItem)
+        public static int GetPickpocketableFlag(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(786);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(786);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the Pickpocketable flag on an item
         //  - oItem: the item to change
         //  - bPickpocketable: TRUE or FALSE, whether the item can be pickpocketed.
-        public static void SetPickpocketableFlag(NWN.Object oItem, int bPickpocketable)
+        public static void SetPickpocketableFlag(Object oItem, int bPickpocketable)
         {
-            NWN.Internal.StackPushInteger(bPickpocketable);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(787);
+            Internal.StackPushInteger(bPickpocketable);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(787);
         }
 
         //  returns the footstep type of the creature specified.
@@ -14238,11 +14239,11 @@
         //  like when ever they take a step.
         //  returns FOOTSTEP_TYPE_INVALID if used on a non-creature object, or if
         //  used on creature that has no footstep sounds by default (e.g. Will-O'-Wisp).
-        public static int GetFootstepType(NWN.Object oCreature = null)
+        public static int GetFootstepType(Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(788);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(788);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the footstep type of the creature specified.
@@ -14267,11 +14268,11 @@
         //       FOOTSTEP_TYPE_DEFAULT - Makes the creature use its original default footstep sounds.
         //       FOOTSTEP_TYPE_NONE
         //  - oCreature: the creature to change the footstep sound for.
-        public static void SetFootstepType(int nFootstepType, NWN.Object oCreature = null)
+        public static void SetFootstepType(int nFootstepType, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nFootstepType);
-            NWN.Internal.CallBuiltIn(789);
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nFootstepType);
+            Internal.CallBuiltIn(789);
         }
 
         //  returns the Wing type of the creature specified.
@@ -14285,11 +14286,11 @@
         //  returns CREATURE_WING_TYPE_NONE if used on a non-creature object,
         //  if the creature has no wings, or if the creature can not have its
         //  wing type changed in the toolset.
-        public static int GetCreatureWingType(NWN.Object oCreature = null)
+        public static int GetCreatureWingType(Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(790);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(790);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the Wing type of the creature specified.
@@ -14305,11 +14306,11 @@
         //  Note: Only two creature model types will support wings. 
         //  The MODELTYPE for the part based (playable races) 'P' 
         //  and MODELTYPE 'W'in the appearance.2da
-        public static void SetCreatureWingType(int nWingType, NWN.Object oCreature = null)
+        public static void SetCreatureWingType(int nWingType, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nWingType);
-            NWN.Internal.CallBuiltIn(791);
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nWingType);
+            Internal.CallBuiltIn(791);
         }
 
         //  returns the model number being used for the body part and creature specified
@@ -14343,12 +14344,12 @@
         //       CREATURE_PART_RIGHT_HAND
         //       CREATURE_PART_LEFT_HAND
         //       CREATURE_PART_HEAD
-        public static int GetCreatureBodyPart(int nPart, NWN.Object oCreature = null)
+        public static int GetCreatureBodyPart(int nPart, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nPart);
-            NWN.Internal.CallBuiltIn(792);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nPart);
+            Internal.CallBuiltIn(792);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the body part model to be used on the creature specified.
@@ -14383,12 +14384,12 @@
         //  - oCreature: the creature to change the body part for.
         //  Note: Only part based creature appearance types are supported. 
         //  i.e. The model types for the playable races ('P') in the appearance.2da
-        public static void SetCreatureBodyPart(int nPart, int nModelNumber, NWN.Object oCreature = null)
+        public static void SetCreatureBodyPart(int nPart, int nModelNumber, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nModelNumber);
-            NWN.Internal.StackPushInteger(nPart);
-            NWN.Internal.CallBuiltIn(793);
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nModelNumber);
+            Internal.StackPushInteger(nPart);
+            Internal.CallBuiltIn(793);
         }
 
         //  returns the Tail type of the creature specified.
@@ -14399,11 +14400,11 @@
         //  returns CREATURE_TAIL_TYPE_NONE if used on a non-creature object,
         //  if the creature has no Tail, or if the creature can not have its
         //  Tail type changed in the toolset.
-        public static int GetCreatureTailType(NWN.Object oCreature = null)
+        public static int GetCreatureTailType(Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.CallBuiltIn(794);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oCreature, false);
+            Internal.CallBuiltIn(794);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the Tail type of the creature specified.
@@ -14416,22 +14417,22 @@
         //  Note: Only two creature model types will support Tails. 
         //  The MODELTYPE for the part based (playable) races 'P' 
         //  and MODELTYPE 'T'in the appearance.2da
-        public static void SetCreatureTailType(int nTailType, NWN.Object oCreature = null)
+        public static void SetCreatureTailType(int nTailType, Object oCreature = null)
         {
-            NWN.Internal.StackPushObject(oCreature, false);
-            NWN.Internal.StackPushInteger(nTailType);
-            NWN.Internal.CallBuiltIn(795);
+            Internal.StackPushObject(oCreature, false);
+            Internal.StackPushInteger(nTailType);
+            Internal.CallBuiltIn(795);
         }
 
         //  returns the Hardness of a Door or Placeable object.
         //  - oObject: a door or placeable object.
         //  returns -1 on an error or if used on an object that is
         //  neither a door nor a placeable object.
-        public static int GetHardness(NWN.Object oObject = null)
+        public static int GetHardness(Object oObject = null)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(796);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(796);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the Hardness of a Door or Placeable object.
@@ -14439,11 +14440,11 @@
         //  - oObject: a door or placeable object.
         //  Does nothing if used on an object that is neither
         //  a door nor a placeable.
-        public static void SetHardness(int nHardness, NWN.Object oObject = null)
+        public static void SetHardness(int nHardness, Object oObject = null)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.StackPushInteger(nHardness);
-            NWN.Internal.CallBuiltIn(797);
+            Internal.StackPushObject(oObject, false);
+            Internal.StackPushInteger(nHardness);
+            Internal.CallBuiltIn(797);
         }
 
         //  When set the object can not be opened unless the
@@ -14452,11 +14453,11 @@
         //  the SetLockKeyTag() scripting command.
         //  - oObject: a door, or placeable.
         //  - nKeyRequired: TRUE/FALSE
-        public static void SetLockKeyRequired(NWN.Object oObject, int nKeyRequired = TRUE)
+        public static void SetLockKeyRequired(Object oObject, int nKeyRequired = TRUE)
         {
-            NWN.Internal.StackPushInteger(nKeyRequired);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(798);
+            Internal.StackPushInteger(nKeyRequired);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(798);
         }
 
         //  Set the key tag required to open object oObject.
@@ -14465,51 +14466,51 @@
         //  or by using the scripting command SetLockKeyRequired().
         //  - oObject: a door, placeable or trigger.
         //  - sNewKeyTag: the key tag required to open the locked object.
-        public static void SetLockKeyTag(NWN.Object oObject, string sNewKeyTag)
+        public static void SetLockKeyTag(Object oObject, string sNewKeyTag)
         {
-            NWN.Internal.StackPushString(sNewKeyTag);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(799);
+            Internal.StackPushString(sNewKeyTag);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(799);
         }
 
         //  Sets whether or not the object can be locked.
         //  - oObject: a door or placeable.
         //  - nLockable: TRUE/FALSE
-        public static void SetLockLockable(NWN.Object oObject, int nLockable = TRUE)
+        public static void SetLockLockable(Object oObject, int nLockable = TRUE)
         {
-            NWN.Internal.StackPushInteger(nLockable);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(800);
+            Internal.StackPushInteger(nLockable);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(800);
         }
 
         //  Sets the DC for unlocking the object.
         //  - oObject: a door or placeable object.
         //  - nNewUnlockDC: must be between 0 and 250.
-        public static void SetLockUnlockDC(NWN.Object oObject, int nNewUnlockDC)
+        public static void SetLockUnlockDC(Object oObject, int nNewUnlockDC)
         {
-            NWN.Internal.StackPushInteger(nNewUnlockDC);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(801);
+            Internal.StackPushInteger(nNewUnlockDC);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(801);
         }
 
         //  Sets the DC for locking the object.
         //  - oObject: a door or placeable object.
         //  - nNewLockDC: must be between 0 and 250.
-        public static void SetLockLockDC(NWN.Object oObject, int nNewLockDC)
+        public static void SetLockLockDC(Object oObject, int nNewLockDC)
         {
-            NWN.Internal.StackPushInteger(nNewLockDC);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(802);
+            Internal.StackPushInteger(nNewLockDC);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(802);
         }
 
         //  Sets whether or not the trapped object can be disarmed.
         //  - oTrapObject: a placeable, door or trigger
         //  - nDisarmable: TRUE/FALSE
-        public static void SetTrapDisarmable(NWN.Object oTrapObject, int nDisarmable = TRUE)
+        public static void SetTrapDisarmable(Object oTrapObject, int nDisarmable = TRUE)
         {
-            NWN.Internal.StackPushInteger(nDisarmable);
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(803);
+            Internal.StackPushInteger(nDisarmable);
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(803);
         }
 
         //  Sets whether or not the trapped object can be detected.
@@ -14517,51 +14518,51 @@
         //  - nDetectable: TRUE/FALSE
         //  Note: Setting a trapped object to not be detectable will
         //  not make the trap disappear if it has already been detected.
-        public static void SetTrapDetectable(NWN.Object oTrapObject, int nDetectable = TRUE)
+        public static void SetTrapDetectable(Object oTrapObject, int nDetectable = TRUE)
         {
-            NWN.Internal.StackPushInteger(nDetectable);
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(804);
+            Internal.StackPushInteger(nDetectable);
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(804);
         }
 
         //  Sets whether or not the trap is a one-shot trap
         //  (i.e. whether or not the trap resets itself after firing).
         //  - oTrapObject: a placeable, door or trigger
         //  - nOneShot: TRUE/FALSE
-        public static void SetTrapOneShot(NWN.Object oTrapObject, int nOneShot = TRUE)
+        public static void SetTrapOneShot(Object oTrapObject, int nOneShot = TRUE)
         {
-            NWN.Internal.StackPushInteger(nOneShot);
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(805);
+            Internal.StackPushInteger(nOneShot);
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(805);
         }
 
         //  Set the tag of the key that will disarm oTrapObject.
         //  - oTrapObject: a placeable, door or trigger
-        public static void SetTrapKeyTag(NWN.Object oTrapObject, string sKeyTag)
+        public static void SetTrapKeyTag(Object oTrapObject, string sKeyTag)
         {
-            NWN.Internal.StackPushString(sKeyTag);
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(806);
+            Internal.StackPushString(sKeyTag);
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(806);
         }
 
         //  Set the DC for disarming oTrapObject.
         //  - oTrapObject: a placeable, door or trigger
         //  - nDisarmDC: must be between 0 and 250.
-        public static void SetTrapDisarmDC(NWN.Object oTrapObject, int nDisarmDC)
+        public static void SetTrapDisarmDC(Object oTrapObject, int nDisarmDC)
         {
-            NWN.Internal.StackPushInteger(nDisarmDC);
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(807);
+            Internal.StackPushInteger(nDisarmDC);
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(807);
         }
 
         //  Set the DC for detecting oTrapObject.
         //  - oTrapObject: a placeable, door or trigger
         //  - nDetectDC: must be between 0 and 250.
-        public static void SetTrapDetectDC(NWN.Object oTrapObject, int nDetectDC)
+        public static void SetTrapDetectDC(Object oTrapObject, int nDetectDC)
         {
-            NWN.Internal.StackPushInteger(nDetectDC);
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(808);
+            Internal.StackPushInteger(nDetectDC);
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(808);
         }
 
         //  Creates a square Trap object.
@@ -14577,17 +14578,17 @@
         //                            If "" the default OnTrapTriggered script for the trap
         //                            type specified will fire instead (as specified in the
         //                            traps.2da).
-        public static NWN.Object CreateTrapAtLocation(int nTrapType, NWN.Location lLocation, float fSize = 2.0f, string sTag = "", int nFaction = STANDARD_FACTION_HOSTILE, string sOnDisarmScript = "", string sOnTrapTriggeredScript = "")
+        public static Object CreateTrapAtLocation(int nTrapType, Location lLocation, float fSize = 2.0f, string sTag = "", int nFaction = STANDARD_FACTION_HOSTILE, string sOnDisarmScript = "", string sOnTrapTriggeredScript = "")
         {
-            NWN.Internal.StackPushString(sOnTrapTriggeredScript);
-            NWN.Internal.StackPushString(sOnDisarmScript);
-            NWN.Internal.StackPushInteger(nFaction);
-            NWN.Internal.StackPushString(sTag);
-            NWN.Internal.StackPushFloat(fSize);
-            NWN.Internal.StackPushLocation(lLocation);
-            NWN.Internal.StackPushInteger(nTrapType);
-            NWN.Internal.CallBuiltIn(809);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushString(sOnTrapTriggeredScript);
+            Internal.StackPushString(sOnDisarmScript);
+            Internal.StackPushInteger(nFaction);
+            Internal.StackPushString(sTag);
+            Internal.StackPushFloat(fSize);
+            Internal.StackPushLocation(lLocation);
+            Internal.StackPushInteger(nTrapType);
+            Internal.CallBuiltIn(809);
+            return Internal.StackPopObject();
         }
 
         //  Creates a Trap on the object specified.
@@ -14604,44 +14605,44 @@
         //  Note: After creating a trap on an object, you can change the trap's properties
         //        using the various SetTrap* scripting commands by passing in the object
         //        that the trap was created on (i.e. oObject) to any subsequent SetTrap* commands.
-        public static void CreateTrapOnObject(int nTrapType, NWN.Object oObject, int nFaction = STANDARD_FACTION_HOSTILE, string sOnDisarmScript = "", string sOnTrapTriggeredScript = "")
+        public static void CreateTrapOnObject(int nTrapType, Object oObject, int nFaction = STANDARD_FACTION_HOSTILE, string sOnDisarmScript = "", string sOnTrapTriggeredScript = "")
         {
-            NWN.Internal.StackPushString(sOnTrapTriggeredScript);
-            NWN.Internal.StackPushString(sOnDisarmScript);
-            NWN.Internal.StackPushInteger(nFaction);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.StackPushInteger(nTrapType);
-            NWN.Internal.CallBuiltIn(810);
+            Internal.StackPushString(sOnTrapTriggeredScript);
+            Internal.StackPushString(sOnDisarmScript);
+            Internal.StackPushInteger(nFaction);
+            Internal.StackPushObject(oObject, false);
+            Internal.StackPushInteger(nTrapType);
+            Internal.CallBuiltIn(810);
         }
 
         //  Set the Will saving throw value of the Door or Placeable object oObject.
         //  - oObject: a door or placeable object.
         //  - nWillSave: must be between 0 and 250.
-        public static void SetWillSavingThrow(NWN.Object oObject, int nWillSave)
+        public static void SetWillSavingThrow(Object oObject, int nWillSave)
         {
-            NWN.Internal.StackPushInteger(nWillSave);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(811);
+            Internal.StackPushInteger(nWillSave);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(811);
         }
 
         //  Set the Reflex saving throw value of the Door or Placeable object oObject.
         //  - oObject: a door or placeable object.
         //  - nReflexSave: must be between 0 and 250.
-        public static void SetReflexSavingThrow(NWN.Object oObject, int nReflexSave)
+        public static void SetReflexSavingThrow(Object oObject, int nReflexSave)
         {
-            NWN.Internal.StackPushInteger(nReflexSave);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(812);
+            Internal.StackPushInteger(nReflexSave);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(812);
         }
 
         //  Set the Fortitude saving throw value of the Door or Placeable object oObject.
         //  - oObject: a door or placeable object.
         //  - nFortitudeSave: must be between 0 and 250.
-        public static void SetFortitudeSavingThrow(NWN.Object oObject, int nFortitudeSave)
+        public static void SetFortitudeSavingThrow(Object oObject, int nFortitudeSave)
         {
-            NWN.Internal.StackPushInteger(nFortitudeSave);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(813);
+            Internal.StackPushInteger(nFortitudeSave);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(813);
         }
 
         //  returns the resref (TILESET_RESREF_*) of the tileset used to create area oArea.
@@ -14664,54 +14665,54 @@
         //       TILESET_RESREF_SEWERS
         //       TILESET_RESREF_UNDERDARK
         //  * returns an empty string on an error.
-        public static string GetTilesetResRef(NWN.Object oArea)
+        public static string GetTilesetResRef(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(814);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(814);
+            return Internal.StackPopString();
         }
 
         //  - oTrapObject: a placeable, door or trigger
         //  * Returns TRUE if oTrapObject can be recovered.
-        public static int GetTrapRecoverable(NWN.Object oTrapObject)
+        public static int GetTrapRecoverable(Object oTrapObject)
         {
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(815);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(815);
+            return Internal.StackPopInteger();
         }
 
         //  Sets whether or not the trapped object can be recovered.
         //  - oTrapObject: a placeable, door or trigger
-        public static void SetTrapRecoverable(NWN.Object oTrapObject, int nRecoverable = TRUE)
+        public static void SetTrapRecoverable(Object oTrapObject, int nRecoverable = TRUE)
         {
-            NWN.Internal.StackPushInteger(nRecoverable);
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(816);
+            Internal.StackPushInteger(nRecoverable);
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(816);
         }
 
         //  Get the XP scale being used for the module.
         public static int GetModuleXPScale()
         {
-            NWN.Internal.CallBuiltIn(817);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(817);
+            return Internal.StackPopInteger();
         }
 
         //  Set the XP scale used by the module.
         //  - nXPScale: The XP scale to be used. Must be between 0 and 200.
         public static void SetModuleXPScale(int nXPScale)
         {
-            NWN.Internal.StackPushInteger(nXPScale);
-            NWN.Internal.CallBuiltIn(818);
+            Internal.StackPushInteger(nXPScale);
+            Internal.CallBuiltIn(818);
         }
 
         //  Get the feedback message that will be displayed when trying to unlock the object oObject.
         //  - oObject: a door or placeable.
         //  Returns an empty string "" on an error or if the game's default feedback message is being used
-        public static string GetKeyRequiredFeedback(NWN.Object oObject)
+        public static string GetKeyRequiredFeedback(Object oObject)
         {
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(819);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(819);
+            return Internal.StackPopString();
         }
 
         //  Set the feedback message that is displayed when trying to unlock the object oObject.
@@ -14721,20 +14722,20 @@
         //  - oObject: a door or placeable.
         //  - sFeedbackMessage: the string to be displayed in the player's text window.
         //                      to use the game's default message, set sFeedbackMessage to ""
-        public static void SetKeyRequiredFeedback(NWN.Object oObject, string sFeedbackMessage)
+        public static void SetKeyRequiredFeedback(Object oObject, string sFeedbackMessage)
         {
-            NWN.Internal.StackPushString(sFeedbackMessage);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(820);
+            Internal.StackPushString(sFeedbackMessage);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(820);
         }
 
         //  - oTrapObject: a placeable, door or trigger
         //  * Returns TRUE if oTrapObject is active
-        public static int GetTrapActive(NWN.Object oTrapObject)
+        public static int GetTrapActive(Object oTrapObject)
         {
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(821);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(821);
+            return Internal.StackPopInteger();
         }
 
         //  Sets whether or not the trap is an active trap
@@ -14745,11 +14746,11 @@
         //  trap disappear if it has already been detected.
         //  Call SetTrapDetectedBy() to make a detected trap disappear.
         //  To make an inactive trap not detectable call SetTrapDetectable()
-        public static void SetTrapActive(NWN.Object oTrapObject, int nActive = TRUE)
+        public static void SetTrapActive(Object oTrapObject, int nActive = TRUE)
         {
-            NWN.Internal.StackPushInteger(nActive);
-            NWN.Internal.StackPushObject(oTrapObject, false);
-            NWN.Internal.CallBuiltIn(822);
+            Internal.StackPushInteger(nActive);
+            Internal.StackPushObject(oTrapObject, false);
+            Internal.CallBuiltIn(822);
         }
 
         //  Locks the player's camera pitch to its current pitch setting,
@@ -14757,11 +14758,11 @@
         //  Stops the player from tilting their camera angle. 
         //  - oPlayer: A player object.
         //  - bLocked: TRUE/FALSE.
-        public static void LockCameraPitch(NWN.Object oPlayer, int bLocked = TRUE)
+        public static void LockCameraPitch(Object oPlayer, int bLocked = TRUE)
         {
-            NWN.Internal.StackPushInteger(bLocked);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(823);
+            Internal.StackPushInteger(bLocked);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(823);
         }
 
         //  Locks the player's camera distance to its current distance setting,
@@ -14769,11 +14770,11 @@
         //  Stops the player from being able to zoom in/out the camera.
         //  - oPlayer: A player object.
         //  - bLocked: TRUE/FALSE.
-        public static void LockCameraDistance(NWN.Object oPlayer, int bLocked = TRUE)
+        public static void LockCameraDistance(Object oPlayer, int bLocked = TRUE)
         {
-            NWN.Internal.StackPushInteger(bLocked);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(824);
+            Internal.StackPushInteger(bLocked);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(824);
         }
 
         //  Locks the player's camera direction to its current direction,
@@ -14782,21 +14783,21 @@
         //  Stops the player from being able to rotate the camera direction.
         //  - oPlayer: A player object.
         //  - bLocked: TRUE/FALSE.
-        public static void LockCameraDirection(NWN.Object oPlayer, int bLocked = TRUE)
+        public static void LockCameraDirection(Object oPlayer, int bLocked = TRUE)
         {
-            NWN.Internal.StackPushInteger(bLocked);
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(825);
+            Internal.StackPushInteger(bLocked);
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(825);
         }
 
         //  Get the last object that default clicked (left clicked) on the placeable object
         //  that is calling this function.
         //  Should only be called from a placeables OnClick event.
         //  * Returns OBJECT_INVALID if it is called by something other than a placeable.
-        public static NWN.Object GetPlaceableLastClickedBy()
+        public static Object GetPlaceableLastClickedBy()
         {
-            NWN.Internal.CallBuiltIn(826);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(826);
+            return Internal.StackPopObject();
         }
 
         //  returns TRUE if the item is flagged as infinite.
@@ -14804,11 +14805,11 @@
         //  The infinite property affects the buying/selling behavior of the item in a store.
         //  An infinite item will still be available to purchase from a store after a player
         //  buys the item (non-infinite items will disappear from the store when purchased).
-        public static int GetInfiniteFlag(NWN.Object oItem)
+        public static int GetInfiniteFlag(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(827);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(827);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the Infinite flag on an item
@@ -14817,11 +14818,11 @@
         //  The infinite property affects the buying/selling behavior of the item in a store.
         //  An infinite item will still be available to purchase from a store after a player
         //  buys the item (non-infinite items will disappear from the store when purchased).
-        public static void SetInfiniteFlag(NWN.Object oItem, int bInfinite = TRUE)
+        public static void SetInfiniteFlag(Object oItem, int bInfinite = TRUE)
         {
-            NWN.Internal.StackPushInteger(bInfinite);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(828);
+            Internal.StackPushInteger(bInfinite);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(828);
         }
 
         //  Gets the size of the area.
@@ -14832,12 +14833,12 @@
         //  Returns: The number of tiles that the area is wide/high, or zero on an error.
         //  If no valid area (or object) is specified, it uses the area of the caller.
         //  If an object other than an area is specified, will use the area that the object is currently in.
-        public static int GetAreaSize(int nAreaDimension, NWN.Object oArea = null)
+        public static int GetAreaSize(int nAreaDimension, Object oArea = null)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.StackPushInteger(nAreaDimension);
-            NWN.Internal.CallBuiltIn(829);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.StackPushInteger(nAreaDimension);
+            Internal.CallBuiltIn(829);
+            return Internal.StackPopInteger();
         }
 
         //  Set the name of oObject.
@@ -14847,11 +14848,11 @@
         //        Setting an object's name to "" will make the object
         //        revert to using the name it had originally before any
         //        SetName() calls were made on the object.
-        public static void SetName(NWN.Object oObject, string sNewName = "")
+        public static void SetName(Object oObject, string sNewName = "")
         {
-            NWN.Internal.StackPushString(sNewName);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(830);
+            Internal.StackPushString(sNewName);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(830);
         }
 
         //  Get the PortraitId of oTarget.
@@ -14862,11 +14863,11 @@
         //           If a custom portrait is being used, oTarget is a player object,
         //           or on an error returns PORTRAIT_INVALID. In these instances
         //           try using GetPortraitResRef() instead.
-        public static int GetPortraitId(NWN.Object oTarget = null)
+        public static int GetPortraitId(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(831);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(831);
+            return Internal.StackPopInteger();
         }
 
         //  Change the portrait of oTarget to use the Portrait Id specified.
@@ -14876,22 +14877,22 @@
         //  Note: Not all portrait Ids are suitable for use with all object types.
         //        Setting the portrait Id will also cause the portrait ResRef
         //        to be set to the appropriate portrait ResRef for the Id specified.
-        public static void SetPortraitId(NWN.Object oTarget, int nPortraitId)
+        public static void SetPortraitId(Object oTarget, int nPortraitId)
         {
-            NWN.Internal.StackPushInteger(nPortraitId);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(832);
+            Internal.StackPushInteger(nPortraitId);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(832);
         }
 
         //  Get the Portrait ResRef of oTarget.
         //  - oTarget: the object for which you are getting the portrait ResRef.
         //  Returns: The Portrait ResRef being used for the object oTarget.
         //           The Portrait ResRef will not include a trailing size letter.
-        public static string GetPortraitResRef(NWN.Object oTarget = null)
+        public static string GetPortraitResRef(Object oTarget = null)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(833);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(833);
+            return Internal.StackPopString();
         }
 
         //  Change the portrait of oTarget to use the Portrait ResRef specified.
@@ -14901,20 +14902,20 @@
         //  Note: Not all portrait ResRefs are suitable for use with all object types.
         //        Setting the portrait ResRef will also cause the portrait Id
         //        to be set to PORTRAIT_INVALID.
-        public static void SetPortraitResRef(NWN.Object oTarget, string sPortraitResRef)
+        public static void SetPortraitResRef(Object oTarget, string sPortraitResRef)
         {
-            NWN.Internal.StackPushString(sPortraitResRef);
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.CallBuiltIn(834);
+            Internal.StackPushString(sPortraitResRef);
+            Internal.StackPushObject(oTarget, false);
+            Internal.CallBuiltIn(834);
         }
 
         //  Set oPlaceable's useable object status.
         //  Note: Only works on non-static placeables.
-        public static void SetUseableFlag(NWN.Object oPlaceable, int nUseableFlag)
+        public static void SetUseableFlag(Object oPlaceable, int nUseableFlag)
         {
-            NWN.Internal.StackPushInteger(nUseableFlag);
-            NWN.Internal.StackPushObject(oPlaceable, false);
-            NWN.Internal.CallBuiltIn(835);
+            Internal.StackPushInteger(nUseableFlag);
+            Internal.StackPushObject(oPlaceable, false);
+            Internal.CallBuiltIn(835);
         }
 
         //  Get the description of oObject.
@@ -14925,13 +14926,13 @@
         //  - bIdentified: If oObject is an item, setting this to TRUE will return the identified description,
         //                 setting this to FALSE will return the unidentified description. This flag has no
         //                 effect on objects other than items.
-        public static string GetDescription(NWN.Object oObject, int bOriginalDescription = FALSE, int bIdentifiedDescription = TRUE)
+        public static string GetDescription(Object oObject, int bOriginalDescription = FALSE, int bIdentifiedDescription = TRUE)
         {
-            NWN.Internal.StackPushInteger(bIdentifiedDescription);
-            NWN.Internal.StackPushInteger(bOriginalDescription);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(836);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(bIdentifiedDescription);
+            Internal.StackPushInteger(bOriginalDescription);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(836);
+            return Internal.StackPopString();
         }
 
         //  Set the description of oObject.
@@ -14944,22 +14945,22 @@
         //  Note: Setting an object's description to "" will make the object
         //        revert to using the description it originally had before any
         //        SetDescription() calls were made on the object.
-        public static void SetDescription(NWN.Object oObject, string sNewDescription = "", int bIdentifiedDescription = TRUE)
+        public static void SetDescription(Object oObject, string sNewDescription = "", int bIdentifiedDescription = TRUE)
         {
-            NWN.Internal.StackPushInteger(bIdentifiedDescription);
-            NWN.Internal.StackPushString(sNewDescription);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(837);
+            Internal.StackPushInteger(bIdentifiedDescription);
+            Internal.StackPushString(sNewDescription);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(837);
         }
 
         //  Get the PC that sent the last player chat(text) message.
         //  Should only be called from a module's OnPlayerChat event script.
         //  * Returns OBJECT_INVALID on error.
         //  Note: Private tells do not trigger a OnPlayerChat event.
-        public static NWN.Object GetPCChatSpeaker()
+        public static Object GetPCChatSpeaker()
         {
-            NWN.Internal.CallBuiltIn(838);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(838);
+            return Internal.StackPopObject();
         }
 
         //  Get the last player chat(text) message that was sent.
@@ -14968,8 +14969,8 @@
         //  Note: Private tells do not trigger a OnPlayerChat event.
         public static string GetPCChatMessage()
         {
-            NWN.Internal.CallBuiltIn(839);
-            return NWN.Internal.StackPopString();
+            Internal.CallBuiltIn(839);
+            return Internal.StackPopString();
         }
 
         //  Get the volume of the last player chat(text) message that was sent.
@@ -14985,8 +14986,8 @@
         //  Note: Private tells do not trigger a OnPlayerChat event.
         public static int GetPCChatVolume()
         {
-            NWN.Internal.CallBuiltIn(840);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(840);
+            return Internal.StackPopInteger();
         }
 
         //  Set the last player chat(text) message before it gets sent to other players.
@@ -14997,8 +14998,8 @@
         //  Note: The new chat message gets sent after the OnPlayerChat script exits.
         public static void SetPCChatMessage(string sNewChatMessage = "")
         {
-            NWN.Internal.StackPushString(sNewChatMessage);
-            NWN.Internal.CallBuiltIn(841);
+            Internal.StackPushString(sNewChatMessage);
+            Internal.CallBuiltIn(841);
         }
 
         //  Set the last player chat(text) volume before it gets sent to other players.
@@ -15012,8 +15013,8 @@
         //  Note: The new chat message gets sent after the OnPlayerChat script exits.
         public static void SetPCChatVolume(int nTalkVolume = TALKVOLUME_TALK)
         {
-            NWN.Internal.StackPushInteger(nTalkVolume);
-            NWN.Internal.CallBuiltIn(842);
+            Internal.StackPushInteger(nTalkVolume);
+            Internal.CallBuiltIn(842);
         }
 
         //  Get the Color of oObject from the color channel specified.
@@ -15025,12 +15026,12 @@
         //                    COLOR_CHANNEL_TATTOO_1
         //                    COLOR_CHANNEL_TATTOO_2
         //  * Returns -1 on error.
-        public static int GetColor(NWN.Object oObject, int nColorChannel)
+        public static int GetColor(Object oObject, int nColorChannel)
         {
-            NWN.Internal.StackPushInteger(nColorChannel);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(843);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(nColorChannel);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(843);
+            return Internal.StackPopInteger();
         }
 
         //  Set the color channel of oObject to the color specified.
@@ -15042,44 +15043,44 @@
         //                    COLOR_CHANNEL_TATTOO_1
         //                    COLOR_CHANNEL_TATTOO_2
         //  - nColorValue: The color you want to set (0-175).
-        public static void SetColor(NWN.Object oObject, int nColorChannel, int nColorValue)
+        public static void SetColor(Object oObject, int nColorChannel, int nColorValue)
         {
-            NWN.Internal.StackPushInteger(nColorValue);
-            NWN.Internal.StackPushInteger(nColorChannel);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(844);
+            Internal.StackPushInteger(nColorValue);
+            Internal.StackPushInteger(nColorChannel);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(844);
         }
 
         //  Returns Item property Material.  You need to specify the Material Type.
         //  - nMasterialType: The Material Type should be a positive integer between 0 and 77 (see iprp_matcost.2da).
         //  Note: The Material Type property will only affect the cost of the item if you modify the cost in the iprp_matcost.2da.
-        public static NWN.ItemProperty ItemPropertyMaterial(int nMaterialType)
+        public static ItemProperty ItemPropertyMaterial(int nMaterialType)
         {
-            NWN.Internal.StackPushInteger(nMaterialType);
-            NWN.Internal.CallBuiltIn(845);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nMaterialType);
+            Internal.CallBuiltIn(845);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns Item property Quality. You need to specify the Quality.
         //  - nQuality:  The Quality of the item property to create (see iprp_qualcost.2da).
         //               IP_CONST_QUALITY_*
         //  Note: The quality property will only affect the cost of the item if you modify the cost in the iprp_qualcost.2da.
-        public static NWN.ItemProperty ItemPropertyQuality(int nQuality)
+        public static ItemProperty ItemPropertyQuality(int nQuality)
         {
-            NWN.Internal.StackPushInteger(nQuality);
-            NWN.Internal.CallBuiltIn(846);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nQuality);
+            Internal.CallBuiltIn(846);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns a generic Additional Item property. You need to specify the Additional property.
         //  - nProperty: The item property to create (see iprp_addcost.2da).
         //               IP_CONST_ADDITIONAL_*
         //  Note: The additional property only affects the cost of the item if you modify the cost in the iprp_addcost.2da.
-        public static NWN.ItemProperty ItemPropertyAdditional(int nAdditionalProperty)
+        public static ItemProperty ItemPropertyAdditional(int nAdditionalProperty)
         {
-            NWN.Internal.StackPushInteger(nAdditionalProperty);
-            NWN.Internal.CallBuiltIn(847);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushInteger(nAdditionalProperty);
+            Internal.CallBuiltIn(847);
+            return Internal.StackPopItemProperty();
         }
 
         //  Sets a new tag for oObject.
@@ -15088,95 +15089,95 @@
         //  Note: Care needs to be taken with this function.
         //        Changing the tag for creature with waypoints will make them stop walking them.
         //        Changing waypoint, door or trigger tags will break their area transitions.
-        public static void SetTag(NWN.Object oObject, string sNewTag)
+        public static void SetTag(Object oObject, string sNewTag)
         {
-            NWN.Internal.StackPushString(sNewTag);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(848);
+            Internal.StackPushString(sNewTag);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(848);
         }
 
         //  Returns the string tag set for the provided effect.
         //  - If no tag has been set, returns an empty string.
-        public static string GetEffectTag(NWN.Effect eEffect)
+        public static string GetEffectTag(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(849);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(849);
+            return Internal.StackPopString();
         }
 
         //  Tags the effect with the provided string.
         //  - Any other tags in the link will be overwritten.
-        public static NWN.Effect TagEffect(NWN.Effect eEffect, string sNewTag)
+        public static Effect TagEffect(Effect eEffect, string sNewTag)
         {
-            NWN.Internal.StackPushString(sNewTag);
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(850);
-            return NWN.Internal.StackPopEffect();
+            Internal.StackPushString(sNewTag);
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(850);
+            return Internal.StackPopEffect();
         }
 
         //  Returns the caster level of the creature who created the effect.
         //  - If not created by a creature, returns 0.
         //  - If created by a spell-like ability, returns 0.
-        public static int GetEffectCasterLevel(NWN.Effect eEffect)
+        public static int GetEffectCasterLevel(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(851);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(851);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the total duration of the effect in seconds.
         //  - Returns 0 if the duration type of the effect is not DURATION_TYPE_TEMPORARY.
-        public static int GetEffectDuration(NWN.Effect eEffect)
+        public static int GetEffectDuration(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(852);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(852);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the remaining duration of the effect in seconds.
         //  - Returns 0 if the duration type of the effect is not DURATION_TYPE_TEMPORARY.
-        public static int GetEffectDurationRemaining(NWN.Effect eEffect)
+        public static int GetEffectDurationRemaining(Effect eEffect)
         {
-            NWN.Internal.StackPushEffect(eEffect);
-            NWN.Internal.CallBuiltIn(853);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushEffect(eEffect);
+            Internal.CallBuiltIn(853);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the string tag set for the provided item property.
         //  - If no tag has been set, returns an empty string.
-        public static string GetItemPropertyTag(NWN.ItemProperty nProperty)
+        public static string GetItemPropertyTag(ItemProperty nProperty)
         {
-            NWN.Internal.StackPushItemProperty(nProperty);
-            NWN.Internal.CallBuiltIn(854);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushItemProperty(nProperty);
+            Internal.CallBuiltIn(854);
+            return Internal.StackPopString();
         }
 
         //  Tags the item property with the provided string.
         //  - Any tags currently set on the item property will be overwritten.
-        public static NWN.ItemProperty TagItemProperty(NWN.ItemProperty nProperty, string sNewTag)
+        public static ItemProperty TagItemProperty(ItemProperty nProperty, string sNewTag)
         {
-            NWN.Internal.StackPushString(sNewTag);
-            NWN.Internal.StackPushItemProperty(nProperty);
-            NWN.Internal.CallBuiltIn(855);
-            return NWN.Internal.StackPopItemProperty();
+            Internal.StackPushString(sNewTag);
+            Internal.StackPushItemProperty(nProperty);
+            Internal.CallBuiltIn(855);
+            return Internal.StackPopItemProperty();
         }
 
         //  Returns the total duration of the item property in seconds.
         //  - Returns 0 if the duration type of the item property is not DURATION_TYPE_TEMPORARY.
-        public static int GetItemPropertyDuration(NWN.ItemProperty nProperty)
+        public static int GetItemPropertyDuration(ItemProperty nProperty)
         {
-            NWN.Internal.StackPushItemProperty(nProperty);
-            NWN.Internal.CallBuiltIn(856);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushItemProperty(nProperty);
+            Internal.CallBuiltIn(856);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the remaining duration of the item property in seconds.
         //  - Returns 0 if the duration type of the item property is not DURATION_TYPE_TEMPORARY.
-        public static int GetItemPropertyDurationRemaining(NWN.ItemProperty nProperty)
+        public static int GetItemPropertyDurationRemaining(ItemProperty nProperty)
         {
-            NWN.Internal.StackPushItemProperty(nProperty);
-            NWN.Internal.CallBuiltIn(857);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushItemProperty(nProperty);
+            Internal.CallBuiltIn(857);
+            return Internal.StackPopInteger();
         }
 
         //  Instances a new area from the given resref, which needs to be a existing module area.
@@ -15189,13 +15190,13 @@
         //  Note: When spawning a second instance of a existing area, you will have to manually
         //        adjust all transitions (doors, triggers) with the relevant script commands,
         //        or players might end up in the wrong area.
-        public static NWN.Object CreateArea(string sResRef, string sNewTag = "", string sNewName = "")
+        public static Object CreateArea(string sResRef, string sNewTag = "", string sNewName = "")
         {
-            NWN.Internal.StackPushString(sNewName);
-            NWN.Internal.StackPushString(sNewTag);
-            NWN.Internal.StackPushString(sResRef);
-            NWN.Internal.CallBuiltIn(858);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushString(sNewName);
+            Internal.StackPushString(sNewTag);
+            Internal.StackPushString(sResRef);
+            Internal.CallBuiltIn(858);
+            return Internal.StackPopObject();
         }
 
         //  Destroys the given area object and everything in it.
@@ -15205,11 +15206,11 @@
         //    -1: Area contains spawn location and removal would leave module without entrypoint.
         //    -2: Players in area.
         //     1: Area destroyed successfully.
-        public static int DestroyArea(NWN.Object oArea)
+        public static int DestroyArea(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(859);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(859);
+            return Internal.StackPopInteger();
         }
 
         //  Creates a copy of a existing area, including everything inside of it (except players).
@@ -15218,26 +15219,26 @@
         // 
         //  Note: You will have to manually adjust all transitions (doors, triggers) with the
         //        relevant script commands, or players might end up in the wrong area.
-        public static NWN.Object CopyArea(NWN.Object oArea)
+        public static Object CopyArea(Object oArea)
         {
-            NWN.Internal.StackPushObject(oArea, false);
-            NWN.Internal.CallBuiltIn(860);
-            return NWN.Internal.StackPopObject();
+            Internal.StackPushObject(oArea, false);
+            Internal.CallBuiltIn(860);
+            return Internal.StackPopObject();
         }
 
         //  Returns the first area in the module.
-        public static NWN.Object GetFirstArea()
+        public static Object GetFirstArea()
         {
-            NWN.Internal.CallBuiltIn(861);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(861);
+            return Internal.StackPopObject();
         }
 
         //  Returns the next area in the module (after GetFirstArea), or OBJECT_INVALID if no more
         //  areas are loaded.
-        public static NWN.Object GetNextArea()
+        public static Object GetNextArea()
         {
-            NWN.Internal.CallBuiltIn(862);
-            return NWN.Internal.StackPopObject();
+            Internal.CallBuiltIn(862);
+            return Internal.StackPopObject();
         }
 
         //  Sets the transition target for oTransition.
@@ -15253,11 +15254,11 @@
         //  - Transition target objects are cached: The toolset-configured destination tag is
         //    used for a lookup only once, at first use. Thus, attempting to use SetTag() to change the
         //    destination for a transition will not work in a predictable fashion.
-        public static void SetTransitionTarget(NWN.Object oTransition, NWN.Object oTarget)
+        public static void SetTransitionTarget(Object oTransition, Object oTarget)
         {
-            NWN.Internal.StackPushObject(oTarget, false);
-            NWN.Internal.StackPushObject(oTransition, false);
-            NWN.Internal.CallBuiltIn(863);
+            Internal.StackPushObject(oTarget, false);
+            Internal.StackPushObject(oTransition, false);
+            Internal.CallBuiltIn(863);
         }
 
         //  Sets whether the provided item should be hidden when equipped.
@@ -15265,19 +15266,19 @@
         //    can be used equally for any slot which has creature mesh visibility when equipped,
         //    e.g.: armour, helm, cloak, left hand, and right hand.
         //  - nValue should be TRUE or FALSE.
-        public static void SetHiddenWhenEquipped(NWN.Object oItem, int nValue)
+        public static void SetHiddenWhenEquipped(Object oItem, int nValue)
         {
-            NWN.Internal.StackPushInteger(nValue);
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(864);
+            Internal.StackPushInteger(nValue);
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(864);
         }
 
         //  Returns whether the provided item is hidden when equipped.
-        public static int GetHiddenWhenEquipped(NWN.Object oItem)
+        public static int GetHiddenWhenEquipped(Object oItem)
         {
-            NWN.Internal.StackPushObject(oItem, false);
-            NWN.Internal.CallBuiltIn(865);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oItem, false);
+            Internal.CallBuiltIn(865);
+            return Internal.StackPopInteger();
         }
 
         //  Sets if the given creature has explored tile at x, y of the given area.
@@ -15290,15 +15291,15 @@
         //   -1: Area or creature invalid.
         //    0: Tile was not explored before setting newState.
         //    1: Tile was explored before setting newState.
-        public static int SetTileExplored(NWN.Object creature, NWN.Object area, int x, int y, int newState)
+        public static int SetTileExplored(Object creature, Object area, int x, int y, int newState)
         {
-            NWN.Internal.StackPushInteger(newState);
-            NWN.Internal.StackPushInteger(y);
-            NWN.Internal.StackPushInteger(x);
-            NWN.Internal.StackPushObject(area, false);
-            NWN.Internal.StackPushObject(creature, false);
-            NWN.Internal.CallBuiltIn(866);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(newState);
+            Internal.StackPushInteger(y);
+            Internal.StackPushInteger(x);
+            Internal.StackPushObject(area, false);
+            Internal.StackPushObject(creature, false);
+            Internal.CallBuiltIn(866);
+            return Internal.StackPopInteger();
         }
 
         //  Returns whether the given tile at x, y, for the given creature in the stated
@@ -15312,14 +15313,14 @@
         //   -1: Area or creature invalid.
         //    0: Tile is not explored yet.
         //    1: Tile is explored.
-        public static int GetTileExplored(NWN.Object creature, NWN.Object area, int x, int y)
+        public static int GetTileExplored(Object creature, Object area, int x, int y)
         {
-            NWN.Internal.StackPushInteger(y);
-            NWN.Internal.StackPushInteger(x);
-            NWN.Internal.StackPushObject(area, false);
-            NWN.Internal.StackPushObject(creature, false);
-            NWN.Internal.CallBuiltIn(867);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(y);
+            Internal.StackPushInteger(x);
+            Internal.StackPushObject(area, false);
+            Internal.StackPushObject(creature, false);
+            Internal.CallBuiltIn(867);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the creature to auto-explore the map as it walks around.
@@ -15333,168 +15334,168 @@
         //  Valid arguments: TRUE and FALSE.
         //  Does nothing for non-creatures.
         //  Returns the previous state (or -1 if non-creature).
-        public static int SetCreatureExploresMinimap(NWN.Object creature, int newState)
+        public static int SetCreatureExploresMinimap(Object creature, int newState)
         {
-            NWN.Internal.StackPushInteger(newState);
-            NWN.Internal.StackPushObject(creature, false);
-            NWN.Internal.CallBuiltIn(868);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushInteger(newState);
+            Internal.StackPushObject(creature, false);
+            Internal.CallBuiltIn(868);
+            return Internal.StackPopInteger();
         }
 
         //  Returns TRUE if the creature is set to auto-explore the map as it walks around (on by default).
         //  Returns FALSE if creature is not actually a creature.
-        public static int GetCreatureExploresMinimap(NWN.Object creature)
+        public static int GetCreatureExploresMinimap(Object creature)
         {
-            NWN.Internal.StackPushObject(creature, false);
-            NWN.Internal.CallBuiltIn(869);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(creature, false);
+            Internal.CallBuiltIn(869);
+            return Internal.StackPopInteger();
         }
 
         //  Get the surface material at the given location. (This is
         //  equivalent to the walkmesh type).
         //  Returns 0 if the location is invalid or has no surface type.
-        public static int GetSurfaceMaterial(NWN.Location at)
+        public static int GetSurfaceMaterial(Location at)
         {
-            NWN.Internal.StackPushLocation(at);
-            NWN.Internal.CallBuiltIn(870);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushLocation(at);
+            Internal.CallBuiltIn(870);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the z-offset at which the walkmesh is at the given location.
         //  Returns -6.0 for invalid locations.
-        public static float GetGroundHeight(NWN.Location at)
+        public static float GetGroundHeight(Location at)
         {
-            NWN.Internal.StackPushLocation(at);
-            NWN.Internal.CallBuiltIn(871);
-            return NWN.Internal.StackPopFloat();
+            Internal.StackPushLocation(at);
+            Internal.CallBuiltIn(871);
+            return Internal.StackPopFloat();
         }
 
         //  Gets the attack bonus limit.
         //  - The default value is 20.
         public static int GetAttackBonusLimit()
         {
-            NWN.Internal.CallBuiltIn(872);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(872);
+            return Internal.StackPopInteger();
         }
 
         //  Gets the damage bonus limit.
         //  - The default value is 100.
         public static int GetDamageBonusLimit()
         {
-            NWN.Internal.CallBuiltIn(873);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(873);
+            return Internal.StackPopInteger();
         }
 
         //  Gets the saving throw bonus limit.
         //  - The default value is 20.
         public static int GetSavingThrowBonusLimit()
         {
-            NWN.Internal.CallBuiltIn(874);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(874);
+            return Internal.StackPopInteger();
         }
 
         //  Gets the ability bonus limit.
         //  - The default value is 12.
         public static int GetAbilityBonusLimit()
         {
-            NWN.Internal.CallBuiltIn(875);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(875);
+            return Internal.StackPopInteger();
         }
 
         //  Gets the ability penalty limit.
         //  - The default value is 30.
         public static int GetAbilityPenaltyLimit()
         {
-            NWN.Internal.CallBuiltIn(876);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(876);
+            return Internal.StackPopInteger();
         }
 
         //  Gets the skill bonus limit.
         //  - The default value is 50.
         public static int GetSkillBonusLimit()
         {
-            NWN.Internal.CallBuiltIn(877);
-            return NWN.Internal.StackPopInteger();
+            Internal.CallBuiltIn(877);
+            return Internal.StackPopInteger();
         }
 
         //  Sets the attack bonus limit.
         //  - The minimum value is 0.
         public static void SetAttackBonusLimit(int nNewLimit)
         {
-            NWN.Internal.StackPushInteger(nNewLimit);
-            NWN.Internal.CallBuiltIn(878);
+            Internal.StackPushInteger(nNewLimit);
+            Internal.CallBuiltIn(878);
         }
 
         //  Sets the damage bonus limit.
         //  - The minimum value is 0.
         public static void SetDamageBonusLimit(int nNewLimit)
         {
-            NWN.Internal.StackPushInteger(nNewLimit);
-            NWN.Internal.CallBuiltIn(879);
+            Internal.StackPushInteger(nNewLimit);
+            Internal.CallBuiltIn(879);
         }
 
         //  Sets the saving throw bonus limit.
         //  - The minimum value is 0.
         public static void SetSavingThrowBonusLimit(int nNewLimit)
         {
-            NWN.Internal.StackPushInteger(nNewLimit);
-            NWN.Internal.CallBuiltIn(880);
+            Internal.StackPushInteger(nNewLimit);
+            Internal.CallBuiltIn(880);
         }
 
         //  Sets the ability bonus limit.
         //  - The minimum value is 0.
         public static void SetAbilityBonusLimit(int nNewLimit)
         {
-            NWN.Internal.StackPushInteger(nNewLimit);
-            NWN.Internal.CallBuiltIn(881);
+            Internal.StackPushInteger(nNewLimit);
+            Internal.CallBuiltIn(881);
         }
 
         //  Sets the ability penalty limit.
         //  - The minimum value is 0.
         public static void SetAbilityPenaltyLimit(int nNewLimit)
         {
-            NWN.Internal.StackPushInteger(nNewLimit);
-            NWN.Internal.CallBuiltIn(882);
+            Internal.StackPushInteger(nNewLimit);
+            Internal.CallBuiltIn(882);
         }
 
         //  Sets the skill bonus limit.
         //  - The minimum value is 0.
         public static void SetSkillBonusLimit(int nNewLimit)
         {
-            NWN.Internal.StackPushInteger(nNewLimit);
-            NWN.Internal.CallBuiltIn(883);
+            Internal.StackPushInteger(nNewLimit);
+            Internal.CallBuiltIn(883);
         }
 
         //  Get if oPlayer is currently connected over a relay (instead of directly).
         //  Returns FALSE for any other object, including OBJECT_INVALID.
-        public static int GetIsPlayerConnectionRelayed(NWN.Object oPlayer)
+        public static int GetIsPlayerConnectionRelayed(Object oPlayer)
         {
-            NWN.Internal.StackPushObject(oPlayer, false);
-            NWN.Internal.CallBuiltIn(884);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushObject(oPlayer, false);
+            Internal.CallBuiltIn(884);
+            return Internal.StackPopInteger();
         }
 
         //  Returns the event script for the given object and handler.
         //  Will return "" if unset, the object is invalid, or the object cannot
         //  have the requested handler.
-        public static string GetEventScript(NWN.Object oObject, int nHandler)
+        public static string GetEventScript(Object oObject, int nHandler)
         {
-            NWN.Internal.StackPushInteger(nHandler);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(885);
-            return NWN.Internal.StackPopString();
+            Internal.StackPushInteger(nHandler);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(885);
+            return Internal.StackPopString();
         }
 
         //  Sets the given event script for the given object and handler.
         //  Returns 1 on success, 0 on failure.
         //  Will fail if oObject is invalid or does not have the requested handler.
-        public static int SetEventScript(NWN.Object oObject, int nHandler, string sScript)
+        public static int SetEventScript(Object oObject, int nHandler, string sScript)
         {
-            NWN.Internal.StackPushString(sScript);
-            NWN.Internal.StackPushInteger(nHandler);
-            NWN.Internal.StackPushObject(oObject, false);
-            NWN.Internal.CallBuiltIn(886);
-            return NWN.Internal.StackPopInteger();
+            Internal.StackPushString(sScript);
+            Internal.StackPushInteger(nHandler);
+            Internal.StackPushObject(oObject, false);
+            Internal.CallBuiltIn(886);
+            return Internal.StackPopInteger();
         }
 
     }

@@ -1,6 +1,5 @@
 ﻿using Freescape.Game.Server;
-using Freescape.Game.Server.Events.Dialog;
-using Freescape.Game.Server.Events.Feat;
+using Freescape.Game.Server.Event.Feat;
 
 // ReSharper disable once CheckNamespace
 namespace NWN.Scripts
