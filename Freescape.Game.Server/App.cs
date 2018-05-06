@@ -4,6 +4,8 @@ using Autofac;
 using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Event;
+using Freescape.Game.Server.GameObject;
+using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.Helper;
 using Freescape.Game.Server.Service;
 using Freescape.Game.Server.Service.Contracts;
@@ -48,12 +50,23 @@ namespace Freescape.Game.Server
             return _container.ResolveNamed<T>(type.ToString());
         }
 
+        public static T Resolve<T>()
+        {
+            return (T)_container.Resolve(typeof(T));
+        }
+
         private static void BuildIOCContainer()
         {
             var builder = new ContainerBuilder();
 
             // Types
             builder.RegisterType<DataContext>();
+
+            // Game Objects
+            builder.RegisterType<NWObject>().As<INWObject>();
+            builder.RegisterType<NWCreature>().As<INWCreature>();
+            builder.RegisterType<NWItem>().As<INWItem>();
+            builder.RegisterType<NWPlayer>().As<INWPlayer>();
 
             // Services
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();

@@ -449,7 +449,7 @@ namespace Freescape.Game.Server.Helper
             return "<c" + _script.GetSubString(ColorArray, 153, 1) +
                     _script.GetSubString(ColorArray, 255, 1) +
                     _script.GetSubString(ColorArray, 255, 1) + ">" +
-                    _script.GetName(oPC) + "</c>";
+                    _script.GetName(oPC.Object) + "</c>";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -463,7 +463,7 @@ namespace Freescape.Game.Server.Helper
             return "<c" + _script.GetSubString(ColorArray, 204, 1) +
                     _script.GetSubString(ColorArray, 153, 1) +
                     _script.GetSubString(ColorArray, 204, 1) + ">" +
-                    _script.GetName(oNPC) + "</c>";
+                    _script.GetName(oNPC.Object) + "</c>";
         }
 
     }

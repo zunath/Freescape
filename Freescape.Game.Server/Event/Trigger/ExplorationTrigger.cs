@@ -19,7 +19,7 @@ namespace Freescape.Game.Server.Event.Trigger
 
         public bool Run(params object[] args)
         {
-            NWCreature oPC = (NWCreature)_script.GetEnteringObject();
+            NWCreature oPC = NWCreature.Wrap(_script.GetEnteringObject());
             if (!oPC.IsPlayer) return false;
 
             string triggerID = _script.GetLocalString(Object.OBJECT_SELF, "TRIGGER_ID");
@@ -29,13 +29,13 @@ namespace Freescape.Game.Server.Event.Trigger
                 _script.SetLocalString(Object.OBJECT_SELF, "TRIGGER_ID", triggerID);
             }
 
-            if (_script.GetLocalInt(oPC, triggerID) == 1) return false;
+            if (_script.GetLocalInt(oPC.Object, triggerID) == 1) return false;
 
             string message = _script.GetLocalString(Object.OBJECT_SELF, "DISPLAY_TEXT");
-            _script.SendMessageToPC(oPC, _colorToken.Cyan() + message + _colorToken.End());
-            _script.SetLocalInt(oPC, triggerID, 1);
+            _script.SendMessageToPC(oPC.Object, _colorToken.Cyan() + message + _colorToken.End());
+            _script.SetLocalInt(oPC.Object, triggerID, 1);
 
-            _script.AssignCommand(oPC, () => _script.PlaySound("gui_prompt"));
+            _script.AssignCommand(oPC.Object, () => _script.PlaySound("gui_prompt"));
 
             return true;
         }

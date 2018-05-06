@@ -7,7 +7,7 @@ namespace Freescape.Game.Server.Event.Legacy
     {
         public bool Run(params object[] args)
         {
-            NWObject self = (NWObject) Object.OBJECT_SELF;
+            NWObject self = NWObject.Wrap(Object.OBJECT_SELF);
             string script = self.GetLocalString((string) args[0]);
 
             return true;

@@ -21,7 +21,7 @@ namespace Freescape.Game.Server.Event.Dialog
         public bool Run(params object[] args)
         {
             int nodeID = (int)args[0];
-            NWPlayer player = (NWPlayer)_script.GetPCSpeaker();
+            NWPlayer player = NWPlayer.Wrap(_script.GetPCSpeaker());
             PlayerDialog dialog = _dialogService.LoadPlayerDialog(player.GlobalID);
             int selectionNumber = nodeID + 1;
             int responseID = nodeID + (_dialogService.NumberOfResponsesPerPage * dialog.PageOffset);

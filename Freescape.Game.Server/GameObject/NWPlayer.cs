@@ -1,25 +1,34 @@
 ﻿using System;
+using Freescape.Game.Server.GameObject.Contracts;
 using NWN;
 using Object = NWN.Object;
 
 namespace Freescape.Game.Server.GameObject
 {
-    public class NWPlayer: NWCreature
+    public class NWPlayer : NWCreature, INWPlayer
     {
         private readonly INWScript _script;
 
-        private NWPlayer(INWScript script)
+        public NWPlayer(INWScript script)
             : base(script)
         {
             _script = script;
         }
-        
+
+        public new static NWPlayer Wrap(Object @object)
+        {
+            var obj = (NWPlayer)App.Resolve<INWPlayer>();
+            obj.Object = @object;
+
+            return obj;
+        }
+
         public bool IsInitialized
         {
             get
             {
-                NWItem database = _script.GetItemPossessedBy(this, "database") as NWItem;
-                return _script.GetIsObjectValid(database) != 0 && !string.IsNullOrWhiteSpace(GetLocalString("PC_ID_NUMBER"));
+                NWItem database = NWItem.Wrap(_script.GetItemPossessedBy(Object, "database"));
+                return !database.IsValid && !string.IsNullOrWhiteSpace(GetLocalString("PC_ID_NUMBER"));
             }
         }
 
@@ -27,10 +36,10 @@ namespace Freescape.Game.Server.GameObject
         {
             if (IsInitialized) return;
 
-            NWItem database = (NWItem)_script.GetItemPossessedBy(this, "database");
-            if (_script.GetIsObjectValid(database) == 0)
+            NWItem database = NWItem.Wrap(_script.GetItemPossessedBy(Object, "database"));
+            if (!database.IsValid)
             {
-                database = (NWItem)_script.CreateItemOnObject("database", this);
+                database = NWItem.Wrap(_script.CreateItemOnObject("database", Object));
             }
 
             string guid = Guid.NewGuid().ToString();
@@ -46,7 +55,7 @@ namespace Freescape.Game.Server.GameObject
                     throw new Exception("Must call Initialize() before getting GlobalID");
                 }
 
-                NWItem database = (NWItem)_script.GetItemPossessedBy(this, "database");
+                NWItem database = NWItem.Wrap(_script.GetItemPossessedBy(Object, "database"));
                 return database.GetLocalString("PC_ID_NUMBER");
             }
         }

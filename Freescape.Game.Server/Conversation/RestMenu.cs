@@ -8,6 +8,13 @@ namespace Freescape.Game.Server.Conversation
     {
         public PlayerDialog SetUp(NWPlayer player)
         {
+            PlayerDialog dialog = new PlayerDialog("MainPage");
+            
+            DialogPage page = new DialogPage("This is a test", 
+                "Option 1",
+                "Option 2");
+
+            dialog.AddPage("MainPage", page);
             return null;
         }
 

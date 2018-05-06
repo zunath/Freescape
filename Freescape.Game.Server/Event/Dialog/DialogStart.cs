@@ -17,11 +17,11 @@ namespace Freescape.Game.Server.Event.Dialog
 
         public bool Run(params object[] args)
         {
-            NWObject npc = (NWObject)Object.OBJECT_SELF;
-            NWPlayer pc = (NWPlayer)_script.GetLastUsedBy();
-            if (_script.GetIsObjectValid(pc) == 0) pc = (NWPlayer)_script.GetPCSpeaker();
+            NWObject npc = NWObject.Wrap(Object.OBJECT_SELF);
+            NWPlayer pc = NWPlayer.Wrap(_script.GetLastUsedBy());
+            if (!pc.IsValid) pc = NWPlayer.Wrap(_script.GetPCSpeaker());
 
-            string conversation = _script.GetLocalString(npc, "CONVERSATION");
+            string conversation = npc.GetLocalString("CONVERSATION");
 
             if (string.IsNullOrWhiteSpace(conversation))
             {
@@ -29,7 +29,7 @@ namespace Freescape.Game.Server.Event.Dialog
             }
             else
             {
-                _script.ActionStartConversation(pc, "", NWScript.TRUE, NWScript.FALSE);
+                _script.ActionStartConversation(pc.Object, "", NWScript.TRUE, NWScript.FALSE);
             }
 
             return true;

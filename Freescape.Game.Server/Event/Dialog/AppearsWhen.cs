@@ -25,8 +25,8 @@ namespace Freescape.Game.Server.Event.Dialog
             int nodeType = (int)args[0];
             int nodeID = (int)args[1];
 
-            NWObject target = (NWObject) Object.OBJECT_SELF;
-            NWPlayer player = (NWPlayer) _nw.GetPCSpeaker();
+            NWObject target = NWObject.Wrap(Object.OBJECT_SELF);
+            NWPlayer player = NWPlayer.Wrap(_nw.GetPCSpeaker());
             PlayerDialog dialog = _dialog.LoadPlayerDialog(player.GlobalID);
             DialogPage page = dialog.CurrentPage;
             int currentSelectionNumber = nodeID + 1;

@@ -93,13 +93,13 @@ namespace Freescape.Game.Server.Service
 
             if (dialog.DialogNumber <= 0)
             {
-                _script.FloatingTextStringOnCreature(_colorToken.Red() + "ERROR: No dialog files are available for use." + _colorToken.End(), player, FALSE);
+                _script.FloatingTextStringOnCreature(_colorToken.Red() + "ERROR: No dialog files are available for use." + _colorToken.End(), player.Object, FALSE);
                 return;
             }
 
             // NPC conversations
             NWCreature talkToCreature = (NWCreature) talkTo;
-            if (_script.GetObjectType(talkTo) == OBJECT_TYPE_CREATURE &&
+            if (_script.GetObjectType(talkTo.Object) == OBJECT_TYPE_CREATURE &&
                 !talkToCreature.IsPlayer &&
                 !talkToCreature.IsDM)
             {
@@ -108,7 +108,7 @@ namespace Freescape.Game.Server.Service
             // Everything else
             else
             {
-                _script.AssignCommand(player, () => _script.ActionStartConversation(talkTo, "dialog" + dialog.DialogNumber, TRUE, FALSE));
+                player.AssignCommand(() => _script.ActionStartConversation(talkTo.Object, "dialog"));
             }
         }
 

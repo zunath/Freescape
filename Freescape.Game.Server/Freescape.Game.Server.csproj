@@ -167,6 +167,10 @@
     <Compile Include="Event\Module\OnModuleUserDefined.cs" />
     <Compile Include="Event\Player\OnPlayerHeartbeat.cs" />
     <Compile Include="Event\Trigger\ExplorationTrigger.cs" />
+    <Compile Include="GameObject\Contracts\INWObject.cs" />
+    <Compile Include="GameObject\Contracts\INWCreature.cs" />
+    <Compile Include="GameObject\Contracts\INWItem.cs" />
+    <Compile Include="GameObject\Contracts\INWPlayer.cs" />
     <Compile Include="GameObject\NWCreature.cs" />
     <Compile Include="GameObject\NWItem.cs" />
     <Compile Include="GameObject\NWObject.cs" />

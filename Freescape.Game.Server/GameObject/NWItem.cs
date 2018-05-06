@@ -1,8 +1,9 @@
-﻿using NWN;
+﻿using Freescape.Game.Server.GameObject.Contracts;
+using NWN;
 
 namespace Freescape.Game.Server.GameObject
 {
-    public class NWItem : NWObject
+    public class NWItem : NWObject, INWItem
     {
         private readonly INWScript _script;
 
@@ -12,42 +13,50 @@ namespace Freescape.Game.Server.GameObject
             _script = script;
         }
 
-        public NWObject Possessor => _script.GetItemPossessor(this) as NWObject;
+        public new static NWItem Wrap(Object @object)
+        {
+            var obj = (NWItem)App.Resolve<INWItem>();
+            obj.Object = @object;
 
-        public int BaseItemType => _script.GetBaseItemType(this);
+            return obj;
+        }
+
+        public NWCreature Possessor => GameObject.NWCreature.Wrap(_script.GetItemPossessor(Object));
+
+        public int BaseItemType => _script.GetBaseItemType(Object);
 
         public bool IsDroppable
         {
-            get => _script.GetDroppableFlag(this) == 1;
-            set => _script.SetDroppableFlag(this, value ? 1 : 0);
+            get => _script.GetDroppableFlag(Object) == 1;
+            set => _script.SetDroppableFlag(Object, value ? 1 : 0);
         }
 
         public bool IsCursed
         {
-            get => _script.GetItemCursedFlag(this) == 1;
-            set => _script.SetItemCursedFlag(this, value ? 1 : 0);
+            get => _script.GetItemCursedFlag(Object) == 1;
+            set => _script.SetItemCursedFlag(Object, value ? 1 : 0);
         }
 
         public bool IsStolen
         {
-            get => _script.GetStolenFlag(this) == 1;
-            set => _script.SetStolenFlag(this, value ? 1 : 0);
+            get => _script.GetStolenFlag(Object) == 1;
+            set => _script.SetStolenFlag(Object, value ? 1 : 0);
         }
 
-        public int AC => _script.GetItemACValue(this);
+        public int AC => _script.GetItemACValue(Object);
 
         public int Charges
         {
-            get => _script.GetItemCharges(this);
-            set => _script.SetItemCharges(this, value);
+            get => _script.GetItemCharges(Object);
+            set => _script.SetItemCharges(Object, value);
         }
 
         public int StackSize
         {
-            get => _script.GetItemStackSize(this);
-            set => _script.SetItemStackSize(this, value);
+            get => _script.GetItemStackSize(Object);
+            set => _script.SetItemStackSize(Object, value);
         }
 
-        public float Weight => _script.GetWeight(this) * 0.1f;
+        public float Weight => _script.GetWeight(Object) * 0.1f;
     }
 }
