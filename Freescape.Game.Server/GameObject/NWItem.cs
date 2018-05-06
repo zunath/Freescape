@@ -4,42 +4,50 @@ namespace Freescape.Game.Server.GameObject
 {
     public class NWItem : NWObject
     {
-        public NWObject Possessor => NWScript.GetItemPossessor(this) as NWObject;
+        private readonly INWScript _script;
 
-        public int BaseItemType => NWScript.GetBaseItemType(this);
+        public NWItem(INWScript script)
+            : base(script)
+        {
+            _script = script;
+        }
+
+        public NWObject Possessor => _script.GetItemPossessor(this) as NWObject;
+
+        public int BaseItemType => _script.GetBaseItemType(this);
 
         public bool IsDroppable
         {
-            get => NWScript.GetDroppableFlag(this) == 1;
-            set => NWScript.SetDroppableFlag(this, value ? 1 : 0);
+            get => _script.GetDroppableFlag(this) == 1;
+            set => _script.SetDroppableFlag(this, value ? 1 : 0);
         }
 
         public bool IsCursed
         {
-            get => NWScript.GetItemCursedFlag(this) == 1;
-            set => NWScript.SetItemCursedFlag(this, value ? 1 : 0);
+            get => _script.GetItemCursedFlag(this) == 1;
+            set => _script.SetItemCursedFlag(this, value ? 1 : 0);
         }
 
         public bool IsStolen
         {
-            get => NWScript.GetStolenFlag(this) == 1;
-            set => NWScript.SetStolenFlag(this, value ? 1 : 0);
+            get => _script.GetStolenFlag(this) == 1;
+            set => _script.SetStolenFlag(this, value ? 1 : 0);
         }
 
-        public int AC => NWScript.GetItemACValue(this);
+        public int AC => _script.GetItemACValue(this);
 
         public int Charges
         {
-            get => NWScript.GetItemCharges(this);
-            set => NWScript.SetItemCharges(this, value);
+            get => _script.GetItemCharges(this);
+            set => _script.SetItemCharges(this, value);
         }
 
         public int StackSize
         {
-            get => NWScript.GetItemStackSize(this);
-            set => NWScript.SetItemStackSize(this, value);
+            get => _script.GetItemStackSize(this);
+            set => _script.SetItemStackSize(this, value);
         }
 
-        public float Weight => NWScript.GetWeight(this) * 0.1f;
+        public float Weight => _script.GetWeight(this) * 0.1f;
     }
 }

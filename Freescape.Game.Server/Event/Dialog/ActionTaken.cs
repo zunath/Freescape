@@ -10,16 +10,18 @@ namespace Freescape.Game.Server.Event.Dialog
     public class ActionTaken: IRegisteredEvent
     {
         private readonly IDialogService _dialogService;
+        private readonly INWScript _script;
 
-        public ActionTaken(IDialogService dialogService)
+        public ActionTaken(INWScript script, IDialogService dialogService)
         {
             _dialogService = dialogService;
+            _script = script;
         }
 
         public bool Run(params object[] args)
         {
             int nodeID = (int)args[0];
-            NWPlayer player = (NWPlayer)NWScript.GetPCSpeaker();
+            NWPlayer player = (NWPlayer)_script.GetPCSpeaker();
             PlayerDialog dialog = _dialogService.LoadPlayerDialog(player.GlobalID);
             int selectionNumber = nodeID + 1;
             int responseID = nodeID + (_dialogService.NumberOfResponsesPerPage * dialog.PageOffset);

@@ -4,52 +4,60 @@ namespace Freescape.Game.Server.GameObject
 {
     public class NWCreature : NWObject
     {
-        public int Age => NWScript.GetAge(this);
+        private readonly INWScript _script;
 
-        public float ChallengeRating => NWScript.GetChallengeRating(this);
+        public NWCreature(INWScript script)
+            : base(script)
+        {
+            _script = script;
+        }
 
-        public int Class1 => NWScript.GetClassByPosition(1, this);
+        public int Age => _script.GetAge(this);
 
-        public int Class2 => NWScript.GetClassByPosition(2, this);
+        public float ChallengeRating => _script.GetChallengeRating(this);
 
-        public int Class3 => NWScript.GetClassByPosition(3, this);
+        public int Class1 => _script.GetClassByPosition(1, this);
+
+        public int Class2 => _script.GetClassByPosition(2, this);
+
+        public int Class3 => _script.GetClassByPosition(3, this);
 
         public bool IsCommandable
         {
-            get => NWScript.GetCommandable(this) == 1;
-            set => NWScript.SetCommandable(value ? 1 : 0, this);
+            get => _script.GetCommandable(this) == 1;
+            set => _script.SetCommandable(value ? 1 : 0, this);
         }
 
-        public int Size => NWScript.GetCreatureSize(this);
+        public int Size => _script.GetCreatureSize(this);
 
         public int Phenotype
         {
-            get => NWScript.GetPhenoType(this);
-            set => NWScript.SetPhenoType(value, this);
+            get => _script.GetPhenoType(this);
+            set => _script.SetPhenoType(value, this);
         }
 
         public string Deity
         {
-            get => NWScript.GetDeity(this);
-            set => NWScript.SetDeity(this, value);
+            get => _script.GetDeity(this);
+            set => _script.SetDeity(this, value);
         }
 
-        public int RacialType => NWScript.GetRacialType(this);
+        public int RacialType => _script.GetRacialType(this);
 
-        public int Gender => NWScript.GetGender(this);
+        public int Gender => _script.GetGender(this);
 
-        public bool IsPlayer => NWScript.GetIsPC(this) == 1 && NWScript.GetIsDM(this) == 0 && NWScript.GetIsDMPossessed(this) == 0;
+        public bool IsPlayer => _script.GetIsPC(this) == 1 && _script.GetIsDM(this) == 0 && _script.GetIsDMPossessed(this) == 0;
 
-        public bool IsDM => NWScript.GetIsPC(this) == 0 && (NWScript.GetIsDM(this) == 1 || NWScript.GetIsDMPossessed(this) == 1);
+        public bool IsDM => _script.GetIsPC(this) == 0 && (_script.GetIsDM(this) == 1 || _script.GetIsDMPossessed(this) == 1);
 
-        public bool IsResting => NWScript.GetIsResting(this) == 1;
+        public bool IsResting => _script.GetIsResting(this) == 1;
 
-        public float Weight => NWScript.GetWeight(this) * 0.1f;
+        public float Weight => _script.GetWeight(this) * 0.1f;
 
         public int XP
         {
-            get => NWScript.GetXP(this);
-            set => NWScript.SetXP(this, value);
+            get => _script.GetXP(this);
+            set => _script.SetXP(this, value);
         }
     }
 }

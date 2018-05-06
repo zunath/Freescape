@@ -4,8 +4,10 @@ using Autofac;
 using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Event;
+using Freescape.Game.Server.Helper;
 using Freescape.Game.Server.Service;
 using Freescape.Game.Server.Service.Contracts;
+using NWN;
 
 namespace Freescape.Game.Server
 {
@@ -55,6 +57,8 @@ namespace Freescape.Game.Server
 
             // Services
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
+            builder.RegisterType<NWScript>().As<INWScript>().SingleInstance();
+            builder.RegisterType<ColorTokenService>().As<IColorTokenService>().SingleInstance();
             
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);

@@ -1,19 +1,19 @@
 ﻿// ReSharper disable once CheckNamespace
 namespace NWN
 {
-    public partial class NWScript
+    public partial class NWScript : INWScript
     {
-        public static void AssignCommand(Object oActionSubject, ActionDelegate aActionToAssign)
+        public void AssignCommand(Object oActionSubject, ActionDelegate aActionToAssign)
         {
             Internal.ClosureAssignCommand(oActionSubject, aActionToAssign);
         }
 
-        public static void DelayCommand(float fSeconds, ActionDelegate aActionToDelay)
+        public void DelayCommand(float fSeconds, ActionDelegate aActionToDelay)
         {
             Internal.ClosureDelayCommand(Object.OBJECT_SELF, fSeconds, aActionToDelay);
         }
 
-        public static void ActionDoCommand(ActionDelegate aActionToDelay)
+        public void ActionDoCommand(ActionDelegate aActionToDelay)
         {
             Internal.ClosureActionDoCommand(Object.OBJECT_SELF, aActionToDelay);
         }

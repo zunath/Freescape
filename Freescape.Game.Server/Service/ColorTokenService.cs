@@ -1,10 +1,17 @@
 ﻿using Freescape.Game.Server.GameObject;
-using static NWN.NWScript;
+using NWN;
 
 namespace Freescape.Game.Server.Helper
 {
-    public static class ColorToken
+    public class ColorTokenService : IColorTokenService
     {
+        private readonly INWScript _script;
+
+        public ColorTokenService(INWScript script)
+        {
+            _script = script;
+        }
+
 
         /*
      * colors_inc.nss
@@ -38,11 +45,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the given RGB values.
         // Valid parameter values are 0-255.
         //
-        public static string Custom(int nRed, int nGreen, int nBlue)
+        public string Custom(int nRed, int nGreen, int nBlue)
         {
-            return "<c" + GetSubString(ColorArray, nRed, 1) +
-                    GetSubString(ColorArray, nGreen, 1) +
-                    GetSubString(ColorArray, nBlue, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, nRed, 1) +
+                    _script.GetSubString(ColorArray, nGreen, 1) +
+                    _script.GetSubString(ColorArray, nBlue, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -50,7 +57,7 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that ends an earlier color change.
         //
-        public static string End()
+        public  string End()
         {
             return "</c>";
         }
@@ -67,11 +74,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to black.
         //
-        public static string Black()
+        public  string Black()
         {
-            return "<c" + GetSubString(ColorArray, 0, 1) +
-                    GetSubString(ColorArray, 0, 1) +
-                    GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 0, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -79,11 +86,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to blue.
         //
-        public static string Blue()
+        public  string Blue()
         {
-            return "<c" + GetSubString(ColorArray, 0, 1) +
-                    GetSubString(ColorArray, 0, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 0, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -91,11 +98,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to gray.
         //
-        public static string Gray()
+        public  string Gray()
         {
-            return "<c" + GetSubString(ColorArray, 127, 1) +
-                    GetSubString(ColorArray, 127, 1) +
-                    GetSubString(ColorArray, 127, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 127, 1) +
+                    _script.GetSubString(ColorArray, 127, 1) +
+                    _script.GetSubString(ColorArray, 127, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -103,11 +110,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to green.
         //
-        public static string Green()
+        public  string Green()
         {
-            return "<c" + GetSubString(ColorArray, 0, 1) +
-                    GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 0, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -115,11 +122,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to light purple.
         //
-        public static string LightPurple()
+        public  string LightPurple()
         {
-            return "<c" + GetSubString(ColorArray, 175, 1) +
-                    GetSubString(ColorArray, 48, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 175, 1) +
+                    _script.GetSubString(ColorArray, 48, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -127,11 +134,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to orange.
         //
-        public static string Orange()
+        public  string Orange()
         {
-            return "<c" + GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 127, 1) +
-                    GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 127, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -139,11 +146,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to pink.
         //
-        public static string Pink()
+        public  string Pink()
         {
-            return "<c" + GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 0, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -151,11 +158,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to purple.
         //
-        public static string Purple()
+        public  string Purple()
         {
-            return "<c" + GetSubString(ColorArray, 127, 1) +
-                    GetSubString(ColorArray, 0, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 127, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -163,11 +170,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to red.
         //
-        public static string Red()
+        public  string Red()
         {
-            return "<c" + GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 0, 1) +
-                    GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -175,11 +182,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to white.
         //
-        public static string White()
+        public  string White()
         {
-            return "<c" + GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -187,11 +194,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to yellow.
         //
-        public static string Yellow()
+        public  string Yellow()
         {
-            return "<c" + GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) + ">";
         }
 
 
@@ -201,11 +208,11 @@ namespace Freescape.Game.Server.Helper
         //
         // Supplies a String that changes the text to yellow.
         //
-        public static string Cyan()
+        public  string Cyan()
         {
-            return "<c" + GetSubString(ColorArray, 0, 1) +
-                    GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 0, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
 
@@ -221,11 +228,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // combat messages.
         //
-        public static string Combat()
+        public  string Combat()
         {
-            return "<c" + GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 102, 1) +
-                    GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 102, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -234,11 +241,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // dialog.
         //
-        public static string Dialog()
+        public  string Dialog()
         {
-            return "<c" + GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -247,11 +254,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // dialog actions.
         //
-        public static string DialogAction()
+        public  string DialogAction()
         {
-            return "<c" + GetSubString(ColorArray, 1, 1) +
-                    GetSubString(ColorArray, 254, 1) +
-                    GetSubString(ColorArray, 1, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 1, 1) +
+                    _script.GetSubString(ColorArray, 254, 1) +
+                    _script.GetSubString(ColorArray, 1, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -260,11 +267,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // dialog checks.
         //
-        public static string DialogCheck()
+        public  string DialogCheck()
         {
-            return "<c" + GetSubString(ColorArray, 254, 1) +
-                    GetSubString(ColorArray, 1, 1) +
-                    GetSubString(ColorArray, 1, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 254, 1) +
+                    _script.GetSubString(ColorArray, 1, 1) +
+                    _script.GetSubString(ColorArray, 1, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -273,11 +280,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // dialog highlighting.
         //
-        public static string DialogHighlight()
+        public  string DialogHighlight()
         {
-            return "<c" + GetSubString(ColorArray, 1, 1) +
-                    GetSubString(ColorArray, 1, 1) +
-                    GetSubString(ColorArray, 254, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 1, 1) +
+                    _script.GetSubString(ColorArray, 1, 1) +
+                    _script.GetSubString(ColorArray, 254, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -286,11 +293,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // replies in the dialog window.
         //
-        public static string DialogReply()
+        public  string DialogReply()
         {
-            return "<c" + GetSubString(ColorArray, 102, 1) +
-                    GetSubString(ColorArray, 178, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 102, 1) +
+                    _script.GetSubString(ColorArray, 178, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -299,11 +306,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // the DM channel.
         //
-        public static string DM()
+        public  string DM()
         {
-            return "<c" + GetSubString(ColorArray, 16, 1) +
-                    GetSubString(ColorArray, 223, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 16, 1) +
+                    _script.GetSubString(ColorArray, 223, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -312,11 +319,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // many game engine messages.
         //
-        public static string GameEngine()
+        public  string GameEngine()
         {
-            return "<c" + GetSubString(ColorArray, 204, 1) +
-                    GetSubString(ColorArray, 119, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 204, 1) +
+                    _script.GetSubString(ColorArray, 119, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -325,11 +332,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // saving throw messages.
         //
-        public static string SavingThrow()
+        public  string SavingThrow()
         {
-            return "<c" + GetSubString(ColorArray, 102, 1) +
-                    GetSubString(ColorArray, 204, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 102, 1) +
+                    _script.GetSubString(ColorArray, 204, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -338,11 +345,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // messages sent from scripts.
         //
-        public static string Script()
+        public  string Script()
         {
-            return "<c" + GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 0, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 0, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -351,11 +358,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // server messages.
         //
-        public static string Server()
+        public  string Server()
         {
-            return "<c" + GetSubString(ColorArray, 176, 1) +
-                    GetSubString(ColorArray, 176, 1) +
-                    GetSubString(ColorArray, 176, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 176, 1) +
+                    _script.GetSubString(ColorArray, 176, 1) +
+                    _script.GetSubString(ColorArray, 176, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -364,11 +371,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // shouts.
         //
-        public static string Shout()
+        public  string Shout()
         {
-            return "<c" + GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 239, 1) +
-                    GetSubString(ColorArray, 80, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 239, 1) +
+                    _script.GetSubString(ColorArray, 80, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -377,11 +384,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // skill check messages.
         //
-        public static string SkillCheck()
+        public  string SkillCheck()
         {
-            return "<c" + GetSubString(ColorArray, 0, 1) +
-                    GetSubString(ColorArray, 102, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 0, 1) +
+                    _script.GetSubString(ColorArray, 102, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -390,11 +397,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // the talk and party talk channels.
         //
-        public static string Talk()
+        public  string Talk()
         {
-            return "<c" + GetSubString(ColorArray, 240, 1) +
-                    GetSubString(ColorArray, 240, 1) +
-                    GetSubString(ColorArray, 240, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 240, 1) +
+                    _script.GetSubString(ColorArray, 240, 1) +
+                    _script.GetSubString(ColorArray, 240, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -403,11 +410,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // tells.
         //
-        public static string Tell()
+        public  string Tell()
         {
-            return "<c" + GetSubString(ColorArray, 32, 1) +
-                    GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 32, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 32, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 32, 1) + ">";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -416,11 +423,11 @@ namespace Freescape.Game.Server.Helper
         // Supplies a String that changes the text to the color of
         // whispers.
         //
-        public static string Whisper()
+        public  string Whisper()
         {
-            return "<c" + GetSubString(ColorArray, 128, 1) +
-                    GetSubString(ColorArray, 128, 1) +
-                    GetSubString(ColorArray, 128, 1) + ">";
+            return "<c" + _script.GetSubString(ColorArray, 128, 1) +
+                    _script.GetSubString(ColorArray, 128, 1) +
+                    _script.GetSubString(ColorArray, 128, 1) + ">";
         }
 
 
@@ -431,32 +438,32 @@ namespace Freescape.Game.Server.Helper
 
 
         ///////////////////////////////////////////////////////////////////////////////
-        // GetNamePCColor()
+        // _script.GetNamePCColor()
         //
         // Returns the name of oPC, surrounded by color tokens, so the color of
         // the name is the lighter blue often used in NWN game engine messages.
         //
         //
-        public static string GetNamePCColor(NWObject oPC)
+        public  string GetNamePCColor(NWObject oPC)
         {
-            return "<c" + GetSubString(ColorArray, 153, 1) +
-                    GetSubString(ColorArray, 255, 1) +
-                    GetSubString(ColorArray, 255, 1) + ">" +
-                    GetName(oPC) + "</c>";
+            return "<c" + _script.GetSubString(ColorArray, 153, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) +
+                    _script.GetSubString(ColorArray, 255, 1) + ">" +
+                    _script.GetName(oPC) + "</c>";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // GetNameNPCColor()
+        // _script.GetNameNPCColor()
         //
         // Returns the name of oNPC, surrounded by color tokens, so the color of
         // the name is the shade of purple often used in NWN game engine messages.
         //
-        public static string GetNameNPCColor(NWObject oNPC)
+        public string GetNameNPCColor(NWObject oNPC)
         {
-            return "<c" + GetSubString(ColorArray, 204, 1) +
-                    GetSubString(ColorArray, 153, 1) +
-                    GetSubString(ColorArray, 204, 1) + ">" +
-                    GetName(oNPC) + "</c>";
+            return "<c" + _script.GetSubString(ColorArray, 204, 1) +
+                    _script.GetSubString(ColorArray, 153, 1) +
+                    _script.GetSubString(ColorArray, 204, 1) + ">" +
+                    _script.GetName(oNPC) + "</c>";
         }
 
     }

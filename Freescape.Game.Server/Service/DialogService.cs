@@ -5,20 +5,24 @@ using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Helper;
 using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject.Dialog;
+using NWN;
 using static NWN.NWScript;
 
 namespace Freescape.Game.Server.Service
 {
     public class DialogService: IDialogService
     {
-        
+        private readonly INWScript _script;
+        private readonly IColorTokenService _colorToken;
         private const int NumberOfDialogs = 99;
 
         private readonly Dictionary<string, PlayerDialog> _playerDialogs;
         private readonly Dictionary<int, bool> _dialogFilesInUse;
 
-        public DialogService()
+        public DialogService(INWScript script, IColorTokenService colorToken)
         {
+            _script = script;
+            _colorToken = colorToken;
             _playerDialogs = new Dictionary<string, PlayerDialog>();
             _dialogFilesInUse = new Dictionary<int, bool>();
 
@@ -89,22 +93,22 @@ namespace Freescape.Game.Server.Service
 
             if (dialog.DialogNumber <= 0)
             {
-                FloatingTextStringOnCreature(ColorToken.Red() + "ERROR: No dialog files are available for use." + ColorToken.End(), player, FALSE);
+                _script.FloatingTextStringOnCreature(_colorToken.Red() + "ERROR: No dialog files are available for use." + _colorToken.End(), player, FALSE);
                 return;
             }
 
             // NPC conversations
             NWCreature talkToCreature = (NWCreature) talkTo;
-            if (GetObjectType(talkTo) == OBJECT_TYPE_CREATURE &&
+            if (_script.GetObjectType(talkTo) == OBJECT_TYPE_CREATURE &&
                 !talkToCreature.IsPlayer &&
                 !talkToCreature.IsDM)
             {
-                BeginConversation("dialog" + dialog.DialogNumber);
+                _script.BeginConversation("dialog" + dialog.DialogNumber);
             }
             // Everything else
             else
             {
-                AssignCommand(player, () => ActionStartConversation(talkTo, "dialog" + dialog.DialogNumber, TRUE, FALSE));
+                _script.AssignCommand(player, () => _script.ActionStartConversation(talkTo, "dialog" + dialog.DialogNumber, TRUE, FALSE));
             }
         }
 

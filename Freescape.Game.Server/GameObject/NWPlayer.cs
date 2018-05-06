@@ -5,12 +5,20 @@ namespace Freescape.Game.Server.GameObject
 {
     public class NWPlayer: NWCreature
     {
+        private readonly INWScript _script;
+
+        public NWPlayer(INWScript script)
+            : base(script)
+        {
+            _script = script;
+        }
+
         public bool IsInitialized
         {
             get
             {
-                NWItem database = NWScript.GetItemPossessedBy(this, "database") as NWItem;
-                return NWScript.GetIsObjectValid(database) != 0 && !string.IsNullOrWhiteSpace(GetLocalString("PC_ID_NUMBER"));
+                NWItem database = _script.GetItemPossessedBy(this, "database") as NWItem;
+                return _script.GetIsObjectValid(database) != 0 && !string.IsNullOrWhiteSpace(GetLocalString("PC_ID_NUMBER"));
             }
         }
 
@@ -18,10 +26,10 @@ namespace Freescape.Game.Server.GameObject
         {
             if (IsInitialized) return;
 
-            NWItem database = (NWItem)NWScript.GetItemPossessedBy(this, "database");
-            if (NWScript.GetIsObjectValid(database) == 0)
+            NWItem database = (NWItem)_script.GetItemPossessedBy(this, "database");
+            if (_script.GetIsObjectValid(database) == 0)
             {
-                database = (NWItem)NWScript.CreateItemOnObject("database", this);
+                database = (NWItem)_script.CreateItemOnObject("database", this);
             }
 
             string guid = Guid.NewGuid().ToString();
@@ -37,7 +45,7 @@ namespace Freescape.Game.Server.GameObject
                     throw new Exception("Must call Initialize() before getting GlobalID");
                 }
 
-                NWItem database = (NWItem)NWScript.GetItemPossessedBy(this, "database");
+                NWItem database = (NWItem)_script.GetItemPossessedBy(this, "database");
                 return database.GetLocalString("PC_ID_NUMBER");
             }
         }
