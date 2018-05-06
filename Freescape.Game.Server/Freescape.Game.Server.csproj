@@ -255,6 +255,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="ServerFiles\docker-linux-startFreescape.sh" />
+    <None Include="ServerFiles\docker-windows-freescapeStart.cmd" />
+    <None Include="ServerFiles\Tools\NESS_Spawn_Waypoint_Generator.zip" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\SQL\**\*.sql" />
@@ -262,6 +265,11 @@
   <ItemGroup>
     <Folder Include="Data\Contracts\" />
     <Folder Include="Enumeration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ServerFiles\Database\freescape-db.sql" />
+    <Content Include="ServerFiles\Database\scripts\AddPerkLevels.sql" />
+    <Content Include="ServerFiles\Database\scripts\WipePlayerData.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

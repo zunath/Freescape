@@ -90,7 +90,7 @@ namespace Freescape.Game.Server.Service
         {
             LoadConversation(player, talkTo, @class, -1);
             PlayerDialog dialog = _playerDialogs[player.GlobalID];
-
+            
             if (dialog.DialogNumber <= 0)
             {
                 _script.FloatingTextStringOnCreature(_colorToken.Red() + "ERROR: No dialog files are available for use." + _colorToken.End(), player.Object, FALSE);
