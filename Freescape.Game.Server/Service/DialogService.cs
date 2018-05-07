@@ -39,7 +39,7 @@ namespace Freescape.Game.Server.Service
             {
                 for (int x = 1; x <= NumberOfDialogs; x++)
                 {
-                    if (!_dialogFilesInUse.ContainsKey(x))
+                    if (!_dialogFilesInUse[x])
                     {
                         _dialogFilesInUse[x] = true;
                         dialog.DialogNumber = x;
@@ -120,7 +120,7 @@ namespace Freescape.Game.Server.Service
             // Everything else
             else
             {
-                player.AssignCommand(() => _.ActionStartConversation(talkTo.Object, "dialog"));
+                player.AssignCommand(() => _.ActionStartConversation(talkTo.Object, "dialog" + dialog.DialogNumber));
             }
         }
 

@@ -1,7 +1,4 @@
-﻿using System;
-using NWN;
-
-namespace Freescape.Game.Server.Event.Module
+﻿namespace Freescape.Game.Server.Event.Module
 {
     internal class OnModuleHeartbeat : IRegisteredEvent
     {

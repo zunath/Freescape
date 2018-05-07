@@ -1,11 +1,37 @@
-﻿namespace Freescape.Game.Server.Event.Dialog
+﻿using System;
+using System.Reflection;
+using Freescape.Game.Server.Conversation.Contracts;
+using Freescape.Game.Server.GameObject;
+using Freescape.Game.Server.Service.Contracts;
+using Freescape.Game.Server.ValueObject.Dialog;
+using NWN;
+
+namespace Freescape.Game.Server.Event.Dialog
 {
     public class DialogEnd: IRegisteredEvent
     {
+        private readonly INWScript _;
+        private readonly IDialogService _dialog;
+
+        public DialogEnd(INWScript script, IDialogService dialog)
+        {
+            _ = script;
+            _dialog = dialog;
+        }
+
         public bool Run(params object[] args)
         {
-            return true;
+            NWPlayer player = NWPlayer.Wrap(_.GetPCSpeaker());
+            PlayerDialog dialog = _dialog.LoadPlayerDialog(player.GlobalID);
 
+            string @namespace = Assembly.GetExecutingAssembly().GetName().Name + ".Conversation." + dialog.ActiveDialogName;
+            Type type = Type.GetType(@namespace);
+            IConversation convo = App.ResolveByInterface<IConversation>(type);
+            convo.EndDialog();
+            _dialog.RemovePlayerDialog(player.GlobalID);
+            player.DeleteLocalInt("DIALOG_SYSTEM_INITIALIZE_RAN");
+
+            return true;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Reflection;
 using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
@@ -25,6 +25,7 @@ namespace Freescape.Game.Server.Event.Dialog
             int nodeType = (int)args[0];
             int nodeID = (int)args[1];
 
+            bool showNode;
             NWObject target = NWObject.Wrap(Object.OBJECT_SELF);
             NWPlayer player = NWPlayer.Wrap(_.GetPCSpeaker());
             PlayerDialog dialog = _dialog.LoadPlayerDialog(player.GlobalID);
@@ -66,7 +67,9 @@ namespace Freescape.Game.Server.Event.Dialog
             }
             else if (nodeType == 1)
             {
-                Type type = Type.GetType("Conversation." + dialog.ActiveDialogName);
+                string @namespace = Assembly.GetExecutingAssembly().GetName().Name + ".Conversation." + dialog.ActiveDialogName;
+                Type type = Type.GetType(@namespace);
+                
                 IConversation convo = App.ResolveByInterface<IConversation>(type);
                 if (player.GetLocalInt("DIALOG_SYSTEM_INITIALIZE_RAN") != 1)
                 {
@@ -79,20 +82,17 @@ namespace Freescape.Game.Server.Event.Dialog
                     convo.EndDialog();
                     _dialog.RemovePlayerDialog(player.GlobalID);
                     player.DeleteLocalInt("DIALOG_SYSTEM_INITIALIZE_RAN");
-                    target.SetLocalInt("CONVERSATION_SHOW_NODE", 0);
                 }
 
                 page = dialog.CurrentPage;
                 newNodeText = page.Header;
 
                 _.SetCustomToken(90000 + dialogOffset, newNodeText);
-                target.SetLocalInt("CONVERSATION_SHOW_NODE", 1);
                 return true;
             }
 
             _.SetCustomToken(90001 + nodeID + dialogOffset, newNodeText);
-            target.SetLocalInt("CONVERSATION_SHOW_NODE", displayNode ? 1 : 0);
-            return true;
+            return displayNode;
 
         }
     }

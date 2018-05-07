@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
@@ -36,7 +37,9 @@ namespace Freescape.Game.Server.Event.Dialog
             }
             else if (selectionNumber != _dialogService.NumberOfResponsesPerPage + 3) // End
             {
-                Type type = Type.GetType("Conversation." + dialog.ActiveDialogName);
+                string @namespace = Assembly.GetExecutingAssembly().GetName().Name + ".Conversation." + dialog.ActiveDialogName;
+                Type type = Type.GetType(@namespace);
+
                 IConversation convo = App.ResolveByInterface<IConversation>(type);
                 convo.DoAction(player, dialog.CurrentPageName, responseID + 1);
             }
