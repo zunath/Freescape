@@ -29,10 +29,8 @@ namespace Freescape.Game.Server.GameObject
             get
             {
                 NWItem database = NWItem.Wrap(_.GetItemPossessedBy(Object, "database"));
-
-                Console.WriteLine("Is Valid = " + database.IsValid);
-
-                return database.IsValid && !string.IsNullOrWhiteSpace(GetLocalString("PC_ID_NUMBER"));
+                string globalID = database.GetLocalString("PC_ID_NUMBER");
+                return database.IsValid && !string.IsNullOrWhiteSpace(globalID);
             }
         }
 

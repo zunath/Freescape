@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.Data.Entity.Validation;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
@@ -22,25 +24,23 @@ namespace Freescape.Game.Server.Service
 
             if (!player.IsInitialized)
             {
-                player.Initialize();
                 player.DestroyAllInventoryItems();
-
-                _.CreateItemOnObject("database", player.Object);
+                player.Initialize();
+                
                 _.CreateItemOnObject("open_rest_menu", player.Object);
-
                 _.AssignCommand(player.Object, () => _.TakeGoldFromCreature(_.GetGold(player.Object), player.Object, 1));
 
                 NWItem knife = NWItem.Wrap(_.CreateItemOnObject("survival_knife", player.Object));
                 knife.Name = player.Name + "'s Survival Knife";
                 knife.IsCursed = true;
-                //DurabilitySystem.SetItemMaxDurability(knife, 5); // TODO UPDATE
-                //DurabilitySystem.SetItemDurability(knife, 5); // TODO UPDATE
+                knife.MaxDurability = 5;
+                knife.Durability = 5;
 
                 NWItem hammer = NWItem.Wrap(_.CreateItemOnObject("basic_hammer", player.Object));
                 hammer.Name = player.Name + "'s Hammer";
                 hammer.IsCursed = true;
-                //DurabilitySystem.SetItemMaxDurability(hammer, 5); // TODO UPDATE
-                //DurabilitySystem.SetItemDurability(hammer, 5); // TODO UPDATE
+                hammer.MaxDurability = 5;
+                hammer.Durability = 5;
 
                 NWItem darts = NWItem.Wrap(_.CreateItemOnObject("nw_wthdt001", player.Object, 50)); // 50x Dart
                 darts.Name = "Starting Darts";

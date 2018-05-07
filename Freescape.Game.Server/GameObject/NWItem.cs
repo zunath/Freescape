@@ -1,5 +1,6 @@
 ﻿using System;
 using Freescape.Game.Server.GameObject.Contracts;
+using Freescape.Game.Server.Service.Contracts;
 using NWN;
 using Object = NWN.Object;
 
@@ -8,11 +9,14 @@ namespace Freescape.Game.Server.GameObject
     public class NWItem : NWObject, INWItem
     {
         private readonly INWScript _;
+        private readonly IDurabilityService _durability;
 
-        public NWItem(INWScript script)
+        public NWItem(INWScript script,
+            IDurabilityService durability)
             : base(script)
         {
             _ = script;
+            _durability = durability;
         }
 
         public new static NWItem Wrap(Object @object)
@@ -60,5 +64,17 @@ namespace Freescape.Game.Server.GameObject
         }
 
         public float Weight => _.GetWeight(Object) * 0.1f;
+        
+        public float MaxDurability
+        {
+            get => _durability.GetMaxDurability(this);
+            set => _durability.SetMaxDurability(this, value);
+        }
+
+        public float Durability
+        {
+            get => _durability.GetDurability(this);
+            set => _durability.SetDurability(this, value);
+        }
     }
 }
