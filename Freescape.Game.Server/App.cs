@@ -74,6 +74,8 @@ namespace Freescape.Game.Server
             builder.RegisterType<ColorTokenService>().As<IColorTokenService>().SingleInstance();
             builder.RegisterType<PlayerInitializationService>().As<IPlayerInitializationService>();
             builder.RegisterType<DurabilityService>().As<IDurabilityService>();
+            builder.RegisterType<SkillService>().As<ISkillService>();
+            builder.RegisterType<MenuService>().As<IMenuService>();
 
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);

@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Conversation\Contracts\IConversation.cs" />
+    <Compile Include="Conversation\ConversationBase.cs" />
     <Compile Include="Conversation\RestMenu.cs" />
     <Compile Include="Data\DataContext.cs" />
     <Compile Include="Event\Area\OnAreaUserDefined.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="GameObject\NWCreature.cs" />
     <Compile Include="GameObject\NWItem.cs" />
     <Compile Include="GameObject\NWObject.cs" />
+    <Compile Include="GameObject\NWPlaceable.cs" />
     <Compile Include="GameObject\NWPlayer.cs" />
     <Compile Include="NWNX\Events\Dialog\dialog_appears_h.cs" />
     <Compile Include="NWNX\Events\Dialog\dialog_appears_n.cs" />
@@ -245,11 +247,16 @@
     <Compile Include="NWNX\Contracts\INWScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Contracts\IDurabilityService.cs" />
+    <Compile Include="Service\Contracts\IMenuService.cs" />
     <Compile Include="Service\Contracts\IPlayerInitializationService.cs" />
+    <Compile Include="Service\Contracts\ISkillService.cs" />
     <Compile Include="Service\DialogService.cs" />
     <Compile Include="Service\Contracts\IDialogService.cs" />
     <Compile Include="Service\DurabilityService.cs" />
+    <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\PlayerInitializationService.cs" />
+    <Compile Include="Service\SkillService.cs" />
+    <Compile Include="ValueObject\CustomData.cs" />
     <Compile Include="ValueObject\Dialog\DialogPage.cs" />
     <Compile Include="ValueObject\Dialog\DialogResponse.cs" />
     <Compile Include="ValueObject\Dialog\PlayerDialog.cs" />

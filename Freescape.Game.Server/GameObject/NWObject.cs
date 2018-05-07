@@ -7,7 +7,7 @@ namespace Freescape.Game.Server.GameObject
     public class NWObject : INWObject
     {
         public Object Object { get; protected set; }
-        private readonly INWScript _;
+        protected readonly INWScript _;
 
         public NWObject(INWScript script)
         {

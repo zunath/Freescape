@@ -24,9 +24,7 @@ namespace Freescape.Game.Server.Event.Dialog
         {
             int nodeType = (int)args[0];
             int nodeID = (int)args[1];
-
-            bool showNode;
-            NWObject target = NWObject.Wrap(Object.OBJECT_SELF);
+            
             NWPlayer player = NWPlayer.Wrap(_.GetPCSpeaker());
             PlayerDialog dialog = _dialog.LoadPlayerDialog(player.GlobalID);
             DialogPage page = dialog.CurrentPage;

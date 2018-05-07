@@ -10,7 +10,7 @@ namespace Freescape.Game.Server.ValueObject.Dialog
         public int PageOffset { get; set; }
         public string ActiveDialogName { get; set; }
         public NWObject DialogTarget { get; set; }
-        public object CustomData { get; set; }
+        public CustomData CustomData { get; set; }
         public bool IsEnding { get; set; }
         public string DefaultPageName { get; set; }
         public int DialogNumber { get; set; }
@@ -21,6 +21,7 @@ namespace Freescape.Game.Server.ValueObject.Dialog
             CurrentPageName = string.Empty;
             PageOffset = 0;
             DefaultPageName = defaultPageName;
+            CustomData = new CustomData();
         }
 
         public void AddPage(string pageName, DialogPage page)
@@ -32,9 +33,16 @@ namespace Freescape.Game.Server.ValueObject.Dialog
             }
         }
 
-        public DialogPage CurrentPage
+        public DialogPage CurrentPage => Pages[CurrentPageName];
+
+        public DialogPage GetPageByName(string pageName)
         {
-            get => Pages[CurrentPageName];
+            return Pages[pageName];
+        }
+
+        public void ResetPage()
+        {
+            CurrentPageName = DefaultPageName;
         }
 
     }

@@ -7,12 +7,9 @@ namespace Freescape.Game.Server.GameObject
 {
     public class NWCreature : NWObject, INWCreature
     {
-        private readonly INWScript _;
-
         public NWCreature(INWScript script)
             : base(script)
         {
-            _ = script;
         }
 
 

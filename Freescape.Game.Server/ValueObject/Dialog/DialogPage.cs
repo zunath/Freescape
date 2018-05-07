@@ -6,18 +6,20 @@ namespace Freescape.Game.Server.ValueObject.Dialog
     {
         public string Header { get; set; }
         public List<DialogResponse> Responses { get; set; }
-        public object CustomData { get; set; }
+        public CustomData CustomData { get; set; }
 
         public DialogPage()
         {
             Responses = new List<DialogResponse>();
             Header = string.Empty;
+            CustomData = new CustomData();
         }
 
         public DialogPage(string header, params string[] responseOptions)
         {
             Responses = new List<DialogResponse>();
             Header = header;
+            CustomData = new CustomData();
 
             foreach (var response in responseOptions)
             {

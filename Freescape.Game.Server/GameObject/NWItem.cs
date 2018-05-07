@@ -7,14 +7,12 @@ namespace Freescape.Game.Server.GameObject
 {
     public class NWItem : NWObject, INWItem
     {
-        private readonly INWScript _;
         private readonly IDurabilityService _durability;
 
         public NWItem(INWScript script,
             IDurabilityService durability)
             : base(script)
         {
-            _ = script;
             _durability = durability;
         }
 

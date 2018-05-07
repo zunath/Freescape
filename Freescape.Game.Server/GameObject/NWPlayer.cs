@@ -8,12 +8,9 @@ namespace Freescape.Game.Server.GameObject
 {
     public class NWPlayer : NWCreature, INWPlayer
     {
-        private readonly INWScript _;
-
         public NWPlayer(INWScript script)
             : base(script)
         {
-            _ = script;
         }
 
         public new static NWPlayer Wrap(Object @object)
