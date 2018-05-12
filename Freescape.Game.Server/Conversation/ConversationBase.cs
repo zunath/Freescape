@@ -11,7 +11,7 @@ using NWN;
 
 namespace Freescape.Game.Server.Conversation
 {
-    internal abstract class ConversationBase: IConversation
+    public abstract class ConversationBase: IConversation
     {
         protected readonly INWScript _;
         private readonly IDialogService _dialog;

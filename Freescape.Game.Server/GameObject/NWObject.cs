@@ -46,7 +46,7 @@ namespace Freescape.Game.Server.GameObject
             }
         }
 
-        public Object Area => _.GetArea(Object);
+        public NWArea Area => NWArea.Wrap(_.GetArea(Object));
 
         public Vector Position => _.GetPosition(Object);
 

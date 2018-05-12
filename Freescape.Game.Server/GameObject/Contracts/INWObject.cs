@@ -4,7 +4,7 @@ namespace Freescape.Game.Server.GameObject.Contracts
 {
     public interface INWObject
     {
-        Object Area { get; }
+        NWArea Area { get; }
         int CurrentHP { get; }
         float Facing { get; set; }
         bool IsPlot { get; set; }
