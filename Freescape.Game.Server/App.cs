@@ -78,6 +78,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<MenuService>().As<IMenuService>();
             builder.RegisterType<BackgroundService>().As<IBackgroundService>();
             builder.RegisterType<DeathService>().As<IDeathService>();
+            builder.RegisterType<PlayerDescriptionService>().As<IPlayerDescriptionService>();
 
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);
