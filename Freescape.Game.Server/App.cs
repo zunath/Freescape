@@ -79,6 +79,8 @@ namespace Freescape.Game.Server
             builder.RegisterType<BackgroundService>().As<IBackgroundService>();
             builder.RegisterType<DeathService>().As<IDeathService>();
             builder.RegisterType<PlayerDescriptionService>().As<IPlayerDescriptionService>();
+            builder.RegisterType<PVPSanctuaryService>().As<IPVPSanctuaryService>();
+            builder.RegisterType<HelmetToggleService>().As<IHelmetToggleService>();
 
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);

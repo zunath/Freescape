@@ -42,7 +42,11 @@ namespace Freescape.Game.Server.Conversation
         protected T GetDialogCustomData<T>(string key = "")
         {
             CustomData data = GetDialogCustomData();
-            if (!data.ContainsKey(key)) return default(T);
+            if (!data.ContainsKey(key))
+            {
+                var instance = (T)Activator.CreateInstance(typeof(T));
+                SetDialogCustomData(key, instance);
+            }
             return (T)GetDialogCustomData()[key];
         }
 
