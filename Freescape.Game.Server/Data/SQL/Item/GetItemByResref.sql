@@ -18,4 +18,4 @@ SELECT i.Resref ,
        i.HPBonus,
        i.ManaBonus
 FROM dbo.Items i
-WHERE i.Resref = @resref
+WHERE i.Resref = :resref

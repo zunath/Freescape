@@ -6,4 +6,4 @@ SELECT CustomEffectID ,
        ContinueMessage ,
        WornOffMessage
 FROM dbo.CustomEffects
-WHERE CustomEffectID = @customEffectID
+WHERE CustomEffectID = :customEffectID

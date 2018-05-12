@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.GameObject;
-using Freescape.Game.Server.Helper;
 using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject.Dialog;
 using NWN;
@@ -105,7 +104,7 @@ namespace Freescape.Game.Server.Service
             Console.WriteLine("Checking for dialog number");
             if (dialog.DialogNumber <= 0)
             {
-                _.FloatingTextStringOnCreature(_colorToken.Red() + "ERROR: No dialog files are available for use." + _colorToken.End(), player.Object, FALSE);
+                _.FloatingTextStringOnCreature(_colorToken.Red("ERROR: No dialog files are available for use."), player.Object, FALSE);
                 return;
             }
 

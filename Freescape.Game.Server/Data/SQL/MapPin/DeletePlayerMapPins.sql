@@ -3,7 +3,7 @@ BEGIN TRY
     BEGIN TRANSACTION
 
 		DELETE FROM dbo.PCMapPins
-		WHERE PlayerID = @playerID
+		WHERE PlayerID = :playerID
 
     COMMIT TRANSACTION
 END TRY

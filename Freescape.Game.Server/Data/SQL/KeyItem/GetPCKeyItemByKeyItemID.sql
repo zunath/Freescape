@@ -4,5 +4,5 @@ SELECT pcki.PCKeyItemID ,
        pcki.KeyItemID ,
        pcki.AcquiredDate
 FROM dbo.PCKeyItems pcki
-WHERE pcki.PlayerID = @playerID
-	AND pcki.KeyItemID = @keyItemID
+WHERE pcki.PlayerID = :playerID
+	AND pcki.KeyItemID = :keyItemID

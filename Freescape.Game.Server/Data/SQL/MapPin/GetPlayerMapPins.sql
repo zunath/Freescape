@@ -6,4 +6,4 @@ SELECT pcmp.PCMapPinID ,
        pcmp.PositionY ,
        pcmp.NoteText
 FROM dbo.PCMapPins pcmp
-WHERE pcmp.PlayerID = @playerID
+WHERE pcmp.PlayerID = :playerID

@@ -7,4 +7,4 @@ SELECT pcc.PCCorpseID ,
        pcc.Orientation ,
        pcc.AreaTag
 FROM dbo.PCCorpses pcc
-WHERE pcc.PCCorpseID = @corpseID
+WHERE pcc.PCCorpseID = :corpseID

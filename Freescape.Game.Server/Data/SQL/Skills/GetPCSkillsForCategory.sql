@@ -8,5 +8,5 @@ SELECT pcs.PCSkillID ,
 FROM dbo.PCSkills pcs
 JOIN dbo.Skills s ON s.SkillID = pcs.SkillID
 WHERE s.IsActive = 1
-	AND s.SkillCategoryID = @skillCategoryID
-	AND pcs.PlayerID = @playerID
+	AND s.SkillCategoryID = :skillCategoryID
+	AND pcs.PlayerID = :playerID

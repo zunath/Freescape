@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using Autofac;
+using Freescape.Game.Server.ChatCommands.Contracts;
 using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Event;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.GameObject.Contracts;
-using Freescape.Game.Server.Helper;
 using Freescape.Game.Server.Service;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
@@ -76,10 +76,12 @@ namespace Freescape.Game.Server
             builder.RegisterType<DurabilityService>().As<IDurabilityService>();
             builder.RegisterType<SkillService>().As<ISkillService>();
             builder.RegisterType<MenuService>().As<IMenuService>();
+            builder.RegisterType<BackgroundService>().As<IBackgroundService>();
 
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);
             RegisterInterfaceImplementations<IConversation>(builder);
+            RegisterInterfaceImplementations<IChatCommand>(builder);
 
             _container = builder.Build();
         }

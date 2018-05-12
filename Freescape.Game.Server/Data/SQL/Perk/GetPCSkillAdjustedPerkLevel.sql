@@ -3,4 +3,4 @@ SELECT PerkLevelID ,
        Level ,
        Price ,
        Description
-FROM dbo.fn_GetPlayerEffectivePerkLevel(@playerID, @perkID, NULl)
+FROM dbo.fn_GetPlayerEffectivePerkLevel(:playerID, :perkID, NULl)

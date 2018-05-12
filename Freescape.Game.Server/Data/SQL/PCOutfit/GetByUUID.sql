@@ -11,4 +11,4 @@ SELECT pco.PlayerID ,
        pco.Outfit9 ,
        pco.Outfit10
 FROM dbo.PCOutfits pco
-WHERE pco.PlayerID = @playerID
+WHERE pco.PlayerID = :playerID

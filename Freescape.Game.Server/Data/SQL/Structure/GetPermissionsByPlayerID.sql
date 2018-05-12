@@ -4,5 +4,5 @@ SELECT pctfp.PCTerritoryFlagPermissionID ,
        pctfp.PlayerID ,
        pctfp.TerritoryFlagPermissionID
 FROM dbo.PCTerritoryFlagsPermissions pctfp
-WHERE pctfp.PCTerritoryFlagID = @flagID
-	AND pctfp.PlayerID = @playerID
+WHERE pctfp.PCTerritoryFlagID = :flagID
+	AND pctfp.PlayerID = :playerID

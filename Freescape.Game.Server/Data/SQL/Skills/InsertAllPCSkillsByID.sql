@@ -6,7 +6,7 @@ BEGIN TRY
 		                           XP ,
 		                           Rank,
 		                           IsLocked)
-        SELECT @playerID,
+        SELECT :playerID,
             s.SkillID,
             0,
             0,
@@ -15,7 +15,7 @@ BEGIN TRY
         WHERE s.SkillID NOT IN (
             SELECT pcs.SkillID
             FROM dbo.PCSkills pcs
-            WHERE pcs.PlayerID = @playerID
+            WHERE pcs.PlayerID = :playerID
         )
 
     COMMIT TRANSACTION

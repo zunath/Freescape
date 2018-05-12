@@ -4,4 +4,4 @@ SELECT ki.KeyItemID ,
        ki.Name ,
        ki.Description
 FROM dbo.KeyItems ki
-WHERE ki.KeyItemID = @keyItemID
+WHERE ki.KeyItemID = :keyItemID

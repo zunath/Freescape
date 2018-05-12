@@ -5,5 +5,5 @@ SELECT PCPerkID ,
        PerkID ,
        PerkLevel
 FROM dbo.PCPerks
-WHERE PlayerID = @playerID
-	AND PerkID = @perkID
+WHERE PlayerID = :playerID
+	AND PerkID = :perkID

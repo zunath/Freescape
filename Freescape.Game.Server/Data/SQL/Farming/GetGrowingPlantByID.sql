@@ -14,4 +14,4 @@ SELECT gp.GrowingPlantID ,
        gp.WaterStatus,
        gp.LongevityBonus
 FROM dbo.GrowingPlants gp
-WHERE gp.GrowingPlantID = @growingPlantID
+WHERE gp.GrowingPlantID = :growingPlantID

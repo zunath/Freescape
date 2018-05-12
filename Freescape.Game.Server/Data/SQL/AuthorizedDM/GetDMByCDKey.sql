@@ -4,5 +4,5 @@ SELECT ad.AuthorizedDMID ,
        ad.DMRole ,
        ad.IsActive
 FROM dbo.AuthorizedDMs ad
-WHERE ad.CDKey = @cdKey
+WHERE ad.CDKey = :cdKey
 	AND ad.IsActive = 1

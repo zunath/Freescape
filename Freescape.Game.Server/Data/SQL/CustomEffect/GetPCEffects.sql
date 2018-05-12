@@ -4,4 +4,4 @@ SELECT pcce.PCCustomEffectID ,
        pcce.CustomEffectID ,
        pcce.Ticks
 FROM dbo.PCCustomEffects pcce
-WHERE pcce.PlayerID = @playerID
+WHERE pcce.PlayerID = :playerID

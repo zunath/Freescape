@@ -6,5 +6,5 @@ SELECT pcqs.PCQuestStatusID ,
        pcqs.SelectedItemRewardID ,
        pcqs.PlayerID
 FROM dbo.PCQuestStatus pcqs
-WHERE pcqs.PlayerID = @playerID
-	AND pcqs.QuestID = @questID
+WHERE pcqs.PlayerID = :playerID
+	AND pcqs.QuestID = :questID

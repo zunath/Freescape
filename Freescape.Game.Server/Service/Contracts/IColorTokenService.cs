@@ -1,39 +1,40 @@
 ﻿using Freescape.Game.Server.GameObject;
 
-namespace Freescape.Game.Server.Helper
+namespace Freescape.Game.Server.Service.Contracts
 {
     public interface IColorTokenService
     {
-        string Custom(int nRed, int nGreen, int nBlue);
-        string End();
-        string Black();
-        string Blue();
-        string Gray();
-        string Green();
-        string LightPurple();
-        string Orange();
-        string Pink();
-        string Purple();
-        string Red();
-        string White();
-        string Yellow();
-        string Cyan();
-        string Combat();
-        string Dialog();
-        string DialogAction();
-        string DialogCheck();
-        string DialogHighlight();
-        string DialogReply();
-        string DM();
-        string GameEngine();
-        string SavingThrow();
-        string Script();
-        string Server();
-        string Shout();
-        string SkillCheck();
-        string Talk();
-        string Tell();
-        string Whisper();
+        string TokenStart(int red, int green, int blue);
+        string TokenEnd();
+        string Custom(string text, int red, int green, int blue);
+        string Black(string text);
+        string Blue(string text);
+        string Gray(string text);
+        string Green(string text);
+        string LightPurple(string text);
+        string Orange(string text);
+        string Pink(string text);
+        string Purple(string text);
+        string Red(string text);
+        string White(string text);
+        string Yellow(string text);
+        string Cyan(string text);
+        string Combat(string text);
+        string Dialog(string text);
+        string DialogAction(string text);
+        string DialogCheck(string text);
+        string DialogHighlight(string text);
+        string DialogReply(string text);
+        string DM(string text);
+        string GameEngine(string text);
+        string SavingThrow(string text);
+        string Script(string text);
+        string Server(string text);
+        string Shout(string text);
+        string SkillCheck(string text);
+        string Talk(string text);
+        string Tell(string text);
+        string Whisper(string text);
         string GetNamePCColor(NWObject oPC);
         string GetNameNPCColor(NWObject oNPC);
     }

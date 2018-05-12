@@ -12,4 +12,4 @@ SELECT cb.CraftBlueprintID ,
        cb.IsActive ,
        cb.CraftTierLevel
 FROM dbo.CraftBlueprints cb
-WHERE cb.CraftBlueprintID = @blueprintID
+WHERE cb.CraftBlueprintID = :blueprintID

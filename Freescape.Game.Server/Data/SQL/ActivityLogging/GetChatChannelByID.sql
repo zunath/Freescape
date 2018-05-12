@@ -1,4 +1,4 @@
 SELECT ccd.ChatChannelID ,
        ccd.Name
 FROM dbo.ChatChannelsDomain ccd
-WHERE ccd.ChatChannelID = @chatChannelID
+WHERE ccd.ChatChannelID = :chatChannelID

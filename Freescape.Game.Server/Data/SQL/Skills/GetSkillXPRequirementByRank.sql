@@ -4,5 +4,5 @@ SELECT SkillXPRequirementID ,
        Rank ,
        XP
 FROM dbo.SkillXPRequirement
-WHERE SkillID = @skillID
-	AND Rank = @rank
+WHERE SkillID = :skillID
+	AND Rank = :rank

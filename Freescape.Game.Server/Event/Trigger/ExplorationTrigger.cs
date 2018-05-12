@@ -1,6 +1,6 @@
 ﻿using System;
 using Freescape.Game.Server.GameObject;
-using Freescape.Game.Server.Helper;
+using Freescape.Game.Server.Service.Contracts;
 using NWN;
 using Object = NWN.Object;
 
@@ -32,7 +32,7 @@ namespace Freescape.Game.Server.Event.Trigger
             if (_.GetLocalInt(oPC.Object, triggerID) == 1) return false;
 
             string message = _.GetLocalString(Object.OBJECT_SELF, "DISPLAY_TEXT");
-            _.SendMessageToPC(oPC.Object, _colorToken.Cyan() + message + _colorToken.End());
+            _.SendMessageToPC(oPC.Object, _colorToken.Cyan(message));
             _.SetLocalInt(oPC.Object, triggerID, 1);
 
             _.AssignCommand(oPC.Object, () => _.PlaySound("gui_prompt"));

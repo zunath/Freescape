@@ -1,8 +1,22 @@
 ﻿using Freescape.Game.Server.GameObject;
+using Freescape.Game.Server.Service.Contracts;
 using NWN;
 
-namespace Freescape.Game.Server.Helper
+namespace Freescape.Game.Server.Service
 {
+    /// <summary>
+    ///      *
+    ///      * Access to the color tokens provided by The Krit.
+    ///      ************************************************************
+    ///      * Please use these judiciously to enhance the gaming
+    ///      * experience. (Overuse of colors detracts from it.)
+    ///      ************************************************************
+    ///      * Color tokens in a String will change the color from that
+    ///      * point on when the String is displayed on the screen.
+    ///      * Every color change should be ended by an end token,
+    ///      * supplied by ColorTokenEnd().
+    ///      ************************************************************/
+    /// </summary>
     public class ColorTokenService : IColorTokenService
     {
         private readonly INWScript _;
@@ -12,430 +26,219 @@ namespace Freescape.Game.Server.Helper
             _ = script;
         }
 
-
-        /*
-     * colors_inc.nss
-     *
-     * Access to the color tokens provided by The Krit.
-     ************************************************************
-     * Please use these judiciously to enhance the gaming
-     * experience. (Overuse of colors detracts from it.)
-     ************************************************************
-     * Color tokens in a String will change the color from that
-     * point on when the String is displayed on the screen.
-     * Every color change should be ended by an end token,
-     * supplied by ColorTokenEnd().
-     ************************************************************/
-
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Common.Constants
-        ///////////////////////////////////////////////////////////////////////////////
-
         private const string ColorArray = "     !##$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþþ";
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Basic Functions
-        ///////////////////////////////////////////////////////////////////////////////
-
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorToken()
-        //
-        // Supplies a String that changes the text to the given RGB values.
-        // Valid parameter values are 0-255.
-        //
-        public string Custom(int nRed, int nGreen, int nBlue)
+        public string TokenStart(int red, int green, int blue)
         {
-            return "<c" + _.GetSubString(ColorArray, nRed, 1) +
-                    _.GetSubString(ColorArray, nGreen, 1) +
-                    _.GetSubString(ColorArray, nBlue, 1) + ">";
+            return "<c" + _.GetSubString(ColorArray, red, 1) +
+                   _.GetSubString(ColorArray, green, 1) +
+                   _.GetSubString(ColorArray, blue, 1) + ">";
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenEnd()
-        //
-        // Supplies a String that ends an earlier color change.
-        //
-        public  string End()
+        public string Custom(string text, int red, int green, int blue)
+        {
+            return TokenStart(red, green, blue) + text + TokenEnd();
+        }
+
+        public string TokenEnd()
         {
             return "</c>";
         }
 
-
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Functions by Color
-        ///////////////////////////////////////////////////////////////////////////////
-
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenBlack()
-        //
-        // Supplies a String that changes the text to black.
-        //
-        public  string Black()
+        public string Black(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">";
+                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
         }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenBlue()
-        //
-        // Supplies a String that changes the text to blue.
-        //
-        public  string Blue()
+        public string Blue(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenGray()
-        //
-        // Supplies a String that changes the text to gray.
-        //
-        public  string Gray()
+        public string Gray(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 127, 1) +
                     _.GetSubString(ColorArray, 127, 1) +
-                    _.GetSubString(ColorArray, 127, 1) + ">";
+                    _.GetSubString(ColorArray, 127, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenGreen()
-        //
-        // Supplies a String that changes the text to green.
-        //
-        public  string Green()
+        public string Green(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">";
+                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenLightPurple()
-        //
-        // Supplies a String that changes the text to light purple.
-        //
-        public  string LightPurple()
+        public string LightPurple(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 175, 1) +
                     _.GetSubString(ColorArray, 48, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenOrange()
-        //
-        // Supplies a String that changes the text to orange.
-        //
-        public  string Orange()
+        public string Orange(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 127, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">";
+                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenPink()
-        //
-        // Supplies a String that changes the text to pink.
-        //
-        public  string Pink()
+        public string Pink(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenPurple()
-        //
-        // Supplies a String that changes the text to purple.
-        //
-        public  string Purple()
+        public string Purple(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 127, 1) +
                     _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenRed()
-        //
-        // Supplies a String that changes the text to red.
-        //
-        public  string Red()
+        public string Red(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">";
+                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenWhite()
-        //
-        // Supplies a String that changes the text to white.
-        //
-        public  string White()
+        public string White(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenYellow()
-        //
-        // Supplies a String that changes the text to yellow.
-        //
-        public  string Yellow()
+        public string Yellow(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">";
+                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
         }
 
-
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenCyan()
-        //
-        // Supplies a String that changes the text to yellow.
-        //
-        public  string Cyan()
+        public string Cyan(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Functions by Purpose
-        ///////////////////////////////////////////////////////////////////////////////
-
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenCombat()
-        //
-        // Supplies a String that changes the text to the color of
-        // combat messages.
-        //
-        public  string Combat()
+        public string Combat(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 102, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">";
+                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenDialog()
-        //
-        // Supplies a String that changes the text to the color of
-        // dialog.
-        //
-        public  string Dialog()
+        public string Dialog(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenDialogAction()
-        //
-        // Supplies a String that changes the text to the color of
-        // dialog actions.
-        //
-        public  string DialogAction()
+        public string DialogAction(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 1, 1) +
                     _.GetSubString(ColorArray, 254, 1) +
-                    _.GetSubString(ColorArray, 1, 1) + ">";
+                    _.GetSubString(ColorArray, 1, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenDialogCheck()
-        //
-        // Supplies a String that changes the text to the color of
-        // dialog checks.
-        //
-        public  string DialogCheck()
+        public string DialogCheck(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 254, 1) +
                     _.GetSubString(ColorArray, 1, 1) +
-                    _.GetSubString(ColorArray, 1, 1) + ">";
+                    _.GetSubString(ColorArray, 1, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenDialogHighlight()
-        //
-        // Supplies a String that changes the text to the color of
-        // dialog highlighting.
-        //
-        public  string DialogHighlight()
+        public string DialogHighlight(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 1, 1) +
                     _.GetSubString(ColorArray, 1, 1) +
-                    _.GetSubString(ColorArray, 254, 1) + ">";
+                    _.GetSubString(ColorArray, 254, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenDialogReply()
-        //
-        // Supplies a String that changes the text to the color of
-        // replies in the dialog window.
-        //
-        public  string DialogReply()
+        public string DialogReply(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 102, 1) +
                     _.GetSubString(ColorArray, 178, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenDM()
-        //
-        // Supplies a String that changes the text to the color of
-        // the DM channel.
-        //
-        public  string DM()
+        public string DM(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 16, 1) +
                     _.GetSubString(ColorArray, 223, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenGameEngine()
-        //
-        // Supplies a String that changes the text to the color of
-        // many game engine messages.
-        //
-        public  string GameEngine()
+        public string GameEngine(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 204, 1) +
                     _.GetSubString(ColorArray, 119, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenSavingThrow()
-        //
-        // Supplies a String that changes the text to the color of
-        // saving throw messages.
-        //
-        public  string SavingThrow()
+        public string SavingThrow(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 102, 1) +
                     _.GetSubString(ColorArray, 204, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenScript()
-        //
-        // Supplies a String that changes the text to the color of
-        // messages sent from scripts.
-        //
-        public  string Script()
+        public string Script(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">";
+                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenServer()
-        //
-        // Supplies a String that changes the text to the color of
-        // server messages.
-        //
-        public  string Server()
+        public string Server(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 176, 1) +
                     _.GetSubString(ColorArray, 176, 1) +
-                    _.GetSubString(ColorArray, 176, 1) + ">";
+                    _.GetSubString(ColorArray, 176, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenShout()
-        //
-        // Supplies a String that changes the text to the color of
-        // shouts.
-        //
-        public  string Shout()
+        public string Shout(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 239, 1) +
-                    _.GetSubString(ColorArray, 80, 1) + ">";
+                    _.GetSubString(ColorArray, 80, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenSkillCheck()
-        //
-        // Supplies a String that changes the text to the color of
-        // skill check messages.
-        //
-        public  string SkillCheck()
+        public string SkillCheck(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 102, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">";
+                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenTalk()
-        //
-        // Supplies a String that changes the text to the color of
-        // the talk and party talk channels.
-        //
-        public  string Talk()
+        public string Talk(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 240, 1) +
                     _.GetSubString(ColorArray, 240, 1) +
-                    _.GetSubString(ColorArray, 240, 1) + ">";
+                    _.GetSubString(ColorArray, 240, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenTell()
-        //
-        // Supplies a String that changes the text to the color of
-        // tells.
-        //
-        public  string Tell()
+        public string Tell(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 32, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 32, 1) + ">";
+                    _.GetSubString(ColorArray, 32, 1) + ">" + text + TokenEnd();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // ColorTokenWhisper()
-        //
-        // Supplies a String that changes the text to the color of
-        // whispers.
-        //
-        public  string Whisper()
+        public string Whisper(string text)
         {
             return "<c" + _.GetSubString(ColorArray, 128, 1) +
                     _.GetSubString(ColorArray, 128, 1) +
-                    _.GetSubString(ColorArray, 128, 1) + ">";
+                    _.GetSubString(ColorArray, 128, 1) + ">" + text + TokenEnd();
         }
-
-
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Colored Name Functions
-        ///////////////////////////////////////////////////////////////////////////////
-
 
         ///////////////////////////////////////////////////////////////////////////////
         // _.GetNamePCColor()
@@ -444,7 +247,7 @@ namespace Freescape.Game.Server.Helper
         // the name is the lighter blue often used in NWN game engine messages.
         //
         //
-        public  string GetNamePCColor(NWObject oPC)
+        public string GetNamePCColor(NWObject oPC)
         {
             return "<c" + _.GetSubString(ColorArray, 153, 1) +
                     _.GetSubString(ColorArray, 255, 1) +

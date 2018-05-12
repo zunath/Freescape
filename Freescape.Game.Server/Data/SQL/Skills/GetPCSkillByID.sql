@@ -5,5 +5,5 @@ SELECT PCSkillID ,
        Rank,
        IsLocked
 FROM dbo.PCSkills
-WHERE SkillID = @skillID
-	AND PlayerID = @playerID
+WHERE SkillID = :skillID
+	AND PlayerID = :playerID

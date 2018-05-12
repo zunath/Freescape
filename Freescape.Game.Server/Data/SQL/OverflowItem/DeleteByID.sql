@@ -3,7 +3,7 @@ BEGIN TRY
     BEGIN TRANSACTION
 
 		DELETE FROM dbo.PCOverflowItems
-		WHERE PCOverflowItemID = @pcOverflowItemID
+		WHERE PCOverflowItemID = :pcOverflowItemID
 
     COMMIT TRANSACTION
 END TRY

@@ -9,6 +9,8 @@ SELECT pctf.PCTerritoryFlagID ,
        pctf.LocationOrientation ,
        pctf.BuildPrivacySettingID ,
        pctf.ShowOwnerName,
+       pctf.BuildingPCStructureID,
+       pctf.IsActive,
        sb.StructureBlueprintID ,
        sb.StructureCategoryID ,
        sb.Name ,
@@ -25,8 +27,15 @@ SELECT pctf.PCTerritoryFlagID ,
        sb.GivesSkillXP,
        sb.IsVanity,
        sb.IsSpecial,
-       sb.CraftTierLevel
+       sb.CraftTierLevel,
+       sb.ResourceCount,
+       sb.BuildingCount,
+       sb.IsResource,
+       sb.IsBuilding,
+       sb.ResourceResref,
+       sb.BuildingCategoryID
 FROM dbo.PCTerritoryFlags pctf
 JOIN dbo.StructureBlueprints sb ON sb.StructureBlueprintID = pctf.StructureBlueprintID
-WHERE pctf.LocationAreaTag = @areaTag
+WHERE pctf.LocationAreaTag = :areaTag
+    AND pctf.IsActive = 1
 ORDER BY sb.MaxBuildDistance DESC

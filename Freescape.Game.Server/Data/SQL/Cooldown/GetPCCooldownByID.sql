@@ -4,5 +4,5 @@ SELECT pcac.PCCooldownID ,
        pcac.CooldownCategoryID ,
        pcac.DateUnlocked
 FROM dbo.PCCooldowns pcac
-WHERE pcac.PlayerID = @playerID
-	AND pcac.CooldownCategoryID = @cooldownCategoryID
+WHERE pcac.PlayerID = :playerID
+	AND pcac.CooldownCategoryID = :cooldownCategoryID

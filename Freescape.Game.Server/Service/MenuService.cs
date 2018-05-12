@@ -1,5 +1,4 @@
-﻿using Freescape.Game.Server.Helper;
-using Freescape.Game.Server.Service.Contracts;
+﻿using Freescape.Game.Server.Service.Contracts;
 
 namespace Freescape.Game.Server.Service
 {
@@ -15,7 +14,7 @@ namespace Freescape.Game.Server.Service
         public string BuildBar(int currentValue, int requiredValue, int numberOfBars, string colorToken = null)
         {
             if (colorToken == null)
-                colorToken = _color.Orange();
+                colorToken = _color.TokenStart(255, 127, 0); // Orange
 
             string xpBar = string.Empty;
             int highlightedBars = (int)(currentValue / (float)requiredValue * numberOfBars);
@@ -24,11 +23,11 @@ namespace Freescape.Game.Server.Service
             {
                 if (bar <= highlightedBars)
                 {
-                    xpBar += colorToken + "|" + _color.End();
+                    xpBar += colorToken + "|" + _color.TokenEnd();
                 }
                 else
                 {
-                    xpBar += _color.White() + "|" + _color.End();
+                    xpBar += _color.TokenStart(255, 255, 255) + "|" + _color.TokenEnd(); // White
                 }
             }
             

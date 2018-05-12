@@ -5,4 +5,4 @@ SELECT sc.StorageContainerID ,
        sc.AreaTag ,
        sc.AreaResref
 FROM dbo.StorageContainers sc
-WHERE sc.StorageContainerID = @containerID
+WHERE sc.StorageContainerID = :containerID

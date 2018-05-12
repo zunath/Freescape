@@ -11,11 +11,11 @@ SELECT cb2.CraftBlueprintID ,
        cb2.IsActive,
        cb2.CraftTierLevel
 FROM dbo.CraftBlueprints AS cb2
-JOIN dbo.PCSkills pcs ON pcs.PlayerID = @playerID AND cb2.SkillID = pcs.SkillID
+JOIN dbo.PCSkills pcs ON pcs.PlayerID = :playerID AND cb2.SkillID = pcs.SkillID
 LEFT JOIN dbo.PCPerks pcp ON (cb2.PerkID IS NULL OR pcp.PerkID = cb2.PerkID)
 	AND (pcp.PerkLevel >= cb2.RequiredPerkLevel)
 	AND (pcs.PlayerID = pcp.PlayerID)
 WHERE cb2.IsActive = 1
 	AND (cb2.Level <= pcs.Rank+2)
 	AND (pcp.PCPerkID IS NOT NULL OR cb2.PerkID IS NULL)
-	AND cb2.CraftCategoryID = @categoryID
+	AND cb2.CraftCategoryID = :categoryID

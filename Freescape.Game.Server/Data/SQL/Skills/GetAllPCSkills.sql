@@ -7,5 +7,5 @@ SELECT ps.PCSkillID ,
        ps.IsLocked
 FROM dbo.PCSkills ps
 JOIN dbo.Skills s ON s.SkillID = ps.SkillID
-WHERE ps.PlayerID = @playerID
+WHERE ps.PlayerID = :playerID
 	AND s.IsActive = 1

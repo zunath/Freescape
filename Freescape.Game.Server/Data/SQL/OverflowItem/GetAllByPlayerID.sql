@@ -7,4 +7,4 @@ SELECT pcoi.PCOverflowItemID ,
        pcoi.ItemResref ,
        pcoi.ItemObject
 FROM dbo.PCOverflowItems pcoi
-WHERE pcoi.PlayerID = @playerID
+WHERE pcoi.PlayerID = :playerID

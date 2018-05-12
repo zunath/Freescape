@@ -4,4 +4,4 @@ SELECT tfp.TerritoryFlagPermissionID ,
        tfp.IsActive ,
        tfp.IsSelectable
 FROM dbo.TerritoryFlagPermissions tfp
-WHERE tfp.TerritoryFlagPermissionID = @permissionID
+WHERE tfp.TerritoryFlagPermissionID = :permissionID

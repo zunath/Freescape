@@ -2,4 +2,4 @@
 SELECT lt.LootTableID ,
        lt.Name
 FROM dbo.LootTables lt
-WHERE lt.LootTableID = @lootTableID
+WHERE lt.LootTableID = :lootTableID

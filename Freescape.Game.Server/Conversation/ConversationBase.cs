@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.GameObject;
@@ -9,7 +11,7 @@ using NWN;
 
 namespace Freescape.Game.Server.Conversation
 {
-    public abstract class ConversationBase
+    internal abstract class ConversationBase: IConversation
     {
         protected readonly INWScript _;
         private readonly IDialogService _dialog;
@@ -37,11 +39,17 @@ namespace Freescape.Game.Server.Conversation
             return dialog.CustomData;
         }
 
-        protected T GetDialogCustomData<T>(string key)
+        protected T GetDialogCustomData<T>(string key = "")
         {
             CustomData data = GetDialogCustomData();
             if (!data.ContainsKey(key)) return default(T);
             return (T)GetDialogCustomData()[key];
+        }
+
+        protected void SetDialogCustomData(dynamic value)
+        {
+            CustomData data = GetDialogCustomData();
+            data[""] = value;
         }
 
         protected void SetDialogCustomData(string key, dynamic value)
@@ -136,5 +144,13 @@ namespace Freescape.Game.Server.Conversation
         {
             _dialog.EndConversation(GetPC());
         }
+
+        public abstract PlayerDialog SetUp(NWPlayer player);
+
+        public abstract void Initialize();
+
+        public abstract void DoAction(NWPlayer player, string pageName, int responseID);
+
+        public abstract void EndDialog();
     }
 }

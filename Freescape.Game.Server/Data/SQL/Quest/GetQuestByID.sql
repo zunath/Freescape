@@ -14,4 +14,4 @@ SELECT q.QuestID ,
        q.StartKeyItemID ,
        q.RemoveStartKeyItemAfterCompletion
 FROM dbo.Quests q
-WHERE q.QuestID = @questID
+WHERE q.QuestID = :questID

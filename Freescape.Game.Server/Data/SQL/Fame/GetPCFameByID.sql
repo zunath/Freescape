@@ -6,5 +6,5 @@ SELECT pcf.PCRegionalFameID ,
        pcf.Amount
 FROM dbo.PCRegionalFame pcf
 JOIN dbo.FameRegions fr ON fr.FameRegionID = pcf.FameRegionID
-WHERE pcf.PlayerID = @playerID
-	AND fr.FameRegionID = @fameRegionID
+WHERE pcf.PlayerID = :playerID
+	AND fr.FameRegionID = :fameRegionID

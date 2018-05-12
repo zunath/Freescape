@@ -1,17 +1,14 @@
 ﻿using System.Linq;
-using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.Data;
-using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.GameObject.Contracts;
-using Freescape.Game.Server.Helper;
 using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject.Dialog;
 using NWN;
 
 namespace Freescape.Game.Server.Conversation
 {
-    internal class RestMenu : ConversationBase, IConversation
+    internal class RestMenu : ConversationBase
     {
         private readonly DataContext _db;
         private readonly IColorTokenService _color;
@@ -32,12 +29,12 @@ namespace Freescape.Game.Server.Conversation
             _menu = menu;
         }
 
-        public PlayerDialog SetUp(NWPlayer player)
+        public override PlayerDialog SetUp(NWPlayer player)
         {
             PlayerDialog dialog = new PlayerDialog("MainPage");
             DialogPage mainPage = new DialogPage(
                 BuildMainPageHeader(player),
-                _color.Green() + "Open Overflow Inventory" + _color.End(),
+                _color.Green("Open Overflow Inventory"),
                 "View Skills",
                 "View Perks",
                 "View Blueprints",
@@ -53,7 +50,7 @@ namespace Freescape.Game.Server.Conversation
             return dialog;
         }
 
-        public void Initialize()
+        public override void Initialize()
         {
             string playerID = GetPC().GlobalID;
             long overflowCount = _db.PCOverflowItems.Where(x => x.PlayerID == playerID).LongCount();
@@ -65,7 +62,7 @@ namespace Freescape.Game.Server.Conversation
 
         }
 
-        public void DoAction(NWPlayer player, string pageName, int responseID)
+        public override void DoAction(NWPlayer player, string pageName, int responseID)
         {
             switch (pageName)
             {
@@ -137,7 +134,7 @@ namespace Freescape.Game.Server.Conversation
             }
         }
 
-        public void EndDialog()
+        public override void EndDialog()
         {
         }
 
@@ -146,11 +143,11 @@ namespace Freescape.Game.Server.Conversation
             PlayerCharacter playerEntity = _db.PlayerCharacters.Single(x => x.PlayerID == player.GlobalID);
             int totalSkillCount = _db.PCSkills.Where(x => x.PlayerID == player.GlobalID).Sum(s => s.Rank);
 
-            string header = _color.Green() + "Name: " + _color.End() + GetPC().Name + "\n\n";
-            header += _color.Green() + "Skill Points: " + _color.End() + totalSkillCount + " / " + _skill.SkillCap + "\n";
-            header += _color.Green() + "Unallocated SP: " + _color.End() + playerEntity.UnallocatedSP + "\n";
-            header += _color.Green() + "Hunger:   " + _color.End() + _menu.BuildBar(playerEntity.CurrentHunger, playerEntity.MaxHunger, 100) + "\n";
-            header += _color.Green() + "Mana:      " + _color.End() + _menu.BuildBar(playerEntity.CurrentMana, playerEntity.MaxMana, 100, _color.Custom(32, 223, 219)) + "\n";
+            string header = _color.Green("Name: ") + GetPC().Name + "\n\n";
+            header += _color.Green("Skill Points: ") + totalSkillCount + " / " + _skill.SkillCap + "\n";
+            header += _color.Green("Unallocated SP: ") + playerEntity.UnallocatedSP + "\n";
+            header += _color.Green("Hunger: ") + _menu.BuildBar(playerEntity.CurrentHunger, playerEntity.MaxHunger, 100) + "\n";
+            header += _color.Green("Mana: ") + _menu.BuildBar(playerEntity.CurrentMana, playerEntity.MaxMana, 100, _color.TokenStart(32, 223, 219)) + "\n";
 
             return header;
         }

@@ -14,4 +14,4 @@ SELECT p.PerkID ,
        p.ItemResref ,
        p.IsTargetSelfOnly
 FROM dbo.Perks p
-WHERE p.PerkID = @perkID
+WHERE p.PerkID = :perkID
