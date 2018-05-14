@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Linq;
 using Freescape.Game.Server.Data;
+using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
 
 namespace Freescape.Game.Server.Service
 {
-    public class PlayerInitializationService: IPlayerInitializationService
+    public class PlayerService: IPlayerService
     {
         private readonly INWScript _;
+        private readonly IDataContext _db;
 
-        public PlayerInitializationService(INWScript nw)
+        public PlayerService(INWScript nw, IDataContext db)
         {
             _ = nw;
+            _db = db;
         }
 
         public void InitializePlayer(NWPlayer player)
@@ -105,6 +109,21 @@ namespace Freescape.Game.Server.Service
                 InitializeHotBar(player);
             }
 
+        }
+
+        public PlayerCharacter GetPlayerEntity(NWPlayer player)
+        {
+            if(player == null) throw new ArgumentNullException(nameof(player));
+            if(!player.IsPlayer) throw new ArgumentException(nameof(player) + " must be a player.", nameof(player));
+
+            return _db.PlayerCharacters.Single(x => x.PlayerID == player.GlobalID);
+        }
+
+        public PlayerCharacter GetPlayerEntity(string playerID)
+        {
+            if (string.IsNullOrWhiteSpace(playerID)) throw new ArgumentException("Invalid player ID.", nameof(playerID));
+
+            return _db.PlayerCharacters.Single(x => x.PlayerID == playerID);
         }
 
         private void InitializeHotBar(NWPlayer player)

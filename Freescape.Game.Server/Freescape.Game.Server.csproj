@@ -61,6 +61,7 @@
     <Compile Include="ChatCommands\Day.cs" />
     <Compile Include="Conversation\BackgroundMenu.cs" />
     <Compile Include="Conversation\BindSoul.cs" />
+    <Compile Include="Conversation\BuildingEntrance.cs" />
     <Compile Include="Conversation\ChangeDescription.cs" />
     <Compile Include="Conversation\ChangeHead.cs" />
     <Compile Include="Conversation\CharacterManagement.cs" />
@@ -338,6 +339,17 @@
     <Compile Include="Data\User.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enumeration\Background.cs" />
+    <Compile Include="Enumeration\CraftDevice.cs" />
+    <Compile Include="Enumeration\CustomAttribute.cs" />
+    <Compile Include="Enumeration\CustomEffect.cs" />
+    <Compile Include="Enumeration\CustomItemType.cs" />
+    <Compile Include="Enumeration\PerkExecutionType.cs" />
+    <Compile Include="Enumeration\PerkType.cs" />
+    <Compile Include="Enumeration\Quest.cs" />
+    <Compile Include="Enumeration\QuestType.cs" />
+    <Compile Include="Enumeration\Skill.cs" />
+    <Compile Include="Enumeration\StructurePermission.cs" />
     <Compile Include="Event\Area\OnAreaUserDefined.cs" />
     <Compile Include="Event\Area\OnAreaHeartbeat.cs" />
     <Compile Include="Event\Area\OnAreaExit.cs" />
@@ -456,9 +468,10 @@
     <Compile Include="Service\Contracts\IHelmetToggleService.cs" />
     <Compile Include="Service\Contracts\IMenuService.cs" />
     <Compile Include="Service\Contracts\IPlayerDescriptionService.cs" />
-    <Compile Include="Service\Contracts\IPlayerInitializationService.cs" />
+    <Compile Include="Service\Contracts\IPlayerService.cs" />
     <Compile Include="Service\Contracts\IPVPSanctuaryService.cs" />
     <Compile Include="Service\Contracts\ISkillService.cs" />
+    <Compile Include="Service\Contracts\IStructureService.cs" />
     <Compile Include="Service\DeathService.cs" />
     <Compile Include="Service\DialogService.cs" />
     <Compile Include="Service\Contracts\IDialogService.cs" />
@@ -466,13 +479,14 @@
     <Compile Include="Service\HelmetToggleService.cs" />
     <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\PlayerDescriptionService.cs" />
-    <Compile Include="Service\PlayerInitializationService.cs" />
+    <Compile Include="Service\PlayerService.cs" />
     <Compile Include="Service\PVPSanctuaryService.cs" />
     <Compile Include="Service\SkillService.cs" />
     <Compile Include="ValueObject\CustomData.cs" />
     <Compile Include="ValueObject\Dialog\DialogPage.cs" />
     <Compile Include="ValueObject\Dialog\DialogResponse.cs" />
     <Compile Include="ValueObject\Dialog\PlayerDialog.cs" />
+    <Compile Include="ValueObject\Structure\BuildingOwners.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -493,9 +507,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Data\SQL\**\*.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enumeration\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Data\DataContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -7,10 +7,10 @@ namespace Freescape.Game.Server.Event.Module
     internal class OnModuleEnter : IRegisteredEvent
     {
         private readonly INWScript _nw;
-        private readonly IPlayerInitializationService _initService;
+        private readonly IPlayerService _initService;
 
         public OnModuleEnter(INWScript nw,
-            IPlayerInitializationService initService)
+            IPlayerService initService)
         {
             _nw = nw;
             _initService = initService;
