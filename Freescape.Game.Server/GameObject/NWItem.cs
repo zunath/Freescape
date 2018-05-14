@@ -54,6 +54,11 @@ namespace Freescape.Game.Server.GameObject
             set => _.SetItemCharges(Object, value);
         }
 
+        public virtual void ReduceCharges(int reduceBy = 1)
+        {
+            Charges = Charges - reduceBy;
+        }
+
         public virtual int StackSize
         {
             get => _.GetItemStackSize(Object);

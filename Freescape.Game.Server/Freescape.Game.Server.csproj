@@ -73,6 +73,7 @@
     <Compile Include="Conversation\Item\DestroyPlayerGuide.cs" />
     <Compile Include="Conversation\KeyItems.cs" />
     <Compile Include="Conversation\RestMenu.cs" />
+    <Compile Include="Conversation\Shovel.cs" />
     <Compile Include="Data\Attribute.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
@@ -472,6 +473,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Contracts\IDeathService.cs" />
     <Compile Include="Service\Contracts\IDurabilityService.cs" />
+    <Compile Include="Service\Contracts\IFarmingService.cs" />
     <Compile Include="Service\Contracts\IHelmetToggleService.cs" />
     <Compile Include="Service\Contracts\IKeyItemService.cs" />
     <Compile Include="Service\Contracts\IMenuService.cs" />

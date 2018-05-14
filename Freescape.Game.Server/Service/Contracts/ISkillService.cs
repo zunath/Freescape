@@ -8,5 +8,6 @@ namespace Freescape.Game.Server.Service.Contracts
         int SkillCap { get; }
         void ApplyStatChanges(NWPlayer player, NWItem ignoreItem);
         void RegisterPCToAllCombatTargetsForSkill(NWPlayer player, SkillType skillType);
+        void GiveSkillXP(NWPlayer player, SkillType skill, int amount);
     }
 }
