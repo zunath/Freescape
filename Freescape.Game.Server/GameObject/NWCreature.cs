@@ -131,9 +131,18 @@ namespace Freescape.Game.Server.GameObject
             set => _.SetXP(Object, value);
         }
 
-        public virtual void AssignCommand(ActionDelegate action)
+        public virtual void AssignCommand(ActionDelegate action, float delay = 0.0f)
         {
-            _.AssignCommand(Object, action);
+            if (delay <= 0.0f)
+            {
+                _.AssignCommand(Object, action);
+            }
+            else
+            {
+                _.DelayCommand(delay, action);
+            }
+            
         }
+        
     }
 }

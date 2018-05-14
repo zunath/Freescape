@@ -62,13 +62,16 @@
     <Compile Include="Conversation\BackgroundMenu.cs" />
     <Compile Include="Conversation\BindSoul.cs" />
     <Compile Include="Conversation\BuildingEntrance.cs" />
+    <Compile Include="Conversation\BuildingExit.cs" />
     <Compile Include="Conversation\ChangeDescription.cs" />
     <Compile Include="Conversation\ChangeHead.cs" />
     <Compile Include="Conversation\CharacterManagement.cs" />
     <Compile Include="Conversation\Contracts\IConversation.cs" />
     <Compile Include="Conversation\ConversationBase.cs" />
+    <Compile Include="Conversation\FarmHole.cs" />
     <Compile Include="Conversation\Item\DestroySurvivalKnife.cs" />
     <Compile Include="Conversation\Item\DestroyPlayerGuide.cs" />
+    <Compile Include="Conversation\KeyItems.cs" />
     <Compile Include="Conversation\RestMenu.cs" />
     <Compile Include="Data\Attribute.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
@@ -470,6 +473,7 @@
     <Compile Include="Service\Contracts\IDeathService.cs" />
     <Compile Include="Service\Contracts\IDurabilityService.cs" />
     <Compile Include="Service\Contracts\IHelmetToggleService.cs" />
+    <Compile Include="Service\Contracts\IKeyItemService.cs" />
     <Compile Include="Service\Contracts\IMenuService.cs" />
     <Compile Include="Service\Contracts\IPerkService.cs" />
     <Compile Include="Service\Contracts\IPlayerDescriptionService.cs" />

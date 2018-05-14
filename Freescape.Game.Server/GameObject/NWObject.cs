@@ -157,5 +157,10 @@ namespace Freescape.Game.Server.GameObject
             _.DeleteLocalObject(Object, name);
         }
 
+        public virtual void Destroy(float delay = 0.0f)
+        {
+            _.DestroyObject(Object, delay);
+        }
+
     }
 }

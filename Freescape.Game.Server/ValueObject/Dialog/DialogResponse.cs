@@ -20,5 +20,8 @@ namespace Freescape.Game.Server.ValueObject.Dialog
                 CustomData[data.Item1] = data.Item2;
             }
         }
+
+        public bool HasCustomData => CustomData.Count > 0;
+
     }
 }
