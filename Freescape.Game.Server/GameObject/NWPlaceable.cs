@@ -18,7 +18,7 @@ namespace Freescape.Game.Server.GameObject
             return obj;
         }
 
-        public bool IsUseable
+        public virtual bool IsUseable
         {
             get => _.GetUseableFlag(Object) == 1;
             set => _.SetUseableFlag(Object, value ? 1 : 0);

@@ -68,6 +68,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<NWCreature>().As<INWCreature>();
             builder.RegisterType<NWItem>().As<INWItem>();
             builder.RegisterType<NWPlayer>().As<INWPlayer>();
+            builder.RegisterType<NWArea>().As<INWArea>();
 
             // Services
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();

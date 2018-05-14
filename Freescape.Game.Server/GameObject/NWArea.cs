@@ -3,9 +3,10 @@ using NWN;
 
 namespace Freescape.Game.Server.GameObject
 {
-    public class NWArea: NWObject
+    public class NWArea: NWObject, INWArea
     {
-        public NWArea(INWScript script) : base(script)
+        public NWArea(INWScript script) 
+            : base(script)
         {
         }
 

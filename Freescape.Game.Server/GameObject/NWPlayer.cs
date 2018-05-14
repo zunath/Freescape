@@ -21,7 +21,7 @@ namespace Freescape.Game.Server.GameObject
             return obj;
         }
 
-        public bool IsInitialized
+        public virtual bool IsInitialized
         {
             get
             {
@@ -31,7 +31,7 @@ namespace Freescape.Game.Server.GameObject
             }
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             if (IsInitialized) return;
             
@@ -45,7 +45,7 @@ namespace Freescape.Game.Server.GameObject
             database.SetLocalString("PC_ID_NUMBER", guid);
         }
 
-        public string GlobalID
+        public virtual string GlobalID
         {
             get
             {
@@ -59,13 +59,13 @@ namespace Freescape.Game.Server.GameObject
             }
         }
 
-        public bool IsBusy
+        public virtual bool IsBusy
         {
             get => GetLocalInt("IS_BUSY") == 1;
             set => SetLocalInt("IS_BUSY", value ? 1 : 0);
         }
 
-        public PlayerCharacter ToEntity()
+        public virtual PlayerCharacter ToEntity()
         {
             PlayerCharacter entity = new PlayerCharacter
             {
