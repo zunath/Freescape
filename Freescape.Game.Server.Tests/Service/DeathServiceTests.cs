@@ -81,6 +81,7 @@ namespace Freescape.Game.Server.Tests.Service
             
             DeathService service = new DeathService(_db, script);
             NWPlayer player = Substitute.For<NWPlayer>(script);
+            player.Object.Returns(x => new Object());
             player.GlobalID.Returns("123");
             player.Position.Returns(x => new Vector(43.2f, 22.2f, 87.0f));
             player.Facing.Returns(x => 320.666f);
@@ -111,6 +112,7 @@ namespace Freescape.Game.Server.Tests.Service
 
             DeathService service = new DeathService(_db, script);
             NWPlayer player = Substitute.For<NWPlayer>(script);
+            player.Object.Returns(x => new Object());
             player.GlobalID.Returns("123");
             player.Position.Returns(x => new Vector(43.2f, 22.2f, 87.0f));
             player.Facing.Returns(x => 320.666f);
@@ -129,6 +131,53 @@ namespace Freescape.Game.Server.Tests.Service
             Assert.AreEqual(320.666f, result.RespawnLocationOrientation);
             Assert.AreEqual("a_fake_area_tag", result.RespawnAreaTag);
             Assert.AreEqual(1, callCount);
+        }
+
+        [Test]
+        public void DeathService_BindPlayerSoul_ArgumentNullPlayer_ShouldThrowArgumentNullException()
+        {
+            // Arrange
+            DeathService service = new DeathService(_db, Substitute.For<INWScript>());
+
+            // Assert
+            Assert.Throws(typeof(ArgumentNullException), () =>
+            {
+                // Act
+                service.BindPlayerSoul(null, false);
+            });
+        }
+
+        [Test]
+        public void DeathService_BindPlayerSoul_ArgumentNullPlayerObject_ShouldThrowArgumentNullException()
+        {
+            // Arrange
+            INWScript script = Substitute.For<INWScript>();
+            DeathService service = new DeathService(_db, script);
+            NWPlayer player = Substitute.For<NWPlayer>(script);
+            player.Object.Returns(x => null);
+
+            // Assert
+            Assert.Throws(typeof(ArgumentNullException), () =>
+            {
+                // Act
+                service.BindPlayerSoul(player, false);
+            });
+        }
+
+        [Test]
+        public void DeathService_BindPlayerSoul_NoPlayers_ShouldThrowInvalidOperationException()
+        {
+            // Arrange
+            INWScript script = Substitute.For<INWScript>();
+            DeathService service = new DeathService(_db, script);
+            NWPlayer player = Substitute.For<NWPlayer>(script);
+
+            // Assert
+            Assert.Throws(typeof(InvalidOperationException), () =>
+            {
+                // Act
+                service.BindPlayerSoul(player, false);
+            });
         }
     }
 }

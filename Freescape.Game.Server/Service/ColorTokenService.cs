@@ -20,13 +20,6 @@ namespace Freescape.Game.Server.Service
     /// </summary>
     public class ColorTokenService : IColorTokenService
     {
-        private readonly INWScript _;
-
-        public ColorTokenService(INWScript script)
-        {
-            _ = script;
-        }
-
         private const string ColorArray = "     !##$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþþ";
 
         public string TokenStart(int red, int green, int blue)
@@ -34,10 +27,10 @@ namespace Freescape.Game.Server.Service
             if (red < 0 || red > 255) throw new ArgumentOutOfRangeException(nameof(red), "Red must be between 0 and 255.");
             if (green < 0 || green > 255) throw new ArgumentOutOfRangeException(nameof(green), "Green must be between 0 and 255.");
             if (blue < 0 || blue > 255) throw new ArgumentOutOfRangeException(nameof(blue), "Blue must be between 0 and 255.");
-
-            return "<c" + _.GetSubString(ColorArray, red, 1) +
-                   _.GetSubString(ColorArray, green, 1) +
-                   _.GetSubString(ColorArray, blue, 1) + ">";
+            
+            return "<c" + ColorArray.Substring(red, 1) +
+                   ColorArray.Substring(green, 1) +
+                   ColorArray.Substring(blue, 1) + ">";
         }
 
         public string Custom(string text, int red, int green, int blue)
@@ -59,251 +52,251 @@ namespace Freescape.Game.Server.Service
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(0, 1) +
+                    ColorArray.Substring(0, 1) +
+                    ColorArray.Substring(0, 1) + ">" + text + TokenEnd();
         }
         public string Blue(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(0, 1) +
+                    ColorArray.Substring(0, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string Gray(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 127, 1) +
-                    _.GetSubString(ColorArray, 127, 1) +
-                    _.GetSubString(ColorArray, 127, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(127, 1) +
+                    ColorArray.Substring(127, 1) +
+                    ColorArray.Substring(127, 1) + ">" + text + TokenEnd();
         }
 
         public string Green(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(0, 1) +
+                    ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(0, 1) + ">" + text + TokenEnd();
         }
 
         public string LightPurple(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 175, 1) +
-                    _.GetSubString(ColorArray, 48, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(175, 1) +
+                    ColorArray.Substring(48, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string Orange(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 127, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(127, 1) +
+                    ColorArray.Substring(0, 1) + ">" + text + TokenEnd();
         }
 
         public string Pink(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(0, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string Purple(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 127, 1) +
-                    _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(127, 1) +
+                    ColorArray.Substring(0, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string Red(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(0, 1) +
+                    ColorArray.Substring(0, 1) + ">" + text + TokenEnd();
         }
 
         public string White(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string Yellow(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(0, 1) + ">" + text + TokenEnd();
         }
 
         public string Cyan(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(0, 1) +
+                    ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string Combat(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 102, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(102, 1) +
+                    ColorArray.Substring(0, 1) + ">" + text + TokenEnd();
         }
 
         public string Dialog(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string DialogAction(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 1, 1) +
-                    _.GetSubString(ColorArray, 254, 1) +
-                    _.GetSubString(ColorArray, 1, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(1, 1) +
+                    ColorArray.Substring(254, 1) +
+                    ColorArray.Substring(1, 1) + ">" + text + TokenEnd();
         }
 
         public string DialogCheck(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 254, 1) +
-                    _.GetSubString(ColorArray, 1, 1) +
-                    _.GetSubString(ColorArray, 1, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(254, 1) +
+                    ColorArray.Substring(1, 1) +
+                    ColorArray.Substring(1, 1) + ">" + text + TokenEnd();
         }
 
         public string DialogHighlight(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 1, 1) +
-                    _.GetSubString(ColorArray, 1, 1) +
-                    _.GetSubString(ColorArray, 254, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(1, 1) +
+                    ColorArray.Substring(1, 1) +
+                    ColorArray.Substring(254, 1) + ">" + text + TokenEnd();
         }
 
         public string DialogReply(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 102, 1) +
-                    _.GetSubString(ColorArray, 178, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(102, 1) +
+                    ColorArray.Substring(178, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string DM(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 16, 1) +
-                    _.GetSubString(ColorArray, 223, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(16, 1) +
+                    ColorArray.Substring(223, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string GameEngine(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 204, 1) +
-                    _.GetSubString(ColorArray, 119, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(204, 1) +
+                    ColorArray.Substring(119, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string SavingThrow(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 102, 1) +
-                    _.GetSubString(ColorArray, 204, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(102, 1) +
+                    ColorArray.Substring(204, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string Script(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(0, 1) + ">" + text + TokenEnd();
         }
 
         public string Server(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 176, 1) +
-                    _.GetSubString(ColorArray, 176, 1) +
-                    _.GetSubString(ColorArray, 176, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(176, 1) +
+                    ColorArray.Substring(176, 1) +
+                    ColorArray.Substring(176, 1) + ">" + text + TokenEnd();
         }
 
         public string Shout(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 239, 1) +
-                    _.GetSubString(ColorArray, 80, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(239, 1) +
+                    ColorArray.Substring(80, 1) + ">" + text + TokenEnd();
         }
 
         public string SkillCheck(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 0, 1) +
-                    _.GetSubString(ColorArray, 102, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(0, 1) +
+                    ColorArray.Substring(102, 1) +
+                    ColorArray.Substring(255, 1) + ">" + text + TokenEnd();
         }
 
         public string Talk(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 240, 1) +
-                    _.GetSubString(ColorArray, 240, 1) +
-                    _.GetSubString(ColorArray, 240, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(240, 1) +
+                    ColorArray.Substring(240, 1) +
+                    ColorArray.Substring(240, 1) + ">" + text + TokenEnd();
         }
 
         public string Tell(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 32, 1) +
-                    _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 32, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(32, 1) +
+                    ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(32, 1) + ">" + text + TokenEnd();
         }
 
         public string Whisper(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return "<c" + _.GetSubString(ColorArray, 128, 1) +
-                    _.GetSubString(ColorArray, 128, 1) +
-                    _.GetSubString(ColorArray, 128, 1) + ">" + text + TokenEnd();
+            return "<c" + ColorArray.Substring(128, 1) +
+                    ColorArray.Substring(128, 1) +
+                    ColorArray.Substring(128, 1) + ">" + text + TokenEnd();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -318,10 +311,10 @@ namespace Freescape.Game.Server.Service
             if (oPC == null) throw new ArgumentNullException(nameof(oPC), nameof(oPC) + " cannot be null.");
             if (oPC.Object == null) throw new ArgumentNullException(nameof(oPC.Object), nameof(oPC.Object) + " cannot be null.");
 
-            return "<c" + _.GetSubString(ColorArray, 153, 1) +
-                    _.GetSubString(ColorArray, 255, 1) +
-                    _.GetSubString(ColorArray, 255, 1) + ">" +
-                    _.GetName(oPC.Object) + "</c>";
+            return "<c" + ColorArray.Substring(153, 1) +
+                    ColorArray.Substring(255, 1) +
+                    ColorArray.Substring(255, 1) + ">" +
+                    oPC.Name + "</c>";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -335,10 +328,10 @@ namespace Freescape.Game.Server.Service
             if (oNPC == null) throw new ArgumentNullException(nameof(oNPC), nameof(oNPC) + " cannot be null.");
             if (oNPC.Object == null) throw new ArgumentNullException(nameof(oNPC.Object), nameof(oNPC.Object) + " cannot be null.");
 
-            return "<c" + _.GetSubString(ColorArray, 204, 1) +
-                    _.GetSubString(ColorArray, 153, 1) +
-                    _.GetSubString(ColorArray, 204, 1) + ">" +
-                    _.GetName(oNPC.Object) + "</c>";
+            return "<c" + ColorArray.Substring(204, 1) +
+                    ColorArray.Substring(153, 1) +
+                    ColorArray.Substring(204, 1) + ">" +
+                    oNPC.Name + "</c>";
         }
 
     }
