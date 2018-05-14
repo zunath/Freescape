@@ -18,6 +18,9 @@ namespace Freescape.Game.Server.Service
 
         public bool PlayerHasPVPSanctuary(NWPlayer player)
         {
+            if (player == null) throw new ArgumentNullException(nameof(player));
+            if (player.Object == null) throw new ArgumentNullException(nameof(player.Object));
+
             PlayerCharacter pc = _db.PlayerCharacters.Single(x => x.PlayerID == player.GlobalID);
             DateTime now = DateTime.UtcNow;
 
@@ -26,6 +29,9 @@ namespace Freescape.Game.Server.Service
 
         public void SetPlayerPVPSanctuaryOverride(NWPlayer player, bool overrideStatus)
         {
+            if (player == null) throw new ArgumentNullException(nameof(player));
+            if (player.Object == null) throw new ArgumentNullException(nameof(player.Object));
+
             PlayerCharacter pc = _db.PlayerCharacters.Single(x => x.PlayerID == player.GlobalID);
             pc.IsSanctuaryOverrideEnabled = overrideStatus;
             _db.SaveChanges();

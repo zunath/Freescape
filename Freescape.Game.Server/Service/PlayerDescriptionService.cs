@@ -1,4 +1,5 @@
-﻿using Freescape.Game.Server.GameObject;
+﻿using System;
+using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
 using static NWN.NWScript;
@@ -30,6 +31,9 @@ namespace Freescape.Game.Server.Service
 
         public void ChangePlayerDescription(NWPlayer player)
         {
+            if (player == null) throw new ArgumentNullException(nameof(player));
+            if (player.Object == null) throw new ArgumentNullException(nameof(player.Object));
+
             string newDescription = player.GetLocalString("NEW_DESCRIPTION_TO_SET");
             _.SetDescription(player.Object, newDescription, FALSE);
             _.SetDescription(player.Object, newDescription);

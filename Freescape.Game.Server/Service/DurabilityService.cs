@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
@@ -8,16 +9,11 @@ namespace Freescape.Game.Server.Service
     public class DurabilityService: IDurabilityService
     {
         private const float DefaultDurability = 30.0f;
-
-        private readonly INWScript _;
-
-        public DurabilityService(INWScript script)
-        {
-            _ = script;
-        }
-
+        
         public bool IsValidDurabilityType(NWItem item)
         {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+
             int[] validTypes =
             {
                 NWScript.BASE_ITEM_ARMOR,
@@ -74,6 +70,8 @@ namespace Freescape.Game.Server.Service
 
         private void InitializeDurability(NWItem item)
         {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+
             if (!IsValidDurabilityType(item)) return;
 
             if (item.GetLocalInt("DURABILITY_INITIALIZE") <= 0 &&
@@ -87,12 +85,16 @@ namespace Freescape.Game.Server.Service
 
         public float GetMaxDurability(NWItem item)
         {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+
             if (!IsValidDurabilityType(item)) return -1.0f;
             return item.GetLocalInt("DURABILITY_MAX") <= 0 ? DefaultDurability : item.GetLocalInt("DURABILITY_MAX");
         }
 
         public void SetMaxDurability(NWItem item, float value)
         {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+
             if (!IsValidDurabilityType(item)) return;
             if (value <= 0) value = DefaultDurability;
 
@@ -102,6 +104,8 @@ namespace Freescape.Game.Server.Service
 
         public float GetDurability(NWItem item)
         {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+
             if (!IsValidDurabilityType(item)) return -1.0f;
             InitializeDurability(item);
             return item.GetLocalFloat("DURABILITY_CURRENT");
@@ -109,6 +113,8 @@ namespace Freescape.Game.Server.Service
 
         public void SetDurability(NWItem item, float value)
         {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+
             if (!IsValidDurabilityType(item)) return;
             InitializeDurability(item);
             item.SetLocalFloat("DURABILITY_CURRENT", value);

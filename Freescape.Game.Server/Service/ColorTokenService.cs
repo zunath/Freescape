@@ -1,4 +1,5 @@
-﻿using Freescape.Game.Server.GameObject;
+﻿using System;
+using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
 
@@ -30,6 +31,10 @@ namespace Freescape.Game.Server.Service
 
         public string TokenStart(int red, int green, int blue)
         {
+            if (red < 0 || red > 255) throw new ArgumentOutOfRangeException(nameof(red), "Red must be between 0 and 255.");
+            if (green < 0 || green > 255) throw new ArgumentOutOfRangeException(nameof(green), "Green must be between 0 and 255.");
+            if (blue < 0 || blue > 255) throw new ArgumentOutOfRangeException(nameof(blue), "Blue must be between 0 and 255.");
+
             return "<c" + _.GetSubString(ColorArray, red, 1) +
                    _.GetSubString(ColorArray, green, 1) +
                    _.GetSubString(ColorArray, blue, 1) + ">";
@@ -37,6 +42,11 @@ namespace Freescape.Game.Server.Service
 
         public string Custom(string text, int red, int green, int blue)
         {
+            if (red < 0 || red > 255) throw new ArgumentOutOfRangeException(nameof(red), "Red must be between 0 and 255.");
+            if (green < 0 || green > 255) throw new ArgumentOutOfRangeException(nameof(green), "Green must be between 0 and 255.");
+            if (blue < 0 || blue > 255) throw new ArgumentOutOfRangeException(nameof(blue), "Blue must be between 0 and 255.");
+            if(string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return TokenStart(red, green, blue) + text + TokenEnd();
         }
 
@@ -47,12 +57,16 @@ namespace Freescape.Game.Server.Service
 
         public string Black(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
         }
         public string Blue(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -60,6 +74,8 @@ namespace Freescape.Game.Server.Service
 
         public string Gray(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 127, 1) +
                     _.GetSubString(ColorArray, 127, 1) +
                     _.GetSubString(ColorArray, 127, 1) + ">" + text + TokenEnd();
@@ -67,6 +83,8 @@ namespace Freescape.Game.Server.Service
 
         public string Green(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
@@ -74,6 +92,8 @@ namespace Freescape.Game.Server.Service
 
         public string LightPurple(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 175, 1) +
                     _.GetSubString(ColorArray, 48, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -81,6 +101,8 @@ namespace Freescape.Game.Server.Service
 
         public string Orange(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 127, 1) +
                     _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
@@ -88,6 +110,8 @@ namespace Freescape.Game.Server.Service
 
         public string Pink(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -95,6 +119,8 @@ namespace Freescape.Game.Server.Service
 
         public string Purple(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 127, 1) +
                     _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -102,6 +128,8 @@ namespace Freescape.Game.Server.Service
 
         public string Red(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
@@ -109,6 +137,8 @@ namespace Freescape.Game.Server.Service
 
         public string White(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -116,6 +146,8 @@ namespace Freescape.Game.Server.Service
 
         public string Yellow(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
@@ -123,6 +155,8 @@ namespace Freescape.Game.Server.Service
 
         public string Cyan(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -130,6 +164,8 @@ namespace Freescape.Game.Server.Service
 
         public string Combat(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 102, 1) +
                     _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
@@ -137,6 +173,8 @@ namespace Freescape.Game.Server.Service
 
         public string Dialog(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -144,6 +182,8 @@ namespace Freescape.Game.Server.Service
 
         public string DialogAction(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 1, 1) +
                     _.GetSubString(ColorArray, 254, 1) +
                     _.GetSubString(ColorArray, 1, 1) + ">" + text + TokenEnd();
@@ -151,6 +191,8 @@ namespace Freescape.Game.Server.Service
 
         public string DialogCheck(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 254, 1) +
                     _.GetSubString(ColorArray, 1, 1) +
                     _.GetSubString(ColorArray, 1, 1) + ">" + text + TokenEnd();
@@ -158,6 +200,8 @@ namespace Freescape.Game.Server.Service
 
         public string DialogHighlight(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 1, 1) +
                     _.GetSubString(ColorArray, 1, 1) +
                     _.GetSubString(ColorArray, 254, 1) + ">" + text + TokenEnd();
@@ -165,6 +209,8 @@ namespace Freescape.Game.Server.Service
 
         public string DialogReply(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 102, 1) +
                     _.GetSubString(ColorArray, 178, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -172,6 +218,8 @@ namespace Freescape.Game.Server.Service
 
         public string DM(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 16, 1) +
                     _.GetSubString(ColorArray, 223, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -179,6 +227,8 @@ namespace Freescape.Game.Server.Service
 
         public string GameEngine(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 204, 1) +
                     _.GetSubString(ColorArray, 119, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -186,6 +236,8 @@ namespace Freescape.Game.Server.Service
 
         public string SavingThrow(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 102, 1) +
                     _.GetSubString(ColorArray, 204, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -193,6 +245,8 @@ namespace Freescape.Game.Server.Service
 
         public string Script(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 0, 1) + ">" + text + TokenEnd();
@@ -200,6 +254,8 @@ namespace Freescape.Game.Server.Service
 
         public string Server(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 176, 1) +
                     _.GetSubString(ColorArray, 176, 1) +
                     _.GetSubString(ColorArray, 176, 1) + ">" + text + TokenEnd();
@@ -207,6 +263,8 @@ namespace Freescape.Game.Server.Service
 
         public string Shout(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 239, 1) +
                     _.GetSubString(ColorArray, 80, 1) + ">" + text + TokenEnd();
@@ -214,6 +272,8 @@ namespace Freescape.Game.Server.Service
 
         public string SkillCheck(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 0, 1) +
                     _.GetSubString(ColorArray, 102, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" + text + TokenEnd();
@@ -221,6 +281,8 @@ namespace Freescape.Game.Server.Service
 
         public string Talk(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 240, 1) +
                     _.GetSubString(ColorArray, 240, 1) +
                     _.GetSubString(ColorArray, 240, 1) + ">" + text + TokenEnd();
@@ -228,6 +290,8 @@ namespace Freescape.Game.Server.Service
 
         public string Tell(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 32, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 32, 1) + ">" + text + TokenEnd();
@@ -235,6 +299,8 @@ namespace Freescape.Game.Server.Service
 
         public string Whisper(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
+
             return "<c" + _.GetSubString(ColorArray, 128, 1) +
                     _.GetSubString(ColorArray, 128, 1) +
                     _.GetSubString(ColorArray, 128, 1) + ">" + text + TokenEnd();
@@ -249,6 +315,9 @@ namespace Freescape.Game.Server.Service
         //
         public string GetNamePCColor(NWObject oPC)
         {
+            if (oPC == null) throw new ArgumentNullException(nameof(oPC), nameof(oPC) + " cannot be null.");
+            if (oPC.Object == null) throw new ArgumentNullException(nameof(oPC.Object), nameof(oPC.Object) + " cannot be null.");
+
             return "<c" + _.GetSubString(ColorArray, 153, 1) +
                     _.GetSubString(ColorArray, 255, 1) +
                     _.GetSubString(ColorArray, 255, 1) + ">" +
@@ -263,6 +332,9 @@ namespace Freescape.Game.Server.Service
         //
         public string GetNameNPCColor(NWObject oNPC)
         {
+            if (oNPC == null) throw new ArgumentNullException(nameof(oNPC), nameof(oNPC) + " cannot be null.");
+            if (oNPC.Object == null) throw new ArgumentNullException(nameof(oNPC.Object), nameof(oNPC.Object) + " cannot be null.");
+
             return "<c" + _.GetSubString(ColorArray, 204, 1) +
                     _.GetSubString(ColorArray, 153, 1) +
                     _.GetSubString(ColorArray, 204, 1) + ">" +

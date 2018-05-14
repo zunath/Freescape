@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.GameObject;
@@ -21,6 +22,9 @@ namespace Freescape.Game.Server.Service
 
         public void BindPlayerSoul(NWPlayer player, bool showMessage)
         {
+            if (player == null) throw new ArgumentNullException(nameof(player), nameof(player) + " cannot be null.");
+            if (player.Object == null) throw new ArgumentNullException(nameof(player.Object), nameof(player.Object) + " cannot be null.");
+
             PlayerCharacter pc = _db.PlayerCharacters.Single(x => x.PlayerID == player.GlobalID);
             pc.RespawnLocationX = player.Position.m_X;
             pc.RespawnLocationY = player.Position.m_Y;

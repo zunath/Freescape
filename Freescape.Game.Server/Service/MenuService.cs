@@ -1,4 +1,5 @@
-﻿using Freescape.Game.Server.Service.Contracts;
+﻿using System;
+using Freescape.Game.Server.Service.Contracts;
 
 namespace Freescape.Game.Server.Service
 {
@@ -13,6 +14,10 @@ namespace Freescape.Game.Server.Service
 
         public string BuildBar(int currentValue, int requiredValue, int numberOfBars, string colorToken = null)
         {
+            if (currentValue < 0) throw new ArgumentOutOfRangeException(nameof(currentValue), "Must be zero or greater.");
+            if (requiredValue <= 0) throw new ArgumentOutOfRangeException(nameof(requiredValue), "Must be one or greater.");
+            if (numberOfBars <= 0) throw new ArgumentOutOfRangeException(nameof(numberOfBars), "Must be one or greater");
+
             if (colorToken == null)
                 colorToken = _color.TokenStart(255, 127, 0); // Orange
 

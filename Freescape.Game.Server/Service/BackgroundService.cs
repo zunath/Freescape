@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
@@ -23,6 +24,9 @@ namespace Freescape.Game.Server.Service
 
         public void SetPlayerBackground(INWPlayer player, Background background)
         {
+            if(player == null) throw new ArgumentNullException(nameof(player));
+            if(background == null) throw new ArgumentNullException(nameof(background));
+
             PlayerCharacter pc = _db.PlayerCharacters.Single(x => x.PlayerID == player.GlobalID);
             pc.BackgroundID = background.BackgroundID;
             _db.SaveChanges();

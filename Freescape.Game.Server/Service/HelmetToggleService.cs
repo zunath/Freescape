@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.GameObject;
@@ -45,20 +46,18 @@ namespace Freescape.Game.Server.Service
 
         public void ToggleHelmetDisplay(NWPlayer player)
         {
+            if (player == null) throw new ArgumentNullException(nameof(player));
+
             if (!player.IsPlayer) return;
 
             PlayerCharacter pc = _db.PlayerCharacters.Single(x => x.PlayerID == player.GlobalID);
             pc.DisplayHelmet = !pc.DisplayHelmet;
             _db.SaveChanges();
 
-            if (pc.DisplayHelmet)
-            {
-                _.FloatingTextStringOnCreature("Now showing equipped helmet.", player.Object, FALSE);
-            }
-            else
-            {
-                _.FloatingTextStringOnCreature("Now hiding equipped helmet.", player.Object, FALSE);
-            }
+            _.FloatingTextStringOnCreature(
+                pc.DisplayHelmet ? "Now showing equipped helmet." : "Now hiding equipped helmet.", 
+                player.Object,
+                FALSE);
 
             NWItem helmet = NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_HEAD, player.Object));
             if (helmet.IsValid)

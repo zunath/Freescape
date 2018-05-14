@@ -1,4 +1,5 @@
-﻿using Freescape.Game.Server.Data;
+﻿using System;
+using Freescape.Game.Server.Data;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
@@ -16,6 +17,9 @@ namespace Freescape.Game.Server.Service
 
         public void InitializePlayer(NWPlayer player)
         {
+            if (player == null) throw new ArgumentNullException(nameof(player));
+            if (player.Object == null) throw new ArgumentNullException(nameof(player.Object));
+
             if (!player.IsPlayer) return;
 
             if (!player.IsInitialized)
@@ -105,7 +109,7 @@ namespace Freescape.Game.Server.Service
 
         private void InitializeHotBar(NWPlayer player)
         {
-            
+
         }
 
     }
