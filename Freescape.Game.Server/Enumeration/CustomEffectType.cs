@@ -1,6 +1,6 @@
 ﻿namespace Freescape.Game.Server.Enumeration
 {
-    public enum CustomEffect
+    public enum CustomEffectType
     {
         Bleeding = 1,
         Burning = 2,

@@ -342,13 +342,13 @@
     <Compile Include="Enumeration\Background.cs" />
     <Compile Include="Enumeration\CraftDevice.cs" />
     <Compile Include="Enumeration\CustomAttribute.cs" />
-    <Compile Include="Enumeration\CustomEffect.cs" />
+    <Compile Include="Enumeration\CustomEffectType.cs" />
     <Compile Include="Enumeration\CustomItemType.cs" />
     <Compile Include="Enumeration\PerkExecutionType.cs" />
     <Compile Include="Enumeration\PerkType.cs" />
     <Compile Include="Enumeration\Quest.cs" />
     <Compile Include="Enumeration\QuestType.cs" />
-    <Compile Include="Enumeration\Skill.cs" />
+    <Compile Include="Enumeration\SkillType.cs" />
     <Compile Include="Enumeration\StructurePermission.cs" />
     <Compile Include="Event\Area\OnAreaUserDefined.cs" />
     <Compile Include="Event\Area\OnAreaHeartbeat.cs" />
@@ -412,8 +412,12 @@
     <Compile Include="NWNX\Events\Legacy\jvm_script_3.cs" />
     <Compile Include="NWNX\Events\Legacy\jvm_script_2.cs" />
     <Compile Include="NWNX\Events\Legacy\jvm_script_1.cs" />
+    <Compile Include="Perk\Alteration\Aegis.cs" />
+    <Compile Include="Perk\IPerk.cs" />
+    <Compile Include="Perk\PerkBase.cs" />
     <Compile Include="Service\BackgroundService.cs" />
     <Compile Include="Service\ColorTokenService.cs" />
+    <Compile Include="Service\Contracts\CustomEffectService.cs" />
     <Compile Include="Service\Contracts\IBackgroundService.cs" />
     <Compile Include="Service\Contracts\IColorTokenService.cs" />
     <Compile Include="NWNX\Events\Area\area_on_enter.cs" />
@@ -467,6 +471,7 @@
     <Compile Include="Service\Contracts\IDurabilityService.cs" />
     <Compile Include="Service\Contracts\IHelmetToggleService.cs" />
     <Compile Include="Service\Contracts\IMenuService.cs" />
+    <Compile Include="Service\Contracts\IPerkService.cs" />
     <Compile Include="Service\Contracts\IPlayerDescriptionService.cs" />
     <Compile Include="Service\Contracts\IPlayerService.cs" />
     <Compile Include="Service\Contracts\IPVPSanctuaryService.cs" />

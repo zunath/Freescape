@@ -1,6 +1,6 @@
 ﻿namespace Freescape.Game.Server.Enumeration
 {
-    public enum Skill
+    public enum SkillType
     {
         Unknown = 0,
         OneHanded = 1,

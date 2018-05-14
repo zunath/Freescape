@@ -1,6 +1,7 @@
 ﻿using System;
 using Freescape.Game.Server.GameObject.Contracts;
 using NWN;
+using static NWN.NWScript;
 using Object = NWN.Object;
 
 namespace Freescape.Game.Server.GameObject
@@ -65,35 +66,65 @@ namespace Freescape.Game.Server.GameObject
 
         public virtual int Strength
         {
-            get => _.GetAbilityScore(Object, NWScript.ABILITY_STRENGTH);
+            get => _.GetAbilityScore(Object, ABILITY_STRENGTH);
             set => throw new NotImplementedException();
         }
         public virtual int Dexterity
         {
-            get => _.GetAbilityScore(Object, NWScript.ABILITY_DEXTERITY);
+            get => _.GetAbilityScore(Object, ABILITY_DEXTERITY);
             set => throw new NotImplementedException();
         }
         public virtual int Constitution
         {
-            get => _.GetAbilityScore(Object, NWScript.ABILITY_CONSTITUTION);
+            get => _.GetAbilityScore(Object, ABILITY_CONSTITUTION);
             set => throw new NotImplementedException();
         }
         public virtual int Wisdom
         {
-            get => _.GetAbilityScore(Object, NWScript.ABILITY_WISDOM);
+            get => _.GetAbilityScore(Object, ABILITY_WISDOM);
             set => throw new NotImplementedException();
         }
         public virtual int Intelligence
         {
-            get => _.GetAbilityScore(Object, NWScript.ABILITY_INTELLIGENCE);
+            get => _.GetAbilityScore(Object, ABILITY_INTELLIGENCE);
             set => throw new NotImplementedException();
         }
         public virtual int Charisma
         {
-            get => _.GetAbilityScore(Object, NWScript.ABILITY_CHARISMA);
+            get => _.GetAbilityScore(Object, ABILITY_CHARISMA);
             set => throw new NotImplementedException();
         }
 
+        public virtual int StrengthModifier
+        {
+            get => _.GetAbilityModifier(ABILITY_STRENGTH, Object);
+            set => throw new NotImplementedException();
+        }
+        public virtual int DexterityModifier
+        {
+            get => _.GetAbilityModifier(ABILITY_DEXTERITY, Object);
+            set => throw new NotImplementedException();
+        }
+        public virtual int ConstitutionModifier
+        {
+            get => _.GetAbilityModifier(ABILITY_CONSTITUTION, Object);
+            set => throw new NotImplementedException();
+        }
+        public virtual int WisdomModifier
+        {
+            get => _.GetAbilityModifier(ABILITY_WISDOM, Object);
+            set => throw new NotImplementedException();
+        }
+        public virtual int IntelligenceModifier
+        {
+            get => _.GetAbilityModifier(ABILITY_INTELLIGENCE, Object);
+            set => throw new NotImplementedException();
+        }
+        public virtual int CharismaModifier
+        {
+            get => _.GetAbilityModifier(ABILITY_CHARISMA, Object);
+            set => throw new NotImplementedException();
+        }
         public virtual int XP
         {
             get => _.GetXP(Object);
