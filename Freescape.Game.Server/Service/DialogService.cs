@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Freescape.Game.Server.Conversation;
 using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
@@ -61,14 +62,15 @@ namespace Freescape.Game.Server.Service
 
         public PlayerDialog LoadPlayerDialog(string globalID)
         {
-            if (string.IsNullOrWhiteSpace(globalID)) throw new ArgumentNullException(nameof(globalID), nameof(globalID) + " cannot be null, empty, or whitespace.");
+            if (string.IsNullOrWhiteSpace(globalID)) throw new ArgumentException(nameof(globalID), nameof(globalID) + " cannot be null, empty, or whitespace.");
+            if (!_playerDialogs.ContainsKey(globalID)) throw new Exception(nameof(globalID) + " could not be found. Be sure to call " + nameof(LoadConversation) + " first.");
 
             return _playerDialogs[globalID];
         }
 
         public void RemovePlayerDialog(string globalID)
         {
-            if (string.IsNullOrWhiteSpace(globalID)) throw new ArgumentNullException(nameof(globalID), nameof(globalID) + " cannot be null, empty, or whitespace.");
+            if (string.IsNullOrWhiteSpace(globalID)) throw new ArgumentException(nameof(globalID), nameof(globalID) + " cannot be null, empty, or whitespace.");
 
             PlayerDialog dialog = _playerDialogs[globalID];
             _dialogFilesInUse[dialog.DialogNumber] = false;
@@ -85,11 +87,8 @@ namespace Freescape.Game.Server.Service
             if (string.IsNullOrWhiteSpace(@class)) throw new ArgumentException(nameof(@class), nameof(@class) + " cannot be null, empty, or whitespace.");
             if (dialogNumber < 1 || dialogNumber > NumberOfDialogs) throw new ArgumentOutOfRangeException(nameof(dialogNumber), nameof(dialogNumber) + " must be between 1 and " + NumberOfDialogs);
 
-            string @namespace = Assembly.GetExecutingAssembly().GetName().Name + ".Conversation." + @class;
-            Type type = Type.GetType(@namespace);
-
-            IConversation convo = App.ResolveByInterface<IConversation>(type);
-
+            ConversationBase convo = App.Resolve<ConversationBase>(@class);
+            
             PlayerDialog dialog = convo.SetUp(player);
             if (dialog == null)
             {
@@ -106,17 +105,14 @@ namespace Freescape.Game.Server.Service
 
         public void StartConversation(NWPlayer player, NWObject talkTo, string @class)
         {
-            if (player == null) throw new ArgumentNullException(nameof(player), nameof(player));
+            if (player == null) throw new ArgumentNullException(nameof(player));
             if (player.Object == null) throw new ArgumentNullException(nameof(player.Object));
+            if (talkTo == null) throw new ArgumentNullException(nameof(talkTo));
+            if (talkTo.Object == null) throw new ArgumentNullException(nameof(talkTo.Object));
             if (string.IsNullOrWhiteSpace(@class)) throw new ArgumentException(nameof(@class), nameof(@class) + " cannot be null, empty, or whitespace.");
 
             LoadConversation(player, talkTo, @class, -1);
             PlayerDialog dialog = _playerDialogs[player.GlobalID];
-            if (dialog.DialogNumber <= 0)
-            {
-                _.FloatingTextStringOnCreature(_colorToken.Red("ERROR: No dialog files are available for use."), player.Object, FALSE);
-                return;
-            }
 
             // NPC conversations
             NWCreature talkToCreature = (NWCreature) talkTo;

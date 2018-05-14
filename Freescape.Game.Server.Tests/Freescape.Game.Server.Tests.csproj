@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="AutoFixture, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoFixture.4.3.0\lib\net452\AutoFixture.dll</HintPath>
     </Reference>
@@ -77,6 +80,7 @@
     <Compile Include="Service\BackgroundServiceTests.cs" />
     <Compile Include="Service\ColorTokenServiceTests.cs" />
     <Compile Include="Service\DeathServiceTests.cs" />
+    <Compile Include="Service\DialogServiceTests.cs" />
     <Compile Include="ValueObject\Dialog\DialogPageTests.cs" />
     <Compile Include="ValueObject\Dialog\DialogResponseTests.cs" />
     <Compile Include="ValueObject\Dialog\PlayerDialogTests.cs" />

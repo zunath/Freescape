@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using Autofac;
 using Freescape.Game.Server.ChatCommands.Contracts;
+using Freescape.Game.Server.Conversation;
 using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
@@ -56,6 +58,11 @@ namespace Freescape.Game.Server
             return (T)_container.Resolve(typeof(T));
         }
 
+        public static T Resolve<T>(string key)
+        {
+            return (T) _container.ResolveNamed(key, typeof(T));
+        }
+
         private static void BuildIOCContainer()
         {
             var builder = new ContainerBuilder();
@@ -86,8 +93,11 @@ namespace Freescape.Game.Server
 
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);
-            RegisterInterfaceImplementations<IConversation>(builder);
+            //RegisterInterfaceImplementations<IConversation>(builder);
             RegisterInterfaceImplementations<IChatCommand>(builder);
+
+            // Conversations
+            RegisterAbstractClass<ConversationBase>(builder);
 
             _container = builder.Build();
         }
@@ -109,6 +119,25 @@ namespace Freescape.Game.Server
             }
         }
 
+        private static void RegisterAbstractClass<T>(ContainerBuilder builder)
+            where T: class
+        {
+            if (!typeof(T).IsAbstract) throw new Exception(nameof(T) + " is not an abstract class.");
 
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+            foreach (var assembly in assemblies)
+            {
+                var types = assembly.GetTypes()
+                    .Where(t => t.IsClass &&
+                                !t.IsAbstract &&
+                                t.IsSubclassOf(typeof(T)));
+
+                foreach (var type in types)
+                {
+                    builder.RegisterType(type).Named<ConversationBase>(type.Name);
+                }
+            }
+        }
     }
 }
