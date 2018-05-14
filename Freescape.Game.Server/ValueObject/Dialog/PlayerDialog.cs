@@ -20,6 +20,7 @@ namespace Freescape.Game.Server.ValueObject.Dialog
             Pages = new Dictionary<string, DialogPage>();
             CurrentPageName = string.Empty;
             PageOffset = 0;
+            ActiveDialogName = string.Empty;
             DefaultPageName = defaultPageName;
             CustomData = new CustomData();
         }

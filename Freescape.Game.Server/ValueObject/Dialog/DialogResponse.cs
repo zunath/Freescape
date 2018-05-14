@@ -14,6 +14,7 @@ namespace Freescape.Game.Server.ValueObject.Dialog
             IsActive = isVisible;
             CustomData = new CustomData();
 
+            if (customData == null) return;
             foreach (var data in customData)
             {
                 CustomData[data.Item1] = data.Item2;
