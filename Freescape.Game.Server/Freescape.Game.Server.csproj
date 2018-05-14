@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.8.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.8.0\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -141,6 +141,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\DataContextPartial.cs" />
     <Compile Include="Data\DMRoleDomain.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
@@ -162,6 +163,7 @@
     <Compile Include="Data\GrowingPlant.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Contracts\IDataContext.cs" />
     <Compile Include="Data\Item.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>

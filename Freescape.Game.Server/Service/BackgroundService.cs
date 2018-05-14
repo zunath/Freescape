@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Freescape.Game.Server.Data;
-using Freescape.Game.Server.GameObject;
+using Freescape.Game.Server.Data.Contracts;
+using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.Service.Contracts;
 
 namespace Freescape.Game.Server.Service
 {
     public class BackgroundService: IBackgroundService
     {
-        private readonly DataContext _db;
+        private readonly IDataContext _db;
 
-        public BackgroundService(DataContext db)
+        public BackgroundService(IDataContext db)
         {
             _db = db;
         }
@@ -20,7 +21,7 @@ namespace Freescape.Game.Server.Service
             return _db.Backgrounds.Where(x => x.IsActive);
         }
 
-        public void SetPlayerBackground(NWPlayer player, Background background)
+        public void SetPlayerBackground(INWPlayer player, Background background)
         {
             PlayerCharacter pc = _db.PlayerCharacters.Single(x => x.PlayerID == player.GlobalID);
             pc.BackgroundID = background.BackgroundID;

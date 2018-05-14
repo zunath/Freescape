@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Freescape.Game.Server.Data;
+using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 
@@ -8,9 +9,9 @@ namespace Freescape.Game.Server.Service
 {
     public class PVPSanctuaryService: IPVPSanctuaryService
     {
-        private readonly DataContext _db;
+        private readonly IDataContext _db;
 
-        public PVPSanctuaryService(DataContext db)
+        public PVPSanctuaryService(IDataContext db)
         {
             _db = db;
         }

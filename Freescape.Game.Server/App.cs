@@ -4,6 +4,7 @@ using Autofac;
 using Freescape.Game.Server.ChatCommands.Contracts;
 using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.Data;
+using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Event;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.GameObject.Contracts;
@@ -60,7 +61,7 @@ namespace Freescape.Game.Server
             var builder = new ContainerBuilder();
 
             // Types
-            builder.RegisterType<DataContext>();
+            builder.RegisterType<DataContext>().As<IDataContext>();
 
             // Game Objects
             builder.RegisterType<NWObject>().As<INWObject>();

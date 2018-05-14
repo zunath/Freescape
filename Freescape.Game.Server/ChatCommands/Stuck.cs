@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Freescape.Game.Server.ChatCommands.Contracts;
 using Freescape.Game.Server.Data;
+using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.GameObject;
 using NWN;
 
@@ -9,9 +10,9 @@ namespace Freescape.Game.Server.ChatCommands
     public class Stuck: IChatCommand
     {
         private readonly INWScript _;
-        private readonly DataContext _db;
+        private readonly IDataContext _db;
 
-        public Stuck(INWScript script, DataContext db)
+        public Stuck(INWScript script, IDataContext db)
         {
             _ = script;
             _db = db;

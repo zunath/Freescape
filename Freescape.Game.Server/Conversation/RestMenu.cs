@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Freescape.Game.Server.Data;
+using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.Service.Contracts;
@@ -10,7 +11,7 @@ namespace Freescape.Game.Server.Conversation
 {
     internal class RestMenu : ConversationBase
     {
-        private readonly DataContext _db;
+        private readonly IDataContext _db;
         private readonly IColorTokenService _color;
         private readonly ISkillService _skill;
         private readonly IMenuService _menu;
@@ -18,7 +19,7 @@ namespace Freescape.Game.Server.Conversation
         public RestMenu(INWScript script,
             IDialogService dialog,
             IColorTokenService color,
-            DataContext db,
+            IDataContext db,
             ISkillService skill,
             IMenuService menu)
             : base(script, dialog)
