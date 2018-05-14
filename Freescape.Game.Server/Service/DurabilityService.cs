@@ -54,7 +54,6 @@ namespace Freescape.Game.Server.Service
                 NWScript.BASE_ITEM_SHORTBOW,
                 NWScript.BASE_ITEM_SHORTSPEAR,
                 NWScript.BASE_ITEM_SHORTSWORD,
-                NWScript.BASE_ITEM_SHURIKEN,
                 NWScript.BASE_ITEM_SICKLE,
                 NWScript.BASE_ITEM_SLING,
                 NWScript.BASE_ITEM_SMALLSHIELD,
@@ -114,6 +113,7 @@ namespace Freescape.Game.Server.Service
         public void SetDurability(NWItem item, float value)
         {
             if (item == null) throw new ArgumentNullException(nameof(item));
+            if (value < 0.0f) value = 0.0f;
 
             if (!IsValidDurabilityType(item)) return;
             InitializeDurability(item);
