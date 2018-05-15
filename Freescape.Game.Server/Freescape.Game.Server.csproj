@@ -524,6 +524,7 @@
     <Compile Include="Service\Contracts\IKeyItemService.cs" />
     <Compile Include="Service\Contracts\ILootService.cs" />
     <Compile Include="Service\Contracts\IMenuService.cs" />
+    <Compile Include="Service\Contracts\IMigrationService.cs" />
     <Compile Include="Service\Contracts\IOutfitService.cs" />
     <Compile Include="Service\Contracts\IPerkService.cs" />
     <Compile Include="Service\Contracts\IPlayerDescriptionService.cs" />

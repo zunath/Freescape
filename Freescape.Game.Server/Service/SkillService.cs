@@ -74,5 +74,9 @@ namespace Freescape.Game.Server.Service
         public void OnCreatureDeath(NWCreature creature)
         {
         }
+
+        public void OnAreaExit()
+        {
+        }
     }
 }

@@ -5,6 +5,7 @@ using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
+using static NWN.NWScript;
 
 namespace Freescape.Game.Server.Service
 {
@@ -12,11 +13,13 @@ namespace Freescape.Game.Server.Service
     {
         private readonly INWScript _;
         private readonly IDataContext _db;
+        private readonly IDeathService _death;
 
-        public PlayerService(INWScript nw, IDataContext db)
+        public PlayerService(INWScript nw, IDataContext db, IDeathService death)
         {
             _ = nw;
             _db = db;
+            _death = death;
         }
 
         public void InitializePlayer(NWPlayer player)
@@ -104,7 +107,7 @@ namespace Freescape.Game.Server.Service
                 // TODO: UPDATE
                 //SkillSystem.ApplyStatChanges(player.Object, null);
 
-                _.DelayCommand(1000, () => _.ApplyEffectToObject(NWScript.DURATION_TYPE_INSTANT, _.EffectHeal(999), player.Object));
+                _.DelayCommand(1000, () => _.ApplyEffectToObject(DURATION_TYPE_INSTANT, _.EffectHeal(999), player.Object));
 
                 InitializeHotBar(player);
             }
@@ -125,6 +128,121 @@ namespace Freescape.Game.Server.Service
 
             return _db.PlayerCharacters.Single(x => x.PlayerID == playerID);
         }
+
+        public void OnAreaEnter()
+        {
+            NWPlayer player = NWPlayer.Wrap(_.GetEnteringObject());
+
+            LoadLocation(player);
+            SaveLocation(player);
+            ApplySanctuaryEffects(player);
+            AdjustCamera(player);
+            if(player.IsPlayer)
+                _.ExportSingleCharacter(player.Object);
+        }
+
+        public void SaveLocation(NWPlayer player)
+        {
+            if (!player.IsPlayer) return;
+
+            NWArea area = player.Area;
+            bool isPlayerHome = area.GetLocalInt("IS_PLAYER_HOME") == 1;
+
+            if (area.Tag != "ooc_area" && !isPlayerHome)
+            {
+                PlayerCharacter entity = GetPlayerEntity(player.GlobalID);
+                entity.LocationAreaTag = area.Tag;
+                entity.LocationX = player.Position.m_X;
+                entity.LocationY = player.Position.m_Y;
+                entity.LocationZ = player.Position.m_Z;
+                entity.LocationOrientation = (player.Facing);
+
+                _db.SaveChanges();
+
+                if (entity.RespawnAreaTag == "")
+                {
+                    _death.BindPlayerSoul(player, false);
+                }
+            }
+        }
+
+        private void LoadLocation(NWPlayer player)
+        {
+            if (!player.IsPlayer) return;
+
+            if (player.Area.Tag != "ooc_area")
+            {
+                PlayerCharacter entity = GetPlayerEntity(player.GlobalID);
+                NWArea area = NWArea.Wrap(_.GetObjectByTag(entity.LocationAreaTag));
+                Vector position = _.Vector((float)entity.LocationX, (float)entity.LocationY, (float)entity.LocationZ);
+                Location location = _.Location(area.Object,
+                    position,
+                    (float)entity.LocationOrientation);
+
+                player.AssignCommand(() => _.ActionJumpToLocation(location));
+            }
+        }
+
+
+        private void CheckForMovement(NWPlayer oPC, Location location)
+        {
+            if (!oPC.IsValid || oPC.IsDead) return;
+            
+            string areaResref = oPC.Area.Resref;
+            Vector position = _.GetPositionFromLocation(location);
+
+            if (areaResref != _.GetResRef(_.GetAreaFromLocation(location)) ||
+                oPC.Facing != _.GetFacingFromLocation(location) ||
+                oPC.Position.m_X != position.m_X ||
+                oPC.Position.m_Y != position.m_Y ||
+                oPC.Position.m_Z != position.m_Z)
+            {
+                foreach (Effect effect in oPC.Effects)
+                {
+                    int type = _.GetEffectType(effect);
+                    if (type == EFFECT_TYPE_DAMAGE_REDUCTION || type == EFFECT_TYPE_SANCTUARY)
+                    {
+                        _.RemoveEffect(oPC.Object, effect);
+                    }
+                }
+                return;
+            }
+            
+            oPC.AssignCommand(() =>
+            {
+                CheckForMovement(oPC, location);
+            }, 1.0f);
+        }
+
+        private void ApplySanctuaryEffects(NWPlayer oPC)
+        {
+            if (!oPC.IsPlayer) return;
+            if (oPC.CurrentHP <= 0) return;
+            if (oPC.Area.Tag == "ooc_area") return;
+
+            Effect sanctuary = _.EffectSanctuary(99);
+            Effect dr = _.EffectDamageReduction(50, DAMAGE_POWER_PLUS_TWENTY);
+            sanctuary = _.TagEffect(sanctuary, "AREA_ENTRY_SANCTUARY");
+            dr = _.TagEffect(dr, "AREA_ENTRY_DAMAGE_REDUCTION");
+
+            _.ApplyEffectToObject(DURATION_TYPE_PERMANENT, sanctuary, oPC.Object);
+            _.ApplyEffectToObject(DURATION_TYPE_PERMANENT, dr, oPC.Object);
+            Location location = oPC.Location;
+
+            oPC.AssignCommand(() =>
+            {
+                CheckForMovement(oPC, location);
+            }, 3.5f);
+        }
+        
+        private void AdjustCamera(NWPlayer oPC)
+        {
+            if (!oPC.IsPlayer) return;
+
+            float facing = oPC.Facing - 180;
+            _.SetCameraFacing(facing, 1.0f, 1.0f);
+        }
+
 
         private void InitializeHotBar(NWPlayer player)
         {

@@ -8,5 +8,6 @@ namespace Freescape.Game.Server.Service.Contracts
         void InitializePlayer(NWPlayer player);
         PlayerCharacter GetPlayerEntity(NWPlayer player);
         PlayerCharacter GetPlayerEntity(string playerID);
+        void OnAreaEnter();
     }
 }

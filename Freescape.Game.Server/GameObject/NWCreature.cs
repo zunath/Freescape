@@ -248,5 +248,7 @@ namespace Freescape.Game.Server.GameObject
         {
             _.SendMessageToPC(Object, text);
         }
+
+        public virtual bool IsDead => _.GetIsDead(Object) == 1;
     }
 }

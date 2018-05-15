@@ -20,5 +20,6 @@ namespace Freescape.Game.Server.Service.Contracts
         SkillXPRequirement GetSkillXPRequirementByRank(int skillID, int rank);
         void ToggleSkillLock(string playerID, int skillID);
         void OnCreatureDeath(NWCreature creature);
+        void OnAreaExit();
     }
 }
