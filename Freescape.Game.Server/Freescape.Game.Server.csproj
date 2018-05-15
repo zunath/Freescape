@@ -76,8 +76,10 @@
     <Compile Include="Conversation\Item\DestroyPlayerGuide.cs" />
     <Compile Include="Conversation\KeyItems.cs" />
     <Compile Include="Conversation\Outfit.cs" />
+    <Compile Include="Conversation\QuestRewardSelection.cs" />
     <Compile Include="Conversation\RestMenu.cs" />
     <Compile Include="Conversation\Shovel.cs" />
+    <Compile Include="Conversation\StructureStorage.cs" />
     <Compile Include="Data\Attribute.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
@@ -489,6 +491,7 @@
     <Compile Include="Service\Contracts\IPlayerDescriptionService.cs" />
     <Compile Include="Service\Contracts\IPlayerService.cs" />
     <Compile Include="Service\Contracts\IPVPSanctuaryService.cs" />
+    <Compile Include="Service\Contracts\IQuestService.cs" />
     <Compile Include="Service\Contracts\ISerializationService.cs" />
     <Compile Include="Service\Contracts\ISkillService.cs" />
     <Compile Include="Service\Contracts\IStructureService.cs" />
@@ -506,6 +509,7 @@
     <Compile Include="ValueObject\Dialog\DialogPage.cs" />
     <Compile Include="ValueObject\Dialog\DialogResponse.cs" />
     <Compile Include="ValueObject\Dialog\PlayerDialog.cs" />
+    <Compile Include="ValueObject\GameObject\ItemVO.cs" />
     <Compile Include="ValueObject\Structure\BuildingOwners.cs" />
     <Compile Include="ValueObject\Structure\TerritoryStructureCount.cs" />
   </ItemGroup>

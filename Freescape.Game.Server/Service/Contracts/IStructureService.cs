@@ -39,6 +39,7 @@ namespace Freescape.Game.Server.Service.Contracts
         void SelectBlueprint(NWPlayer player, NWPlaceable site, int blueprintID);
         List<BuildingInterior> GetBuildingInteriorsByCategoryID(int buildingCategoryID);
         void PreviewBuildingInterior(NWPlayer player, int buildingInteriorID);
+        void SetStructureCustomName(NWPlayer player, NWPlaceable structure, string customName);
 
         void SaveChanges();
     }
