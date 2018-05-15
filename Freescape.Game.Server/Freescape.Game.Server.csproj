@@ -558,6 +558,7 @@
     <Compile Include="Service\Contracts\ICraftService.cs" />
     <Compile Include="Service\Contracts\IDeathService.cs" />
     <Compile Include="Service\Contracts\IDurabilityService.cs" />
+    <Compile Include="Service\Contracts\IExaminationService.cs" />
     <Compile Include="Service\Contracts\IFarmingService.cs" />
     <Compile Include="Service\Contracts\IHelmetToggleService.cs" />
     <Compile Include="Service\Contracts\IItemService.cs" />
@@ -572,6 +573,7 @@
     <Compile Include="Service\Contracts\IPlayerService.cs" />
     <Compile Include="Service\Contracts\IPVPSanctuaryService.cs" />
     <Compile Include="Service\Contracts\IQuestService.cs" />
+    <Compile Include="Service\Contracts\IRandomService.cs" />
     <Compile Include="Service\Contracts\ISerializationService.cs" />
     <Compile Include="Service\Contracts\ISkillService.cs" />
     <Compile Include="Service\Contracts\IStructureService.cs" />
@@ -581,12 +583,15 @@
     <Compile Include="Service\DurabilityService.cs" />
     <Compile Include="Service\HelmetToggleService.cs" />
     <Compile Include="Service\ItemService.cs" />
+    <Compile Include="Service\Contracts\ITimeService.cs" />
     <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\PlayerDescriptionService.cs" />
     <Compile Include="Service\PlayerService.cs" />
     <Compile Include="Service\PVPSanctuaryService.cs" />
+    <Compile Include="Service\RandomService.cs" />
     <Compile Include="Service\SkillService.cs" />
     <Compile Include="Service\StructureService.cs" />
+    <Compile Include="Service\TimeService.cs" />
     <Compile Include="ValueObject\CustomData.cs" />
     <Compile Include="ValueObject\Dialog\DialogPage.cs" />
     <Compile Include="ValueObject\Dialog\DialogResponse.cs" />

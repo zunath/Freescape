@@ -100,6 +100,8 @@ namespace Freescape.Game.Server
             builder.RegisterType<PlayerDescriptionService>().As<IPlayerDescriptionService>();
             builder.RegisterType<PVPSanctuaryService>().As<IPVPSanctuaryService>();
             builder.RegisterType<HelmetToggleService>().As<IHelmetToggleService>();
+            builder.RegisterType<RandomService>().As<IRandomService>();
+            builder.RegisterType<TimeService>().As<ITimeService>();
 
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);

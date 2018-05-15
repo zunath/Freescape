@@ -9,5 +9,6 @@ namespace Freescape.Game.Server.Service.Contracts
         void SetMaxDurability(NWItem item, float value);
         float GetDurability(NWItem item);
         void SetDurability(NWItem item, float value);
+        string OnModuleExamine(string existingDescription, NWObject examinedObject);
     }
 }

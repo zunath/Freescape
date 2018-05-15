@@ -1,36 +1,57 @@
-﻿using System;
-using Freescape.Game.Server.GameObject;
+﻿using Freescape.Game.Server.GameObject;
+using Freescape.Game.Server.NWNX.Contracts;
+using Freescape.Game.Server.Service.Contracts;
 using NWN;
+using static NWN.NWScript;
+using Object = NWN.Object;
 
 namespace Freescape.Game.Server.Event.Module
 {
     public class OnModuleExamine: IRegisteredEvent
     {
         private readonly INWScript _;
+        private readonly IFarmingService _farming;
+        private readonly IDurabilityService _durability;
+        private readonly IPerkService _perk;
+        private readonly IItemService _item;
+        private readonly INWNXEvents _nwnxEvents;
+        private readonly IExaminationService _examination;
 
         public OnModuleExamine(
-            INWScript script)
+            INWScript script,
+            IFarmingService farming,
+            IDurabilityService durability,
+            IPerkService perk,
+            IItemService item,
+            INWNXEvents nwnxEvents,
+            IExaminationService examination)
         {
             _ = script;
+            _farming = farming;
+            _durability = durability;
+            _perk = perk;
+            _item = item;
+            _nwnxEvents = nwnxEvents;
+            _examination = examination;
         }
 
         public bool Run(params object[] args)
         {
-            // TODO: Set up NWNX 
-            /*
-            NWObject examinedObject = NWNX_Events.OnExamineObject_GetTarget();
-            if (ExaminationSystem.OnModuleExamine(examiner, examinedObject)) return;
+            NWPlayer examiner = NWPlayer.Wrap(Object.OBJECT_SELF);
+            NWObject examinedObject = _nwnxEvents.OnExamineObject_GetTarget();
+            if (_examination.OnModuleExamine(examiner, examinedObject)) return true;
 
-            String description = NWScript.getDescription(examinedObject, true, true) + "\n\n";
-            description = ItemSystem.OnModuleExamine(description, examiner, examinedObject);
-            description = PerkSystem.OnModuleExamine(description, examiner, examinedObject);
-            description = DurabilitySystem.OnModuleExamine(description, examinedObject);
-            description = FarmingSystem.OnModuleExamine(description, examinedObject);
+            string description = _.GetDescription(examinedObject.Object, TRUE) + "\n\n";
+            description = _item.OnModuleExamine(description, examiner, examinedObject);
+            description = _perk.OnModuleExamine(description, examiner, examinedObject);
+            description = _durability.OnModuleExamine(description, examinedObject);
+            description = _farming.OnModuleExamine(description, examinedObject);
 
-            if (description.equals("")) return;
-            NWScript.setDescription(examinedObject, description, false);
-            NWScript.setDescription(examinedObject, description, true);
-            */
+            if (string.IsNullOrWhiteSpace(description)) return false;
+            _.SetDescription(examinedObject.Object, description, FALSE);
+            _.SetDescription(examinedObject.Object, description);
+            
+
             return true;
         }
     }

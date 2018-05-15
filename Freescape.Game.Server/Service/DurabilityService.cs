@@ -2,7 +2,7 @@
 using System.Linq;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
-using NWN;
+using static NWN.NWScript;
 
 namespace Freescape.Game.Server.Service
 {
@@ -16,52 +16,52 @@ namespace Freescape.Game.Server.Service
 
             int[] validTypes =
             {
-                NWScript.BASE_ITEM_ARMOR,
-                NWScript.BASE_ITEM_BASTARDSWORD,
-                NWScript.BASE_ITEM_BATTLEAXE,
-                NWScript.BASE_ITEM_BELT,
-                NWScript.BASE_ITEM_BOOTS,
-                NWScript.BASE_ITEM_BRACER,
-                NWScript.BASE_ITEM_CLOAK,
-                NWScript.BASE_ITEM_CLUB,
-                NWScript.BASE_ITEM_DAGGER,
-                NWScript.BASE_ITEM_DIREMACE,
-                NWScript.BASE_ITEM_DOUBLEAXE,
-                NWScript.BASE_ITEM_DWARVENWARAXE,
-                NWScript.BASE_ITEM_GLOVES,
-                NWScript.BASE_ITEM_GREATAXE,
-                NWScript.BASE_ITEM_GREATSWORD,
-                NWScript.BASE_ITEM_HALBERD,
-                NWScript.BASE_ITEM_HANDAXE,
-                NWScript.BASE_ITEM_HEAVYCROSSBOW,
-                NWScript.BASE_ITEM_HEAVYFLAIL,
-                NWScript.BASE_ITEM_HELMET,
-                NWScript.BASE_ITEM_KAMA,
-                NWScript.BASE_ITEM_KATANA,
-                NWScript.BASE_ITEM_KUKRI,
-                NWScript.BASE_ITEM_LARGESHIELD,
-                NWScript.BASE_ITEM_LIGHTCROSSBOW,
-                NWScript.BASE_ITEM_LIGHTFLAIL,
-                NWScript.BASE_ITEM_LIGHTHAMMER,
-                NWScript.BASE_ITEM_LIGHTMACE,
-                NWScript.BASE_ITEM_LONGBOW,
-                NWScript.BASE_ITEM_LONGSWORD,
-                NWScript.BASE_ITEM_MORNINGSTAR,
-                NWScript.BASE_ITEM_QUARTERSTAFF,
-                NWScript.BASE_ITEM_RAPIER,
-                NWScript.BASE_ITEM_SCIMITAR,
-                NWScript.BASE_ITEM_SCYTHE,
-                NWScript.BASE_ITEM_SHORTBOW,
-                NWScript.BASE_ITEM_SHORTSPEAR,
-                NWScript.BASE_ITEM_SHORTSWORD,
-                NWScript.BASE_ITEM_SICKLE,
-                NWScript.BASE_ITEM_SLING,
-                NWScript.BASE_ITEM_SMALLSHIELD,
-                NWScript.BASE_ITEM_TOWERSHIELD,
-                NWScript.BASE_ITEM_TRIDENT,
-                NWScript.BASE_ITEM_TWOBLADEDSWORD,
-                NWScript.BASE_ITEM_WARHAMMER,
-                NWScript.BASE_ITEM_WHIP
+                BASE_ITEM_ARMOR,
+                BASE_ITEM_BASTARDSWORD,
+                BASE_ITEM_BATTLEAXE,
+                BASE_ITEM_BELT,
+                BASE_ITEM_BOOTS,
+                BASE_ITEM_BRACER,
+                BASE_ITEM_CLOAK,
+                BASE_ITEM_CLUB,
+                BASE_ITEM_DAGGER,
+                BASE_ITEM_DIREMACE,
+                BASE_ITEM_DOUBLEAXE,
+                BASE_ITEM_DWARVENWARAXE,
+                BASE_ITEM_GLOVES,
+                BASE_ITEM_GREATAXE,
+                BASE_ITEM_GREATSWORD,
+                BASE_ITEM_HALBERD,
+                BASE_ITEM_HANDAXE,
+                BASE_ITEM_HEAVYCROSSBOW,
+                BASE_ITEM_HEAVYFLAIL,
+                BASE_ITEM_HELMET,
+                BASE_ITEM_KAMA,
+                BASE_ITEM_KATANA,
+                BASE_ITEM_KUKRI,
+                BASE_ITEM_LARGESHIELD,
+                BASE_ITEM_LIGHTCROSSBOW,
+                BASE_ITEM_LIGHTFLAIL,
+                BASE_ITEM_LIGHTHAMMER,
+                BASE_ITEM_LIGHTMACE,
+                BASE_ITEM_LONGBOW,
+                BASE_ITEM_LONGSWORD,
+                BASE_ITEM_MORNINGSTAR,
+                BASE_ITEM_QUARTERSTAFF,
+                BASE_ITEM_RAPIER,
+                BASE_ITEM_SCIMITAR,
+                BASE_ITEM_SCYTHE,
+                BASE_ITEM_SHORTBOW,
+                BASE_ITEM_SHORTSPEAR,
+                BASE_ITEM_SHORTSWORD,
+                BASE_ITEM_SICKLE,
+                BASE_ITEM_SLING,
+                BASE_ITEM_SMALLSHIELD,
+                BASE_ITEM_TOWERSHIELD,
+                BASE_ITEM_TRIDENT,
+                BASE_ITEM_TWOBLADEDSWORD,
+                BASE_ITEM_WARHAMMER,
+                BASE_ITEM_WHIP
             };
 
             return validTypes.Contains(item.BaseItemType);
@@ -118,6 +118,11 @@ namespace Freescape.Game.Server.Service
             if (!IsValidDurabilityType(item)) return;
             InitializeDurability(item);
             item.SetLocalFloat("DURABILITY_CURRENT", value);
+        }
+
+        public string OnModuleExamine(string existingDescription, NWObject examinedObject)
+        {
+            return null;
         }
     }
 }

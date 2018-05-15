@@ -18,5 +18,6 @@ namespace Freescape.Game.Server.Service.Contracts
         PerkLevel FindPerkLevel(IEnumerable<PerkLevel> levels, int findLevel);
         bool CanPerkBeUpgraded(Data.Perk perk, PCPerk pcPerk, PlayerCharacter player);
         void DoPerkUpgrade(NWPlayer player, int perkID);
+        string OnModuleExamine(string existingDescription, NWPlayer examiner, NWObject examinedObject);
     }
 }
