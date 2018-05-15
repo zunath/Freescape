@@ -70,10 +70,12 @@
     <Compile Include="Conversation\ConstructionSite.cs" />
     <Compile Include="Conversation\Contracts\IConversation.cs" />
     <Compile Include="Conversation\ConversationBase.cs" />
+    <Compile Include="Conversation\Crafting.cs" />
     <Compile Include="Conversation\FarmHole.cs" />
     <Compile Include="Conversation\Item\DestroySurvivalKnife.cs" />
     <Compile Include="Conversation\Item\DestroyPlayerGuide.cs" />
     <Compile Include="Conversation\KeyItems.cs" />
+    <Compile Include="Conversation\Outfit.cs" />
     <Compile Include="Conversation\RestMenu.cs" />
     <Compile Include="Conversation\Shovel.cs" />
     <Compile Include="Data\Attribute.cs">
@@ -474,6 +476,7 @@
     <Compile Include="NWNX\INTERNAL_Types.cs" />
     <Compile Include="NWNX\Contracts\INWScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Contracts\ICraftService.cs" />
     <Compile Include="Service\Contracts\IDeathService.cs" />
     <Compile Include="Service\Contracts\IDurabilityService.cs" />
     <Compile Include="Service\Contracts\IFarmingService.cs" />
@@ -481,10 +484,12 @@
     <Compile Include="Service\Contracts\IItemService.cs" />
     <Compile Include="Service\Contracts\IKeyItemService.cs" />
     <Compile Include="Service\Contracts\IMenuService.cs" />
+    <Compile Include="Service\Contracts\IOutfitService.cs" />
     <Compile Include="Service\Contracts\IPerkService.cs" />
     <Compile Include="Service\Contracts\IPlayerDescriptionService.cs" />
     <Compile Include="Service\Contracts\IPlayerService.cs" />
     <Compile Include="Service\Contracts\IPVPSanctuaryService.cs" />
+    <Compile Include="Service\Contracts\ISerializationService.cs" />
     <Compile Include="Service\Contracts\ISkillService.cs" />
     <Compile Include="Service\Contracts\IStructureService.cs" />
     <Compile Include="Service\DeathService.cs" />

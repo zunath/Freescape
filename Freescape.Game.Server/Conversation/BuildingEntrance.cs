@@ -138,7 +138,7 @@ namespace Freescape.Game.Server.Conversation
                 instance.SetLocalInt("TERRITORY_FLAG_ID", flag.PCTerritoryFlagID);
 
                 // Load structures & construction sites
-                foreach (ConstructionSite entity in flag.ConstructionSites)
+                foreach (Data.ConstructionSite entity in flag.ConstructionSites)
                 {
                     if (entity.IsActive)
                     {

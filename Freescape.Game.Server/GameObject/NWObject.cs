@@ -1,5 +1,8 @@
-﻿using Freescape.Game.Server.GameObject.Contracts;
+﻿using System;
+using System.Collections.Generic;
+using Freescape.Game.Server.GameObject.Contracts;
 using NWN;
+using static NWN.NWScript;
 using Object = NWN.Object;
 
 namespace Freescape.Game.Server.GameObject
@@ -172,7 +175,28 @@ namespace Freescape.Game.Server.GameObject
             {
                 _.DelayCommand(delay, action);
             }
+        }
 
+        public virtual List<NWItem> InventoryItems
+        {
+            get
+            {
+                if (_.GetHasInventory(Object) == FALSE)
+                {
+                    throw new Exception("Object does not have an inventory.");
+                }
+
+                List<NWItem> items = new List<NWItem>();
+                Object item = _.GetFirstItemInInventory(Object);
+                while (_.GetIsObjectValid(item) == TRUE)
+                {
+                    items.Add(NWItem.Wrap(item));
+
+                    item = _.GetNextItemInInventory(Object);
+                }
+
+                return items;
+            }
         }
     }
 }

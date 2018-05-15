@@ -131,9 +131,122 @@ namespace Freescape.Game.Server.GameObject
             set => _.SetXP(Object, value);
         }
 
-        public void FloatingText(string text, bool displayToFaction = false)
+        public virtual NWItem Head
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_HEAD, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem Chest
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_CHEST, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem Boots
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_BOOTS, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem Arms
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_ARMS, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem RightHand
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem LeftHand
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_LEFTHAND, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem Cloak
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_CLOAK, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem LeftRing
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_LEFTRING, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem RightRing
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_RIGHTRING, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem Neck
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_NECK, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem Belt
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_BELT, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem Arrows
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_ARROWS, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem Bullets
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_BULLETS, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem Bolts
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_BOLTS, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem CreatureWeaponLeft
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_CWEAPON_L, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem CreatureWeaponRight
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_CWEAPON_R, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem CreatureWeaponBite
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_CWEAPON_B, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual NWItem CreatureHide
+        {
+            get => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_CARMOUR, Object));
+            set => throw new NotImplementedException();
+        }
+
+        public virtual void FloatingText(string text, bool displayToFaction = false)
         {
             _.FloatingTextStringOnCreature(text, Object, displayToFaction ? 1 : 0);
+        }
+
+        public virtual void SendMessage(string text)
+        {
+            _.SendMessageToPC(Object, text);
         }
     }
 }
