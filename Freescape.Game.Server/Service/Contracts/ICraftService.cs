@@ -10,5 +10,7 @@ namespace Freescape.Game.Server.Service.Contracts
         List<CraftBlueprint> GetPCBlueprintsByDeviceAndCategoryID(string playerID, int deviceID, int categoryID);
         string BuildBlueprintHeader(NWPlayer player, int blueprintID);
         CraftBlueprint GetBlueprintByID(int craftBlueprintID);
+        List<CraftBlueprintCategory> GetCategoriesAvailableToPC(string playerID);
+        List<CraftBlueprint> GetPCBlueprintsByCategoryID(string playerID, int categoryID);
     }
 }

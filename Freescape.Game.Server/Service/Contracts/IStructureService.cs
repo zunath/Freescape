@@ -40,6 +40,16 @@ namespace Freescape.Game.Server.Service.Contracts
         List<BuildingInterior> GetBuildingInteriorsByCategoryID(int buildingCategoryID);
         void PreviewBuildingInterior(NWPlayer player, int buildingInteriorID);
         void SetStructureCustomName(NWPlayer player, NWPlaceable structure, string customName);
+        List<PCTerritoryFlagsPermission> GetPermissionsByFlagID(int flagID);
+        List<PCTerritoryFlagsPermission> GetPermissionsByPlayerID(string playerID, int flagID);
+        List<TerritoryFlagPermission> GetAllTerritorySelectablePermissions();
+        void RazeTerritory(NWPlaceable flag);
+        void TransferBuildingOwnership(NWArea area, string newOwnerPlayerID);
+        void TransferTerritoryOwnership(NWPlaceable flag, string newOwnerPlayerID);
+        List<StructureCategory> GetStructureCategories(string playerID);
+        List<StructureBlueprint> GetStructuresForPCByCategory(string playerID, int structureCategoryID);
+        void ChangeBuildPrivacy(int flagID, int buildPrivacyID);
+        void TogglePermissionForPlayer(PCTerritoryFlagsPermission foundPerm, string playerID, int permissionID, int flagID);
 
         void SaveChanges();
     }

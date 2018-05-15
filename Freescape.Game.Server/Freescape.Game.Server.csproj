@@ -80,6 +80,11 @@
     <Compile Include="Conversation\RestMenu.cs" />
     <Compile Include="Conversation\Shovel.cs" />
     <Compile Include="Conversation\StructureStorage.cs" />
+    <Compile Include="Conversation\TerritoryFlag.cs" />
+    <Compile Include="Conversation\ViewBlueprints.cs" />
+    <Compile Include="Conversation\ViewPerks.cs" />
+    <Compile Include="Conversation\ViewSkills.cs" />
+    <Compile Include="Conversation\XPTome.cs" />
     <Compile Include="Data\Attribute.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
@@ -505,11 +510,13 @@
     <Compile Include="Service\PlayerService.cs" />
     <Compile Include="Service\PVPSanctuaryService.cs" />
     <Compile Include="Service\SkillService.cs" />
+    <Compile Include="Service\StructureService.cs" />
     <Compile Include="ValueObject\CustomData.cs" />
     <Compile Include="ValueObject\Dialog\DialogPage.cs" />
     <Compile Include="ValueObject\Dialog\DialogResponse.cs" />
     <Compile Include="ValueObject\Dialog\PlayerDialog.cs" />
     <Compile Include="ValueObject\GameObject\ItemVO.cs" />
+    <Compile Include="ValueObject\Perk\PCPerkHeader.cs" />
     <Compile Include="ValueObject\Structure\BuildingOwners.cs" />
     <Compile Include="ValueObject\Structure\TerritoryStructureCount.cs" />
   </ItemGroup>
