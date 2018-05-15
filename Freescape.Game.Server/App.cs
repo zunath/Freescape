@@ -3,6 +3,7 @@ using System.Linq;
 using Autofac;
 using Freescape.Game.Server.ChatCommands.Contracts;
 using Freescape.Game.Server.Conversation;
+using Freescape.Game.Server.CustomEffect.Contracts;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Event;
@@ -91,7 +92,7 @@ namespace Freescape.Game.Server
 
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);
-            //RegisterInterfaceImplementations<IConversation>(builder);
+            RegisterInterfaceImplementations<ICustomEffect>(builder);
             RegisterInterfaceImplementations<IChatCommand>(builder);
 
             // Conversations

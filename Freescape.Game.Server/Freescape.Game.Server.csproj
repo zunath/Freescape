@@ -85,6 +85,12 @@
     <Compile Include="Conversation\ViewPerks.cs" />
     <Compile Include="Conversation\ViewSkills.cs" />
     <Compile Include="Conversation\XPTome.cs" />
+    <Compile Include="CustomEffect\AegisEffect.cs" />
+    <Compile Include="CustomEffect\BleedingEffect.cs" />
+    <Compile Include="CustomEffect\BurningEffect.cs" />
+    <Compile Include="CustomEffect\Contracts\ICustomEffect.cs" />
+    <Compile Include="CustomEffect\FoodDiseaseEffect.cs" />
+    <Compile Include="CustomEffect\PoisonEffect.cs" />
     <Compile Include="Data\Attribute.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
@@ -458,7 +464,7 @@
     <Compile Include="Perk\PerkBase.cs" />
     <Compile Include="Service\BackgroundService.cs" />
     <Compile Include="Service\ColorTokenService.cs" />
-    <Compile Include="Service\Contracts\CustomEffectService.cs" />
+    <Compile Include="Service\Contracts\ICustomEffectService.cs" />
     <Compile Include="Service\Contracts\IAuthorizationService.cs" />
     <Compile Include="Service\Contracts\IBackgroundService.cs" />
     <Compile Include="Service\Contracts\IColorTokenService.cs" />

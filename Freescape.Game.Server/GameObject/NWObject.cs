@@ -198,5 +198,21 @@ namespace Freescape.Game.Server.GameObject
                 return items;
             }
         }
+
+        public virtual List<Effect> Effects
+        {
+            get
+            {
+                List<Effect> effects = new List<Effect>();
+                Effect effect = _.GetFirstEffect(Object);
+                while (_.GetIsEffectValid(effect) == TRUE)
+                {
+                    effects.Add(effect);
+                    effect = _.GetNextEffect(Object);
+                }
+
+                return effects;
+            }
+        }
     }
 }
