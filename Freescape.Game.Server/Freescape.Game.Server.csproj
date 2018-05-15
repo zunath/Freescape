@@ -63,9 +63,11 @@
     <Compile Include="Conversation\BindSoul.cs" />
     <Compile Include="Conversation\BuildingEntrance.cs" />
     <Compile Include="Conversation\BuildingExit.cs" />
+    <Compile Include="Conversation\BuildToolMenu.cs" />
     <Compile Include="Conversation\ChangeDescription.cs" />
     <Compile Include="Conversation\ChangeHead.cs" />
     <Compile Include="Conversation\CharacterManagement.cs" />
+    <Compile Include="Conversation\ConstructionSite.cs" />
     <Compile Include="Conversation\Contracts\IConversation.cs" />
     <Compile Include="Conversation\ConversationBase.cs" />
     <Compile Include="Conversation\FarmHole.cs" />
@@ -422,6 +424,7 @@
     <Compile Include="Service\BackgroundService.cs" />
     <Compile Include="Service\ColorTokenService.cs" />
     <Compile Include="Service\Contracts\CustomEffectService.cs" />
+    <Compile Include="Service\Contracts\IAuthorizationService.cs" />
     <Compile Include="Service\Contracts\IBackgroundService.cs" />
     <Compile Include="Service\Contracts\IColorTokenService.cs" />
     <Compile Include="NWNX\Events\Area\area_on_enter.cs" />
@@ -475,6 +478,7 @@
     <Compile Include="Service\Contracts\IDurabilityService.cs" />
     <Compile Include="Service\Contracts\IFarmingService.cs" />
     <Compile Include="Service\Contracts\IHelmetToggleService.cs" />
+    <Compile Include="Service\Contracts\IItemService.cs" />
     <Compile Include="Service\Contracts\IKeyItemService.cs" />
     <Compile Include="Service\Contracts\IMenuService.cs" />
     <Compile Include="Service\Contracts\IPerkService.cs" />
@@ -498,6 +502,7 @@
     <Compile Include="ValueObject\Dialog\DialogResponse.cs" />
     <Compile Include="ValueObject\Dialog\PlayerDialog.cs" />
     <Compile Include="ValueObject\Structure\BuildingOwners.cs" />
+    <Compile Include="ValueObject\Structure\TerritoryStructureCount.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

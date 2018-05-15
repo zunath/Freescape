@@ -122,6 +122,13 @@ namespace Freescape.Game.Server.Conversation
             page.Responses.Add(new DialogResponse(text, isVisible, customData));
         }
 
+        protected void AddResponseToPage(string pageName, DialogResponse response)
+        {
+            PlayerDialog dialog = _dialog.LoadPlayerDialog(GetPC().GlobalID);
+            DialogPage page = dialog.GetPageByName(pageName);
+            page.Responses.Add(response);
+        }
+
         protected void ClearPageResponses(string pageName)
         {
             PlayerDialog dialog = _dialog.LoadPlayerDialog(GetPC().GlobalID);

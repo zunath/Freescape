@@ -20,7 +20,5 @@ namespace Freescape.Game.Server.GameObject.Contracts
         int Size { get; }
         float Weight { get; }
         int XP { get; set; }
-
-        void AssignCommand(ActionDelegate action);
     }
 }

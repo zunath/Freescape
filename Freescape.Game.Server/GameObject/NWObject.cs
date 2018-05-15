@@ -42,7 +42,7 @@ namespace Freescape.Game.Server.GameObject
             get => _.GetLocation(Object);
             set
             {
-                _.AssignCommand(Object, () => _.JumpToLocation(value));
+                AssignCommand(() => _.JumpToLocation(value));
             }
         }
 
@@ -59,7 +59,7 @@ namespace Freescape.Game.Server.GameObject
         public virtual float Facing
         {
             get => _.GetFacing(Object);
-            set => _.AssignCommand(Object, () => _.SetFacing(value));
+            set => AssignCommand(() => _.SetFacing(value));
         }
 
         public virtual int CurrentHP => _.GetCurrentHitPoints(Object);
@@ -162,5 +162,17 @@ namespace Freescape.Game.Server.GameObject
             _.DestroyObject(Object, delay);
         }
 
+        public virtual void AssignCommand(ActionDelegate action, float delay = 0.0f)
+        {
+            if (delay <= 0.0f)
+            {
+                _.AssignCommand(Object, action);
+            }
+            else
+            {
+                _.DelayCommand(delay, action);
+            }
+
+        }
     }
 }

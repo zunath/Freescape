@@ -131,18 +131,9 @@ namespace Freescape.Game.Server.GameObject
             set => _.SetXP(Object, value);
         }
 
-        public virtual void AssignCommand(ActionDelegate action, float delay = 0.0f)
+        public void FloatingText(string text, bool displayToFaction = false)
         {
-            if (delay <= 0.0f)
-            {
-                _.AssignCommand(Object, action);
-            }
-            else
-            {
-                _.DelayCommand(delay, action);
-            }
-            
+            _.FloatingTextStringOnCreature(text, Object, displayToFaction ? 1 : 0);
         }
-        
     }
 }
