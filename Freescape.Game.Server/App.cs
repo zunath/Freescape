@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Autofac;
+using Freescape.Game.Server.Bioware;
+using Freescape.Game.Server.Bioware.Contracts;
 using Freescape.Game.Server.ChatCommands.Contracts;
 using Freescape.Game.Server.Conversation;
 using Freescape.Game.Server.CustomEffect.Contracts;
@@ -75,6 +77,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<NWItem>().As<INWItem>();
             builder.RegisterType<NWPlayer>().As<INWPlayer>();
             builder.RegisterType<NWArea>().As<INWArea>();
+            builder.RegisterType<NWModule>().As<INWModule>();
 
             // Services
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
@@ -97,6 +100,10 @@ namespace Freescape.Game.Server
 
             // Conversations
             RegisterAbstractClass<ConversationBase>(builder);
+
+            // Third Party
+            builder.RegisterType<BiowarePosition>().As<IBiowarePosition>();
+            builder.RegisterType<BiowareXP2>().As<IBiowareXP2>();
 
             _container = builder.Build();
         }

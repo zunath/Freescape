@@ -9,5 +9,6 @@ namespace Freescape.Game.Server.Service.Contracts
         Quest GetQuestByID(int questID);
         ItemVO GetTempItemInformation(string resref, int quantity);
         void CompleteQuest(NWPlayer player, int questID, ItemVO selectedItem);
+        void OnModuleItemAcquired();
     }
 }

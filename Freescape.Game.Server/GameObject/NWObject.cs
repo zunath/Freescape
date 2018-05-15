@@ -214,5 +214,7 @@ namespace Freescape.Game.Server.GameObject
                 return effects;
             }
         }
+
+        public int ObjectType => _.GetObjectType(Object);
     }
 }

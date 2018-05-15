@@ -1,11 +1,38 @@
-﻿namespace Freescape.Game.Server.Event.Module
+﻿using System;
+using Freescape.Game.Server.GameObject;
+using Freescape.Game.Server.Item;
+using Freescape.Game.Server.Service.Contracts;
+using Freescape.Game.Server.ValueObject;
+using NWN;
+using Object = NWN.Object;
+
+namespace Freescape.Game.Server.Event.Module
 {
     internal class OnModuleActivateItem : IRegisteredEvent
     {
+        private readonly INWScript _;
+        private readonly IItemService _item;
+        private readonly IAbilityService _ability;
+
+        public OnModuleActivateItem(
+            INWScript script,
+            IItemService item,
+            IAbilityService ability)
+        {
+            _ = script;
+            _item = item;
+            _ability = ability;
+        }
+
         public bool Run(params object[] args)
         {
-            return true;
+            _.ExecuteScript("x2_mod_def_act", Object.OBJECT_SELF);
+            _item.OnModuleActivatedItem();
+            _ability.OnModuleItemActivated();
 
+            return true;
         }
+
+
     }
 }

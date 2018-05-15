@@ -8,5 +8,6 @@ namespace Freescape.Game.Server.Service.Contracts
     {
         IEnumerable<PCKeyItem> GetPlayerKeyItemsByCategory(NWPlayer player, int categoryID);
         KeyItem GetKeyItemByID(int keyItemID);
+        void OnModuleItemAcquired();
     }
 }

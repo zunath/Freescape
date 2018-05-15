@@ -55,6 +55,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Bioware\BiowarePosition.cs" />
+    <Compile Include="Bioware\BiowareXP2.cs" />
+    <Compile Include="Bioware\Contracts\IBiowarePosition.cs" />
+    <Compile Include="Bioware\Contracts\IBiowareXP2.cs" />
     <Compile Include="ChatCommands\Contracts\IChatCommand.cs" />
     <Compile Include="ChatCommands\Stuck.cs" />
     <Compile Include="ChatCommands\Sit.cs" />
@@ -360,6 +364,7 @@
     <Compile Include="Data\User.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enumeration\AddItemPropertyPolicy.cs" />
     <Compile Include="Enumeration\Background.cs" />
     <Compile Include="Enumeration\CraftDevice.cs" />
     <Compile Include="Enumeration\CustomAttribute.cs" />
@@ -420,12 +425,15 @@
     <Compile Include="GameObject\Contracts\INWCreature.cs" />
     <Compile Include="GameObject\Contracts\INWItem.cs" />
     <Compile Include="GameObject\Contracts\INWPlayer.cs" />
+    <Compile Include="GameObject\Contracts\INWModule.cs" />
     <Compile Include="GameObject\NWArea.cs" />
     <Compile Include="GameObject\NWCreature.cs" />
     <Compile Include="GameObject\NWItem.cs" />
+    <Compile Include="GameObject\NWModule.cs" />
     <Compile Include="GameObject\NWObject.cs" />
     <Compile Include="GameObject\NWPlaceable.cs" />
     <Compile Include="GameObject\NWPlayer.cs" />
+    <Compile Include="Item\IActionItem.cs" />
     <Compile Include="NWNX\Events\Creature\crea_on_attacked.cs" />
     <Compile Include="NWNX\Events\Creature\crea_on_convo.cs" />
     <Compile Include="NWNX\Events\Creature\crea_on_damaged.cs" />
@@ -464,6 +472,7 @@
     <Compile Include="Perk\PerkBase.cs" />
     <Compile Include="Service\BackgroundService.cs" />
     <Compile Include="Service\ColorTokenService.cs" />
+    <Compile Include="Service\Contracts\IAbilityService.cs" />
     <Compile Include="Service\Contracts\ICustomEffectService.cs" />
     <Compile Include="Service\Contracts\IAuthorizationService.cs" />
     <Compile Include="Service\Contracts\IBackgroundService.cs" />
@@ -539,6 +548,7 @@
     <Compile Include="Service\Contracts\IDialogService.cs" />
     <Compile Include="Service\DurabilityService.cs" />
     <Compile Include="Service\HelmetToggleService.cs" />
+    <Compile Include="Service\ItemService.cs" />
     <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\PlayerDescriptionService.cs" />
     <Compile Include="Service\PlayerService.cs" />

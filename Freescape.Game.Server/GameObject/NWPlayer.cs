@@ -113,6 +113,5 @@ namespace Freescape.Game.Server.GameObject
             
             return entity;
         }
-
     }
 }
