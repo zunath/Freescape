@@ -11,6 +11,8 @@ using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Event;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.GameObject.Contracts;
+using Freescape.Game.Server.NWNX;
+using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
@@ -31,6 +33,12 @@ namespace Freescape.Game.Server
             where T: IRegisteredEvent
         {
             IRegisteredEvent @event = _container.ResolveNamed<IRegisteredEvent>(typeof(T).ToString());
+            return @event.Run(args);
+        }
+
+        public static bool RunEvent(Type type, params object[] args)
+        {
+            IRegisteredEvent @event = _container.ResolveNamed<IRegisteredEvent>(type.ToString());
             return @event.Run(args);
         }
 
@@ -104,6 +112,14 @@ namespace Freescape.Game.Server
             // Third Party
             builder.RegisterType<BiowarePosition>().As<IBiowarePosition>();
             builder.RegisterType<BiowareXP2>().As<IBiowareXP2>();
+            builder.RegisterType<NWNXChat>().As<INWNXChat>();
+            builder.RegisterType<NWNXCreature>().As<INWNXCreature>();
+            builder.RegisterType<NWNXEvents>().As<INWNXEvents>();
+            builder.RegisterType<NWNXItem>().As<INWNXItem>();
+            builder.RegisterType<NWNXObject>().As<INWNXObject>();
+            builder.RegisterType<NWNXItem>().As<INWNXItem>();
+            builder.RegisterType<NWNXPlayer>().As<INWNXPlayer>();
+            builder.RegisterType<NWNXPlayerQuickBarSlot>().As<INWNXPlayerQuickBarSlot>();
 
             _container = builder.Build();
         }

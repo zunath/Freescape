@@ -21,5 +21,7 @@ namespace Freescape.Game.Server.Service.Contracts
         void ToggleSkillLock(string playerID, int skillID);
         void OnCreatureDeath(NWCreature creature);
         void OnAreaExit();
+        void OnModuleEnter();
+        void OnModuleClientLeave();
     }
 }

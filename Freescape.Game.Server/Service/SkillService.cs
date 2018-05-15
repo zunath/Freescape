@@ -78,5 +78,13 @@ namespace Freescape.Game.Server.Service
         public void OnAreaExit()
         {
         }
+
+        public void OnModuleEnter()
+        {
+        }
+
+        public void OnModuleClientLeave()
+        {
+        }
     }
 }

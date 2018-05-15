@@ -31,5 +31,9 @@ namespace Freescape.Game.Server.Service
             pc.BackgroundID = background.BackgroundID;
             _db.SaveChanges();
         }
+
+        public void OnModuleClientEnter()
+        {
+        }
     }
 }

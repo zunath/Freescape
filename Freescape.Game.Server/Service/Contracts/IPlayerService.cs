@@ -9,5 +9,8 @@ namespace Freescape.Game.Server.Service.Contracts
         PlayerCharacter GetPlayerEntity(NWPlayer player);
         PlayerCharacter GetPlayerEntity(string playerID);
         void OnAreaEnter();
+        void LoadCharacter(NWPlayer player);
+        void ShowMOTD(NWPlayer player);
+        void SaveCharacter(NWPlayer player);
     }
 }

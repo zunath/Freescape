@@ -8,5 +8,6 @@ namespace Freescape.Game.Server.Service.Contracts
     {
         IEnumerable<Background> GetActiveBackgrounds();
         void SetPlayerBackground(INWPlayer player, Background background);
+        void OnModuleClientEnter();
     }
 }

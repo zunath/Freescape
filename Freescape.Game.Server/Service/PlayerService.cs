@@ -14,12 +14,21 @@ namespace Freescape.Game.Server.Service
         private readonly INWScript _;
         private readonly IDataContext _db;
         private readonly IDeathService _death;
+        private readonly IPlayerService _player;
+        private readonly IColorTokenService _color;
 
-        public PlayerService(INWScript nw, IDataContext db, IDeathService death)
+        public PlayerService(
+            INWScript script, 
+            IDataContext db, 
+            IDeathService death, 
+            IPlayerService player,
+            IColorTokenService color)
         {
-            _ = nw;
+            _ = script;
             _db = db;
             _death = death;
+            _player = player;
+            _color = color;
         }
 
         public void InitializePlayer(NWPlayer player)
@@ -139,6 +148,52 @@ namespace Freescape.Game.Server.Service
             AdjustCamera(player);
             if(player.IsPlayer)
                 _.ExportSingleCharacter(player.Object);
+        }
+
+        public void LoadCharacter(NWPlayer player)
+        {
+            PlayerCharacter entity = _player.GetPlayerEntity(player.GlobalID);
+
+            if (entity == null) return;
+
+            int hp = player.CurrentHP;
+            int damage;
+            if (entity.HitPoints < 0)
+            {
+                damage = hp + Math.Abs(entity.HitPoints);
+            }
+            else
+            {
+                damage = hp - entity.HitPoints;
+            }
+
+            if (damage != 0)
+            {
+                _.ApplyEffectToObject(DURATION_TYPE_INSTANT, _.EffectDamage(damage), player.Object);
+            }
+
+            player.IsBusy = false; // Just in case player logged out in the middle of an action.
+        }
+
+        public void ShowMOTD(NWPlayer player)
+        {
+            ServerConfiguration config = _db.ServerConfigurations.First();
+            string message = _color.Green("Welcome to " + config.ServerName + "!\n\nMOTD: ") + _color.White(config.MessageOfTheDay);
+
+            player.AssignCommand(() =>
+            {
+                player.SendMessage(message);
+            }, 6.5f);
+        }
+
+        public void SaveCharacter(NWPlayer player)
+        {
+            if (!player.IsPlayer) return;
+            PlayerCharacter entity = GetPlayerEntity(player);
+            entity.CharacterName = player.Name;
+            entity.HitPoints = player.CurrentHP;
+
+            _db.SaveChanges();
         }
 
         public void SaveLocation(NWPlayer player)
