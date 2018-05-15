@@ -5,7 +5,6 @@ using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject.Dialog;
 using NWN;
-using Object = NWN.Object;
 
 namespace Freescape.Game.Server.Event.Dialog
 {

@@ -70,5 +70,9 @@ namespace Freescape.Game.Server.Service
 
             _db.SaveChanges();
         }
+
+        public void OnCreatureDeath(NWCreature creature)
+        {
+        }
     }
 }

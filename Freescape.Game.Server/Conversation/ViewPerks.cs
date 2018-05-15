@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;

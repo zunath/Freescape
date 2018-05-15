@@ -5,7 +5,6 @@ using NSubstitute;
 using NUnit.Framework;
 using NWN;
 using static NWN.NWScript;
-using Object = NWN.Object;
 
 namespace Freescape.Game.Server.Tests.Service
 {

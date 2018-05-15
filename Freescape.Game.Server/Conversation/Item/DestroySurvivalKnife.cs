@@ -1,5 +1,4 @@
-﻿using Freescape.Game.Server.Conversation.Contracts;
-using Freescape.Game.Server.GameObject;
+﻿using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject.Dialog;
 using NWN;

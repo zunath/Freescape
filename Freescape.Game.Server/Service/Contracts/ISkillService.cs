@@ -19,5 +19,6 @@ namespace Freescape.Game.Server.Service.Contracts
         List<PCSkill> GetPCSkillsForCategory(string playerID, int skillCategoryID);
         SkillXPRequirement GetSkillXPRequirementByRank(int skillID, int rank);
         void ToggleSkillLock(string playerID, int skillID);
+        void OnCreatureDeath(NWCreature creature);
     }
 }

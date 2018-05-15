@@ -5,7 +5,6 @@ using System.Linq;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.GameObject;
-using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.Service;
 using NSubstitute;
 using NUnit.Framework;

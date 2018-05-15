@@ -1,6 +1,4 @@
-﻿using NWN;
-
-namespace Freescape.Game.Server.GameObject.Contracts
+﻿namespace Freescape.Game.Server.GameObject.Contracts
 {
     public interface INWCreature
     {

@@ -8,7 +8,6 @@ using Freescape.Game.Server.ValueObject.Dialog;
 using NSubstitute;
 using NUnit.Framework;
 using NWN;
-using Object = NWN.Object;
 
 namespace Freescape.Game.Server.Conversation
 {
