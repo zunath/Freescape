@@ -563,6 +563,7 @@
     <Compile Include="Service\Contracts\IHelmetToggleService.cs" />
     <Compile Include="Service\Contracts\IItemService.cs" />
     <Compile Include="Service\Contracts\IKeyItemService.cs" />
+    <Compile Include="Service\Contracts\ILocalVariableService.cs" />
     <Compile Include="Service\Contracts\ILootService.cs" />
     <Compile Include="Service\Contracts\IMapPinService.cs" />
     <Compile Include="Service\Contracts\IMenuService.cs" />
@@ -584,6 +585,8 @@
     <Compile Include="Service\HelmetToggleService.cs" />
     <Compile Include="Service\ItemService.cs" />
     <Compile Include="Service\Contracts\ITimeService.cs" />
+    <Compile Include="Service\LocalVariableService.cs" />
+    <Compile Include="Service\MapPinService.cs" />
     <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\PlayerDescriptionService.cs" />
     <Compile Include="Service\PlayerService.cs" />
@@ -597,6 +600,7 @@
     <Compile Include="ValueObject\Dialog\DialogResponse.cs" />
     <Compile Include="ValueObject\Dialog\PlayerDialog.cs" />
     <Compile Include="ValueObject\GameObject\ItemVO.cs" />
+    <Compile Include="ValueObject\MapPin.cs" />
     <Compile Include="ValueObject\Perk\PCPerkHeader.cs" />
     <Compile Include="ValueObject\Structure\BuildingOwners.cs" />
     <Compile Include="ValueObject\Structure\TerritoryStructureCount.cs" />

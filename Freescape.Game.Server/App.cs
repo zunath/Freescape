@@ -102,6 +102,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<HelmetToggleService>().As<IHelmetToggleService>();
             builder.RegisterType<RandomService>().As<IRandomService>();
             builder.RegisterType<TimeService>().As<ITimeService>();
+            builder.RegisterType<LocalVariableService>().As<ILocalVariableService>();
 
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);
