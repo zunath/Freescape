@@ -88,22 +88,39 @@ namespace Freescape.Game.Server
             builder.RegisterType<NWModule>().As<INWModule>();
 
             // Services
-            builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
-            builder.RegisterType<NWScript>().As<INWScript>().SingleInstance();
-            builder.RegisterType<ColorTokenService>().As<IColorTokenService>().SingleInstance();
-            builder.RegisterType<PlayerService>().As<IPlayerService>();
-            builder.RegisterType<DurabilityService>().As<IDurabilityService>();
-            builder.RegisterType<SkillService>().As<ISkillService>();
-            builder.RegisterType<MenuService>().As<IMenuService>();
+            builder.RegisterType<AbilityService>().As<IAbilityService>();
+            builder.RegisterType<ActivityLoggingService>().As<IActivityLoggingService>();
+            builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
+            builder.RegisterType<AbilityService>().As<IAbilityService>();
             builder.RegisterType<BackgroundService>().As<IBackgroundService>();
+            builder.RegisterType<ColorTokenService>().As<IColorTokenService>();
+            builder.RegisterType<CraftService>().As<ICraftService>();
+            builder.RegisterType<CustomEffectService>().As<ICustomEffectService>();
             builder.RegisterType<DeathService>().As<IDeathService>();
-            builder.RegisterType<PlayerDescriptionService>().As<IPlayerDescriptionService>();
-            builder.RegisterType<PVPSanctuaryService>().As<IPVPSanctuaryService>();
+            builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
+            builder.RegisterType<DurabilityService>().As<IDurabilityService>();
+            builder.RegisterType<ExaminationService>().As<IExaminationService>();
+            builder.RegisterType<FarmingService>().As<IFarmingService>();
             builder.RegisterType<HelmetToggleService>().As<IHelmetToggleService>();
-            builder.RegisterType<RandomService>().As<IRandomService>();
-            builder.RegisterType<TimeService>().As<ITimeService>();
+            builder.RegisterType<ItemService>().As<IItemService>();
+            builder.RegisterType<KeyItemService>().As<IKeyItemService>();
             builder.RegisterType<LocalVariableService>().As<ILocalVariableService>();
-
+            builder.RegisterType<LootService>().As<ILootService>();
+            builder.RegisterType<MapPinService>().As<IMapPinService>();
+            builder.RegisterType<MenuService>().As<IMenuService>();
+            builder.RegisterType<MigrationService>().As<IMigrationService>();
+            builder.RegisterType<OutfitService>().As<IOutfitService>();
+            builder.RegisterType<PerkService>().As<IPerkService>();
+            builder.RegisterType<PlayerDescriptionService>().As<IPlayerDescriptionService>();
+            builder.RegisterType<PlayerService>().As<IPlayerService>();
+            builder.RegisterType<PVPSanctuaryService>().As<IPVPSanctuaryService>();
+            builder.RegisterType<QuestService>().As<IQuestService>();
+            builder.RegisterType<RandomService>().As<IRandomService>();
+            builder.RegisterType<SerializationService>().As<ISerializationService>();
+            builder.RegisterType<SkillService>().As<ISkillService>();
+            builder.RegisterType<StructureService>().As<IStructureService>();
+            builder.RegisterType<TimeService>().As<ITimeService>();
+            
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);
             RegisterInterfaceImplementations<ICustomEffect>(builder);
@@ -123,6 +140,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<NWNXItem>().As<INWNXItem>();
             builder.RegisterType<NWNXPlayer>().As<INWNXPlayer>();
             builder.RegisterType<NWNXPlayerQuickBarSlot>().As<INWNXPlayerQuickBarSlot>();
+            builder.RegisterType<NWScript>().As<INWScript>().SingleInstance();
 
             _container = builder.Build();
         }
