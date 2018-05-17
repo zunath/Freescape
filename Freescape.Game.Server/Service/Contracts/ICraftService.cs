@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Freescape.Game.Server.Data;
+using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
 
 namespace Freescape.Game.Server.Service.Contracts

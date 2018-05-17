@@ -1,5 +1,4 @@
-﻿using System;
-using Freescape.Game.Server.Enumeration;
+﻿using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.NWNX.Contracts;
 using NWN;

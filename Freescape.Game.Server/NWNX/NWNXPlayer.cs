@@ -26,7 +26,7 @@ namespace Freescape.Game.Server.NWNX
             NWNX_CallFunction(NWNX_Player, sFunc);
         }
 
-        public void StopGuiTimingBar(NWObject player, string script, int id)
+        public void StopGuiTimingBar(NWPlayer player, string script, int id)
         {
             int activeId = _.GetLocalInt(player.Object, "NWNX_PLAYER_GUI_TIMING_ACTIVE");
             // Either the timing event was never started, or it already finished.
@@ -62,7 +62,7 @@ namespace Freescape.Game.Server.NWNX
 
         // Starts displaying a timing bar.
         // Will run a script at the end of the timing bar, if specified.
-        public void StartGuiTimingBar(NWObject player, float seconds, string script)
+        public void StartGuiTimingBar(NWPlayer player, float seconds, string script)
         {
             // only one timing bar at a time!
             if (_.GetLocalInt(player.Object, "NWNX_PLAYER_GUI_TIMING_ACTIVE") == 1)
@@ -86,14 +86,14 @@ namespace Freescape.Game.Server.NWNX
 
         // Stops displaying a timing bar.
         // Runs a script if specified.
-        public void StopGuiTimingBar(NWObject player, string script)
+        public void StopGuiTimingBar(NWPlayer player, string script)
         {
             StopGuiTimingBar(player, script, -1);
         }
 
         // Sets whether the player should always walk when given movement commands.
         // If true, clicking on the ground or using WASD will trigger walking instead of running.
-        public void SetAlwaysWalk(NWObject player, int bWalk)
+        public void SetAlwaysWalk(NWPlayer player, int bWalk)
         {
             string sFunc = "SetAlwaysWalk";
             NWNX_PushArgumentInt(NWNX_Player, sFunc, bWalk);
@@ -103,7 +103,7 @@ namespace Freescape.Game.Server.NWNX
         }
 
         // Gets the player's quickbar slot info
-        public QuickBarSlot NWNX_Player_GetQuickBarSlot(NWObject player, int slot)
+        public QuickBarSlot NWNX_Player_GetQuickBarSlot(NWPlayer player, int slot)
         {
             string sFunc = "GetQuickBarSlot";
             QuickBarSlot qbs = new QuickBarSlot();
@@ -130,7 +130,7 @@ namespace Freescape.Game.Server.NWNX
         }
 
         // Sets a player's quickbar slot
-        public void SetQuickBarSlot(NWObject player, int slot, QuickBarSlot qbs)
+        public void SetQuickBarSlot(NWPlayer player, int slot, QuickBarSlot qbs)
         {
             string sFunc = "SetQuickBarSlot";
 

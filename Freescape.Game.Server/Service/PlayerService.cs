@@ -2,7 +2,9 @@
 using System.Linq;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
+using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
+using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
 using static NWN.NWScript;
@@ -14,21 +16,24 @@ namespace Freescape.Game.Server.Service
         private readonly INWScript _;
         private readonly IDataContext _db;
         private readonly IDeathService _death;
-        private readonly IPlayerService _player;
         private readonly IColorTokenService _color;
+        private readonly INWNXCreature _nwnxCreature;
+        private readonly ISkillService _skill;
 
         public PlayerService(
             INWScript script, 
             IDataContext db, 
             IDeathService death, 
-            IPlayerService player,
-            IColorTokenService color)
+            IColorTokenService color,
+            INWNXCreature nwnxCreature,
+            ISkillService skill)
         {
             _ = script;
             _db = db;
             _death = death;
-            _player = player;
             _color = color;
+            _nwnxCreature = nwnxCreature;
+            _skill = skill;
         }
 
         public void InitializePlayer(NWPlayer player)
@@ -72,38 +77,36 @@ namespace Freescape.Game.Server.Service
                 NWItem shovel = NWItem.Wrap(_.CreateItemOnObject("basic_shovel", player.Object));
                 shovel.Name = player.Name + "'s Shovel";
                 shovel.IsCursed = true;
+                
+                int numberOfFeats = _nwnxCreature.GetFeatCount(player);
+                for (int currentFeat = numberOfFeats; currentFeat >= 0; currentFeat--)
+                {
+                    _nwnxCreature.RemoveFeat(player, _nwnxCreature.GetFeatByIndex(player, currentFeat - 1));
+                }
 
-                // TODO: UPDATE
+                _nwnxCreature.SetClassByPosition(player, 0, CLASS_TYPE_FIGHTER);
+                _nwnxCreature.AddFeatByLevel(player, FEAT_ARMOR_PROFICIENCY_LIGHT, 1);
+                _nwnxCreature.AddFeatByLevel(player, FEAT_ARMOR_PROFICIENCY_MEDIUM, 1);
+                _nwnxCreature.AddFeatByLevel(player, FEAT_ARMOR_PROFICIENCY_HEAVY, 1);
+                _nwnxCreature.AddFeatByLevel(player, FEAT_SHIELD_PROFICIENCY, 1);
+                _nwnxCreature.AddFeatByLevel(player, FEAT_WEAPON_PROFICIENCY_EXOTIC, 1);
+                _nwnxCreature.AddFeatByLevel(player, FEAT_WEAPON_PROFICIENCY_MARTIAL, 1);
+                _nwnxCreature.AddFeatByLevel(player, FEAT_WEAPON_PROFICIENCY_SIMPLE, 1);
 
-                //int numberOfFeats = NWNX_Creature.GetFeatCount(player.Object);
-                //for (int currentFeat = numberOfFeats; currentFeat >= 0; currentFeat--)
-                //{
-                //    NWNX_Creature.RemoveFeat(player.Object, NWNX_Creature.GetFeatByIndex(player.Object, currentFeat - 1));
-                //}
+                for (int iCurSkill = 1; iCurSkill <= 27; iCurSkill++)
+                {
+                    _nwnxCreature.SetSkillRank(player, iCurSkill - 1, 0);
+                }
+                _.SetFortitudeSavingThrow(player.Object, 0);
+                _.SetReflexSavingThrow(player.Object, 0);
+                _.SetWillSavingThrow(player.Object, 0);
 
-                //NWNX_Creature.SetClassByPosition(player.Object, 0, Class.TYPE_FIGHTER);
-                //NWNX_Creature.AddFeatByLevel(player.Object, Feat.ARMOR_PROFICIENCY_LIGHT, 1);
-                //NWNX_Creature.AddFeatByLevel(player.Object, Feat.ARMOR_PROFICIENCY_MEDIUM, 1);
-                //NWNX_Creature.AddFeatByLevel(player.Object, Feat.ARMOR_PROFICIENCY_HEAVY, 1);
-                //NWNX_Creature.AddFeatByLevel(player.Object, Feat.SHIELD_PROFICIENCY, 1);
-                //NWNX_Creature.AddFeatByLevel(player.Object, Feat.WEAPON_PROFICIENCY_EXOTIC, 1);
-                //NWNX_Creature.AddFeatByLevel(player.Object, Feat.WEAPON_PROFICIENCY_MARTIAL, 1);
-                //NWNX_Creature.AddFeatByLevel(player.Object, Feat.WEAPON_PROFICIENCY_SIMPLE, 1);
+                int classID = _.GetClassByPosition(1, player.Object);
 
-                //for (int iCurSkill = 1; iCurSkill <= 27; iCurSkill++)
-                //{
-                //    NWNX_Creature.SetSkillRank(player.Object, iCurSkill - 1, 0);
-                //}
-                //setFortitudeSavingThrow(player.Object, 0);
-                //setReflexSavingThrow(player.Object, 0);
-                //setWillSavingThrow(player.Object, 0);
-
-                //int classID = getClassByPosition(1, player.Object);
-
-                //for (int index = 0; index <= 255; index++)
-                //{
-                //    NWNX_Creature.RemoveKnownSpell(player.Object, classID, 0, index);
-                //}
+                for (int index = 0; index <= 255; index++)
+                {
+                    _nwnxCreature.RemoveKnownSpell(player, classID, 0, index);
+                }
 
                 using (DataContext context = new DataContext())
                 {
@@ -111,10 +114,8 @@ namespace Freescape.Game.Server.Service
                     context.PlayerCharacters.Add(entity);
                     context.SaveChanges();
                 }
-                
-
-                // TODO: UPDATE
-                //SkillSystem.ApplyStatChanges(player.Object, null);
+               
+                _skill.ApplyStatChanges(player, null);
 
                 _.DelayCommand(1000, () => _.ApplyEffectToObject(DURATION_TYPE_INSTANT, _.EffectHeal(999), player.Object));
 
@@ -152,7 +153,7 @@ namespace Freescape.Game.Server.Service
 
         public void LoadCharacter(NWPlayer player)
         {
-            PlayerCharacter entity = _player.GetPlayerEntity(player.GlobalID);
+            PlayerCharacter entity = GetPlayerEntity(player.GlobalID);
 
             if (entity == null) return;
 

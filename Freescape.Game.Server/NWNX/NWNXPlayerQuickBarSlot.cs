@@ -2,7 +2,6 @@
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.NWNX.Contracts;
 using NWN;
-using Object = NWN.Object;
 
 namespace Freescape.Game.Server.NWNX
 {

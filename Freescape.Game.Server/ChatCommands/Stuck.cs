@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Freescape.Game.Server.ChatCommands.Contracts;
-using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
+using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
 using NWN;
 

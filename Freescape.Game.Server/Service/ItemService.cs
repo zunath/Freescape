@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Linq;
 using Freescape.Game.Server.Bioware.Contracts;
-using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
+using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
-using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.Item;
+using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject;
 using NWN;
 using static NWN.NWScript;
-using Object = NWN.Object;
 
 namespace Freescape.Game.Server.Service
 {
@@ -23,6 +22,8 @@ namespace Freescape.Game.Server.Service
         private readonly IBiowareXP2 _xp2;
         private readonly ISkillService _skill;
         private readonly IColorTokenService _color;
+        private readonly INWNXItem _nwnxItem;
+        private readonly INWNXPlayer _nwnxPlayer;
 
         public ItemService(
             INWScript script,
@@ -30,7 +31,9 @@ namespace Freescape.Game.Server.Service
             IDurabilityService durability,
             IBiowareXP2 xp2,
             ISkillService skill,
-            IColorTokenService color)
+            IColorTokenService color,
+            INWNXItem nwnxItem,
+            INWNXPlayer nwnxPlayer)
         {
             _ = script;
             _db = db;
@@ -38,6 +41,8 @@ namespace Freescape.Game.Server.Service
             _xp2 = xp2;
             _skill = skill;
             _color = color;
+            _nwnxItem = nwnxItem;
+            _nwnxPlayer = nwnxPlayer;
         }
 
         public string GetNameByResref(string resref)
@@ -120,9 +125,8 @@ namespace Freescape.Game.Server.Service
                 if (animationID > 0)
                     _.ActionPlayAnimation(animationID, 1.0f, delay);
             });
-
-            // TODO: NWNX timing bar
-            // TODO: NWNX_Player.StartGuiTimingBar(user, delay, "");
+            
+            _nwnxPlayer.StartGuiTimingBar(oPC, delay, string.Empty);
             oPC.AssignCommand(() =>
             {
                 FinishActionItem(item, oPC, oItem, oTarget, userPosition, customData);
@@ -358,14 +362,16 @@ namespace Freescape.Game.Server.Service
             }
         }
 
-        private Data.Item GetItemEntity(INWObject item)
+        private Data.Entities.Item GetItemEntity(NWItem item)
         {
+            Console.WriteLine("Running GetItemEntity now"); // todo debug
+
             return _db.Items.SingleOrDefault(x => x.Resref == item.Resref);
         }
 
         private void ApplyItemFeatures(NWItem item)
         {
-            Data.Item entity = GetItemEntity(item);
+            Data.Entities.Item entity = GetItemEntity(item);
 
             if (entity == null) return;
 
@@ -387,7 +393,7 @@ namespace Freescape.Game.Server.Service
 
             if (entity.Weight > 0)
             {
-                // TODO: NWNX_Item.SetWeight(item, entity.getWeight());
+                _nwnxItem.SetWeight(item, entity.Weight);
             }
 
             if (entity.DurabilityPoints > 0)

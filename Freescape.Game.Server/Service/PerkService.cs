@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Freescape.Game.Server.Data;
+using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
@@ -29,12 +29,12 @@ namespace Freescape.Game.Server.Service
             return null;
         }
 
-        public List<Data.Perk> GetPerksForPC(string playerID, int categoryID)
+        public List<Data.Entities.Perk> GetPerksForPC(string playerID, int categoryID)
         {
             return null;
         }
 
-        public Data.Perk GetPerkByID(int perkID)
+        public Data.Entities.Perk GetPerkByID(int perkID)
         {
             return null;
         }
@@ -49,7 +49,7 @@ namespace Freescape.Game.Server.Service
             return null;
         }
 
-        public bool CanPerkBeUpgraded(Data.Perk perk, PCPerk pcPerk, PlayerCharacter player)
+        public bool CanPerkBeUpgraded(Data.Entities.Perk perk, PCPerk pcPerk, PlayerCharacter player)
         {
             return false;
         }

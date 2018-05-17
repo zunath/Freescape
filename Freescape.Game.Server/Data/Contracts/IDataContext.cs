@@ -1,8 +1,8 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Threading;
 using System.Threading.Tasks;
+using Freescape.Game.Server.Data.Entities;
+using Attribute = Freescape.Game.Server.Data.Entities.Attribute;
 
 namespace Freescape.Game.Server.Data.Contracts
 {
@@ -26,14 +26,14 @@ namespace Freescape.Game.Server.Data.Contracts
         IDbSet<CraftBlueprintComponent> CraftBlueprintComponents { get; set; }
         IDbSet<CraftBlueprint> CraftBlueprints { get; set; }
         IDbSet<CraftDevice> CraftDevices { get; set; }
-        IDbSet<CustomEffect> CustomEffects { get; set; }
+        IDbSet<Entities.CustomEffect> CustomEffects { get; set; }
         IDbSet<DMRoleDomain> DMRoleDomains { get; set; }
         IDbSet<Download> Downloads { get; set; }
         IDbSet<FameRegion> FameRegions { get; set; }
         IDbSet<GameTopicCategory> GameTopicCategories { get; set; }
         IDbSet<GameTopic> GameTopics { get; set; }
         IDbSet<GrowingPlant> GrowingPlants { get; set; }
-        IDbSet<Item> Items { get; set; }
+        IDbSet<Entities.Item> Items { get; set; }
         IDbSet<ItemType> ItemTypes { get; set; }
         IDbSet<KeyItemCategory> KeyItemCategories { get; set; }
         IDbSet<KeyItem> KeyItems { get; set; }
@@ -65,7 +65,7 @@ namespace Freescape.Game.Server.Data.Contracts
         IDbSet<PerkExecutionType> PerkExecutionTypes { get; set; }
         IDbSet<PerkLevel> PerkLevels { get; set; }
         IDbSet<PerkLevelSkillRequirement> PerkLevelSkillRequirements { get; set; }
-        IDbSet<Perk> Perks { get; set; }
+        IDbSet<Entities.Perk> Perks { get; set; }
         IDbSet<Plant> Plants { get; set; }
         IDbSet<PlayerCharacter> PlayerCharacters { get; set; }
         IDbSet<QuestKillTargetList> QuestKillTargetLists { get; set; }
@@ -89,7 +89,6 @@ namespace Freescape.Game.Server.Data.Contracts
         IDbSet<sysdiagram> sysdiagrams { get; set; }
         IDbSet<TerritoryFlagPermission> TerritoryFlagPermissions { get; set; }
         IDbSet<User> Users { get; set; }
-        IQueryable<fn_GetPlayerEffectivePerkLevel_Result> fn_GetPlayerEffectivePerkLevel(string playerID, Nullable<int> perkID, Nullable<int> skillLevel);
         int SaveChanges();
         Task<int> SaveChangesAsync();
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);

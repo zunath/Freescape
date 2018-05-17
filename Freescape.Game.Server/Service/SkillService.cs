@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
+using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;

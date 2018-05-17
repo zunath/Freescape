@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Freescape.Game.Server.Service
+namespace Freescape.Game.Server.Service.Contracts
 {
     public interface ITimeService
     {

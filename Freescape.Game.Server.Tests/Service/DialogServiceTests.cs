@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autofac.Core.Registration;
+using Freescape.Game.Server.Conversation;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service;
 using Freescape.Game.Server.Service.Contracts;
@@ -9,7 +10,7 @@ using NSubstitute;
 using NUnit.Framework;
 using NWN;
 
-namespace Freescape.Game.Server.Conversation
+namespace Freescape.Game.Server.Tests.Service
 {
     internal class ValidConversation: ConversationBase
     {
@@ -39,10 +40,6 @@ namespace Freescape.Game.Server.Conversation
         }
     }
 
-}
-
-namespace Freescape.Game.Server.Tests.Service
-{
     public class DialogServiceTests
     {
         [Test]

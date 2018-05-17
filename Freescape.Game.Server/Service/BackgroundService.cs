@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
+using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.Service.Contracts;
 

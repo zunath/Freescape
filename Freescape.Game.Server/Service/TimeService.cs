@@ -1,4 +1,5 @@
 ﻿using System;
+using Freescape.Game.Server.Service.Contracts;
 
 namespace Freescape.Game.Server.Service
 {

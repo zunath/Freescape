@@ -1,11 +1,12 @@
 ﻿using NWN;
+using Object = NWN.Object;
 
 namespace Freescape.Game.Server.Event.Module
 {
     internal class OnModuleLoad: IRegisteredEvent
     {
         private readonly INWScript _;
-
+        
         public OnModuleLoad(INWScript script)
         {
             _ = script;

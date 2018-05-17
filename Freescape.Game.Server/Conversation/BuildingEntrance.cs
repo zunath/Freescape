@@ -1,4 +1,4 @@
-﻿using Freescape.Game.Server.Data;
+﻿using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
@@ -137,7 +137,7 @@ namespace Freescape.Game.Server.Conversation
                 instance.SetLocalInt("TERRITORY_FLAG_ID", flag.PCTerritoryFlagID);
 
                 // Load structures & construction sites
-                foreach (Data.ConstructionSite entity in flag.ConstructionSites)
+                foreach (Data.Entities.ConstructionSite entity in flag.ConstructionSites)
                 {
                     if (entity.IsActive)
                     {

@@ -1,4 +1,4 @@
-﻿using Freescape.Game.Server.Data;
+﻿using Freescape.Game.Server.Data.Entities;
 
 namespace Freescape.Game.Server.Service.Contracts
 {

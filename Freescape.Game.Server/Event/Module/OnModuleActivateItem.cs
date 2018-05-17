@@ -1,8 +1,4 @@
-﻿using System;
-using Freescape.Game.Server.GameObject;
-using Freescape.Game.Server.Item;
-using Freescape.Game.Server.Service.Contracts;
-using Freescape.Game.Server.ValueObject;
+﻿using Freescape.Game.Server.Service.Contracts;
 using NWN;
 using Object = NWN.Object;
 

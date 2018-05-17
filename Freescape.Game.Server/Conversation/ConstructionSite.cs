@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Freescape.Game.Server.Data;
+using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
@@ -233,7 +233,7 @@ namespace Freescape.Game.Server.Conversation
             }
             else
             {
-                Data.ConstructionSite entity = _structure.GetConstructionSiteByID(model.ConstructionSiteID);
+                Data.Entities.ConstructionSite entity = _structure.GetConstructionSiteByID(model.ConstructionSiteID);
 
                 header = _color.Green("Blueprint: ") + entity.StructureBlueprint.Name + "\n";
                 if (entity.StructureBlueprint.IsVanity)
@@ -302,7 +302,7 @@ namespace Freescape.Game.Server.Conversation
         private void ToggleRotateOptions()
         {
             Model model = GetDialogCustomData<Model>();
-            Data.ConstructionSite site = _structure.GetConstructionSiteByID(model.ConstructionSiteID);
+            Data.Entities.ConstructionSite site = _structure.GetConstructionSiteByID(model.ConstructionSiteID);
 
             bool isVisible = !(site != null && site.StructureBlueprint.IsBuilding);
 
@@ -602,7 +602,7 @@ namespace Freescape.Game.Server.Conversation
             Model model = GetDialogCustomData<Model>();
             if (model.IsPreviewing) return;
             
-            Data.ConstructionSite entity = _structure.GetConstructionSiteByID(model.ConstructionSiteID);
+            Data.Entities.ConstructionSite entity = _structure.GetConstructionSiteByID(model.ConstructionSiteID);
             StructureBlueprint blueprint = entity.StructureBlueprint;
             NWPlaceable preview = NWPlaceable.Wrap(_.CreateObject(OBJECT_TYPE_PLACEABLE, blueprint.Resref, GetDialogTarget().Location));
             preview.IsUseable = false;
@@ -678,7 +678,7 @@ namespace Freescape.Game.Server.Conversation
             }
             
             int constructionSiteID = _structure.GetConstructionSiteID((NWPlaceable)GetDialogTarget());
-            Data.ConstructionSite entity = _structure.GetConstructionSiteByID(constructionSiteID);
+            Data.Entities.ConstructionSite entity = _structure.GetConstructionSiteByID(constructionSiteID);
 
             if (isSet)
             {
@@ -736,7 +736,7 @@ namespace Freescape.Game.Server.Conversation
             BuildingInterior interior = (BuildingInterior)response.CustomData[string.Empty];
             Model model = GetDialogCustomData<Model>();
 
-            Data.ConstructionSite site = _structure.GetConstructionSiteByID(model.ConstructionSiteID);
+            Data.Entities.ConstructionSite site = _structure.GetConstructionSiteByID(model.ConstructionSiteID);
             site.BuildingInterior = interior;
             _structure.SaveChanges();
 
@@ -747,7 +747,7 @@ namespace Freescape.Game.Server.Conversation
         private void DoBuildingInteriorPreview()
         {
             Model model = GetDialogCustomData<Model>();
-            Data.ConstructionSite site = _structure.GetConstructionSiteByID(model.ConstructionSiteID);
+            Data.Entities.ConstructionSite site = _structure.GetConstructionSiteByID(model.ConstructionSiteID);
 
             if (!site.StructureBlueprint.IsBuilding || site.BuildingInterior == null) return;
 
