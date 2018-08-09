@@ -1,5 +1,7 @@
-﻿using Freescape.Game.Server.GameObject.Contracts;
+﻿using System;
+using Freescape.Game.Server.GameObject.Contracts;
 using NWN;
+using Object = NWN.Object;
 
 namespace Freescape.Game.Server.GameObject
 {
@@ -12,7 +14,7 @@ namespace Freescape.Game.Server.GameObject
 
         public new static NWArea Wrap(Object @object)
         {
-            var obj = (NWArea)App.Resolve<INWObject>();
+            NWArea obj = (NWArea)App.Resolve<INWArea>();
             obj.Object = @object;
 
             return obj;

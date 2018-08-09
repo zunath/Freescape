@@ -16,7 +16,7 @@ namespace Freescape.Game.Server.GameObject
 
         public new static NWCreature Wrap(Object @object)
         {
-            var obj = (NWCreature)App.Resolve<INWObject>();
+            NWCreature obj = (NWCreature)App.Resolve<INWCreature>();
             obj.Object = @object;
 
             return obj;

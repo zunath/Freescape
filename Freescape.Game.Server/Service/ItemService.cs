@@ -364,8 +364,6 @@ namespace Freescape.Game.Server.Service
 
         private Data.Entities.Item GetItemEntity(NWItem item)
         {
-            Console.WriteLine("Running GetItemEntity now"); // todo debug
-
             return _db.Items.SingleOrDefault(x => x.Resref == item.Resref);
         }
 

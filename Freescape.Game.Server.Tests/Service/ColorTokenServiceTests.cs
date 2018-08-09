@@ -126,33 +126,13 @@ namespace Freescape.Game.Server.Tests.Service
         }
 
         [Test]
-        public void ColorTokenService_TokenStart_InvalidArguments_ShouldThrowArgumentOutOfRangeException()
+        public void Test()
         {
             ColorTokenService service = new ColorTokenService();
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.TokenStart(-999, 0, 0);
-            });
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.TokenStart(0, -999, 0);
-            });
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.TokenStart(0, 0, -999);
-            }); Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.TokenStart(999, 0, 0);
-            });
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.TokenStart(0, 999, 0);
-            });
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.TokenStart(0, 0, 999);
-            });
+            
+            Assert.AreEqual("", service.Green("My Green Text"));
         }
+
         
         [Test]
         public void ColorTokenService_TokenStart_ShouldReturnColorMap()
@@ -162,36 +142,7 @@ namespace Freescape.Game.Server.Tests.Service
 
             Assert.AreEqual("<c%>", result);
         }
-
-        [Test]
-        public void ColorTokenService_Custom_InvalidArguments_ShouldThrowArgumentOutOfRangeException()
-        {
-            ColorTokenService service = new ColorTokenService();
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.Custom("mytext", -999, 0, 0);
-            });
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.Custom("mytext", 0, -999, 0);
-            });
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.Custom("mytext", 0, 0, -999);
-            }); Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.Custom("mytext", 999, 0, 0);
-            });
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.Custom("mytext", 0, 999, 0);
-            });
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
-            {
-                service.Custom("mytext", 0, 0, 999);
-            });
-        }
-
+        
         [Test]
         public void ColorTokenService_Custom_InvalidArguments_ShouldThrowArgumentException()
         {

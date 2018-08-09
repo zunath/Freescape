@@ -13,7 +13,7 @@ namespace Freescape.Game.Server.GameObject
 
         public static NWModule Get()
         {
-            var module = (NWModule) App.Resolve<INWObject>();
+            var module = (NWModule) App.Resolve<INWModule>();
             INWScript _ = App.Resolve<INWScript>();
             module.Object = _.GetModule();
 

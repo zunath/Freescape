@@ -83,7 +83,7 @@ namespace Freescape.Game.Server.Service
             if (talkTo == null) throw new ArgumentNullException(nameof(talkTo));
             if (talkTo.Object == null) throw new ArgumentNullException(nameof(talkTo.Object));
             if (string.IsNullOrWhiteSpace(@class)) throw new ArgumentException(nameof(@class), nameof(@class) + " cannot be null, empty, or whitespace.");
-            if (dialogNumber < 1 || dialogNumber > NumberOfDialogs) throw new ArgumentOutOfRangeException(nameof(dialogNumber), nameof(dialogNumber) + " must be between 1 and " + NumberOfDialogs);
+            if (dialogNumber != -1 && (dialogNumber < 1 || dialogNumber > NumberOfDialogs)) throw new ArgumentOutOfRangeException(nameof(dialogNumber), nameof(dialogNumber) + " must be between 1 and " + NumberOfDialogs);
 
             ConversationBase convo = App.Resolve<ConversationBase>(@class);
             

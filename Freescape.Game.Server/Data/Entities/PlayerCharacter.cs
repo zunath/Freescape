@@ -37,8 +37,7 @@ namespace Freescape.Game.Server.Data.Entities
         public string CharacterName { get; set; }
 
         public int HitPoints { get; set; }
-
-        [Required]
+        
         [StringLength(64)]
         public string LocationAreaTag { get; set; }
 
@@ -86,8 +85,7 @@ namespace Freescape.Game.Server.Data.Entities
         public int CurrentManaTick { get; set; }
 
         public int RevivalStoneCount { get; set; }
-
-        [Required]
+        
         [StringLength(64)]
         public string RespawnAreaTag { get; set; }
 

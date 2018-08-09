@@ -18,7 +18,7 @@ docker run --rm -it \
 -e NWN_GAMETYPE=3 \
 -e NWN_ONEPARTY=0 \
 -e NWN_DIFFICULTY=3 \
--e NWN_PLAYERPASSWORD="playerPassworod" \
+-e NWN_PLAYERPASSWORD="playerPassword" \
 -e NWN_DMPASSWORD="dmPassword" \
 -e NWN_ADMINPASSWORD="adminPassword" \
 -e NWNX_ADMINISTRATION_SKIP=y \
@@ -27,7 +27,8 @@ docker run --rm -it \
 -e NWNX_CREATURE_SKIP=n \
 -e NWNX_EVENTS_SKIP=n \
 -e NWNX_DATA_SKIP=y \
--e NWNX_JVM_SKIP=n \
+-e NWNX_JVM_SKIP=y \
+-e NWNX_MONO_SKIP=n \
 -e NWNX_METRICS_INFLUXDB_SKIP=y \
 -e NWNX_OBJECT_SKIP=n \
 -e NWNX_PLAYER_SKIP=n \
@@ -36,10 +37,8 @@ docker run --rm -it \
 -e NWNX_SQL_SKIP=y \
 -e NWNX_THREADWATCHDOG_SKIP=y \
 -e NWNX_TRACKING_SKIP=y \
--e NWNX_JVM_INIT_LISTENER="Common/StartUp" \
--e NWNX_JVM_CLASSPATH="/nwn/home/jvm/org.nwnx.nwnx2.jvm.jar:/nwn/home/jvm/Freescape.jar" \
 -e SQL_SERVER_IP_ADDRESS=127.0.0.1 \
 -e SQL_SERVER_USERNAME=yourUsername \
 -e SQL_SERVER_PASSWORD=yourPassword \
--e SQL_SERVER_DATABASE=czs-db \
-nwnxee/nwserver:8166.java
+-e SQL_SERVER_DATABASE=freescape \
+nwnxee/unified:latest

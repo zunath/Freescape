@@ -4,9 +4,9 @@ namespace Freescape.Game.Server.Service.Contracts
 {
     public interface IColorTokenService
     {
-        string TokenStart(int red, int green, int blue);
+        string TokenStart(byte red, byte green, byte blue);
         string TokenEnd();
-        string Custom(string text, int red, int green, int blue);
+        string Custom(string text, byte red, byte green, byte blue);
         string Black(string text);
         string Blue(string text);
         string Gray(string text);

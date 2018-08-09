@@ -9,6 +9,7 @@ using Freescape.Game.Server.CustomEffect.Contracts;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Event;
+using Freescape.Game.Server.Extension;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.NWNX;
@@ -32,14 +33,42 @@ namespace Freescape.Game.Server
         public static bool RunEvent<T>(params object[] args)
             where T: IRegisteredEvent
         {
-            IRegisteredEvent @event = _container.ResolveNamed<IRegisteredEvent>(typeof(T).ToString());
-            return @event.Run(args);
+            try
+            {
+                IRegisteredEvent @event = _container.ResolveNamed<IRegisteredEvent>(typeof(T).ToString());
+                return @event.Run(args);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.ToMessageAndCompleteStacktrace();
+                LogError(typeof(T).ToString(), message);
+                throw;
+            }
         }
 
         public static bool RunEvent(Type type, params object[] args)
         {
-            IRegisteredEvent @event = _container.ResolveNamed<IRegisteredEvent>(type.ToString());
-            return @event.Run(args);
+            try
+            {
+                IRegisteredEvent @event = _container.ResolveNamed<IRegisteredEvent>(type.ToString());
+                return @event.Run(args);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.ToMessageAndCompleteStacktrace();
+                LogError(type.ToString(), message);
+                throw;
+            }
+        }
+
+        private static void LogError(string @event, string message)
+        {
+            message = "*****************" + Environment.NewLine +
+                      "EVENT ERROR (C#)" + Environment.NewLine +
+                      @event + Environment.NewLine +
+                      "*****************" + Environment.NewLine +
+                      " EXCEPTION:" + Environment.NewLine + Environment.NewLine + message;
+            Console.WriteLine(message); // todo: log in database
         }
 
         public static T ResolveByInterface<T>()
@@ -86,6 +115,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<NWPlayer>().As<INWPlayer>();
             builder.RegisterType<NWArea>().As<INWArea>();
             builder.RegisterType<NWModule>().As<INWModule>();
+            builder.RegisterType<NWPlaceable>().As<INWPlaceable>();
 
             // Services
             builder.RegisterType<AbilityService>().As<IAbilityService>();

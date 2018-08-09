@@ -244,10 +244,12 @@
     <Compile Include="Event\Module\OnModuleUserDefined.cs" />
     <Compile Include="Event\Player\OnPlayerHeartbeat.cs" />
     <Compile Include="Event\Trigger\ExplorationTrigger.cs" />
+    <Compile Include="Extension\ExceptionExtensions.cs" />
     <Compile Include="GameObject\Contracts\INWArea.cs" />
     <Compile Include="GameObject\Contracts\INWObject.cs" />
     <Compile Include="GameObject\Contracts\INWCreature.cs" />
     <Compile Include="GameObject\Contracts\INWItem.cs" />
+    <Compile Include="GameObject\Contracts\INWPlaceable.cs" />
     <Compile Include="GameObject\Contracts\INWPlayer.cs" />
     <Compile Include="GameObject\Contracts\INWModule.cs" />
     <Compile Include="GameObject\NWArea.cs" />

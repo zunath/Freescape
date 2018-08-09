@@ -226,7 +226,7 @@ namespace Freescape.Game.Server.Service
         {
             if (!player.IsPlayer) return;
 
-            if (player.Area.Tag != "ooc_area")
+            if (player.Area.Tag == "ooc_area")
             {
                 PlayerCharacter entity = GetPlayerEntity(player.GlobalID);
                 NWArea area = NWArea.Wrap(_.GetObjectByTag(entity.LocationAreaTag));
