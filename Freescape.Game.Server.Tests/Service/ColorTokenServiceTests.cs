@@ -124,15 +124,6 @@ namespace Freescape.Game.Server.Tests.Service
                 service.Whisper(null);
             });
         }
-
-        [Test]
-        public void Test()
-        {
-            ColorTokenService service = new ColorTokenService();
-            
-            Assert.AreEqual("", service.Green("My Green Text"));
-        }
-
         
         [Test]
         public void ColorTokenService_TokenStart_ShouldReturnColorMap()

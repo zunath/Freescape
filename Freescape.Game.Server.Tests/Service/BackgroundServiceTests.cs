@@ -3,16 +3,24 @@ using System.Data.Entity;
 using System.Linq;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
+using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.GameObject.Contracts;
+using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service;
+using Freescape.Game.Server.Service.Contracts;
 using NSubstitute;
 using NUnit.Framework;
+using NWN;
 
 namespace Freescape.Game.Server.Tests.Service
 {
     public class BackgroundServiceTests
     {
         private IDataContext _db;
+        private INWScript _;
+        private IPerkService _perk;
+        private ISkillService _skill;
+        private INWNXCreature _nwnxCreature;
 
         [SetUp]
         public void SetUp()
@@ -39,13 +47,18 @@ namespace Freescape.Game.Server.Tests.Service
 
             _db = Substitute.For<IDataContext>();
             _db.Backgrounds.Returns(backgroundDbSet);
+
+            _ = Substitute.For<INWScript>();
+            _perk = Substitute.For<IPerkService>();
+            _skill = Substitute.For<ISkillService>();
+            _nwnxCreature = Substitute.For<INWNXCreature>();
         }
 
         [Test]
         public void BackgroundService_GetActiveBackgrounds_ShouldReturn5Active()
         {
             // Arrange
-            var service = new BackgroundService(_db);
+            var service = new BackgroundService(_db, _, _perk, _skill);
 
             // Act
             var results = service.GetActiveBackgrounds().ToList();
@@ -58,7 +71,7 @@ namespace Freescape.Game.Server.Tests.Service
         public void BackgroundService_GetActiveBackgrounds_ShouldMatchData()
         {
             // Arrange
-            var service = new BackgroundService(_db);
+            var service = new BackgroundService(_db, _, _perk, _skill);
 
             // Act
             var results = service.GetActiveBackgrounds().ToList();
@@ -99,7 +112,7 @@ namespace Freescape.Game.Server.Tests.Service
         public void BackgroundService_SetPlayerBackground_IDShouldBe7()
         {
             // Arrange
-            var player1 = Substitute.For<INWPlayer>();
+            var player1 = Substitute.For<NWPlayer>(_, _nwnxCreature);
             player1.GlobalID.Returns("123");
 
             var player2 = Substitute.For<INWPlayer>();
@@ -120,7 +133,7 @@ namespace Freescape.Game.Server.Tests.Service
 
             _db.PlayerCharacters.Returns(playerDbSet);
 
-            var service = new BackgroundService(_db);
+            var service = new BackgroundService(_db, _, _perk, _skill);
             var backgrounds = service.GetActiveBackgrounds().ToList();
             
             // Act

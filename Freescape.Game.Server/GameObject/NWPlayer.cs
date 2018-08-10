@@ -1,6 +1,7 @@
 ﻿using System;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject.Contracts;
+using Freescape.Game.Server.NWNX.Contracts;
 using NWN;
 using Object = NWN.Object;
 
@@ -8,8 +9,8 @@ namespace Freescape.Game.Server.GameObject
 {
     public class NWPlayer : NWCreature, INWPlayer
     {
-        public NWPlayer(INWScript script)
-            : base(script)
+        public NWPlayer(INWScript script, INWNXCreature nwnxCreature)
+            : base(script, nwnxCreature)
         {
         }
 
@@ -101,12 +102,12 @@ namespace Freescape.Game.Server.GameObject
                 DateLastForcedSPReset = null,
                 DateSanctuaryEnds = DateTime.UtcNow + TimeSpan.FromDays(3),
                 IsSanctuaryOverrideEnabled = false,
-                STRBase = Strength, // Todo: Get raw strength
-                DEXBase = Dexterity, // todo: get raw dex
-                CONBase = Constitution, // todo: get raw con
-                INTBase = Intelligence, // todo: get raw int
-                WISBase = Wisdom, // todo: get raw wis
-                CHABase = Charisma, // todo: get raw cha
+                STRBase = RawStrength, 
+                DEXBase = RawDexterity, 
+                CONBase = RawConstitution, 
+                INTBase = RawIntelligence, 
+                WISBase = RawWisdom, 
+                CHABase = RawCharisma, 
                 TotalSPAcquired = 0,
                 DisplayHelmet = true
             };

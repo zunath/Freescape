@@ -374,7 +374,7 @@ namespace Freescape.Game.Server.Service
             if (entity == null) return;
 
             item.CustomAC = entity.AC;
-            item.CustomItemType = entity.ItemTypeID;
+            item.CustomItemType = (CustomItemType) entity.ItemTypeID;
             item.RecommendedLevel = entity.RecommendedLevel;
             item.LoggingBonus = entity.LoggingBonus;
             item.MiningBonus = entity.MiningBonus;

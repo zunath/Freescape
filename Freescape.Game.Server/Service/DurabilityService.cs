@@ -124,5 +124,9 @@ namespace Freescape.Game.Server.Service
         {
             return null;
         }
+
+        public void RunItemDecay(NWPlayer oPC, NWItem oItem, float reduceAmount)
+        {
+        }
     }
 }

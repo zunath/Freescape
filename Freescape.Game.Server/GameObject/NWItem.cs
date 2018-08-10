@@ -48,7 +48,12 @@ namespace Freescape.Game.Server.GameObject
             get => _.GetStolenFlag(Object) == 1;
             set => _.SetStolenFlag(Object, value ? 1 : 0);
         }
-
+        
+        public virtual bool IsIdentified
+        {
+            get => _.GetIdentified(Object) == 1;
+            set => _.SetIdentified(Object, value ? 1 : 0);
+        }
         public virtual int AC => _.GetItemACValue(Object);
 
         public virtual int Charges

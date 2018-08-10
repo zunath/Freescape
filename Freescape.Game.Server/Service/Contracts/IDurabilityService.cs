@@ -10,5 +10,6 @@ namespace Freescape.Game.Server.Service.Contracts
         float GetDurability(NWItem item);
         void SetDurability(NWItem item, float value);
         string OnModuleExamine(string existingDescription, NWObject examinedObject);
+        void RunItemDecay(NWPlayer oPC, NWItem oItem, float reduceAmount);
     }
 }

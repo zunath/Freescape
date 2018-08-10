@@ -68,34 +68,50 @@ namespace Freescape.Game.Server.GameObject
 
         public virtual float Weight => _.GetWeight(Object) * 0.1f;
 
-        public virtual int Strength
+        public virtual int Strength => _.GetAbilityScore(Object, ABILITY_STRENGTH);
+
+        public virtual int Dexterity => _.GetAbilityScore(Object, ABILITY_DEXTERITY);
+
+        public virtual int Constitution => _.GetAbilityScore(Object, ABILITY_CONSTITUTION);
+
+        public virtual int Wisdom => _.GetAbilityScore(Object, ABILITY_WISDOM);
+        public virtual int Intelligence => _.GetAbilityScore(Object, ABILITY_INTELLIGENCE);
+
+        public virtual int Charisma => _.GetAbilityScore(Object, ABILITY_CHARISMA);
+
+        public virtual int RawStrength
         {
-            get => _.GetAbilityScore(Object, ABILITY_STRENGTH);
+            get => _nwnxCreature.GetRawAbilityScore(this, ABILITY_STRENGTH);
             set => _nwnxCreature.SetRawAbilityScore(this, ABILITY_STRENGTH, value);
         }
-        public virtual int Dexterity
+
+        public virtual int RawDexterity
         {
-            get => _.GetAbilityScore(Object, ABILITY_DEXTERITY);
+            get => _nwnxCreature.GetRawAbilityScore(this, ABILITY_DEXTERITY);
             set => _nwnxCreature.SetRawAbilityScore(this, ABILITY_DEXTERITY, value);
         }
-        public virtual int Constitution
+
+        public virtual int RawConstitution
         {
-            get => _.GetAbilityScore(Object, ABILITY_CONSTITUTION);
+            get => _nwnxCreature.GetRawAbilityScore(this, ABILITY_CONSTITUTION);
             set => _nwnxCreature.SetRawAbilityScore(this, ABILITY_CONSTITUTION, value);
         }
-        public virtual int Wisdom
+
+        public virtual int RawWisdom
         {
-            get => _.GetAbilityScore(Object, ABILITY_WISDOM);
+            get => _nwnxCreature.GetRawAbilityScore(this, ABILITY_WISDOM);
             set => _nwnxCreature.SetRawAbilityScore(this, ABILITY_WISDOM, value);
         }
-        public virtual int Intelligence
+
+        public virtual int RawIntelligence
         {
-            get => _.GetAbilityScore(Object, ABILITY_INTELLIGENCE);
+            get => _nwnxCreature.GetRawAbilityScore(this, ABILITY_INTELLIGENCE);
             set => _nwnxCreature.SetRawAbilityScore(this, ABILITY_INTELLIGENCE, value);
         }
-        public virtual int Charisma
+
+        public virtual int RawCharisma
         {
-            get => _.GetAbilityScore(Object, ABILITY_CHARISMA);
+            get => _nwnxCreature.GetRawAbilityScore(this, ABILITY_CHARISMA);
             set => _nwnxCreature.SetRawAbilityScore(this, ABILITY_CHARISMA, value);
         }
 

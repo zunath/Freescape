@@ -23,7 +23,7 @@ namespace Freescape.Game.Server.Service
 
             string message = _nwnxChat.GetMessage().Trim().ToLower();
 
-            // If is double slash (//) treat it as a normal message (this is used by role-players to denote OOC speech)
+            // If it is double slash (//) treat it as a normal message (this is used by role-players to denote OOC speech)
             if (message.Substring(0, 2) == "//") return;
 
             if (message.Substring(0, 1) != "/")

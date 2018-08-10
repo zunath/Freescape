@@ -42,8 +42,8 @@ namespace Freescape.Game.Server
             }
             catch (Exception ex)
             {
-                string message = ex.ToMessageAndCompleteStacktrace();
-                LogError(typeof(T).ToString(), message);
+                IErrorService errorService = _container.Resolve<IErrorService>();
+                errorService.LogError(ex);
                 throw;
             }
         }
@@ -57,22 +57,12 @@ namespace Freescape.Game.Server
             }
             catch (Exception ex)
             {
-                string message = ex.ToMessageAndCompleteStacktrace();
-                LogError(type.ToString(), message);
+                IErrorService errorService = _container.Resolve<IErrorService>();
+                errorService.LogError(ex);
                 throw;
             }
         }
-
-        private static void LogError(string @event, string message)
-        {
-            message = "*****************" + Environment.NewLine +
-                      "EVENT ERROR (C#)" + Environment.NewLine +
-                      @event + Environment.NewLine +
-                      "*****************" + Environment.NewLine +
-                      " EXCEPTION:" + Environment.NewLine + Environment.NewLine + message;
-            Console.WriteLine(message); // todo: log in database
-        }
-
+        
         public static T ResolveByInterface<T>()
         {
             if (!typeof(T).IsInterface)
@@ -131,6 +121,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<DeathService>().As<IDeathService>();
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
             builder.RegisterType<DurabilityService>().As<IDurabilityService>();
+            builder.RegisterType<ErrorService>().As<IErrorService>();
             builder.RegisterType<ExaminationService>().As<IExaminationService>();
             builder.RegisterType<FarmingService>().As<IFarmingService>();
             builder.RegisterType<FoodService>().As<IFoodService>();
@@ -213,7 +204,7 @@ namespace Freescape.Game.Server
 
                 foreach (var type in types)
                 {
-                    builder.RegisterType(type).Named<ConversationBase>(type.Name);
+                    builder.RegisterType(type).Named<T>(type.Name);
                 }
             }
         }

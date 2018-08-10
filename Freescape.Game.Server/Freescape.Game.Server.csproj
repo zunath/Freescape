@@ -182,7 +182,7 @@
     <Compile Include="Enumeration\BackgroundType.cs" />
     <Compile Include="Enumeration\ChatChannel.cs" />
     <Compile Include="Enumeration\ClericDomain.cs" />
-    <Compile Include="Enumeration\CraftDevice.cs" />
+    <Compile Include="Enumeration\CraftDeviceType.cs" />
     <Compile Include="Enumeration\CustomAttribute.cs" />
     <Compile Include="Enumeration\CustomEffectType.cs" />
     <Compile Include="Enumeration\CustomItemType.cs" />
@@ -381,6 +381,7 @@
     <Compile Include="Service\Contracts\ICraftService.cs" />
     <Compile Include="Service\Contracts\IDeathService.cs" />
     <Compile Include="Service\Contracts\IDurabilityService.cs" />
+    <Compile Include="Service\Contracts\IErrorService.cs" />
     <Compile Include="Service\Contracts\IExaminationService.cs" />
     <Compile Include="Service\Contracts\IFarmingService.cs" />
     <Compile Include="Service\Contracts\IFoodService.cs" />
@@ -408,6 +409,7 @@
     <Compile Include="Service\DialogService.cs" />
     <Compile Include="Service\Contracts\IDialogService.cs" />
     <Compile Include="Service\DurabilityService.cs" />
+    <Compile Include="Service\ErrorService.cs" />
     <Compile Include="Service\ExaminationService.cs" />
     <Compile Include="Service\FarmingService.cs" />
     <Compile Include="Service\FoodService.cs" />

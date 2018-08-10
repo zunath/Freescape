@@ -23,5 +23,6 @@ namespace Freescape.Game.Server.Service.Contracts
         void OnAreaExit();
         void OnModuleEnter();
         void OnModuleClientLeave();
+        float CalculateSkillAdjustedXP(float xp, int registeredLevel, int skillRank);
     }
 }

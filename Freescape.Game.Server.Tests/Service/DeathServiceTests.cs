@@ -5,6 +5,7 @@ using System.Linq;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
+using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service;
 using NSubstitute;
 using NUnit.Framework;
@@ -76,10 +77,11 @@ namespace Freescape.Game.Server.Tests.Service
             // Arrange
             int callCount = -1;
             INWScript script = Substitute.For<INWScript>();
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
             script.When(x => x.FloatingTextStringOnCreature(Arg.Any<string>(), Arg.Any<Object>(), Arg.Any<int>())).Do(x => callCount++);
             
             DeathService service = new DeathService(_db, script);
-            NWPlayer player = Substitute.For<NWPlayer>(script);
+            NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.Object.Returns(x => new Object());
             player.GlobalID.Returns("123");
             player.Position.Returns(x => new Vector(43.2f, 22.2f, 87.0f));
@@ -107,10 +109,11 @@ namespace Freescape.Game.Server.Tests.Service
             int callCount = 0;
             
             INWScript script = Substitute.For<INWScript>();
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
             script.When(x => x.FloatingTextStringOnCreature(Arg.Any<string>(), Arg.Any<Object>(), Arg.Any<int>())).Do(x => callCount++);
 
             DeathService service = new DeathService(_db, script);
-            NWPlayer player = Substitute.For<NWPlayer>(script);
+            NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.Object.Returns(x => new Object());
             player.GlobalID.Returns("123");
             player.Position.Returns(x => new Vector(43.2f, 22.2f, 87.0f));
@@ -151,8 +154,10 @@ namespace Freescape.Game.Server.Tests.Service
         {
             // Arrange
             INWScript script = Substitute.For<INWScript>();
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
+
             DeathService service = new DeathService(_db, script);
-            NWPlayer player = Substitute.For<NWPlayer>(script);
+            NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.Object.Returns(x => null);
 
             // Assert
@@ -168,8 +173,9 @@ namespace Freescape.Game.Server.Tests.Service
         {
             // Arrange
             INWScript script = Substitute.For<INWScript>();
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
             DeathService service = new DeathService(_db, script);
-            NWPlayer player = Substitute.For<NWPlayer>(script);
+            NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
 
             // Assert
             Assert.Throws(typeof(InvalidOperationException), () =>

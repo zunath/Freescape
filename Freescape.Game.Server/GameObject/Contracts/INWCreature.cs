@@ -11,25 +11,25 @@
         NWItem Bullets { get; }
         int CastingSpeed { get; }
         float ChallengeRating { get; }
-        int Charisma { get; set; }
+        int Charisma { get; }
         int CharismaModifier { get; }
         NWItem Chest { get; }
         int Class1 { get; }
         int Class2 { get; }
         int Class3 { get; }
         NWItem Cloak { get; }
-        int Constitution { get; set; }
+        int Constitution { get; }
         int ConstitutionModifier { get; }
         NWItem CreatureHide { get; }
         NWItem CreatureWeaponBite { get; }
         NWItem CreatureWeaponLeft { get; }
         NWItem CreatureWeaponRight { get; }
         string Deity { get; set; }
-        int Dexterity { get; set; }
+        int Dexterity { get; }
         int DexterityModifier { get; }
         int Gender { get; }
         NWItem Head { get; }
-        int Intelligence { get; set; }
+        int Intelligence { get; }
         int IntelligenceModifier { get; }
         bool IsCommandable { get; set; }
         bool IsDead { get; }
@@ -41,13 +41,19 @@
         NWItem Neck { get; }
         int Phenotype { get; set; }
         int RacialType { get; }
+        int RawCharisma { get; set; }
+        int RawConstitution { get; set; }
+        int RawDexterity { get; set; }
+        int RawIntelligence { get; set; }
+        int RawStrength { get; set; }
+        int RawWisdom { get; set; }
         NWItem RightHand { get; }
         NWItem RightRing { get; }
         int Size { get; }
-        int Strength { get; set; }
+        int Strength { get; }
         int StrengthModifier { get; }
         float Weight { get; }
-        int Wisdom { get; set; }
+        int Wisdom { get; }
         int WisdomModifier { get; }
         int XP { get; set; }
 

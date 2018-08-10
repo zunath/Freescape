@@ -12,5 +12,6 @@ namespace Freescape.Game.Server.Service.Contracts
         CraftBlueprint GetBlueprintByID(int craftBlueprintID);
         List<CraftBlueprintCategory> GetCategoriesAvailableToPC(string playerID);
         List<CraftBlueprint> GetPCBlueprintsByCategoryID(string playerID, int categoryID);
+        void CraftItem(NWPlayer oPC, NWPlaceable device, int blueprintID);
     }
 }

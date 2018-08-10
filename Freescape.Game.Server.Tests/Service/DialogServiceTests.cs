@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Autofac.Core.Registration;
 using Freescape.Game.Server.Conversation;
 using Freescape.Game.Server.GameObject;
+using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service;
 using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject.Dialog;
@@ -46,8 +47,7 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_NumberOfResponsesPerPage_ShouldBe12()
         {
             DialogService service = new DialogService(
-                Substitute.For<INWScript>(),
-                Substitute.For<IColorTokenService>()
+                Substitute.For<INWScript>()
             );
             Assert.AreEqual(12, service.NumberOfResponsesPerPage);
         }
@@ -56,8 +56,7 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_LoadPlayerDialog_InvalidGlobalID_ShouldThrowArgumentNullException()
         {
             DialogService service = new DialogService(
-                Substitute.For<INWScript>(),
-                Substitute.For<IColorTokenService>()
+                Substitute.For<INWScript>()
             );
 
             Assert.Throws(typeof(ArgumentException), () =>
@@ -78,8 +77,7 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_LoadPlayerDialog_NoPlayerDialog_ShouldThrowException()
         {
             DialogService service = new DialogService(
-                Substitute.For<INWScript>(),
-                Substitute.For<IColorTokenService>()
+                Substitute.For<INWScript>()
             );
 
             Assert.Throws(typeof(Exception), () =>
@@ -92,13 +90,13 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_LoadConversation_InvalidArguments_ShouldThrowExceptions()
         {
             INWScript script = Substitute.For<INWScript>();
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script,
-                Substitute.For<IColorTokenService>()
+                script
             );
 
-            NWPlayer player = Substitute.For<NWPlayer>(script);
+            NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             NWObject talkTo = Substitute.For<NWObject>(script);
 
             Assert.Throws(typeof(ArgumentNullException), () =>
@@ -139,13 +137,13 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_LoadConversation_InvalidConversationClassName_ShouldThrowException()
         {
             INWScript script = Substitute.For<INWScript>();
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script,
-                Substitute.For<IColorTokenService>()
+                script
             );
 
-            NWPlayer player = Substitute.For<NWPlayer>(script);
+            NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             NWObject talkTo = Substitute.For<NWObject>(script);
 
             Assert.Throws(typeof(ComponentNotRegisteredException), () =>
@@ -158,13 +156,13 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_LoadConversation_ShouldReturnPlayerDialog()
         {
             INWScript script = Substitute.For<INWScript>();
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script,
-                Substitute.For<IColorTokenService>()
+                script
             );
 
-            NWPlayer player = Substitute.For<NWPlayer>(script);
+            NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.GlobalID.Returns(x => "123");
             NWObject talkTo = Substitute.For<NWObject>(script);
 
@@ -182,8 +180,7 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_RemovePlayerDialog_InvalidArguments_ShouldThrowException()
         {
             DialogService service = new DialogService(
-                Substitute.For<INWScript>(),
-                Substitute.For<IColorTokenService>()
+                Substitute.For<INWScript>()
             );
 
             Assert.Throws(typeof(ArgumentException), () =>
@@ -204,8 +201,7 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_RemovePlayerDialog_NotRegistered_ShouldThrowException()
         {
             DialogService service = new DialogService(
-                Substitute.For<INWScript>(),
-                Substitute.For<IColorTokenService>()
+                Substitute.For<INWScript>()
             );
 
             Assert.Throws(typeof(KeyNotFoundException), () =>
@@ -218,13 +214,13 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_RemovePlayerDialog_ShouldThrowException()
         {
             INWScript script = Substitute.For<INWScript>();
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script,
-                Substitute.For<IColorTokenService>()
+                script
             );
 
-            NWPlayer player = Substitute.For<NWPlayer>(script);
+            NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.GlobalID.Returns(x => "123");
             NWObject talkTo = Substitute.For<NWObject>(script);
 
@@ -241,13 +237,13 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_StartConversation_InvalidArguments_ShouldThrowException()
         {
             INWScript script = Substitute.For<INWScript>();
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script,
-                Substitute.For<IColorTokenService>()
+                script
             );
 
-            NWPlayer player = Substitute.For<NWPlayer>(script);
+            NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.GlobalID.Returns(x => "123");
             NWObject talkTo = Substitute.For<NWObject>(script);
 
@@ -261,7 +257,7 @@ namespace Freescape.Game.Server.Tests.Service
                 service.StartConversation(player, talkTo, "ValidConversation");
             });
 
-            player = Substitute.For<NWPlayer>(script);
+            player = Substitute.For<NWPlayer>(script, nwnxCreature);
             Assert.Throws(typeof(ArgumentNullException), () =>
             {
                 service.StartConversation(player, null, "ValidConversation");
@@ -292,15 +288,15 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_StartConversation_NoDialogsAvailable_ShouldThrowException()
         {
             INWScript script = Substitute.For<INWScript>();
-            
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
+
             DialogService service = new DialogService(
-                script,
-                Substitute.For<IColorTokenService>()
+                script
             );
 
             for (int number = 1; number <= 99; number++)
             {
-                NWPlayer player = Substitute.For<NWPlayer>(script);
+                NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
                 string id = Convert.ToString(number);
                 player.GlobalID.Returns(x => id);
                 NWObject talkTo = Substitute.For<NWObject>(script);
@@ -308,8 +304,8 @@ namespace Freescape.Game.Server.Tests.Service
                 service.LoadConversation(player, talkTo, "ValidConversation", number);
             }
 
-            NWPlayer refusedPlayer = Substitute.For<NWPlayer>(script);
-            NWObject refusedTalkTo = Substitute.For<NWObject>(script);
+            NWPlayer refusedPlayer = Substitute.For<NWPlayer>(script, nwnxCreature);
+            NWCreature refusedTalkTo = Substitute.For<NWCreature>(script, nwnxCreature);
 
             Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
             {
@@ -321,12 +317,12 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_EndConversation_InvalidArguments_ShouldThrowException()
         {
             INWScript script = Substitute.For<INWScript>();
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script,
-                Substitute.For<IColorTokenService>()
+                script
             );
-            NWPlayer player = Substitute.For<NWPlayer>(script);
+            NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.GlobalID.Returns(x => "123");
             NWObject talkTo = Substitute.For<NWObject>(script);
 
@@ -341,12 +337,12 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_EndConversation_ShouldBeMarkedAsEnding()
         {
             INWScript script = Substitute.For<INWScript>();
+            INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script,
-                Substitute.For<IColorTokenService>()
+                script
             );
-            NWPlayer player = Substitute.For<NWPlayer>(script);
+            NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.GlobalID.Returns(x => "123");
             NWObject talkTo = Substitute.For<NWObject>(script);
             service.LoadConversation(player, talkTo, "ValidConversation", 1);

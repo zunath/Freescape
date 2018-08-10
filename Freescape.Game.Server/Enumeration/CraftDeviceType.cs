@@ -1,6 +1,6 @@
 ﻿namespace Freescape.Game.Server.Enumeration
 {
-    public enum CraftDevice
+    public enum CraftDeviceType
     {
         ArmorsmithBench = 1,
         WeaponsmithBench = 2,
