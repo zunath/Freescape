@@ -5,6 +5,7 @@ using Freescape.Game.Server.Bioware;
 using Freescape.Game.Server.Bioware.Contracts;
 using Freescape.Game.Server.ChatCommands.Contracts;
 using Freescape.Game.Server.Conversation;
+using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.CustomEffect.Contracts;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
@@ -14,6 +15,7 @@ using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.NWNX;
 using Freescape.Game.Server.NWNX.Contracts;
+using Freescape.Game.Server.Perk;
 using Freescape.Game.Server.Service;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
@@ -131,6 +133,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<DurabilityService>().As<IDurabilityService>();
             builder.RegisterType<ExaminationService>().As<IExaminationService>();
             builder.RegisterType<FarmingService>().As<IFarmingService>();
+            builder.RegisterType<FoodService>().As<IFoodService>();
             builder.RegisterType<HelmetToggleService>().As<IHelmetToggleService>();
             builder.RegisterType<ItemService>().As<IItemService>();
             builder.RegisterType<KeyItemService>().As<IKeyItemService>();
@@ -155,9 +158,11 @@ namespace Freescape.Game.Server
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);
             RegisterInterfaceImplementations<ICustomEffect>(builder);
             RegisterInterfaceImplementations<IChatCommand>(builder);
+            RegisterInterfaceImplementations<IConversation>(builder);
 
             // Conversations
             RegisterAbstractClass<ConversationBase>(builder);
+            RegisterAbstractClass<PerkBase>(builder);
 
             // Third Party
             builder.RegisterType<BiowarePosition>().As<IBiowarePosition>();

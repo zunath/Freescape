@@ -12,16 +12,14 @@ namespace Freescape.Game.Server.Service
     public class DialogService: IDialogService
     {
         private readonly INWScript _;
-        private readonly IColorTokenService _colorToken;
         private const int NumberOfDialogs = 99;
 
         private readonly Dictionary<string, PlayerDialog> _playerDialogs;
         private readonly Dictionary<int, bool> _dialogFilesInUse;
 
-        public DialogService(INWScript script, IColorTokenService colorToken)
+        public DialogService(INWScript script)
         {
             _ = script;
-            _colorToken = colorToken;
             _playerDialogs = new Dictionary<string, PlayerDialog>();
             _dialogFilesInUse = new Dictionary<int, bool>();
 

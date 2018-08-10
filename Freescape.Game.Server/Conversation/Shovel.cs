@@ -6,7 +6,6 @@ using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject.Dialog;
 using NWN;
 using static NWN.NWScript;
-using BackgroundType = Freescape.Game.Server.Enumeration.Background;
 
 namespace Freescape.Game.Server.Conversation
 {

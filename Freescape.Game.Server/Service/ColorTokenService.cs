@@ -2,6 +2,7 @@
 using System.Text;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
+using NWN;
 
 namespace Freescape.Game.Server.Service
 {
@@ -82,7 +83,11 @@ namespace Freescape.Game.Server.Service
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            return TokenStart(0, 255, 0) + text + TokenEnd();
+            string token = TokenStart(0, 255, 0) + text + TokenEnd();
+
+            Console.WriteLine("Green token = " + token);
+
+            return token;
         }
 
         public string LightPurple(string text)

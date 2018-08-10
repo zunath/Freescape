@@ -179,7 +179,7 @@
     <Compile Include="Data\Entities\User.cs" />
     <Compile Include="Data\Contracts\IDataContext.cs" />
     <Compile Include="Enumeration\AddItemPropertyPolicy.cs" />
-    <Compile Include="Enumeration\Background.cs" />
+    <Compile Include="Enumeration\BackgroundType.cs" />
     <Compile Include="Enumeration\ChatChannel.cs" />
     <Compile Include="Enumeration\ClericDomain.cs" />
     <Compile Include="Enumeration\CraftDevice.cs" />
@@ -322,9 +322,11 @@
     <Compile Include="Service\ActivityLoggingService.cs" />
     <Compile Include="Service\AuthorizationService.cs" />
     <Compile Include="Service\BackgroundService.cs" />
+    <Compile Include="Service\ChatCommandService.cs" />
     <Compile Include="Service\ColorTokenService.cs" />
     <Compile Include="Service\Contracts\IAbilityService.cs" />
     <Compile Include="Service\Contracts\IActivityLoggingService.cs" />
+    <Compile Include="Service\Contracts\IChatCommandService.cs" />
     <Compile Include="Service\Contracts\ICustomEffectService.cs" />
     <Compile Include="Service\Contracts\IAuthorizationService.cs" />
     <Compile Include="Service\Contracts\IBackgroundService.cs" />
@@ -381,6 +383,7 @@
     <Compile Include="Service\Contracts\IDurabilityService.cs" />
     <Compile Include="Service\Contracts\IExaminationService.cs" />
     <Compile Include="Service\Contracts\IFarmingService.cs" />
+    <Compile Include="Service\Contracts\IFoodService.cs" />
     <Compile Include="Service\Contracts\IHelmetToggleService.cs" />
     <Compile Include="Service\Contracts\IItemService.cs" />
     <Compile Include="Service\Contracts\IKeyItemService.cs" />
@@ -407,6 +410,7 @@
     <Compile Include="Service\DurabilityService.cs" />
     <Compile Include="Service\ExaminationService.cs" />
     <Compile Include="Service\FarmingService.cs" />
+    <Compile Include="Service\FoodService.cs" />
     <Compile Include="Service\HelmetToggleService.cs" />
     <Compile Include="Service\ItemService.cs" />
     <Compile Include="Service\Contracts\ITimeService.cs" />

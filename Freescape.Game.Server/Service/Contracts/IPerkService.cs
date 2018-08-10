@@ -9,6 +9,7 @@ namespace Freescape.Game.Server.Service.Contracts
     public interface IPerkService
     {
         int GetPCPerkLevel(NWPlayer player, PerkType perkType);
+        int GetPCPerkLevel(NWPlayer player, int perkTypeID);
         int GetPCTotalPerkCount(string playerID);
         List<PCPerkHeader> GetPCPerksForMenuHeader(string playerID);
         List<PerkCategory> GetPerkCategoriesForPC(string playerID);
@@ -18,6 +19,7 @@ namespace Freescape.Game.Server.Service.Contracts
         PerkLevel FindPerkLevel(IEnumerable<PerkLevel> levels, int findLevel);
         bool CanPerkBeUpgraded(Data.Entities.Perk perk, PCPerk pcPerk, PlayerCharacter player);
         void DoPerkUpgrade(NWPlayer player, int perkID);
+        void DoPerkUpgrade(NWPlayer player, PerkType perkType);
         string OnModuleExamine(string existingDescription, NWPlayer examiner, NWObject examinedObject);
     }
 }

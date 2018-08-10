@@ -4,16 +4,21 @@ using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
+using NWN;
 
 namespace Freescape.Game.Server.Service
 {
     public class PVPSanctuaryService: IPVPSanctuaryService
     {
         private readonly IDataContext _db;
+        private readonly INWScript _;
+        private readonly IColorTokenService _color;
 
-        public PVPSanctuaryService(IDataContext db)
+        public PVPSanctuaryService(IDataContext db, INWScript script, IColorTokenService color)
         {
             _db = db;
+            _ = script;
+            _color = color;
         }
 
         public bool PlayerHasPVPSanctuary(NWPlayer player)
@@ -35,6 +40,30 @@ namespace Freescape.Game.Server.Service
             PlayerCharacter pc = _db.PlayerCharacters.Single(x => x.PlayerID == player.GlobalID);
             pc.IsSanctuaryOverrideEnabled = overrideStatus;
             _db.SaveChanges();
+        }
+
+        public bool IsPVPAttackAllowed(NWPlayer attacker, NWPlayer target)
+        {
+            // Check for sanctuary if this attack is PC versus PC
+            if (target.IsPlayer && attacker.IsPlayer)
+            {
+                // Either the attacker or target has sanctuary - prevent combat from happening
+                if (PlayerHasPVPSanctuary(attacker))
+                {
+                    attacker.FloatingText(_color.Red("You are under the effects of PVP sanctuary and cannot engage in PVP. To disable this feature permanently refer to the 'Disable PVP Sanctuary' option in your rest menu."));
+                    attacker.AssignCommand(() => _.ClearAllActions(), 0.1f);
+                    
+                    return false;
+                }
+                else if (PlayerHasPVPSanctuary(target))
+                {
+                    attacker.FloatingText(_color.Red("Your target is under the effects of PVP sanctuary and cannot engage in PVP combat."));
+                    attacker.AssignCommand(() => _.ClearAllActions(), 0.1f);
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

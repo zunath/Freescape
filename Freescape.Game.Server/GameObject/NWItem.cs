@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
@@ -104,10 +105,10 @@ namespace Freescape.Game.Server.GameObject
             get => _.GetLocalInt(Object, "CUSTOM_ITEM_PROPERTY_AC");
             set => _.SetLocalInt(Object, "CUSTOM_ITEM_PROPERTY_AC", value);
         }
-        public virtual int CustomItemType
+        public virtual CustomItemType CustomItemType
         {
-            get => _.GetLocalInt(Object, "CUSTOM_ITEM_PROPERTY_TYPE");
-            set => _.SetLocalInt(Object, "CUSTOM_ITEM_PROPERTY_TYPE", value);
+            get => (CustomItemType)_.GetLocalInt(Object, "CUSTOM_ITEM_PROPERTY_TYPE");
+            set => _.SetLocalInt(Object, "CUSTOM_ITEM_PROPERTY_TYPE", (int)value);
         }
 
         public virtual int RecommendedLevel

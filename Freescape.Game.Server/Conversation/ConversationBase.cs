@@ -136,17 +136,36 @@ namespace Freescape.Game.Server.Conversation
 
         protected void SwitchConversation(string conversationName)
         {
+            Console.WriteLine("Beginning SwitchConversation");
+
             PlayerDialog dialog = _dialog.LoadPlayerDialog(GetPC().GlobalID);
+
+            Console.WriteLine("Loading conversation");
             _dialog.LoadConversation(GetPC(), dialog.DialogTarget, conversationName, dialog.DialogNumber);
+
+            Console.WriteLine("Loading player dialog");
             dialog = _dialog.LoadPlayerDialog(GetPC().GlobalID);
+
+            Console.WriteLine("Resetting page");
             dialog.ResetPage();
+
+            Console.WriteLine("Changing page");
             ChangePage(dialog.CurrentPageName);
-            
+
+            Console.WriteLine("Getting namespace");
             string @namespace = Assembly.GetExecutingAssembly().GetName().Name + ".Conversation." + dialog.ActiveDialogName;
             Type type = Type.GetType(@namespace);
+
+            Console.WriteLine("Resolving conversation in IOC container");
             IConversation convo = App.ResolveByInterface<IConversation>(type);
+
+            Console.WriteLine("initializing conversation");
             convo.Initialize();
+
+            Console.WriteLine("Marking PC");
             GetPC().SetLocalInt("DIALOG_SYSTEM_INITIALIZE_RAN", 1);
+
+            Console.WriteLine("Finished switching conversation!!");
         }
 
         protected void EndConversation()

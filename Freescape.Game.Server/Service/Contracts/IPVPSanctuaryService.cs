@@ -6,5 +6,6 @@ namespace Freescape.Game.Server.Service.Contracts
     {
         bool PlayerHasPVPSanctuary(NWPlayer player);
         void SetPlayerPVPSanctuaryOverride(NWPlayer player, bool overrideStatus);
+        bool IsPVPAttackAllowed(NWPlayer attacker, NWPlayer target);
     }
 }

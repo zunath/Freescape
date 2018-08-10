@@ -1,6 +1,6 @@
 ﻿namespace Freescape.Game.Server.Enumeration
 {
-    public enum Background
+    public enum BackgroundType
     {
         NotSelected = 0,
         Weaponsmith = 1,

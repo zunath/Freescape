@@ -2,10 +2,8 @@
 
 namespace Freescape.Game.Server.Service.Contracts
 {
-    public interface IActivityLoggingService
+    public interface IChatCommandService
     {
-        void OnModuleClientEnter();
-        void OnModuleClientLeave();
         void OnModuleNWNXChat(NWPlayer sender);
     }
 }

@@ -14,6 +14,11 @@ namespace Freescape.Game.Server.Service
             return 0;
         }
 
+        public int GetPCPerkLevel(NWPlayer player, int perkTypeID)
+        {
+            return GetPCPerkLevel(player, (PerkType) perkTypeID);
+        }
+
         public int GetPCTotalPerkCount(string playerID)
         {
             return 0;
@@ -56,6 +61,11 @@ namespace Freescape.Game.Server.Service
 
         public void DoPerkUpgrade(NWPlayer player, int perkID)
         {
+        }
+
+        public void DoPerkUpgrade(NWPlayer player, PerkType perkType)
+        {
+            DoPerkUpgrade(player, (int)perkType);
         }
 
         public string OnModuleExamine(string existingDescription, NWPlayer examiner, NWObject examinedObject)
