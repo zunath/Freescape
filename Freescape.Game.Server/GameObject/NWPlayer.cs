@@ -46,7 +46,7 @@ namespace Freescape.Game.Server.GameObject
             database.SetLocalString("PC_ID_NUMBER", guid);
         }
 
-        public virtual string GlobalID
+        public new virtual string GlobalID
         {
             get
             {

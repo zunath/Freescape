@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using System.Linq;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
 using Attribute = Freescape.Game.Server.Data.Entities.Attribute;
@@ -22,7 +25,7 @@ namespace Freescape.Game.Server.Data
 
             return $"server={ipAddress};database={database};user id={username};password={password};Integrated Security=False;MultipleActiveResultSets=True;TrustServerCertificate=True;Encrypt=False";
         }
-
+        
         public virtual IDbSet<Attribute> Attributes { get; set; }
         public virtual IDbSet<AuthorizedDM> AuthorizedDMs { get; set; }
         public virtual IDbSet<Background> Backgrounds { get; set; }
@@ -104,7 +107,7 @@ namespace Freescape.Game.Server.Data
         public virtual IDbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual IDbSet<TerritoryFlagPermission> TerritoryFlagPermissions { get; set; }
         public virtual IDbSet<User> Users { get; set; }
-
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Attribute>()
@@ -594,5 +597,30 @@ namespace Freescape.Game.Server.Data
                 .WithRequired(e => e.TerritoryFlagPermission)
                 .WillCascadeOnDelete(false);
         }
+
+        private string BuildSQLQuery(string procedureName, params SqlParameter[] args)
+        {
+            string sql = procedureName;
+
+            for (int x = 0; x < args.Length; x++)
+            {
+                sql += " @" + args[x].ParameterName;
+
+                if (x + 1 < args.Length) sql += ",";
+            }
+
+            return sql;
+        }
+
+        public void StoredProcedure(string procedureName, params SqlParameter[] args)
+        {
+            Database.ExecuteSqlCommand(BuildSQLQuery(procedureName, args), args);
+        }
+
+        public List<T> StoredProcedure<T>(string procedureName, params SqlParameter[] args)
+        {
+            return Database.SqlQuery<T>(BuildSQLQuery(procedureName, args), args).ToList();
+        }
+
     }
 }

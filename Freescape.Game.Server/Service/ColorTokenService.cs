@@ -83,11 +83,7 @@ namespace Freescape.Game.Server.Service
         {
             if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Text must not be null, empty, or white space.", nameof(text));
 
-            string token = TokenStart(0, 255, 0) + text + TokenEnd();
-
-            Console.WriteLine("Green token = " + token);
-
-            return token;
+            return TokenStart(0, 255, 0) + text + TokenEnd();
         }
 
         public string LightPurple(string text)

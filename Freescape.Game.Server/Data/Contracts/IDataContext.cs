@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using Freescape.Game.Server.Data.Entities;
@@ -92,5 +94,7 @@ namespace Freescape.Game.Server.Data.Contracts
         int SaveChanges();
         Task<int> SaveChangesAsync();
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        void StoredProcedure(string procedureName, params SqlParameter[] args);
+        List<T> StoredProcedure<T>(string procedureName, params SqlParameter[] args);
     }
 }

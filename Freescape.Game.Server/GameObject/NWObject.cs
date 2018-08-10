@@ -25,6 +25,20 @@ namespace Freescape.Game.Server.GameObject
             return obj;
         }
 
+        public virtual string GlobalID
+        {
+            get
+            {
+                string globalID = _.GetLocalString(Object, "GLOBAL_ID");
+                if (string.IsNullOrWhiteSpace(globalID))
+                {
+                    globalID = Guid.NewGuid().ToString();
+                    _.SetLocalString(Object, "GLOBAL_ID", globalID);
+                }
+
+                return globalID;
+            }
+        }
 
         public virtual string Name
         {
@@ -70,7 +84,7 @@ namespace Freescape.Game.Server.GameObject
         public virtual int MaxHP => _.GetMaxHitPoints(Object);
 
         public virtual bool IsValid => Object != null && _.GetIsObjectValid(Object) == 1;
-
+        
         public virtual int GetLocalInt(string name)
         {
             return _.GetLocalInt(Object, name);
