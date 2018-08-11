@@ -14,7 +14,7 @@ using PerkExecutionType = Freescape.Game.Server.Enumeration.PerkExecutionType;
 
 namespace Freescape.Game.Server.Service
 {
-    public class AbilityService: IAbilityService
+    public class AbilityService : IAbilityService
     {
         private readonly INWScript _;
         private readonly IDataContext _db;
@@ -304,7 +304,7 @@ namespace Freescape.Game.Server.Service
         public void RestoreMana(NWPlayer oPC, int amount)
         {
             PlayerCharacter entity = _db.PlayerCharacters.Single(x => x.PlayerID == oPC.GlobalID);
-            RestoreMana(oPC, amount, entity); // TODO: Potential problem - not sure if changes to entity will be tracked when _db.SaveChanges is called. Need to check.
+            RestoreMana(oPC, amount, entity);
             _db.SaveChanges();
         }
 

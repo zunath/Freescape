@@ -1,4 +1,6 @@
-﻿using NWN;
+﻿using Freescape.Game.Server.NWNX.Contracts;
+using Freescape.Game.Server.Service.Contracts;
+using NWN;
 using Object = NWN.Object;
 
 namespace Freescape.Game.Server.Event.Module
@@ -6,16 +8,40 @@ namespace Freescape.Game.Server.Event.Module
     internal class OnModuleLoad: IRegisteredEvent
     {
         private readonly INWScript _;
-        
-        public OnModuleLoad(INWScript script)
+        private readonly INWNXChat _nwnxChat;
+        private readonly IDeathService _death;
+        private readonly IStructureService _structure;
+        private readonly IObjectProcessingService _objectProcessing;
+        private readonly IFarmingService _farming;
+
+        public OnModuleLoad(INWScript script,
+            INWNXChat nwnxChat,
+            IDeathService death,
+            IStructureService structure,
+            IObjectProcessingService objectProcessing,
+            IFarmingService farming)
         {
             _ = script;
+            _nwnxChat = nwnxChat;
+            _death = death;
+            _structure = structure;
+            _objectProcessing = objectProcessing;
+            _farming = farming;
         }
 
         public bool Run(params object[] args)
         {
+            _nwnxChat.RegisterChatScript("mod_on_nwnxchat");
             SetModuleEventScripts();
             SetAreaEventScripts();
+
+            // Bioware default
+            _.ExecuteScript("x2_mod_def_load", Object.OBJECT_SELF);
+            _death.OnModuleLoad();
+            _structure.OnModuleLoad();
+            _objectProcessing.OnModuleLoad();
+            _farming.OnModuleLoad();
+
             return true;
         }
 

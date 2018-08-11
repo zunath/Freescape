@@ -5,8 +5,14 @@ namespace Freescape.Game.Server.Service.Contracts
 {
     public interface ICustomEffectService
     {
-        int GetActiveEffectLevel(NWObject target, CustomEffectType effectType);
         void ApplyCustomEffect(NWCreature caster, NWCreature target, CustomEffectType effectType, int ticks, int level);
+        void ApplyCustomEffect(NWCreature oCaster, NWCreature oTarget, int customEffectID, int ticks, int effectLevel);
         int CalculateEffectAC(NWCreature creature);
+        bool DoesPCHaveCustomEffect(NWPlayer oPC, int customEffectID);
+        int GetActiveEffectLevel(NWObject target, CustomEffectType effectType);
+        int GetActiveEffectLevel(NWObject oTarget, int customEffectID);
+        void OnModuleHeartbeat();
+        void OnPlayerHeartbeat(NWPlayer oPC);
+        void RemovePCCustomEffect(NWPlayer oPC, long customEffectID);
     }
 }

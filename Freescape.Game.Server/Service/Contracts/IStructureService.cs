@@ -9,6 +9,7 @@ namespace Freescape.Game.Server.Service.Contracts
 {
     public interface IStructureService
     {
+        void OnModuleLoad();
         NWObject GetTerritoryFlagOwnerOfLocation(Location location);
         int GetTerritoryFlagID(NWObject flag);
         int GetPlaceableStructureID(NWPlaceable structure);

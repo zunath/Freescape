@@ -18,6 +18,11 @@ namespace Freescape.Game.Server.Service
             _db = db;
         }
 
+        public void OnModuleLoad()
+        {
+            
+        }
+
         public NWObject GetTerritoryFlagOwnerOfLocation(Location location)
         {
             return null;

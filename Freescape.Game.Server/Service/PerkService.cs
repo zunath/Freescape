@@ -9,6 +9,11 @@ namespace Freescape.Game.Server.Service
 {
     public class PerkService: IPerkService
     {
+        public void OnModuleItemUnequipped()
+        {
+            
+        }
+
         public int GetPCPerkLevel(NWPlayer player, PerkType perkType)
         {
             return 0;

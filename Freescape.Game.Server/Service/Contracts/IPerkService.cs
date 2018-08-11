@@ -8,6 +8,7 @@ namespace Freescape.Game.Server.Service.Contracts
 {
     public interface IPerkService
     {
+        void OnModuleItemUnequipped();
         int GetPCPerkLevel(NWPlayer player, PerkType perkType);
         int GetPCPerkLevel(NWPlayer player, int perkTypeID);
         int GetPCTotalPerkCount(string playerID);

@@ -1,6 +1,7 @@
 ﻿using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
+using static NWN.NWScript;
 
 namespace Freescape.Game.Server.Event.Module
 {
@@ -20,11 +21,11 @@ namespace Freescape.Game.Server.Event.Module
             NWPlayer player = NWPlayer.Wrap(_nw.GetLastPCRested());
             int restType = _nw.GetLastRestEventType();
 
-            if (restType != NWScript.REST_EVENTTYPE_REST_STARTED ||
+            if (restType != REST_EVENTTYPE_REST_STARTED ||
                 !player.IsValid ||
                 player.IsDM) return false;
 
-            player.AssignCommand(() => _nw.ClearAllActions(NWScript.FALSE));
+            player.AssignCommand(() => _nw.ClearAllActions());
 
             _dialog.StartConversation(player, player, "RestMenu");
             

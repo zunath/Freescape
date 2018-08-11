@@ -12,7 +12,7 @@ using static NWN.NWScript;
 
 namespace Freescape.Game.Server.Service
 {
-    public class CustomEffectService: ICustomEffectService
+    public class CustomEffectService : ICustomEffectService
     {
         private class CasterSpell
         {
@@ -22,8 +22,8 @@ namespace Freescape.Game.Server.Service
             public int CustomEffectID { get; set; }
         }
 
-        private Dictionary<CasterSpell, int> _npcEffectList;
-        private List<CasterSpell> _effectsToRemove;
+        private readonly Dictionary<CasterSpell, int> _npcEffectList;
+        private readonly List<CasterSpell> _effectsToRemove;
 
         private readonly IDataContext _db;
         private readonly IErrorService _error;
@@ -42,11 +42,12 @@ namespace Freescape.Game.Server.Service
 
         public int GetActiveEffectLevel(NWObject target, CustomEffectType effectType)
         {
-            return 0;
+            return GetActiveEffectLevel(target, (int)effectType);
         }
 
         public void ApplyCustomEffect(NWCreature caster, NWCreature target, CustomEffectType effectType, int ticks, int level)
         {
+            ApplyCustomEffect(caster, target, (int) effectType, ticks, level);
         }
 
         public int CalculateEffectAC(NWCreature creature)

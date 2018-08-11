@@ -13,5 +13,10 @@ namespace Freescape.Game.Server.Service
         {
             return null;
         }
+
+        public void OnModuleLoad()
+        {
+            
+        }
     }
 }

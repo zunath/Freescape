@@ -6,5 +6,6 @@ namespace Freescape.Game.Server.Service.Contracts
     {
         void HarvestPlant(NWPlayer player, NWItem shovel, NWPlaceable plant);
         string OnModuleExamine(string existingDescription, NWObject examinedObject);
+        void OnModuleLoad();
     }
 }
