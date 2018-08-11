@@ -21,7 +21,7 @@ namespace Freescape.Game.Server.Data.Entities
             PCOverflowItems = new HashSet<PCOverflowItem>();
             PCPerks = new HashSet<PCPerk>();
             PCQuestKillTargetProgresses = new HashSet<PCQuestKillTargetProgress>();
-            PCQuestStatus = new HashSet<PCQuestStatu>();
+            PCQuestStatus = new HashSet<PCQuestStatus>();
             PCRegionalFames = new HashSet<PCRegionalFame>();
             PCSearchSiteItems = new HashSet<PCSearchSiteItem>();
             PCSearchSites = new HashSet<PCSearchSite>();
@@ -161,7 +161,7 @@ namespace Freescape.Game.Server.Data.Entities
         public virtual ICollection<PCQuestKillTargetProgress> PCQuestKillTargetProgresses { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PCQuestStatu> PCQuestStatus { get; set; }
+        public virtual ICollection<PCQuestStatus> PCQuestStatus { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PCRegionalFame> PCRegionalFames { get; set; }

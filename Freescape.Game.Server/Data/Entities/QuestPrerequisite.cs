@@ -10,6 +10,6 @@ namespace Freescape.Game.Server.Data.Entities
 
         public virtual Quest Quest { get; set; }
 
-        public virtual Quest Quest1 { get; set; }
+        public virtual Quest RequiredQuest { get; set; }
     }
 }

@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Freescape.Game.Server.Data.Entities
 {
-    public partial class PCQuestStatu
+    public partial class PCQuestStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PCQuestStatu()
+        public PCQuestStatus()
         {
             PCQuestKillTargetProgresses = new HashSet<PCQuestKillTargetProgress>();
         }
@@ -32,7 +32,7 @@ namespace Freescape.Game.Server.Data.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PCQuestKillTargetProgress> PCQuestKillTargetProgresses { get; set; }
 
-        public virtual QuestState QuestState { get; set; }
+        public virtual QuestState CurrentQuestState { get; set; }
 
         public virtual PlayerCharacter PlayerCharacter { get; set; }
 

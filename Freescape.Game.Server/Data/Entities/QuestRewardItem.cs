@@ -8,7 +8,7 @@ namespace Freescape.Game.Server.Data.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public QuestRewardItem()
         {
-            PCQuestStatus = new HashSet<PCQuestStatu>();
+            PCQuestStatus = new HashSet<PCQuestStatus>();
         }
 
         public int QuestRewardItemID { get; set; }
@@ -22,7 +22,7 @@ namespace Freescape.Game.Server.Data.Entities
         public int Quantity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PCQuestStatu> PCQuestStatus { get; set; }
+        public virtual ICollection<PCQuestStatus> PCQuestStatus { get; set; }
 
         public virtual Quest Quest { get; set; }
     }

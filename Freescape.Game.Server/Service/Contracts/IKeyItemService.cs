@@ -6,8 +6,11 @@ namespace Freescape.Game.Server.Service.Contracts
 {
     public interface IKeyItemService
     {
-        IEnumerable<PCKeyItem> GetPlayerKeyItemsByCategory(NWPlayer player, int categoryID);
         KeyItem GetKeyItemByID(int keyItemID);
+        IEnumerable<PCKeyItem> GetPlayerKeyItemsByCategory(NWPlayer player, int categoryID);
+        void GivePlayerKeyItem(NWPlayer oPC, int keyItemID);
         void OnModuleItemAcquired();
+        bool PlayerHasKeyItem(NWObject oPC, int keyItemID);
+        void RemovePlayerKeyItem(NWPlayer oPC, int keyItemID);
     }
 }

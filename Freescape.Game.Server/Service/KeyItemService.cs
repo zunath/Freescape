@@ -8,7 +8,7 @@ using NWN;
 
 namespace Freescape.Game.Server.Service
 {
-    public class KeyItemService: IKeyItemService
+    public class KeyItemService : IKeyItemService
     {
         private readonly IDataContext _db;
         private readonly INWScript _;

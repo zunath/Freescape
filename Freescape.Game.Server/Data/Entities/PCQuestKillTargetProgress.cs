@@ -20,7 +20,7 @@ namespace Freescape.Game.Server.Data.Entities
 
         public virtual NPCGroup NPCGroup { get; set; }
 
-        public virtual PCQuestStatu PCQuestStatu { get; set; }
+        public virtual PCQuestStatus PcQuestStatus { get; set; }
 
         public virtual PlayerCharacter PlayerCharacter { get; set; }
     }

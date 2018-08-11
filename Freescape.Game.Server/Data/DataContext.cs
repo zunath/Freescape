@@ -70,7 +70,7 @@ namespace Freescape.Game.Server.Data
         public virtual IDbSet<PCOverflowItem> PCOverflowItems { get; set; }
         public virtual IDbSet<PCPerk> PCPerks { get; set; }
         public virtual IDbSet<PCQuestKillTargetProgress> PCQuestKillTargetProgresses { get; set; }
-        public virtual IDbSet<PCQuestStatu> PCQuestStatus { get; set; }
+        public virtual IDbSet<PCQuestStatus> PCQuestStatus { get; set; }
         public virtual IDbSet<PCRegionalFame> PCRegionalFames { get; set; }
         public virtual IDbSet<PCSearchSiteItem> PCSearchSiteItems { get; set; }
         public virtual IDbSet<PCSearchSite> PCSearchSites { get; set; }
@@ -233,12 +233,12 @@ namespace Freescape.Game.Server.Data
 
             modelBuilder.Entity<KeyItem>()
                 .HasMany(e => e.Quests)
-                .WithOptional(e => e.KeyItem)
+                .WithOptional(e => e.RewardKeyItem)
                 .HasForeignKey(e => e.RewardKeyItemID);
 
             modelBuilder.Entity<KeyItem>()
                 .HasMany(e => e.Quests1)
-                .WithOptional(e => e.KeyItem1)
+                .WithOptional(e => e.StartKeyItem)
                 .HasForeignKey(e => e.StartKeyItemID);
 
             modelBuilder.Entity<LootTableItem>()
@@ -274,9 +274,9 @@ namespace Freescape.Game.Server.Data
                 .WithRequired(e => e.PCMigration)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<PCQuestStatu>()
+            modelBuilder.Entity<PCQuestStatus>()
                 .HasMany(e => e.PCQuestKillTargetProgresses)
-                .WithRequired(e => e.PCQuestStatu)
+                .WithRequired(e => e.PcQuestStatus)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PCTerritoryFlag>()
@@ -467,8 +467,8 @@ namespace Freescape.Game.Server.Data
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Quest>()
-                .HasMany(e => e.QuestPrerequisites1)
-                .WithRequired(e => e.Quest1)
+                .HasMany(e => e.RequiredQuestPrerequisites)
+                .WithRequired(e => e.RequiredQuest)
                 .HasForeignKey(e => e.RequiredQuestID)
                 .WillCascadeOnDelete(false);
 
@@ -494,7 +494,7 @@ namespace Freescape.Game.Server.Data
 
             modelBuilder.Entity<QuestState>()
                 .HasMany(e => e.PCQuestStatus)
-                .WithRequired(e => e.QuestState)
+                .WithRequired(e => e.CurrentQuestState)
                 .HasForeignKey(e => e.CurrentQuestStateID)
                 .WillCascadeOnDelete(false);
 

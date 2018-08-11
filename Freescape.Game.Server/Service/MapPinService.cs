@@ -9,7 +9,7 @@ using NWN;
 
 namespace Freescape.Game.Server.Service
 {
-    public class MapPinService: IMapPinService
+    public class MapPinService : IMapPinService
     {
         private readonly INWScript _;
         private readonly IDataContext _db;
