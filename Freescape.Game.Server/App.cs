@@ -167,6 +167,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<NWNXPlayer>().As<INWNXPlayer>();
             builder.RegisterType<NWNXPlayerQuickBarSlot>().As<INWNXPlayerQuickBarSlot>();
             builder.RegisterType<NWScript>().As<INWScript>().SingleInstance();
+            builder.RegisterType<SCORCO>().As<ISCORCO>();
 
             _container = builder.Build();
         }

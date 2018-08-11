@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
@@ -56,12 +57,17 @@ namespace Freescape.Game.Server.Service
         
         public List<CraftBlueprintCategory> GetCategoriesAvailableToPCByDeviceID(string playerID, int deviceID)
         {
-            return null;
+            return _db.StoredProcedure<CraftBlueprintCategory>("GetCraftCategoriesAvailableToPCByDeviceID",
+                new SqlParameter("DeviceID", deviceID),
+                new SqlParameter("PlayerID", playerID));
         }
 
         public List<CraftBlueprint> GetPCBlueprintsByDeviceAndCategoryID(string playerID, int deviceID, int categoryID)
         {
-            return null;
+            return _db.StoredProcedure<CraftBlueprint>("GetPCCraftBlueprintsByDeviceAndCategoryID",
+                new SqlParameter("DeviceID", deviceID),
+                new SqlParameter("CraftCategoryID", categoryID),
+                new SqlParameter("PlayerID", playerID));
         }
 
         public string BuildBlueprintHeader(NWPlayer player, int blueprintID)
@@ -91,17 +97,20 @@ namespace Freescape.Game.Server.Service
 
         public CraftBlueprint GetBlueprintByID(int craftBlueprintID)
         {
-            return null;
+            return _db.CraftBlueprints.Single(x => x.CraftBlueprintID == craftBlueprintID);
         }
 
         public List<CraftBlueprintCategory> GetCategoriesAvailableToPC(string playerID)
         {
-            return null;
+            return _db.StoredProcedure<CraftBlueprintCategory>("GetCategoriesAvailableToPC",
+                new SqlParameter("PlayerID", playerID));
         }
 
         public List<CraftBlueprint> GetPCBlueprintsByCategoryID(string playerID, int categoryID)
         {
-            return null;
+            return _db.StoredProcedure<CraftBlueprint>("GetPCBlueprintsByCategoryID",
+                new SqlParameter("PlayerID", playerID),
+                new SqlParameter("CraftCategoryID", categoryID));
         }
 
 

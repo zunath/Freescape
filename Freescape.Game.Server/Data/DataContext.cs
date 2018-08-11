@@ -60,7 +60,7 @@ namespace Freescape.Game.Server.Data
         public virtual IDbSet<NPCGroup> NPCGroups { get; set; }
         public virtual IDbSet<PCCooldown> PCCooldowns { get; set; }
         public virtual IDbSet<PCCorpseItem> PCCorpseItems { get; set; }
-        public virtual IDbSet<PCCorps> PCCorpses { get; set; }
+        public virtual IDbSet<PCCorpse> PCCorpses { get; set; }
         public virtual IDbSet<PCCustomEffect> PCCustomEffects { get; set; }
         public virtual IDbSet<PCKeyItem> PCKeyItems { get; set; }
         public virtual IDbSet<PCMapPin> PCMapPins { get; set; }
@@ -260,9 +260,9 @@ namespace Freescape.Game.Server.Data
                 .WithRequired(e => e.NPCGroup)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<PCCorps>()
+            modelBuilder.Entity<PCCorpse>()
                 .HasMany(e => e.PCCorpseItems)
-                .WithRequired(e => e.PCCorps)
+                .WithRequired(e => e.PcCorpse)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PCKeyItem>()

@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Freescape.Game.Server.Data.Entities
 {
     [Table("PCCorpses")]
-    public partial class PCCorps
+    public partial class PCCorpse
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PCCorps()
+        public PCCorpse()
         {
             PCCorpseItems = new HashSet<PCCorpseItem>();
         }

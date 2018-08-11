@@ -11,6 +11,6 @@ namespace Freescape.Game.Server.Data.Entities
         [Required]
         public byte[] NWItemObject { get; set; }
 
-        public virtual PCCorps PCCorps { get; set; }
+        public virtual PCCorpse PcCorpse { get; set; }
     }
 }

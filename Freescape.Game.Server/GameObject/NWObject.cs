@@ -84,7 +84,36 @@ namespace Freescape.Game.Server.GameObject
         public virtual int MaxHP => _.GetMaxHitPoints(Object);
 
         public virtual bool IsValid => Object != null && _.GetIsObjectValid(Object) == 1;
-        
+
+        public virtual string IdentifiedDescription
+        {
+            get => _.GetDescription(Object);
+            set => _.SetDescription(Object, value);
+        }
+
+        public virtual string UnidentifiedDescription
+        {
+            get => _.GetDescription(Object, FALSE, FALSE);
+            set => _.SetDescription(Object, value, FALSE);
+        }
+
+        public virtual int Gold
+        {
+            get => _.GetGold(Object);
+            set
+            {
+                AssignCommand(() =>
+                {
+                    _.TakeGoldFromCreature(Gold, Object, TRUE);
+
+                    if (value > 0)
+                    {
+                        _.GiveGoldToCreature(Object, value);
+                    }
+                });
+            }
+        }
+
         public virtual int GetLocalInt(string name)
         {
             return _.GetLocalInt(Object, name);

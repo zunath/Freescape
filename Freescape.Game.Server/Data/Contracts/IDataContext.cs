@@ -44,7 +44,7 @@ namespace Freescape.Game.Server.Data.Contracts
         IDbSet<NPCGroup> NPCGroups { get; set; }
         IDbSet<PCCooldown> PCCooldowns { get; set; }
         IDbSet<PCCorpseItem> PCCorpseItems { get; set; }
-        IDbSet<PCCorps> PCCorpses { get; set; }
+        IDbSet<PCCorpse> PCCorpses { get; set; }
         IDbSet<PCCustomEffect> PCCustomEffects { get; set; }
         IDbSet<PCKeyItem> PCKeyItems { get; set; }
         IDbSet<PCMapPin> PCMapPins { get; set; }

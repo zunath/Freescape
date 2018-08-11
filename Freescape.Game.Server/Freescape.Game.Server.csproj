@@ -129,7 +129,7 @@
     <Compile Include="Data\Entities\LootTableItem.cs" />
     <Compile Include="Data\Entities\NPCGroup.cs" />
     <Compile Include="Data\Entities\PCCooldown.cs" />
-    <Compile Include="Data\Entities\PCCorps.cs" />
+    <Compile Include="Data\Entities\PCCorpse.cs" />
     <Compile Include="Data\Entities\PCCorpseItem.cs" />
     <Compile Include="Data\Entities\PCCustomEffect.cs" />
     <Compile Include="Data\Entities\PCKeyItem.cs" />
@@ -268,6 +268,7 @@
     <Compile Include="NWNX\Contracts\INWNXObject.cs" />
     <Compile Include="NWNX\Contracts\INWNXPlayer.cs" />
     <Compile Include="NWNX\Contracts\INWNXPlayerQuickBarSlot.cs" />
+    <Compile Include="NWNX\Contracts\ISCORCO.cs" />
     <Compile Include="NWNX\LocalVariable.cs" />
     <Compile Include="NWNX\NWNXBase.cs" />
     <Compile Include="NWNX\NWNXChat.cs" />
@@ -279,6 +280,7 @@
     <Compile Include="NWNX\NWNXPlayer.cs" />
     <Compile Include="NWNX\NWNXPlayerQuickBarSlot.cs" />
     <Compile Include="NWNX\QuickBarSlot.cs" />
+    <Compile Include="NWNX\SCORCO.cs" />
     <Compile Include="NWNX\SpecialAbilitySlot.cs" />
     <Compile Include="NWN\Events\Creature\crea_on_attacked.cs" />
     <Compile Include="NWN\Events\Creature\crea_on_convo.cs" />
