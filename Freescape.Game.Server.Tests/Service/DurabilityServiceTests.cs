@@ -1,6 +1,7 @@
 ﻿using System;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service;
+using Freescape.Game.Server.Service.Contracts;
 using NSubstitute;
 using NUnit.Framework;
 using NWN;
@@ -13,7 +14,9 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_IsValidDurabilityType_InvalidArguments_ShouldThrowException()
         {
-            DurabilityService service = new DurabilityService();
+            INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
 
             Assert.Throws(typeof(ArgumentNullException), () =>
             {
@@ -24,8 +27,9 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_IsValidDurabilityType_ShouldBeTrue()
         {
-            DurabilityService service = new DurabilityService();
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(BASE_ITEM_ARMOR);
             Assert.IsTrue(service.IsValidDurabilityType(item));
@@ -124,8 +128,9 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_IsValidDurabilityType_ShouldBeFalse()
         {
-            DurabilityService service = new DurabilityService();
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(BASE_ITEM_TORCH);
             Assert.IsFalse(service.IsValidDurabilityType(item));
@@ -218,7 +223,9 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_GetMaxDurability_InvalidArguments_ShouldThrowException()
         {
-            DurabilityService service = new DurabilityService();
+            INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
 
             Assert.Throws(typeof(ArgumentNullException), () =>
             {
@@ -229,7 +236,9 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_SetMaxDurability_InvalidArguments_ShouldThrowException()
         {
-            DurabilityService service = new DurabilityService();
+            INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
 
             Assert.Throws(typeof(ArgumentNullException), () =>
             {
@@ -240,7 +249,9 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_GetDurability_InvalidArguments_ShouldThrowException()
         {
-            DurabilityService service = new DurabilityService();
+            INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
 
             Assert.Throws(typeof(ArgumentNullException), () =>
             {
@@ -251,7 +262,9 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_SetDurability_InvalidArguments_ShouldThrowException()
         {
-            DurabilityService service = new DurabilityService();
+            INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
 
             Assert.Throws(typeof(ArgumentNullException), () =>
             {
@@ -262,9 +275,9 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_GetMaxDurability_InvalidType_ShouldReturnNegative1()
         {
-            DurabilityService service = new DurabilityService();
-
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(x => BASE_ITEM_BLANK_SCROLL);
 
@@ -275,9 +288,9 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_GetMaxDurability_ShouldReturnDefault()
         {
-            DurabilityService service = new DurabilityService();
-
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(x => BASE_ITEM_LONGSWORD);
 
@@ -288,8 +301,9 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_GetMaxDurability_ShouldReturn4()
         {
-            DurabilityService service = new DurabilityService();
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(x => BASE_ITEM_LONGSWORD);
             item.GetLocalInt(Arg.Any<string>()).Returns(4);
@@ -301,8 +315,9 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_GetDurability_ShouldReturn6Point23()
         {
-            DurabilityService service = new DurabilityService();
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(x => BASE_ITEM_LONGSWORD);
             item.GetLocalFloat(Arg.Any<string>()).Returns(6.23f);
@@ -314,9 +329,10 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_SetMaxDurability_InvalidType_ShouldNotRunOnce()
         {
-            DurabilityService service = new DurabilityService();
-            bool ranOnce = false;
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
+            bool ranOnce = false;
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(x => BASE_ITEM_BLANK_SCROLL);
             item.When(x => x.SetLocalFloat(Arg.Any<string>(), Arg.Any<float>()))
@@ -329,9 +345,10 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_SetMaxDurability_ShouldSetToDefaultValue()
         {
-            DurabilityService service = new DurabilityService();
-            float value = 0.0f;
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
+            float value = 0.0f;
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(x => BASE_ITEM_LONGSWORD);
             item.When(x => x.SetLocalFloat(Arg.Any<string>(), Arg.Any<float>()))
@@ -344,9 +361,10 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_SetMaxDurability_ShouldSetToSpecifiedValue()
         {
-            DurabilityService service = new DurabilityService();
-            float value = 0.0f;
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
+            float value = 0.0f;
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(x => BASE_ITEM_LONGSWORD);
             item.When(x => x.SetLocalFloat("DURABILITY_MAX", Arg.Any<float>()))
@@ -360,9 +378,10 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_SetDurability_InvalidType_ShouldNotRunOnce()
         {
-            DurabilityService service = new DurabilityService();
-            bool ranOnce = false;
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
+            bool ranOnce = false;
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(x => BASE_ITEM_BLANK_SCROLL);
             item.When(x => x.SetLocalFloat(Arg.Any<string>(), Arg.Any<float>()))
@@ -375,9 +394,10 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_SetDurability_ShouldSetToDefaultValue()
         {
-            DurabilityService service = new DurabilityService();
-            float value = 0.0f;
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
+            float value = 0.0f;
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(x => BASE_ITEM_LONGSWORD);
             item.When(x => x.SetLocalFloat(Arg.Any<string>(), Arg.Any<float>()))
@@ -390,9 +410,10 @@ namespace Freescape.Game.Server.Tests.Service
         [Test]
         public void DurabilityService_SetDurability_ShouldSetToSpecifiedValue()
         {
-            DurabilityService service = new DurabilityService();
-            float value = 0.0f;
             INWScript script = Substitute.For<INWScript>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DurabilityService service = new DurabilityService(script, color);
+            float value = 0.0f;
             NWItem item = Substitute.For<NWItem>(script, service);
             item.BaseItemType.Returns(x => BASE_ITEM_LONGSWORD);
             item.When(x => x.SetLocalFloat("DURABILITY_CURRENT", Arg.Any<float>()))

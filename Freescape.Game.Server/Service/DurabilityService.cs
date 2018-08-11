@@ -2,13 +2,24 @@
 using System.Linq;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
+using NWN;
 using static NWN.NWScript;
 
 namespace Freescape.Game.Server.Service
 {
-    public class DurabilityService: IDurabilityService
+    public class DurabilityService : IDurabilityService
     {
         private const float DefaultDurability = 30.0f;
+
+        private readonly INWScript _;
+        private readonly IColorTokenService _color;
+
+        public DurabilityService(INWScript script,
+            IColorTokenService color)
+        {
+            _ = script;
+            _color = color;
+        }
         
         public bool IsValidDurabilityType(NWItem item)
         {
@@ -119,14 +130,116 @@ namespace Freescape.Game.Server.Service
             InitializeDurability(item);
             item.SetLocalFloat("DURABILITY_CURRENT", value);
         }
+        
+        public void OnModuleEquip()
+        {
+            NWPlayer oPC = NWPlayer.Wrap(_.GetPCItemLastEquippedBy());
+            NWItem oItem = NWItem.Wrap(_.GetPCItemLastEquipped());
+            float durability = GetDurability(oItem);
+
+            if (durability <= 0 && durability != -1)
+            {
+                oPC.AssignCommand(() =>
+                {
+                    _.ClearAllActions();
+                    _.ActionUnequipItem(oItem.Object);
+                });
+                
+                oPC.FloatingText(_color.Red("That item is broken and must be repaired before you can use it."));
+            }
+        }
 
         public string OnModuleExamine(string existingDescription, NWObject examinedObject)
         {
-            return null;
+            if (examinedObject.ObjectType != OBJECT_TYPE_ITEM) return existingDescription;
+
+            NWItem examinedItem = (NWItem) examinedObject;
+            if (!IsValidDurabilityType(examinedItem)) return existingDescription;
+
+            string description = _color.Orange("Durability: ");
+            float durability = GetDurability(examinedItem);
+            if (durability <= 0.0f) description += _color.Red(Convert.ToString(durability));
+            else description += _color.White(FormatDurability(durability));
+
+            description += _color.White(" / " + GetMaxDurability(examinedItem));
+
+            return existingDescription + "\n\n" + description;
+        }
+
+        public void RunItemDecay(NWPlayer oPC, NWItem oItem)
+        {
+            RunItemDecay(oPC, oItem, 0.001f);
         }
 
         public void RunItemDecay(NWPlayer oPC, NWItem oItem, float reduceAmount)
         {
+            if (reduceAmount <= 0) return;
+            // Item decay doesn't run for any items if Invincible is in effect
+            // Or if the item is unbreakable (e.g profession items)
+            // Or if the item is not part of the valid list of base item types
+            if (oPC.IsPlot ||
+                oItem.GetLocalInt("UNBREAKABLE") == 1 ||
+                !IsValidDurabilityType(oItem))
+                return;
+
+            float durability = GetDurability(oItem);
+            string sItemName = oItem.Name;
+
+            // Reduce by 0.001 each time it's run. Player only receives notifications when it drops a full point.
+            // I.E: Dropping from 29.001 to 29.
+            // Note that players only see two decimal places in-game on purpose.
+            durability -= reduceAmount;
+            bool displayMessage = durability % 1 == 0;
+
+            if (displayMessage)
+            {
+                oPC.SendMessage(_color.Red("Your " + sItemName + " has been damaged. (" + FormatDurability(durability) + " / " + GetMaxDurability(oItem)));
+            }
+
+            if (durability <= 0.00f)
+            {
+                NWItem oCopy = NWItem.Wrap(_.CopyItem(oItem.Object, oPC.Object, TRUE));
+                oItem.Destroy();
+                SetDurability(oCopy, 0);
+                oPC.SendMessage(_color.Red("Your " + sItemName + " has broken!"));
+            }
+            else
+            {
+                SetDurability(oItem, durability);
+            }
         }
+
+        private static string FormatDurability(float durability)
+        {
+            return durability.ToString("0.00");
+        }
+
+        public void RunItemRepair(NWPlayer oPC, NWItem oItem, float amount)
+        {
+            // Prevent repairing for less than 0.01
+            if (amount < 0.01f) return;
+
+            // Item has no durability - inform player they can't repair it
+            if (GetDurability(oItem) == -1)
+            {
+                oPC.SendMessage(_color.Red("You cannot repair that item."));
+                return;
+            }
+
+            SetDurability(oItem, GetDurability(oItem) + amount);
+            string durMessage = FormatDurability(GetDurability(oItem)) + " / " + GetMaxDurability(oItem);
+            oPC.SendMessage(_color.Green("You repaired your " + oItem.Name + ". (" + durMessage + ")"));
+        }
+        
+        public void OnHitCastSpell(NWPlayer oTarget)
+        {
+            NWItem oSpellOrigin = NWItem.Wrap(_.GetSpellCastItem());
+            // Durability system
+            if (IsValidDurabilityType(oSpellOrigin))
+            {
+                RunItemDecay(oTarget, oSpellOrigin);
+            }
+        }
+
     }
 }
