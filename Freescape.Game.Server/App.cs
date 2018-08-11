@@ -133,14 +133,12 @@ namespace Freescape.Game.Server
             builder.RegisterType<MapPinService>().As<IMapPinService>();
             builder.RegisterType<MenuService>().As<IMenuService>();
             builder.RegisterType<MigrationService>().As<IMigrationService>();
-            builder.RegisterType<OutfitService>().As<IOutfitService>();
             builder.RegisterType<PerkService>().As<IPerkService>();
             builder.RegisterType<PlayerDescriptionService>().As<IPlayerDescriptionService>();
             builder.RegisterType<PlayerService>().As<IPlayerService>();
             builder.RegisterType<PVPSanctuaryService>().As<IPVPSanctuaryService>();
             builder.RegisterType<QuestService>().As<IQuestService>();
             builder.RegisterType<RandomService>().As<IRandomService>();
-            builder.RegisterType<SerializationService>().As<ISerializationService>();
             builder.RegisterType<SkillService>().As<ISkillService>();
             builder.RegisterType<StructureService>().As<IStructureService>();
             builder.RegisterType<TimeService>().As<ITimeService>();

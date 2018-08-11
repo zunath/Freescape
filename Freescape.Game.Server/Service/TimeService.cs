@@ -7,7 +7,7 @@ namespace Freescape.Game.Server.Service
     {
         // Returns time in the following manner:
         // 2 days, 12 hours, 5 minutes, 45 seconds
-        public String GetTimeToWaitLongIntervals(DateTime firstDate, DateTime secondDate, bool showIfZero)
+        public string GetTimeToWaitLongIntervals(DateTime firstDate, DateTime secondDate, bool showIfZero)
         {
             TimeSpan period;
 
@@ -37,7 +37,7 @@ namespace Freescape.Game.Server.Service
 
         // Returns time in the following manner:
         // 2D, 12H, 5M, 45S
-        public String GetTimeToWaitShortIntervals(DateTime firstDate, DateTime secondDate, bool showIfZero)
+        public string GetTimeToWaitShortIntervals(DateTime firstDate, DateTime secondDate, bool showIfZero)
         {
             TimeSpan period;
 
@@ -50,7 +50,7 @@ namespace Freescape.Game.Server.Service
                 period = secondDate - firstDate;
             }
 
-            String result = "";
+            string result = "";
 
             if (showIfZero || period.Days > 0)
                 result += period.Days + "D, ";

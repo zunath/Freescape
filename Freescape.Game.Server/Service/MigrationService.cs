@@ -33,8 +33,10 @@ namespace Freescape.Game.Server.Service
             _item = item;
         }
 
-        public void OnAreaEnter(NWPlayer oPC)
+        public void OnAreaEnter()
         {
+            NWPlayer oPC = NWPlayer.Wrap(_.GetEnteringObject());
+
             if (!oPC.IsPlayer ||
                 oPC.GetLocalInt("MIGRATION_SYSTEM_LOGGED_IN_ONCE") == 1 ||
                 oPC.Area.Tag == "ooc_area") return;

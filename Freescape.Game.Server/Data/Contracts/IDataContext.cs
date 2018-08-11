@@ -96,5 +96,6 @@ namespace Freescape.Game.Server.Data.Contracts
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
         void StoredProcedure(string procedureName, params SqlParameter[] args);
         List<T> StoredProcedure<T>(string procedureName, params SqlParameter[] args);
+        T StoredProcedureSingle<T>(string procedureName, params SqlParameter[] args);
     }
 }

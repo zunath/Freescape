@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
+using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
+using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject.Dialog;
 using NWN;
@@ -11,21 +14,21 @@ namespace Freescape.Game.Server.Conversation
 {
     public class Outfit: ConversationBase
     {
-        private readonly IOutfitService _outfit;
         private readonly IColorTokenService _color;
-        private readonly ISerializationService _serialization;
+        private readonly ISCORCO _scorco;
+        private readonly IDataContext _db;
 
         public Outfit(
             INWScript script, 
             IDialogService dialog,
-            IOutfitService outfit,
             IColorTokenService color,
-            ISerializationService serialization) 
+            ISCORCO scorco,
+            IDataContext db) 
             : base(script, dialog)
         {
-            _outfit = outfit;
             _color = color;
-            _serialization = serialization;
+            _db = db;
+            _scorco = scorco;
         }
 
         public override PlayerDialog SetUp(NWPlayer player)
@@ -92,6 +95,11 @@ namespace Freescape.Game.Server.Conversation
             }
         }
 
+        private PCOutfit GetPlayerOutfits(NWPlayer oPC)
+        {
+            return _db.PCOutfits.SingleOrDefault(x => x.PlayerID == oPC.GlobalID);
+        }
+
         private void HandleSaveOutfit(int responseID)
         {
             DialogResponse response = GetResponseByID("SaveOutfitPage", responseID);
@@ -104,7 +112,7 @@ namespace Freescape.Game.Server.Conversation
 
             NWPlayer oPC = GetPC();
             NWItem oClothes = NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_CHEST, oPC.Object));
-            PCOutfit entity = _outfit.GetPlayerOutfits(oPC.GlobalID);
+            PCOutfit entity = GetPlayerOutfits(oPC);
 
             if (entity == null)
             {
@@ -120,7 +128,7 @@ namespace Freescape.Game.Server.Conversation
                 return;
             }
 
-            byte[] clothesData = _serialization.Serialize(oClothes);
+            byte[] clothesData = _scorco.SaveObject(oClothes.Object);
             if (responseID == 1) entity.Outfit1 = clothesData;
             else if (responseID == 2) entity.Outfit2 = clothesData;
             else if (responseID == 3) entity.Outfit3 = clothesData;
@@ -132,7 +140,7 @@ namespace Freescape.Game.Server.Conversation
             else if (responseID == 9) entity.Outfit9 = clothesData;
             else if (responseID == 10) entity.Outfit10 = clothesData;
 
-            _outfit.SaveChanges();
+            _db.SaveChanges();
 
             ShowSaveOutfitOptions();
         }
@@ -149,7 +157,7 @@ namespace Freescape.Game.Server.Conversation
             {
                 NWPlayer oPC = GetPC();
                 int outfitID = (int)response.CustomData[string.Empty];
-                PCOutfit entity = _outfit.GetPlayerOutfits(GetPC().GlobalID);
+                PCOutfit entity = GetPlayerOutfits(GetPC());
 
                 NWPlaceable oTempStorage = NWPlaceable.Wrap(_.GetObjectByTag("OUTFIT_BARREL"));
                 Location lLocation = oTempStorage.Location;
@@ -157,16 +165,16 @@ namespace Freescape.Game.Server.Conversation
                 NWItem storedClothes = null;
                 oClothes.SetLocalString("TEMP_OUTFIT_UUID", oPC.GlobalID);
 
-                if (outfitID == 1) storedClothes = (NWItem)_serialization.Deserialize(entity.Outfit1, lLocation, oTempStorage);
-                else if (outfitID == 2) storedClothes = (NWItem)_serialization.Deserialize(entity.Outfit2, lLocation, oTempStorage);
-                else if (outfitID == 3) storedClothes = (NWItem)_serialization.Deserialize(entity.Outfit3, lLocation, oTempStorage);
-                else if (outfitID == 4) storedClothes = (NWItem)_serialization.Deserialize(entity.Outfit4, lLocation, oTempStorage);
-                else if (outfitID == 5) storedClothes = (NWItem)_serialization.Deserialize(entity.Outfit5, lLocation, oTempStorage);
-                else if (outfitID == 6) storedClothes = (NWItem)_serialization.Deserialize(entity.Outfit6, lLocation, oTempStorage);
-                else if (outfitID == 7) storedClothes = (NWItem)_serialization.Deserialize(entity.Outfit7, lLocation, oTempStorage);
-                else if (outfitID == 8) storedClothes = (NWItem)_serialization.Deserialize(entity.Outfit8, lLocation, oTempStorage);
-                else if (outfitID == 9) storedClothes = (NWItem)_serialization.Deserialize(entity.Outfit9, lLocation, oTempStorage);
-                else if (outfitID == 10) storedClothes = (NWItem)_serialization.Deserialize(entity.Outfit10, lLocation, oTempStorage);
+                if (outfitID == 1) storedClothes = NWItem.Wrap(_scorco.LoadObject(entity.Outfit1, lLocation, oTempStorage.Object)); 
+                else if (outfitID == 2) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit2, lLocation, oTempStorage.Object));
+                else if (outfitID == 3) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit3, lLocation, oTempStorage.Object));
+                else if (outfitID == 4) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit4, lLocation, oTempStorage.Object));
+                else if (outfitID == 5) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit5, lLocation, oTempStorage.Object));
+                else if (outfitID == 6) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit6, lLocation, oTempStorage.Object));
+                else if (outfitID == 7) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit7, lLocation, oTempStorage.Object));
+                else if (outfitID == 8) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit8, lLocation, oTempStorage.Object));
+                else if (outfitID == 9) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit9, lLocation, oTempStorage.Object));
+                else if (outfitID == 10) storedClothes = NWItem.Wrap(_scorco.LoadObject(entity.Outfit10, lLocation, oTempStorage.Object));
 
                 if (storedClothes == null) throw new Exception("Unable to locate stored clothes.");
 
@@ -250,7 +258,7 @@ namespace Freescape.Game.Server.Conversation
 
         private void ShowSaveOutfitOptions()
         {
-            PCOutfit entity = _outfit.GetPlayerOutfits(GetPC().GlobalID) ?? new PCOutfit();
+            PCOutfit entity = GetPlayerOutfits(GetPC()) ?? new PCOutfit();
 
             ClearPageResponses("SaveOutfitPage");
 
@@ -290,7 +298,7 @@ namespace Freescape.Game.Server.Conversation
 
         private void ShowLoadOutfitOptions()
         {
-            PCOutfit entity = _outfit.GetPlayerOutfits(GetPC().GlobalID) ?? new PCOutfit();
+            PCOutfit entity = GetPlayerOutfits(GetPC()) ?? new PCOutfit();
             ClearPageResponses("LoadOutfitsPage");
 
             if (entity.Outfit1 != null)

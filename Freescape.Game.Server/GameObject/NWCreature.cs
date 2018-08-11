@@ -128,6 +128,8 @@ namespace Freescape.Game.Server.GameObject
             set => _.SetXP(Object, value);
         }
 
+        public bool IsInCombat => _.GetIsInCombat(Object) == 1;
+
         public virtual NWItem Head => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_HEAD, Object));
         public virtual NWItem Chest => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_CHEST, Object));
         public virtual NWItem Boots => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_BOOTS, Object));
