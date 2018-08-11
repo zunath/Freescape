@@ -52,12 +52,14 @@ namespace Freescape.Game.Server.Service
         {
             NWPlaceable tempStorage = NWPlaceable.Wrap(_.GetObjectByTag(TempStoragePlaceableTag));
             NWItem tempItem = NWItem.Wrap(_.CreateItemOnObject(resref, tempStorage.Object));
-            ItemVO model = new ItemVO();
-            model.Name = tempItem.Name;
-            model.Quantity = quantity;
-            model.Resref = resref;
-            model.Tag = tempItem.Tag;
-            model.Description = tempItem.IdentifiedDescription;
+            ItemVO model = new ItemVO
+            {
+                Name = tempItem.Name,
+                Quantity = quantity,
+                Resref = resref,
+                Tag = tempItem.Tag,
+                Description = tempItem.IdentifiedDescription
+            };
 
             return model;
         }
@@ -298,11 +300,13 @@ namespace Freescape.Game.Server.Service
 
             foreach (QuestKillTargetList kt in killTargets)
             {
-                PCQuestKillTargetProgress pcKT = new PCQuestKillTargetProgress();
-                pcKT.RemainingToKill = kt.Quantity;
-                pcKT.NPCGroupID = kt.NPCGroupID;
-                pcKT.PCQuestStatusID = status.PCQuestStatusID;
-                pcKT.PlayerID = status.PlayerID;
+                PCQuestKillTargetProgress pcKT = new PCQuestKillTargetProgress
+                {
+                    RemainingToKill = kt.Quantity,
+                    NPCGroupID = kt.NPCGroupID,
+                    PCQuestStatusID = status.PCQuestStatusID,
+                    PlayerID = status.PlayerID
+                };
                 _db.PCQuestKillTargetProgresses.Add(pcKT);
                 _db.SaveChanges();
             }

@@ -624,7 +624,7 @@ namespace Freescape.Game.Server.Data
 
         public T StoredProcedureSingle<T>(string procedureName, params SqlParameter[] args)
         {
-            return Database.SqlQuery<T>(BuildSQLQuery(procedureName, args), args).Single();
+            return Database.SqlQuery<T>(BuildSQLQuery(procedureName, args), args).SingleOrDefault();
         }
     }
 }

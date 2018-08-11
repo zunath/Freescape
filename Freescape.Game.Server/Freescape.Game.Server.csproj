@@ -403,7 +403,9 @@
     <Compile Include="Service\Contracts\IPVPSanctuaryService.cs" />
     <Compile Include="Service\Contracts\IQuestService.cs" />
     <Compile Include="Service\Contracts\IRandomService.cs" />
+    <Compile Include="Service\Contracts\ISearchService.cs" />
     <Compile Include="Service\Contracts\ISkillService.cs" />
+    <Compile Include="Service\Contracts\IStorageService.cs" />
     <Compile Include="Service\Contracts\IStructureService.cs" />
     <Compile Include="Service\CraftService.cs" />
     <Compile Include="Service\CustomEffectService.cs" />
@@ -434,7 +436,9 @@
     <Compile Include="Service\PVPSanctuaryService.cs" />
     <Compile Include="Service\QuestService.cs" />
     <Compile Include="Service\RandomService.cs" />
+    <Compile Include="Service\SearchService.cs" />
     <Compile Include="Service\SkillService.cs" />
+    <Compile Include="Service\StorageService.cs" />
     <Compile Include="Service\StructureService.cs" />
     <Compile Include="Service\TimeService.cs" />
     <Compile Include="ValueObject\CustomData.cs" />
@@ -462,7 +466,29 @@
   <ItemGroup>
     <EmbeddedResource Include="Data\SQL\**\*.sql" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Perk\Archery\" />
+    <Folder Include="Perk\Armorsmith\" />
+    <Folder Include="Perk\Armor\" />
+    <Folder Include="Perk\Construction\" />
+    <Folder Include="Perk\Cooking\" />
+    <Folder Include="Perk\Evocation\" />
+    <Folder Include="Perk\FirstAid\" />
+    <Folder Include="Perk\Gathering\" />
+    <Folder Include="Perk\General\" />
+    <Folder Include="Perk\Harvesting\" />
+    <Folder Include="Perk\MartialArts\" />
+    <Folder Include="Perk\Metalworking\" />
+    <Folder Include="Perk\OneHanded\" />
+    <Folder Include="Perk\Shields\" />
+    <Folder Include="Perk\Survival\" />
+    <Folder Include="Perk\Throwing\" />
+    <Folder Include="Perk\TwinBlade\" />
+    <Folder Include="Perk\TwoHanded\" />
+    <Folder Include="Perk\Weaponsmith\" />
+    <Folder Include="Perk\Weapons\" />
+    <Folder Include="Perk\Woodworking\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Data\SQL\Background\GetActiveBackgrounds.sql" />
     <Content Include="Data\SQL\Storage\DeleteStorageItemByGlobalID.sql" />

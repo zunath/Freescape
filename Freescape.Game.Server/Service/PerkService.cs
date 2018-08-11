@@ -19,19 +19,16 @@ namespace Freescape.Game.Server.Service
     public class PerkService: IPerkService
     {
         private readonly INWScript _;
-        private readonly ISkillService _skill;
         private readonly IColorTokenService _color;
         private readonly IDataContext _db;
         private readonly IBiowareXP2 _biowareXP2;
 
         public PerkService(INWScript script,
-            ISkillService skill,
             IColorTokenService color,
             IDataContext db,
             IBiowareXP2 biowareXP2)
         {
             _ = script;
-            _skill = skill;
             _color = color;
             _db = db;
             _biowareXP2 = biowareXP2;
@@ -84,7 +81,7 @@ namespace Freescape.Game.Server.Service
         public int GetPCPerkLevel(NWPlayer player, int perkID)
         {
             if (!player.IsPlayer) return -1;
-
+            
             PerkLevel perkLevel = _db.StoredProcedureSingle<PerkLevel>("GetPCSkillAdjustedPerkLevel",
                 new SqlParameter("PlayerID", player.GlobalID),
                 new SqlParameter("PerkID", perkID));
@@ -120,32 +117,36 @@ namespace Freescape.Game.Server.Service
 
         public int GetPCTotalPerkCount(string playerID)
         {
-            return 0;
+            return _db.PCPerks.Count(x => x.PlayerID == playerID);
         }
 
         public List<PCPerkHeader> GetPCPerksForMenuHeader(string playerID)
         {
-            return null;
+            return _db.StoredProcedure<PCPerkHeader>("GetPCPerksForMenuHeader",
+                    new SqlParameter("PlayerID", playerID)); ;
         }
 
         public List<PerkCategory> GetPerkCategoriesForPC(string playerID)
         {
-            return null;
+            return _db.StoredProcedure<PerkCategory>("GetPerkCategoriesForPC",
+                new SqlParameter("PlayerID", playerID));
         }
 
         public List<Data.Entities.Perk> GetPerksForPC(string playerID, int categoryID)
         {
-            return null;
+            return _db.StoredProcedure<Data.Entities.Perk>("GetPerksForPC",
+                new SqlParameter("PlayerID", playerID),
+                new SqlParameter("CategoryID", categoryID));
         }
 
         public Data.Entities.Perk GetPerkByID(int perkID)
         {
-            return null;
+            return _db.Perks.Single(x => x.PerkID == perkID);
         }
 
         public PCPerk GetPCPerkByID(string playerID, int perkID)
         {
-            return null;
+            return _db.PCPerks.SingleOrDefault(x => x.PlayerID == playerID && x.PerkID == perkID);
         }
 
         public PerkLevel FindPerkLevel(IEnumerable<PerkLevel> levels, int findLevel)

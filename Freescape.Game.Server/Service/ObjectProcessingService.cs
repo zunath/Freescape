@@ -25,6 +25,8 @@ namespace Freescape.Game.Server.Service
                 while (@object.IsValid)
                 {
                     HandleSpawnWaypointRename(@object);
+
+                    @object = NWObject.Wrap(_.GetNextObjectInArea(area.Object));
                 }
 
                 area = NWArea.Wrap(_.GetNextArea());
