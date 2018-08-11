@@ -1,7 +1,9 @@
-﻿namespace Freescape.Game.Server.Service.Contracts
+﻿using Freescape.Game.Server.GameObject;
+
+namespace Freescape.Game.Server.Service.Contracts
 {
     public interface IMigrationService
     {
-        void OnAreaEnter();
+        void OnAreaEnter(NWPlayer player);
     }
 }

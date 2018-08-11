@@ -39,7 +39,7 @@ namespace Freescape.Game.Server.Event.Module
         {
             NWPlayer examiner = NWPlayer.Wrap(Object.OBJECT_SELF);
             NWObject examinedObject = _nwnxEvents.OnExamineObject_GetTarget();
-            if (_examination.OnModuleExamine(examiner, examinedObject)) return true;
+            if (_examination.OnModuleExamine(examiner, (NWPlayer)examinedObject)) return true;
 
             string description = _.GetDescription(examinedObject.Object, TRUE) + "\n\n";
             description = _item.OnModuleExamine(description, examiner, examinedObject);

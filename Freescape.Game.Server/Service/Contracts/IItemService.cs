@@ -11,5 +11,6 @@ namespace Freescape.Game.Server.Service.Contracts
         string OnModuleExamine(string existingDescription, NWPlayer examiner, NWObject examinedObject);
         void OnModuleEquipItem();
         void ReturnItem(NWObject target, NWItem item);
+        void StripAllItemProperties(NWItem item);
     }
 }

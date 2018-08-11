@@ -316,7 +316,14 @@ namespace Freescape.Game.Server.Service
             item.Destroy();
         }
 
-
+        public void StripAllItemProperties(NWItem item)
+        {
+            foreach (var ip in item.ItemProperties)
+            {
+                _.RemoveItemProperty(item.Object, ip);
+            }
+        }
+        
         private void FinishActionItem(IActionItem actionItem, NWPlayer user, NWItem item, NWObject target, Vector userStartPosition, CustomData customData)
         {
             user.IsBusy = false;
