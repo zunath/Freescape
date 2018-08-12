@@ -23,10 +23,8 @@ namespace Freescape.Game.Server.Event.Dialog
         {
             NWPlayer player = NWPlayer.Wrap(_.GetPCSpeaker());
             PlayerDialog dialog = _dialog.LoadPlayerDialog(player.GlobalID);
-
-            string @namespace = Assembly.GetExecutingAssembly().GetName().Name + ".Conversation." + dialog.ActiveDialogName;
-            Type type = Type.GetType(@namespace);
-            IConversation convo = App.ResolveByInterface<IConversation>(type);
+            
+            IConversation convo = App.ResolveByInterface<IConversation>("Conversation." + dialog.ActiveDialogName);
             convo.EndDialog();
             _dialog.RemovePlayerDialog(player.GlobalID);
             player.DeleteLocalInt("DIALOG_SYSTEM_INITIALIZE_RAN");

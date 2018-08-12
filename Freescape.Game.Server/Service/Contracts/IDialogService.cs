@@ -10,6 +10,7 @@ namespace Freescape.Game.Server.Service.Contracts
         void RemovePlayerDialog(string globalID);
         void LoadConversation(NWPlayer player, NWObject talkTo, string @class, int dialogNumber);
         void StartConversation(NWPlayer player, NWObject talkTo, string @class);
+        void StartConversation(NWCreature player, NWObject talkTo, string @class);
         void EndConversation(NWPlayer player);
     }
 }

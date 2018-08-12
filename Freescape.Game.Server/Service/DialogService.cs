@@ -47,7 +47,7 @@ namespace Freescape.Game.Server.Service
             // Couldn't find an open dialog file. Throw error.
             if (dialog.DialogNumber <= 0)
             {
-                Console.WriteLine("ERROR: Unable to locate a free dialog. Add more dialog files, update their custom tokens, and update DialogManager.java");
+                Console.WriteLine("ERROR: Unable to locate a free dialog. Add more dialog files, update their custom tokens, and update DialogService.cs");
                 return;
             }
 
@@ -123,6 +123,11 @@ namespace Freescape.Game.Server.Service
             {
                 player.AssignCommand(() => _.ActionStartConversation(talkTo.Object, "dialog" + dialog.DialogNumber));
             }
+        }
+
+        public void StartConversation(NWCreature player, NWObject talkTo, string @class)
+        {
+            StartConversation((NWPlayer) player, talkTo, @class);
         }
 
         public void EndConversation(NWPlayer player)

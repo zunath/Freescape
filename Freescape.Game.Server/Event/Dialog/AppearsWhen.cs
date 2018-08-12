@@ -64,10 +64,7 @@ namespace Freescape.Game.Server.Event.Dialog
             }
             else if (nodeType == 1)
             {
-                string @namespace = Assembly.GetExecutingAssembly().GetName().Name + ".Conversation." + dialog.ActiveDialogName;
-                Type type = Type.GetType(@namespace);
-                
-                IConversation convo = App.ResolveByInterface<IConversation>(type);
+                IConversation convo = App.ResolveByInterface<IConversation>("Conversation." + dialog.ActiveDialogName);
                 if (player.GetLocalInt("DIALOG_SYSTEM_INITIALIZE_RAN") != 1)
                 {
                     convo.Initialize();

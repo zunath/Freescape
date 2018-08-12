@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using Autofac;
 using Freescape.Game.Server.Bioware;
 using Freescape.Game.Server.Bioware.Contracts;
@@ -13,6 +14,7 @@ using Freescape.Game.Server.Event;
 using Freescape.Game.Server.Extension;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.GameObject.Contracts;
+using Freescape.Game.Server.Item.Contracts;
 using Freescape.Game.Server.NWNX;
 using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Perk;
@@ -73,14 +75,15 @@ namespace Freescape.Game.Server
             return _container.ResolveNamed<T>(typeof(T).ToString());
         }
         
-        public static T ResolveByInterface<T>(Type type)
+        public static T ResolveByInterface<T>(string typeName)
         {
             if (!typeof(T).IsInterface)
             {
                 throw new Exception(nameof(T) + " must be an interface.");
             }
-            
-            return _container.ResolveNamed<T>(type.ToString());
+
+            string @namespace = Assembly.GetExecutingAssembly().GetName().Name + "." + typeName;
+            return _container.ResolveNamed<T>(@namespace);
         }
 
         public static T Resolve<T>()
@@ -152,6 +155,7 @@ namespace Freescape.Game.Server
             RegisterInterfaceImplementations<ICustomEffect>(builder);
             RegisterInterfaceImplementations<IChatCommand>(builder);
             RegisterInterfaceImplementations<IConversation>(builder);
+            RegisterInterfaceImplementations<IActionItem>(builder);
 
             // Conversations
             RegisterAbstractClass<ConversationBase>(builder);

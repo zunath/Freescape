@@ -247,6 +247,11 @@ namespace Freescape.Game.Server.Service
             return effect != null;
         }
 
+        public bool DoesPCHaveCustomEffect(NWPlayer oPC, CustomEffectType customEffectType)
+        {
+            return DoesPCHaveCustomEffect(oPC, (int) customEffectType);
+        }
+
         public void RemovePCCustomEffect(NWPlayer oPC, long customEffectID)
         {
             PCCustomEffect effect = _db.PCCustomEffects.Single(x => x.PlayerID == oPC.GlobalID && x.CustomEffectID == customEffectID);
@@ -256,6 +261,11 @@ namespace Freescape.Game.Server.Service
 
             _db.PCCustomEffects.Remove(effect);
             oPC.SendMessage(effect.CustomEffect.WornOffMessage);
+        }
+
+        public void RemovePCCustomEffect(NWPlayer oPC, CustomEffectType customEffectType)
+        {
+            RemovePCCustomEffect(oPC, (long) customEffectType);
         }
 
         public int GetActiveEffectLevel(NWObject oTarget, int customEffectID)

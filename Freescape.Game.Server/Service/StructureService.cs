@@ -14,7 +14,7 @@ using static NWN.NWScript;
 
 namespace Freescape.Game.Server.Service
 {
-    public class StructureService: IStructureService
+    public class StructureService : IStructureService
     {
 
         // Variable names
@@ -420,7 +420,7 @@ namespace Freescape.Game.Server.Service
             }
         }
 
-        public static bool IsPCMovingStructure(NWPlayer oPC)
+        public bool IsPCMovingStructure(NWPlayer oPC)
         {
             return oPC.GetLocalInt(IsMovingStructureLocationVariableName) == 1 &&
                    !NWObject.Wrap(oPC.GetLocalObject(MovingStructureVariableName)).IsValid;

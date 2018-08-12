@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using Freescape.Game.Server.Bioware.Contracts;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Item;
+using Freescape.Game.Server.Item.Contracts;
 using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject;
@@ -74,10 +76,12 @@ namespace Freescape.Game.Server.Service
             NWPlayer oPC = NWPlayer.Wrap(_.GetItemActivator());
             NWItem oItem = NWItem.Wrap(_.GetItemActivated());
             NWObject oTarget = NWObject.Wrap(_.GetItemActivatedTarget());
+            Location targetLocation = _.GetItemActivatedTargetLocation();
 
             string className = oItem.GetLocalString("JAVA_SCRIPT");
             if (className == string.Empty) className = oItem.GetLocalString("ACTIVATE_JAVA_SCRIPT");
             if (className == string.Empty) className = oItem.GetLocalString("JAVA_ACTION_SCRIPT");
+            if (className == string.Empty) className = oItem.GetLocalString("SCRIPT");
             if (className == string.Empty) return;
 
             oPC.AssignCommand(() => _.ClearAllActions());
@@ -86,7 +90,7 @@ namespace Freescape.Game.Server.Service
             if (className.StartsWith("Item."))
                 className = className.Substring(5);
 
-            IActionItem item = App.Resolve<IActionItem>(className);
+            IActionItem item = App.ResolveByInterface<IActionItem>("Item." + className);
 
             if (oPC.IsBusy)
             {
@@ -94,7 +98,7 @@ namespace Freescape.Game.Server.Service
                 return;
             }
 
-            string invalidTargetMessage = item.IsValidTarget(oPC, oItem, oTarget);
+            string invalidTargetMessage = item.IsValidTarget(oPC, oItem, oTarget, targetLocation);
             if (!string.IsNullOrWhiteSpace(invalidTargetMessage))
             {
                 oPC.SendMessage(invalidTargetMessage);
@@ -111,8 +115,8 @@ namespace Freescape.Game.Server.Service
                 }
             }
 
-            CustomData customData = item.StartUseItem(oPC, oItem, oTarget);
-            float delay = item.Seconds(oPC, oItem, oTarget, customData);
+            CustomData customData = item.StartUseItem(oPC, oItem, oTarget, targetLocation);
+            float delay = item.Seconds(oPC, oItem, oTarget, targetLocation, customData);
             int animationID = item.AnimationID();
             bool faceTarget = item.FaceTarget();
             Vector userPosition = oPC.Position;
@@ -129,7 +133,7 @@ namespace Freescape.Game.Server.Service
             _nwnxPlayer.StartGuiTimingBar(oPC, delay, string.Empty);
             oPC.AssignCommand(() =>
             {
-                FinishActionItem(item, oPC, oItem, oTarget, userPosition, customData);
+                FinishActionItem(item, oPC, oItem, oTarget, targetLocation, userPosition, customData);
             }, delay);
         }
 
@@ -324,7 +328,7 @@ namespace Freescape.Game.Server.Service
             }
         }
         
-        private void FinishActionItem(IActionItem actionItem, NWPlayer user, NWItem item, NWObject target, Vector userStartPosition, CustomData customData)
+        private void FinishActionItem(IActionItem actionItem, NWPlayer user, NWItem item, NWObject target, Location targetLocation, Vector userStartPosition, CustomData customData)
         {
             user.IsBusy = false;
 
@@ -347,22 +351,22 @@ namespace Freescape.Game.Server.Service
                 }
             }
 
-            if (!target.IsValid)
+            if (!target.IsValid && !actionItem.AllowLocationTarget())
             {
                 user.SendMessage("Unable to locate target.");
                 return;
             }
 
-            string invalidTargetMessage = actionItem.IsValidTarget(user, item, target);
+            string invalidTargetMessage = actionItem.IsValidTarget(user, item, target, targetLocation);
             if (!string.IsNullOrWhiteSpace(invalidTargetMessage))
             {
                 user.SendMessage(invalidTargetMessage);
                 return;
             }
 
-            actionItem.ApplyEffects(user, item, target, customData);
+            actionItem.ApplyEffects(user, item, target, targetLocation, customData);
 
-            if (actionItem.ReducesItemCharge(user, item, target, customData))
+            if (actionItem.ReducesItemCharge(user, item, target, targetLocation, customData))
             {
                 if (item.Charges > 0) item.ReduceCharges();
                 else item.Destroy();

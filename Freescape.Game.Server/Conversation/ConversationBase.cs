@@ -142,11 +142,8 @@ namespace Freescape.Game.Server.Conversation
             
             dialog.ResetPage();
             ChangePage(dialog.CurrentPageName);
-
-            string @namespace = Assembly.GetExecutingAssembly().GetName().Name + ".Conversation." + dialog.ActiveDialogName;
-            Type type = Type.GetType(@namespace);
-
-            IConversation convo = App.ResolveByInterface<IConversation>(type);
+            
+            IConversation convo = App.ResolveByInterface<IConversation>("Conversation." + dialog.ActiveDialogName);
             convo.Initialize();
             GetPC().SetLocalInt("DIALOG_SYSTEM_INITIALIZE_RAN", 1);
         }

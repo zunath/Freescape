@@ -130,6 +130,14 @@ namespace Freescape.Game.Server.GameObject
 
         public bool IsInCombat => _.GetIsInCombat(Object) == 1;
 
+        public virtual void ClearAllActions(bool clearCombatState = false)
+        {
+            AssignCommand(() =>
+            {
+                _.ClearAllActions(clearCombatState ? TRUE : FALSE);
+            });
+        }
+
         public virtual NWItem Head => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_HEAD, Object));
         public virtual NWItem Chest => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_CHEST, Object));
         public virtual NWItem Boots => NWItem.Wrap(_.GetItemInSlot(INVENTORY_SLOT_BOOTS, Object));

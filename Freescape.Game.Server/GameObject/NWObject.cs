@@ -261,5 +261,19 @@ namespace Freescape.Game.Server.GameObject
         }
 
         public int ObjectType => _.GetObjectType(Object);
+
+        public void RemoveEffect(int effectTypeID)
+        {
+            Effect effect = _.GetFirstEffect(Object);
+            while (_.GetIsEffectValid(effect) == TRUE)
+            {
+                if (_.GetEffectType(effect) == effectTypeID)
+                {
+                    _.RemoveEffect(Object, effect);
+                }
+
+                effect = _.GetNextEffect(Object);
+            }
+        }
     }
 }
