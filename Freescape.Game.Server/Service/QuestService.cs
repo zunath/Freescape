@@ -16,7 +16,7 @@ using Quest = Freescape.Game.Server.Data.Entities.Quest;
 
 namespace Freescape.Game.Server.Service
 {
-    public class QuestService: IQuestService
+    public class QuestService : IQuestService
     {
         private const string TempStoragePlaceableTag = "QUEST_BARREL";
         private const string SubmitQuestItemResref = "qst_submit";
@@ -367,7 +367,7 @@ namespace Freescape.Game.Server.Service
         }
 
 
-        private void SpawnQuestItems(NWPlaceable oChest, NWPlayer oPC)
+        public void SpawnQuestItems(NWPlaceable oChest, NWPlayer oPC)
         {
             int questID = oChest.GetLocalInt("QUEST_ID");
             int questStateSequence = oChest.GetLocalInt("SEQUENCE_ID");

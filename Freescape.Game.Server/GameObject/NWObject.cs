@@ -67,6 +67,8 @@ namespace Freescape.Game.Server.GameObject
 
         public virtual Vector Position => _.GetPosition(Object);
 
+        public virtual bool HasInventory => _.GetHasInventory(Object) == 1;
+
         public virtual bool IsPlot
         {
             get => _.GetPlotFlag(Object) == 1;
