@@ -43,7 +43,12 @@ namespace Freescape.Game.Server.GameObject
         public virtual string Name
         {
             get => _.GetName(Object);
-            set => _.SetName(Object, value);
+            set
+            {
+                Console.WriteLine("setting object name"); // todo debug
+                _.SetName(Object, value); 
+                
+            }
         }
 
         public virtual string Tag

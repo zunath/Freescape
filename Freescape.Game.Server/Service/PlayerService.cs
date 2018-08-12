@@ -11,7 +11,7 @@ using static NWN.NWScript;
 
 namespace Freescape.Game.Server.Service
 {
-    public class PlayerService: IPlayerService
+    public class PlayerService : IPlayerService
     {
         private readonly INWScript _;
         private readonly IDataContext _db;

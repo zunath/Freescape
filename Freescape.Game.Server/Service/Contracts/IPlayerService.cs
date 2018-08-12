@@ -5,12 +5,13 @@ namespace Freescape.Game.Server.Service.Contracts
 {
     public interface IPlayerService
     {
-        void InitializePlayer(NWPlayer player);
         PlayerCharacter GetPlayerEntity(NWPlayer player);
         PlayerCharacter GetPlayerEntity(string playerID);
-        void OnAreaEnter();
+        void InitializePlayer(NWPlayer player);
         void LoadCharacter(NWPlayer player);
-        void ShowMOTD(NWPlayer player);
+        void OnAreaEnter();
         void SaveCharacter(NWPlayer player);
+        void SaveLocation(NWPlayer player);
+        void ShowMOTD(NWPlayer player);
     }
 }
