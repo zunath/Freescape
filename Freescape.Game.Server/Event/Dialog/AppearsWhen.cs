@@ -79,6 +79,7 @@ namespace Freescape.Game.Server.Event.Dialog
                     convo.EndDialog();
                     _dialog.RemovePlayerDialog(player.GlobalID);
                     player.DeleteLocalInt("DIALOG_SYSTEM_INITIALIZE_RAN");
+                    return false;
                 }
 
                 page = dialog.CurrentPage;

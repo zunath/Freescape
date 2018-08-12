@@ -59,7 +59,7 @@ namespace Freescape.Game.Server.Service
         public PlayerDialog LoadPlayerDialog(string globalID)
         {
             if (string.IsNullOrWhiteSpace(globalID)) throw new ArgumentException(nameof(globalID), nameof(globalID) + " cannot be null, empty, or whitespace.");
-            if (!_playerDialogs.ContainsKey(globalID)) throw new Exception(nameof(globalID) + " could not be found. Be sure to call " + nameof(LoadConversation) + " first.");
+            if (!_playerDialogs.ContainsKey(globalID)) throw new Exception(nameof(globalID) + " '" + globalID + "' could not be found. Be sure to call " + nameof(LoadConversation) + " first.");
 
             return _playerDialogs[globalID];
         }
@@ -128,7 +128,7 @@ namespace Freescape.Game.Server.Service
         public void EndConversation(NWPlayer player)
         {
             if (player == null) throw new ArgumentNullException(nameof(player));
-
+            
             PlayerDialog playerDialog = LoadPlayerDialog(player.GlobalID);
             playerDialog.IsEnding = true;
             StorePlayerDialog(player.GlobalID, playerDialog);

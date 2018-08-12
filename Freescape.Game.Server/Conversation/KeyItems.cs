@@ -69,7 +69,7 @@ namespace Freescape.Game.Server.Conversation
                     }
                     break;
                 case "KeyItemsListPage":
-                    HandleKeyItemSelectionr(responseID);
+                    HandleKeyItemSelection(responseID);
                     break;
             }
         }
@@ -99,10 +99,10 @@ namespace Freescape.Game.Server.Conversation
             ChangePage("KeyItemsListPage");
         }
 
-        private void HandleKeyItemSelectionr(int responseID)
+        private void HandleKeyItemSelection(int responseID)
         {
             DialogResponse response = GetResponseByID(GetCurrentPageName(), responseID);
-            if (response.HasCustomData)
+            if (!response.HasCustomData)
             {
                 ClearTempVariables();
                 ChangePage("MainPage");

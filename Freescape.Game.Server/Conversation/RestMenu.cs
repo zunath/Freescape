@@ -139,12 +139,12 @@ namespace Freescape.Game.Server.Conversation
         {
         }
 
-        private string BuildMainPageHeader(INWPlayer player)
+        private string BuildMainPageHeader(NWPlayer player)
         {
             PlayerCharacter playerEntity = _db.PlayerCharacters.Single(x => x.PlayerID == player.GlobalID);
             int totalSkillCount = _db.PCSkills.Where(x => x.PlayerID == player.GlobalID).Sum(s => s.Rank);
 
-            string header = _color.Green("Name: ") + GetPC().Name + "\n\n";
+            string header = _color.Green("Name: ") + player.Name + "\n\n";
             header += _color.Green("Skill Points: ") + totalSkillCount + " / " + _skill.SkillCap + "\n";
             header += _color.Green("Unallocated SP: ") + playerEntity.UnallocatedSP + "\n";
             header += _color.Green("Hunger: ") + _menu.BuildBar(playerEntity.CurrentHunger, playerEntity.MaxHunger, 100) + "\n";

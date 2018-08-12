@@ -58,7 +58,6 @@ namespace Freescape.Game.Server.Conversation
 
         public override void Initialize()
         {
-            Console.WriteLine("Loading category responses"); // todo debug
             LoadCategoryResponses();
         }
 

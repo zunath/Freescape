@@ -38,17 +38,12 @@ namespace Freescape.Game.Server.Event.Module
 
             // Bioware default
             _.ExecuteScript("x2_mod_def_load", Object.OBJECT_SELF);
-
-            Console.WriteLine("Loading death system");
+            
             _death.OnModuleLoad();
-            Console.WriteLine("Loading structure system");
             _structure.OnModuleLoad();
-            Console.WriteLine("Loading object processing system");
             _objectProcessing.OnModuleLoad();
-            Console.WriteLine("Loading farming system");
             _farming.OnModuleLoad();
 
-            Console.WriteLine("module load complete!");
             return true;
         }
 
