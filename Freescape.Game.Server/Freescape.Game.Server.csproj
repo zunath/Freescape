@@ -333,6 +333,13 @@
     <Compile Include="Perk\Alteration\Aegis.cs" />
     <Compile Include="Perk\IPerk.cs" />
     <Compile Include="Perk\PerkBase.cs" />
+    <Compile Include="Placeable\GenericConversation.cs" />
+    <Compile Include="Placeable\Sit.cs" />
+    <Compile Include="Placeable\Stores\GenericStore.cs" />
+    <Compile Include="Placeable\TrashCan\OnClosed.cs" />
+    <Compile Include="Placeable\TrashCan\OnDisturbed.cs" />
+    <Compile Include="Placeable\TrashCan\OnOpened.cs" />
+    <Compile Include="Placeable\WarpDevice\OnUsed.cs" />
     <Compile Include="Service\AbilityService.cs" />
     <Compile Include="Service\ActivityLoggingService.cs" />
     <Compile Include="Service\AuthorizationService.cs" />
@@ -499,6 +506,18 @@
     <Folder Include="Perk\Weaponsmith\" />
     <Folder Include="Perk\Weapons\" />
     <Folder Include="Perk\Woodworking\" />
+    <Folder Include="Placeable\CraftingDevice\" />
+    <Folder Include="Placeable\CraftingForge\" />
+    <Folder Include="Placeable\DeathCorpse\" />
+    <Folder Include="Placeable\ForagePoint\" />
+    <Folder Include="Placeable\GrowingPlant\" />
+    <Folder Include="Placeable\OverflowStorage\" />
+    <Folder Include="Placeable\PlantSeed\" />
+    <Folder Include="Placeable\QuestSystem\" />
+    <Folder Include="Placeable\Resource\" />
+    <Folder Include="Placeable\SearchContainer\" />
+    <Folder Include="Placeable\StorageContainer\" />
+    <Folder Include="Placeable\StructureSystem\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\SQL\Background\GetActiveBackgrounds.sql" />

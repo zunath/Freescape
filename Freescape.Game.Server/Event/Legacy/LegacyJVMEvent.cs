@@ -1,5 +1,6 @@
-﻿using Freescape.Game.Server.GameObject;
-using NWN;
+﻿using System;
+using Freescape.Game.Server.GameObject;
+using Object = NWN.Object;
 
 namespace Freescape.Game.Server.Event.Legacy
 {
@@ -9,6 +10,9 @@ namespace Freescape.Game.Server.Event.Legacy
         {
             NWObject self = NWObject.Wrap(Object.OBJECT_SELF);
             string script = self.GetLocalString((string) args[0]);
+
+            Type type = Type.GetType(script);
+            App.RunEvent(type);
 
             return true;
         }
