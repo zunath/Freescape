@@ -108,14 +108,14 @@ namespace Freescape.Game.Server.Service
         {
             NWArea locationArea = NWArea.Wrap(_.GetAreaFromLocation(location));
             if (GetTerritoryFlagID(locationArea) > 0) return locationArea;
-
+            
             List<PCTerritoryFlag> areaFlags = _db.PCTerritoryFlags
                 .Where(x =>
                     x.LocationAreaTag == locationArea.Tag &&
                     x.IsActive)
                 .OrderByDescending(o => o.StructureBlueprint.MaxBuildDistance)
                 .ToList();
-            NWObject placeable = null;
+            NWPlaceable placeable = NWPlaceable.Wrap(new NWN.Object());
 
             foreach (PCTerritoryFlag flag in areaFlags)
             {
@@ -336,9 +336,12 @@ namespace Freescape.Game.Server.Service
             if (locationArea.GetLocalInt("BUILDING_DISABLED") == 1) return 0;
             
             NWObject flag = GetTerritoryFlagOwnerOfLocation(targetLocation);
+            
             Location flagLocation = flag.Location;
             int pcTerritoryFlagID = GetTerritoryFlagID(flag);
-            PCTerritoryFlag entity = _db.PCTerritoryFlags.Single(x => x.PCTerritoryFlagID == pcTerritoryFlagID);
+            
+            PCTerritoryFlag entity = _db.PCTerritoryFlags.SingleOrDefault(x => x.PCTerritoryFlagID == pcTerritoryFlagID);
+            
             float distance = _.GetDistanceBetweenLocations(flagLocation, targetLocation);
 
             // No territory flag found, or the distance is too far from the nearest territory flag.
@@ -351,6 +354,7 @@ namespace Freescape.Game.Server.Service
 
             // Max number of structures reached for this territory.
             TerritoryStructureCount counts = GetNumberOfStructuresInTerritory(pcTerritoryFlagID);
+            
             if (counts.VanityCount >= entity.StructureBlueprint.VanityCount &&
                     counts.SpecialCount >= entity.StructureBlueprint.SpecialCount &&
                     counts.ResourceCount >= entity.StructureBlueprint.ResourceCount &&
@@ -366,7 +370,7 @@ namespace Freescape.Game.Server.Service
                 PCTerritoryFlagsStructure structure = _db.PCTerritoryFlagsStructures.Single(x => x.PCTerritoryFlagStructureID == entity.BuildingPCStructureID);
                 parentFlag = structure.PCTerritoryFlag;
             }
-
+            
             // Player is territory or building owner
             if (entity.PlayerID == player.GlobalID ||
                     (parentFlag != null && parentFlag.PlayerID == player.GlobalID ))

@@ -89,7 +89,7 @@ namespace Freescape.Game.Server.Conversation
 
         public override void Initialize()
         {
-            NWObject oPC = GetPC();
+            NWPlayer oPC = GetPC();
 
             Model model = GetDialogCustomData<Model>();
             model.TargetLocation = oPC.GetLocalLocation("BUILD_TOOL_LOCATION_TARGET");
@@ -201,13 +201,13 @@ namespace Freescape.Game.Server.Conversation
             Model model = GetDialogCustomData<Model>();
             model.NearbyStructures.Clear();
             model.ActiveStructure = null;
-
+            
             DialogResponse constructionSiteResponse = new DialogResponse(_color.Green("Create Construction Site"));
             if (_structure.CanPCBuildInLocation(GetPC(), model.TargetLocation, StructurePermission.CanBuildStructures) != 1)
             {
                 constructionSiteResponse.IsActive = false;
             }
-            
+
             AddResponseToPage("MainPage", constructionSiteResponse);
 
             int flagID = _structure.GetTerritoryFlagID(model.Flag);
@@ -215,7 +215,7 @@ namespace Freescape.Game.Server.Conversation
                     !_structure.PlayerHasPermission(oPC, StructurePermission.CanRazeStructures, flagID) &&
                     !_structure.PlayerHasPermission(oPC, StructurePermission.CanRotateStructures, flagID))
                 return;
-
+            
             for (int current = 1; current <= 30; current++)
             {
                 NWPlaceable structure = NWPlaceable.Wrap(_.GetNearestObjectToLocation(OBJECT_TYPE_PLACEABLE, model.TargetLocation, current));
@@ -229,7 +229,7 @@ namespace Freescape.Game.Server.Conversation
                     model.NearbyStructures.Add(structure);
                 }
             }
-
+            
             foreach (NWPlaceable structure in model.NearbyStructures)
             {
                 if (excludeObject == null || excludeObject != structure)
@@ -244,15 +244,18 @@ namespace Freescape.Game.Server.Conversation
             NWPlayer oPC = GetPC();
             Model model = GetDialogCustomData<Model>();
             DialogResponse response = GetResponseByID("MainPage", responseID);
-            NWPlaceable structure = (NWPlaceable)response.CustomData[string.Empty];
+            
             int flagID = _structure.GetTerritoryFlagID(model.Flag);
 
             if (responseID == 1)
             {
                 _structure.CreateConstructionSite(GetPC(), model.TargetLocation);
                 EndConversation();
+                return;
             }
-            else if (structure != null)
+
+            NWPlaceable structure = (NWPlaceable)response.CustomData[string.Empty];
+            if (structure != null)
             {
                 int structureID = _structure.GetPlaceableStructureID(structure);
                 model.ActiveStructure = structure;
