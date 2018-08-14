@@ -182,7 +182,7 @@ namespace Freescape.Game.Server.Service
 
             // Apply Mana
             int mana = 20;
-            mana += (player.Intelligence + player.Wisdom + player.Charisma) * 5;
+            mana += (player.IntelligenceModifier + player.WisdomModifier + player.CharismaModifier) * 5;
             mana += _perk.GetPCPerkLevel(player, PerkType.Mana) * 5;
             mana += equippedItemManaBonus;
             if (pcEntity.BackgroundID == (int)BackgroundType.Wizard || pcEntity.BackgroundID == (int)BackgroundType.Cleric)

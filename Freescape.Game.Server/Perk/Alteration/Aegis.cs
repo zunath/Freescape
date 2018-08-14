@@ -12,17 +12,20 @@ namespace Freescape.Game.Server.Perk.Alteration
         private readonly IPerkService _perk;
         private readonly ICustomEffectService _customEffect;
         private readonly ISkillService _skill;
+        private readonly IRandomService _random;
 
         public Aegis(
             INWScript script, 
             IPerkService perk, 
             ICustomEffectService customEffect,
-            ISkillService skill)
+            ISkillService skill,
+            IRandomService random)
             :base(script)
         {
             _perk = perk;
             _customEffect = customEffect;
             _skill = skill;
+            _random = random;
         }
 
         public override bool CanCastSpell(NWPlayer oPC, NWObject oTarget)
@@ -72,9 +75,8 @@ namespace Freescape.Game.Server.Perk.Alteration
                 default: return;
             }
             
-            Random random = new Random();
             int luck = _perk.GetPCPerkLevel(oPC, PerkType.Lucky);
-            if(random.Next(0, 100) <= luck)
+            if(_random.Random(100) + 1 <= luck)
             {
                 ticks = ticks * 2;
             }
