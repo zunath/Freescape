@@ -117,5 +117,10 @@ namespace Freescape.Game.Server.Service
             return _db.GrowingPlants.Single(x => x.GrowingPlantID == growingPlantID);
         }
 
+        public Plant GetPlantByID(int plantID)
+        {
+            return _db.Plants.Single(x => x.PlantID == plantID);
+        }
+
     }
 }

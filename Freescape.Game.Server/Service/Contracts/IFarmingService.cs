@@ -10,5 +10,6 @@ namespace Freescape.Game.Server.Service.Contracts
         void OnModuleLoad();
         void RemoveGrowingPlant(NWPlaceable plant);
         GrowingPlant GetGrowingPlantByID(int growingPlantID);
+        Plant GetPlantByID(int plantID);
     }
 }
