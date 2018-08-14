@@ -210,16 +210,22 @@ namespace Freescape.Game.Server.GameObject
             _.DestroyObject(Object, delay);
         }
 
-        public virtual void AssignCommand(ActionDelegate action, float delay = 0.0f)
+        public virtual void AssignCommand(ActionDelegate action)
         {
-            if (delay <= 0.0f)
+            _.AssignCommand(Object, action);
+        }
+
+        public virtual void DelayCommand(ActionDelegate action, float seconds)
+        {
+            _.DelayCommand(seconds, action);
+        }
+
+        public virtual void DelayAssignCommand(ActionDelegate action, float seconds)
+        {
+            _.DelayCommand(seconds, () =>
             {
-                _.AssignCommand(Object, action);
-            }
-            else
-            {
-                _.DelayCommand(delay, action);
-            }
+                AssignCommand(action);
+            });
         }
 
         public virtual List<NWItem> InventoryItems

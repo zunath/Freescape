@@ -51,14 +51,14 @@ namespace Freescape.Game.Server.Service
                 if (PlayerHasPVPSanctuary(attacker))
                 {
                     attacker.FloatingText(_color.Red("You are under the effects of PVP sanctuary and cannot engage in PVP. To disable this feature permanently refer to the 'Disable PVP Sanctuary' option in your rest menu."));
-                    attacker.AssignCommand(() => _.ClearAllActions(), 0.1f);
+                    attacker.DelayAssignCommand(() => attacker.ClearAllActions(), 0.0f);
                     
                     return false;
                 }
                 else if (PlayerHasPVPSanctuary(target))
                 {
                     attacker.FloatingText(_color.Red("Your target is under the effects of PVP sanctuary and cannot engage in PVP combat."));
-                    attacker.AssignCommand(() => _.ClearAllActions(), 0.1f);
+                    attacker.DelayAssignCommand(() => attacker.ClearAllActions(), 0.0f);
                     return false;
                 }
             }

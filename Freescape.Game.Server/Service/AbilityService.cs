@@ -197,7 +197,7 @@ namespace Freescape.Game.Server.Service
 
             _nwnxPlayer.StartGuiTimingBar(pc, (int)castingTime, "");
 
-            pc.AssignCommand(() =>
+            pc.DelayCommand(() =>
             {
                 if (pc.GetLocalInt(spellUUID) == SPELL_STATUS_INTERRUPTED || // Moved during casting
                     pc.CurrentHP < 0 || pc.IsDead) // Or is dead/dying
@@ -266,7 +266,7 @@ namespace Freescape.Game.Server.Service
                 return;
             }
             
-            pc.AssignCommand(() => CheckForSpellInterruption(pc, spellUUID, position), 1.0f);
+            pc.DelayCommand(() => CheckForSpellInterruption(pc, spellUUID, position), 1.0f);
         }
 
         private void HandleQueueWeaponSkill(NWPlayer pc, Data.Entities.Perk entity, IPerk ability)
@@ -279,7 +279,7 @@ namespace Freescape.Game.Server.Service
             ApplyCooldown(pc, entity.CooldownCategory, ability);
 
             // Player must attack within 30 seconds after queueing or else it wears off.
-            pc.AssignCommand(() =>
+            pc.DelayCommand(() =>
             {
                 if (pc.GetLocalString("ACTIVE_WEAPON_SKILL_UUID") == queueUUID)
                 {

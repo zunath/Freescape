@@ -57,12 +57,8 @@ namespace Freescape.Game.Server.Event.Module
             if (!oPC.IsInCombat) return;
             if (oItem == rightHand && oItem == leftHand) return;
             if (oItem != leftHand) return;
-            
-            oPC.AssignCommand(() =>
-            {
-                _.ClearAllActions();
-            });
 
+            oPC.ClearAllActions();
         }
     }
 }

@@ -181,7 +181,7 @@ namespace Freescape.Game.Server.Service
             ServerConfiguration config = _db.ServerConfigurations.First();
             string message = _color.Green("Welcome to " + config.ServerName + "!\n\nMOTD: ") + _color.White(config.MessageOfTheDay);
 
-            player.AssignCommand(() =>
+            player.DelayCommand(() =>
             {
                 player.SendMessage(message);
             }, 6.5f);
@@ -264,7 +264,7 @@ namespace Freescape.Game.Server.Service
                 return;
             }
             
-            oPC.AssignCommand(() =>
+            oPC.DelayCommand(() =>
             {
                 CheckForMovement(oPC, location);
             }, 1.0f);
@@ -285,7 +285,7 @@ namespace Freescape.Game.Server.Service
             _.ApplyEffectToObject(DURATION_TYPE_PERMANENT, dr, oPC.Object);
             Location location = oPC.Location;
 
-            oPC.AssignCommand(() =>
+            oPC.DelayCommand(() =>
             {
                 CheckForMovement(oPC, location);
             }, 3.5f);

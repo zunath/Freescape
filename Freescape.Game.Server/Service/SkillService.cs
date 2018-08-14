@@ -482,16 +482,16 @@ namespace Freescape.Game.Server.Service
         
         private void ForceEquipFistGlove(NWPlayer oPC)
         {
-            oPC.AssignCommand(() =>
+            oPC.DelayCommand(() =>
             {
                 if (!oPC.Arms.IsValid)
                 {
-                    _.ClearAllActions();
+                    oPC.ClearAllActions();
                     NWItem glove = NWItem.Wrap(_.CreateItemOnObject("fist", oPC.Object));
-                    _.ActionEquipItem(glove.Object, INVENTORY_SLOT_ARMS);
                     glove.SetLocalInt("UNBREAKABLE", 1);
-                }
 
+                    oPC.AssignCommand(() => _.ActionEquipItem(glove.Object, INVENTORY_SLOT_ARMS));
+                }
             }, 1.0f);
         }
 

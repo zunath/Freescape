@@ -34,6 +34,7 @@ namespace Freescape.Game.Server.GameObject.Contracts
         void SetLocalObject(string name, Object value);
         void SetLocalString(string name, string value);
 
-        void AssignCommand(ActionDelegate action, float delay = 0.0f);
+        void AssignCommand(ActionDelegate action);
+        void DelayCommand(ActionDelegate action, float delay);
     }
 }

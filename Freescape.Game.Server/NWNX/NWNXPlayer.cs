@@ -78,7 +78,7 @@ namespace Freescape.Game.Server.NWNX
             _.SetLocalInt(player.Object, "NWNX_PLAYER_GUI_TIMING_ACTIVE", id);
             _.SetLocalInt(player.Object, "NWNX_PLAYER_GUI_TIMING_ID", id);
 
-            player.AssignCommand(() =>
+            player.DelayCommand(() =>
             {
                 StopGuiTimingBar(player, script, -1);
             }, seconds);

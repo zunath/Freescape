@@ -111,5 +111,11 @@ namespace Freescape.Game.Server.Service
             growingPlant.IsActive = false;
             _db.SaveChanges();
         }
+
+        public GrowingPlant GetGrowingPlantByID(int growingPlantID)
+        {
+            return _db.GrowingPlants.Single(x => x.GrowingPlantID == growingPlantID);
+        }
+
     }
 }

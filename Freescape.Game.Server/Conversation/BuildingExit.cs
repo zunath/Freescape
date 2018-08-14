@@ -94,7 +94,7 @@ namespace Freescape.Game.Server.Conversation
 
             GetPC().AssignCommand(() => _.ActionJumpToLocation(location));
 
-            GetPC().AssignCommand(() =>
+            GetPC().DelayCommand(() =>
             {
                 NWPlayer player = NWPlayer.Wrap(_.GetFirstPC());
                 while (player.IsValid)

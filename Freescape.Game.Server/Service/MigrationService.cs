@@ -87,7 +87,7 @@ namespace Freescape.Game.Server.Service
                 string message = _color.Green("Your character has been updated!" +
                                               (overflowCount > 0 ? " Items which could not be created have been placed into overflow inventory. You can access this from the rest menu." : ""));
 
-                oPC.AssignCommand(() =>
+                oPC.DelayCommand(() =>
                 {
                     oPC.FloatingText(message);
                 }, 8.0f);

@@ -203,6 +203,7 @@
     <Compile Include="Event\Area\OnAreaHeartbeat.cs" />
     <Compile Include="Event\Area\OnAreaExit.cs" />
     <Compile Include="Event\Area\OnAreaEnter.cs" />
+    <Compile Include="Placeable\CraftingForge\FinishSmelt.cs" />
     <Compile Include="Event\Creature\OnCombatRoundEnd.cs" />
     <Compile Include="Event\Creature\OnBlocked.cs" />
     <Compile Include="Event\Creature\OnConversation.cs" />
@@ -294,6 +295,7 @@
     <Compile Include="NWNX\QuickBarSlot.cs" />
     <Compile Include="NWNX\SCORCO.cs" />
     <Compile Include="NWNX\SpecialAbilitySlot.cs" />
+    <Compile Include="NWN\Events\Craft\cft_finish_smelt.cs" />
     <Compile Include="NWN\Events\Creature\crea_on_attacked.cs" />
     <Compile Include="NWN\Events\Creature\crea_on_convo.cs" />
     <Compile Include="NWN\Events\Creature\crea_on_damaged.cs" />
@@ -333,7 +335,20 @@
     <Compile Include="Perk\Alteration\Aegis.cs" />
     <Compile Include="Perk\IPerk.cs" />
     <Compile Include="Perk\PerkBase.cs" />
+    <Compile Include="Placeable\CraftingDevice\OnClosed.cs" />
+    <Compile Include="Placeable\CraftingDevice\OnDisturbed.cs" />
+    <Compile Include="Placeable\CraftingDevice\OnOpened.cs" />
+    <Compile Include="Placeable\CraftingForge\OnDisturbed.cs" />
+    <Compile Include="Placeable\CraftingForge\OnHeartbeat.cs" />
+    <Compile Include="Placeable\DeathCorpse\OnClosed.cs" />
+    <Compile Include="Placeable\DeathCorpse\OnDisturbed.cs" />
+    <Compile Include="Placeable\ForagePoint\OnClosed.cs" />
+    <Compile Include="Placeable\ForagePoint\OnDisturbed.cs" />
+    <Compile Include="Placeable\ForagePoint\OnHeartbeat.cs" />
+    <Compile Include="Placeable\ForagePoint\OnOpened.cs" />
     <Compile Include="Placeable\GenericConversation.cs" />
+    <Compile Include="Placeable\GrowingPlant\OnHeartbeat.cs" />
+    <Compile Include="Placeable\GrowingPlant\OnUsed.cs" />
     <Compile Include="Placeable\Sit.cs" />
     <Compile Include="Placeable\Stores\GenericStore.cs" />
     <Compile Include="Placeable\TrashCan\OnClosed.cs" />
@@ -485,6 +500,7 @@
     <EmbeddedResource Include="Data\SQL\**\*.sql" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Event\Craft\" />
     <Folder Include="Perk\Archery\" />
     <Folder Include="Perk\Armorsmith\" />
     <Folder Include="Perk\Armor\" />
@@ -506,11 +522,6 @@
     <Folder Include="Perk\Weaponsmith\" />
     <Folder Include="Perk\Weapons\" />
     <Folder Include="Perk\Woodworking\" />
-    <Folder Include="Placeable\CraftingDevice\" />
-    <Folder Include="Placeable\CraftingForge\" />
-    <Folder Include="Placeable\DeathCorpse\" />
-    <Folder Include="Placeable\ForagePoint\" />
-    <Folder Include="Placeable\GrowingPlant\" />
     <Folder Include="Placeable\OverflowStorage\" />
     <Folder Include="Placeable\PlantSeed\" />
     <Folder Include="Placeable\QuestSystem\" />

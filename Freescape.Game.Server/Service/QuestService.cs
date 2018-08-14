@@ -428,9 +428,10 @@ namespace Freescape.Game.Server.Service
 
                     _db.SaveChanges();
                     string finalMessage = updateMessage;
-                    oPC.AssignCommand(() =>
+                    var pc = oPC;
+                    oPC.DelayCommand(() =>
                     {
-                        oPC.SendMessage(finalMessage);
+                        pc.SendMessage(finalMessage);
                     }, 1.0f);
                 }
 
@@ -473,7 +474,7 @@ namespace Freescape.Game.Server.Service
 
             if (!string.IsNullOrWhiteSpace(questMessage))
             {
-                oPC.AssignCommand(() =>
+                oPC.DelayCommand(() =>
                 {
                     oPC.SendMessage(questMessage);
                 }, 1.0f);

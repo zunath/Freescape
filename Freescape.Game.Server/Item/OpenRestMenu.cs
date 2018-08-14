@@ -25,10 +25,7 @@ namespace Freescape.Game.Server.Item
 
         public void ApplyEffects(NWCreature user, NWItem item, NWObject target, Location targetLocation, CustomData customData)
         {
-            user.AssignCommand(() =>
-            {
-                _.ClearAllActions();
-            });
+            user.ClearAllActions();
 
             _dialog.StartConversation((NWPlayer) user, user, "RestMenu");
         }

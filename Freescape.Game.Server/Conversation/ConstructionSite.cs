@@ -591,7 +591,7 @@ namespace Freescape.Game.Server.Conversation
             preview.IsUseable = false;
             preview.IsPlot = true;
             preview.Destroy(6.0f);
-            preview.AssignCommand(() =>
+            preview.DelayCommand(() =>
             {
                 model.IsPreviewing = false;
             }, 6.0f);
@@ -608,7 +608,7 @@ namespace Freescape.Game.Server.Conversation
             preview.IsUseable = false;
             preview.IsPlot = true;
             preview.Destroy(6.0f);
-            preview.AssignCommand(() =>
+            preview.DelayCommand(() =>
             {
                 model.IsPreviewing = false;
             }, 6.0f);

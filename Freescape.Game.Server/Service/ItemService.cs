@@ -84,7 +84,7 @@ namespace Freescape.Game.Server.Service
             if (className == string.Empty) className = oItem.GetLocalString("SCRIPT");
             if (className == string.Empty) return;
 
-            oPC.AssignCommand(() => _.ClearAllActions());
+            oPC.ClearAllActions();
 
             // Remove "Item." prefix if it exists.
             if (className.StartsWith("Item."))
@@ -131,7 +131,7 @@ namespace Freescape.Game.Server.Service
             });
             
             _nwnxPlayer.StartGuiTimingBar(oPC, delay, string.Empty);
-            oPC.AssignCommand(() =>
+            oPC.DelayCommand(() =>
             {
                 FinishActionItem(item, oPC, oItem, oTarget, targetLocation, userPosition, customData);
             }, delay);
