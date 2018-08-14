@@ -110,7 +110,7 @@ namespace Freescape.Game.Server.Conversation
             }
             
             PCSkill pcSkill = _skill.GetPCSkillByID(GetPC().GlobalID, skillID);
-            String header = "Are you sure you want to improve your " + pcSkill.Skill.Name + " skill?";
+            string header = "Are you sure you want to improve your " + pcSkill.Skill.Name + " skill?";
             SetPageHeader("ConfirmPage", header);
 
             Model vm = GetDialogCustomData<Model>();

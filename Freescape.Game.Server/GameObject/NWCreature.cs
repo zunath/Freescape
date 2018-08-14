@@ -60,10 +60,6 @@ namespace Freescape.Game.Server.GameObject
 
         public virtual int Gender => _.GetGender(Object);
 
-        public virtual bool IsPlayer => _.GetIsPC(Object) == 1 && _.GetIsDM(Object) == 0 && _.GetIsDMPossessed(Object) == 0;
-
-        public virtual bool IsDM => _.GetIsPC(Object) == 0 && (_.GetIsDM(Object) == 1 || _.GetIsDMPossessed(Object) == 1);
-
         public virtual bool IsResting => _.GetIsResting(Object) == 1;
 
         public virtual float Weight => _.GetWeight(Object) * 0.1f;

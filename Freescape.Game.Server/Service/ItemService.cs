@@ -163,7 +163,7 @@ namespace Freescape.Game.Server.Service
 
             NWItem examinedItem = (NWItem) examinedObject;
             ApplyItemFeatures(examinedItem);
-            String description = "";
+            string description = "";
 
             if (examinedItem.RecommendedLevel > 0)
             {

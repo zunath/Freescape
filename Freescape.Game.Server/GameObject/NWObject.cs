@@ -228,6 +228,10 @@ namespace Freescape.Game.Server.GameObject
             });
         }
 
+        public virtual bool IsPlayer => _.GetIsPC(Object) == 1 && _.GetIsDM(Object) == 0 && _.GetIsDMPossessed(Object) == 0;
+
+        public virtual bool IsDM => _.GetIsPC(Object) == 0 && (_.GetIsDM(Object) == 1 || _.GetIsDMPossessed(Object) == 1);
+
         public virtual List<NWItem> InventoryItems
         {
             get

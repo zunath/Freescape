@@ -39,7 +39,7 @@ namespace Freescape.Game.Server.Placeable.StructureSystem.PersistentStorage
             int structureID = container.GetLocalInt("STRUCTURE_TEMP_STRUCTURE_ID");
             PCTerritoryFlagsStructure entity = _structure.GetPCStructureByID(structureID);
             int itemCount = container.InventoryItems.Count;
-            String itemResref = item.Resref;
+            string itemResref = item.Resref;
 
             if (disturbType == INVENTORY_DISTURB_TYPE_ADDED)
             {

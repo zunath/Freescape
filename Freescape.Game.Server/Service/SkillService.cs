@@ -265,15 +265,15 @@ namespace Freescape.Game.Server.Service
             while (skill.XP >= req.XP)
             {
                 skill.XP = skill.XP - req.XP;
-
+                
                 if (player.TotalSPAcquired < SkillCap)
                 {
                     player.UnallocatedSP++;
                     player.TotalSPAcquired++;
                 }
+                
                 skill.Rank++;
                 oPC.FloatingText("Your " + skill.Skill.Name + " skill level increased!");
-
                 req = _db.SkillXPRequirements.Single(x => x.SkillID == skillID && x.Rank == skill.Rank);
 
                 // Reapply skill penalties on a skill level up.
@@ -281,13 +281,12 @@ namespace Freescape.Game.Server.Service
                 {
                     NWItem item = NWItem.Wrap(_.GetItemInSlot(slot, oPC.Object));
                     RemoveWeaponPenalties(item);
-                    ApplyWeaponPenalties(oPC, null);
+                    ApplyWeaponPenalties(oPC, NWItem.Wrap(new NWN.Object()));
                 }
             }
-
+            
             _db.SaveChanges();
-
-
+            
             // Update player and apply stat changes only if a level up occurred.
             if (originalRank != skill.Rank)
             {
@@ -944,7 +943,7 @@ namespace Freescape.Game.Server.Service
             
             foreach (ItemProperty ip in oItem.ItemProperties)
             {
-                String tag = _.GetItemPropertyTag(ip);
+                string tag = _.GetItemPropertyTag(ip);
                 if ( tag == IPPenaltyTag)
                 {
                     _.RemoveItemProperty(oItem.Object, ip);

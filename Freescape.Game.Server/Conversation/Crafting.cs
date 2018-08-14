@@ -150,7 +150,7 @@ namespace Freescape.Game.Server.Conversation
             switch (responseID)
             {
                 case 1: // Examine item
-                    blueprintID = (int)response.CustomData[String.Empty];
+                    blueprintID = (int)response.CustomData[string.Empty];
                     CraftBlueprint entity = _craft.GetBlueprintByID(blueprintID);
                     NWPlaceable tempContainer = NWPlaceable.Wrap(_.GetObjectByTag("craft_temp_store"));
                     NWItem examineItem = NWItem.Wrap(_.CreateItemOnObject(entity.ItemResref, tempContainer.Object));

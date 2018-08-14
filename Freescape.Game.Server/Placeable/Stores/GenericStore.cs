@@ -19,7 +19,7 @@ namespace Freescape.Game.Server.Placeable.Stores
         {
             NWPlaceable self = NWPlaceable.Wrap(Object.OBJECT_SELF);
             NWObject oPC = NWObject.Wrap(_.GetLastUsedBy());
-            String storeTag = self.GetLocalString("STORE_TAG");
+            string storeTag = self.GetLocalString("STORE_TAG");
             Object store = _.GetObjectByTag(storeTag);
 
             _.OpenStore(store, oPC.Object);

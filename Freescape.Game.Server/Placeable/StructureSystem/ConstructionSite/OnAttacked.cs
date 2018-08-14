@@ -94,7 +94,7 @@ namespace Freescape.Game.Server.Placeable.StructureSystem.ConstructionSite
             int mangleChance = CalculateMangleChance(oPC, entity.StructureBlueprint.Level, rank);
             bool isMangle = _random.Random(100) + 1 <= mangleChance;
             bool foundResource = false;
-            String updateMessage = "You lack the necessary resources...";
+            string updateMessage = "You lack the necessary resources...";
 
             int totalAmount = 0;
             foreach (ConstructionSiteComponent comp in entity.ConstructionSiteComponents)
@@ -120,7 +120,7 @@ namespace Freescape.Game.Server.Placeable.StructureSystem.ConstructionSite
                             return true;
                         }
 
-                        String name = _item.GetNameByResref(comp.StructureComponent.Resref);
+                        string name = _item.GetNameByResref(comp.StructureComponent.Resref);
                         comp.Quantity--;
                         updateMessage = "You need " + comp.Quantity + " " + name + " to complete this project.";
                         foundResource = true;

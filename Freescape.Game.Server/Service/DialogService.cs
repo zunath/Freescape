@@ -111,10 +111,10 @@ namespace Freescape.Game.Server.Service
             PlayerDialog dialog = _playerDialogs[player.GlobalID];
 
             // NPC conversations
-            NWCreature talkToCreature = (NWCreature) talkTo;
+            
             if (_.GetObjectType(talkTo.Object) == OBJECT_TYPE_CREATURE &&
-                !talkToCreature.IsPlayer &&
-                !talkToCreature.IsDM)
+                !talkTo.IsPlayer &&
+                !talkTo.IsDM)
             {
                 _.BeginConversation("dialog" + dialog.DialogNumber);
             }

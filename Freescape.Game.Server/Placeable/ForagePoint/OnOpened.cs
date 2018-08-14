@@ -131,7 +131,7 @@ namespace Freescape.Game.Server.Placeable.ForagePoint
             int growingPlantID = point.GetLocalInt("GROWING_PLANT_ID");
             if (growingPlantID > 0)
             {
-                GrowingPlant growingPlant = _farming.GetGrowingPlantByID(growingPlantID);
+                Data.Entities.GrowingPlant growingPlant = _farming.GetGrowingPlantByID(growingPlantID);
                 chanceToFullyHarvest = chanceToFullyHarvest - (growingPlant.LongevityBonus);
             }
 

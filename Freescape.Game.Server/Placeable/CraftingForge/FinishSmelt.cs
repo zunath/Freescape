@@ -46,7 +46,7 @@ namespace Freescape.Game.Server.Placeable.CraftingForge
 
             PCSkill pcSkill = _skill.GetPCSkill(player, SkillType.Metalworking);
             int level = _craft.GetIngotLevel(resref);
-            String ingotResref = _craft.GetIngotResref(resref);
+            string ingotResref = _craft.GetIngotResref(resref);
             if (pcSkill == null || level < 0 || string.IsNullOrWhiteSpace(ingotResref)) return false;
 
             int delta = pcSkill.Rank - level;

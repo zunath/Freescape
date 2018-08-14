@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using Object = NWN.Object;
@@ -12,7 +13,7 @@ namespace Freescape.Game.Server.Event.Legacy
             NWObject self = NWObject.Wrap(Object.OBJECT_SELF);
             string script = self.GetLocalString((string) args[0]);
 
-            Type type = Type.GetType(script);
+            Type type = Type.GetType(Assembly.GetExecutingAssembly().GetName().Name + "." + script);
 
             if (type == null)
             {

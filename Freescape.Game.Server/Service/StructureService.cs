@@ -427,7 +427,7 @@ namespace Freescape.Game.Server.Service
         public bool IsPCMovingStructure(NWPlayer oPC)
         {
             return oPC.GetLocalInt(IsMovingStructureLocationVariableName) == 1 &&
-                   !NWObject.Wrap(oPC.GetLocalObject(MovingStructureVariableName)).IsValid;
+                   NWObject.Wrap(oPC.GetLocalObject(MovingStructureVariableName)).IsValid;
         }
 
         private void SetPlaceableStructureID(NWPlaceable structure, int structureID)
@@ -525,7 +525,7 @@ namespace Freescape.Game.Server.Service
 
         public PCTerritoryFlag GetPCTerritoryFlagByID(int territoryFlagID)
         {
-            return _db.PCTerritoryFlags.Single(x => x.PCTerritoryFlagID == territoryFlagID);
+            return _db.PCTerritoryFlags.SingleOrDefault(x => x.PCTerritoryFlagID == territoryFlagID);
         }
 
         public int GetConstructionSiteID(NWPlaceable site)
@@ -813,7 +813,7 @@ namespace Freescape.Game.Server.Service
             foreach (StructureComponent comp in blueprint.StructureComponents)
             {
                 ConstructionSiteComponent csComp = new ConstructionSiteComponent();
-                csComp.ConstructionSiteID = entity.ConstructionSiteID;
+                csComp.ConstructionSite = entity;
                 csComp.Quantity = comp.Quantity;
                 csComp.StructureComponentID = comp.StructureComponentID;
                 _db.ConstructionSiteComponents.Add(csComp);
@@ -902,7 +902,7 @@ namespace Freescape.Game.Server.Service
                 // Territory marker - Ensure not in radius of another territory
                 if (isTerritoryMarkerConstructionSite)
                 {
-                    PCTerritoryFlag nearestFlagEntity = _db.PCTerritoryFlags.Single(x => x.PCTerritoryFlagID == nearestFlagID);
+                    PCTerritoryFlag nearestFlagEntity = _db.PCTerritoryFlags.SingleOrDefault(x => x.PCTerritoryFlagID == nearestFlagID);
                     if (nearestFlagEntity != null && _.GetDistanceBetweenLocations(location, nearestFlagLocation) <= nearestFlagEntity.StructureBlueprint.MaxBuildDistance)
                     {
                         oPC.FloatingText("Cannot move territory markers within the building range of another territory marker.");

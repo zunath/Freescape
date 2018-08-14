@@ -86,13 +86,13 @@ namespace Freescape.Game.Server.Conversation
                     "Set Facing: North",
                     "Set Facing: West",
                     "Set Facing: South",
-                    "Rotate 20\u00b0",
-                    "Rotate 30\u00b0",
-                    "Rotate 45\u00b0",
-                    "Rotate 60\u00b0",
-                    "Rotate 75\u00b0",
-                    "Rotate 90\u00b0",
-                    "Rotate 180\u00b0",
+                    "Rotate 20°",
+                    "Rotate 30°",
+                    "Rotate 45°",
+                    "Rotate 60°",
+                    "Rotate 75°",
+                    "Rotate 90°",
+                    "Rotate 180°",
                     "Back"
             );
 
@@ -449,7 +449,7 @@ namespace Freescape.Game.Server.Conversation
 
             foreach (StructureBlueprint entity in blueprints)
             {
-                String entityName = entity.Name + " (Lvl. " + entity.Level + ")";
+                string entityName = entity.Name + " (Lvl. " + entity.Level + ")";
                 if (model.IsTerritoryFlag)
                 {
                     if (_structure.WillBlueprintOverlapWithExistingFlags(location, entity.StructureBlueprintID))

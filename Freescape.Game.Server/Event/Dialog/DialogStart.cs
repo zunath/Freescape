@@ -1,6 +1,9 @@
-﻿using Freescape.Game.Server.GameObject;
+﻿using System;
+using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
+using static NWN.NWScript;
+using Object = NWN.Object;
 
 namespace Freescape.Game.Server.Event.Dialog
 {
@@ -17,19 +20,28 @@ namespace Freescape.Game.Server.Event.Dialog
 
         public bool Run(params object[] args)
         {
-            NWObject npc = NWObject.Wrap(Object.OBJECT_SELF);
             NWPlayer pc = NWPlayer.Wrap(_.GetLastUsedBy());
             if (!pc.IsValid) pc = NWPlayer.Wrap(_.GetPCSpeaker());
 
-            string conversation = npc.GetLocalString("CONVERSATION");
-
-            if (string.IsNullOrWhiteSpace(conversation))
+            string conversation = _.GetLocalString(Object.OBJECT_SELF, "CONVERSATION");
+            
+            if (!string.IsNullOrWhiteSpace(conversation))
             {
-                _dialog.StartConversation(pc, npc, conversation);
+                int objectType = _.GetObjectType(Object.OBJECT_SELF);
+                if (objectType == OBJECT_TYPE_PLACEABLE)
+                {
+                    NWPlaceable talkTo = NWPlaceable.Wrap(Object.OBJECT_SELF);
+                    _dialog.StartConversation(pc, talkTo, conversation);
+                }
+                else
+                {
+                    NWCreature talkTo = NWCreature.Wrap(Object.OBJECT_SELF);
+                    _dialog.StartConversation(pc, talkTo, conversation);
+                }
             }
             else
             {
-                _.ActionStartConversation(pc.Object, "", NWScript.TRUE, NWScript.FALSE);
+                _.ActionStartConversation(pc.Object, "", TRUE, FALSE);
             }
 
             return true;

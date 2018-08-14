@@ -55,9 +55,9 @@ namespace Freescape.Game.Server.Placeable.Resource
 
             NWItem oWeapon = NWItem.Wrap(_.GetLastWeaponUsed(oPC.Object));
             Location location = oPC.Location;
-            String resourceItemResref = resource.GetLocalString("RESOURCE_RESREF");
+            string resourceItemResref = resource.GetLocalString("RESOURCE_RESREF");
             int activityID = resource.GetLocalInt("RESOURCE_ACTIVITY");
-            String resourceName = resource.GetLocalString("RESOURCE_NAME");
+            string resourceName = resource.GetLocalString("RESOURCE_NAME");
             int resourceCount = resource.GetLocalInt("RESOURCE_COUNT");
             int difficultyRating = resource.GetLocalInt("RESOURCE_DIFFICULTY_RATING");
             int weaponChanceBonus;
@@ -216,7 +216,7 @@ namespace Freescape.Game.Server.Placeable.Resource
         private void SpawnSeed(NWObject objSelf, NWPlayer oPC)
         {
             Location location = objSelf.Location;
-            String resourceSeedResref = objSelf.GetLocalString("RESOURCE_SEED_RESREF");
+            string resourceSeedResref = objSelf.GetLocalString("RESOURCE_SEED_RESREF");
 
             if (!string.IsNullOrWhiteSpace(resourceSeedResref))
             {
