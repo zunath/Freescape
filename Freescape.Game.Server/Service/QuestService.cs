@@ -45,7 +45,7 @@ namespace Freescape.Game.Server.Service
 
         public Quest GetQuestByID(int questID)
         {
-            return null;
+            return _db.Quests.Single(x => x.QuestID == questID);
         }
 
         public ItemVO GetTempItemInformation(string resref, int quantity)

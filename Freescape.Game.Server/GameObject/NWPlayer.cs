@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.NWNX.Contracts;
 using NWN;
+using static NWN.NWScript;
 using Object = NWN.Object;
 
 namespace Freescape.Game.Server.GameObject
@@ -64,6 +66,20 @@ namespace Freescape.Game.Server.GameObject
         {
             get => GetLocalInt("IS_BUSY") == 1;
             set => SetLocalInt("IS_BUSY", value ? 1 : 0);
+        }
+
+
+        public virtual List<NWPlayer> GetPartyMembers()
+        {
+            List<NWPlayer> partyMembers = new List<NWPlayer>();
+            Object member = _.GetFirstFactionMember(Object);
+            while (_.GetIsObjectValid(member) == TRUE)
+            {
+                partyMembers.Add(Wrap(member));
+                member = _.GetNextFactionMember(Object);
+            }
+
+            return partyMembers;
         }
 
         public virtual PlayerCharacter ToEntity()

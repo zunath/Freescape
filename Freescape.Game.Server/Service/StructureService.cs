@@ -741,17 +741,19 @@ namespace Freescape.Game.Server.Service
                 if (entity.StructureBlueprint.IsBuilding)
                 {
                     // Buildings get an entry in the territory flags table. There's no physical territory marker in-game, it's all done in the DB.
-                    PCTerritoryFlag pcFlag = new PCTerritoryFlag();
-                    pcFlag.StructureBlueprintID = blueprint.StructureBlueprintID;
-                    pcFlag.LocationAreaTag = string.Empty;
-                    pcFlag.LocationOrientation = 0.0f;
-                    pcFlag.LocationX = 0.0f;
-                    pcFlag.LocationY = 0.0f;
-                    pcFlag.LocationZ = 0.0f;
-                    pcFlag.PlayerID = entity.PlayerID;
-                    pcFlag.ShowOwnerName = false;
-                    pcFlag.BuildingPCStructureID = pcStructure.PCTerritoryFlagStructureID;
-                    pcFlag.IsActive = true;
+                    PCTerritoryFlag pcFlag = new PCTerritoryFlag
+                    {
+                        StructureBlueprintID = blueprint.StructureBlueprintID,
+                        LocationAreaTag = string.Empty,
+                        LocationOrientation = 0.0f,
+                        LocationX = 0.0f,
+                        LocationY = 0.0f,
+                        LocationZ = 0.0f,
+                        PlayerID = entity.PlayerID,
+                        ShowOwnerName = false,
+                        BuildingPCStructureID = pcStructure.PCTerritoryFlagStructureID,
+                        IsActive = true
+                    };
 
                     _db.PCTerritoryFlags.Add(pcFlag);
                     _db.SaveChanges();
@@ -774,9 +776,11 @@ namespace Freescape.Game.Server.Service
             int flagID = completedStructure.GetLocalInt(TerritoryFlagIDVariableName);
             long structureID = completedStructure.GetLocalInt(StructureIDVariableName);
 
-            StructureQuickBuildAudit audit = new StructureQuickBuildAudit();
-            audit.DateBuilt = DateTime.UtcNow;
-            audit.DMName = name;
+            StructureQuickBuildAudit audit = new StructureQuickBuildAudit
+            {
+                DateBuilt = DateTime.UtcNow,
+                DMName = name
+            };
 
             if (flagID > 0)
                 audit.PCTerritoryFlagID = flagID;
@@ -812,10 +816,12 @@ namespace Freescape.Game.Server.Service
 
             foreach (StructureComponent comp in blueprint.StructureComponents)
             {
-                ConstructionSiteComponent csComp = new ConstructionSiteComponent();
-                csComp.ConstructionSite = entity;
-                csComp.Quantity = comp.Quantity;
-                csComp.StructureComponentID = comp.StructureComponentID;
+                ConstructionSiteComponent csComp = new ConstructionSiteComponent
+                {
+                    ConstructionSite = entity,
+                    Quantity = comp.Quantity,
+                    StructureComponentID = comp.StructureComponentID
+                };
                 _db.ConstructionSiteComponents.Add(csComp);
             }
 

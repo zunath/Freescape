@@ -48,7 +48,7 @@ namespace Freescape.Game.Server.Service
                 string jsName = pcPerk.Perk.JavaScriptName;
                 if (string.IsNullOrWhiteSpace(jsName)) continue;
 
-                IPerk perkAction = App.Resolve<IPerk>(jsName);
+                IPerk perkAction = App.ResolveByInterface<IPerk>("Perk." + jsName);
                 perkAction?.OnItemEquipped(oPC, oItem);
             }
         }
@@ -68,7 +68,7 @@ namespace Freescape.Game.Server.Service
                 string jsName = pcPerk.Perk.JavaScriptName;
                 if (string.IsNullOrWhiteSpace(jsName)) continue;
                 
-                IPerk perkAction = App.Resolve<IPerk>(jsName);
+                IPerk perkAction = App.ResolveByInterface<IPerk>("Perk." + jsName);
                 perkAction?.OnItemUnequipped(oPC, oItem);
             }
         }
@@ -102,7 +102,7 @@ namespace Freescape.Game.Server.Service
             {
                 if (string.IsNullOrWhiteSpace(perk.Perk.JavaScriptName) || perk.Perk.ExecutionTypeID == (int)PerkExecutionType.None) continue;
 
-                IPerk perkAction = App.Resolve<IPerk>(perk.Perk.JavaScriptName);
+                IPerk perkAction = App.ResolveByInterface<IPerk>("Perk." +perk.Perk.JavaScriptName);
                 if (perkAction == null) continue;
 
                 if (perk.Perk.ExecutionTypeID == (int)PerkExecutionType.ShieldOnHit)
@@ -199,7 +199,9 @@ namespace Freescape.Game.Server.Service
 
                 pcPerk.PerkLevel++;
                 player.UnallocatedSP -= nextPerkLevel.Price;
-                
+
+                _db.SaveChanges();
+
                 // If a perk is activatable, create the item on the PC.
                 // Remove any existing cast spell unique power properties and add the correct one based on the DB flag.
                 if (!string.IsNullOrWhiteSpace(perk.ItemResref))
@@ -235,7 +237,7 @@ namespace Freescape.Game.Server.Service
 
                 oPC.SendMessage(_color.Green("Perk Purchased: " + perk.Name + " (Lvl. " + pcPerk.PerkLevel + ")"));
 
-                IPerk perkScript = App.Resolve<IPerk>(perk.JavaScriptName);
+                IPerk perkScript = App.ResolveByInterface<IPerk>("Perk." + perk.JavaScriptName);
 
                 if (perkScript == null) return;
                 perkScript.OnPurchased(oPC, pcPerk.PerkLevel);

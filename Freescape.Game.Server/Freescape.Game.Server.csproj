@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="AppState.cs" />
     <Compile Include="Bioware\BiowarePosition.cs" />
     <Compile Include="Bioware\BiowareXP2.cs" />
     <Compile Include="Bioware\Contracts\IBiowarePosition.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="ChatCommands\Stuck.cs" />
     <Compile Include="ChatCommands\Sit.cs" />
     <Compile Include="ChatCommands\Day.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Conversation\BackgroundMenu.cs" />
     <Compile Include="Conversation\BindSoul.cs" />
     <Compile Include="Conversation\BuildingEntrance.cs" />
@@ -203,6 +205,62 @@
     <Compile Include="Event\Area\OnAreaHeartbeat.cs" />
     <Compile Include="Event\Area\OnAreaExit.cs" />
     <Compile Include="Event\Area\OnAreaEnter.cs" />
+    <Compile Include="Perk\Alteration\Gate.cs" />
+    <Compile Include="Perk\Alteration\HolyShot.cs" />
+    <Compile Include="Perk\Alteration\Purify.cs" />
+    <Compile Include="Perk\Alteration\Recover.cs" />
+    <Compile Include="Perk\Archery\PointBlankShot.cs" />
+    <Compile Include="Perk\Archery\RapidReload.cs" />
+    <Compile Include="Perk\Archery\RapidShot.cs" />
+    <Compile Include="Perk\Archery\ZenArchery.cs" />
+    <Compile Include="Perk\Armorsmith\HeavyArmorBlueprints.cs" />
+    <Compile Include="Perk\Armorsmith\LightArmorBlueprints.cs" />
+    <Compile Include="Perk\Armorsmith\SpeedyArmorsmith.cs" />
+    <Compile Include="Perk\Construction\BuildingBlueprints.cs" />
+    <Compile Include="Perk\Construction\ConservativeConstruction.cs" />
+    <Compile Include="Perk\Construction\CraftingDeviceBlueprints.cs" />
+    <Compile Include="Perk\Construction\MangleMaster.cs" />
+    <Compile Include="Perk\Construction\ResourceBundleBlueprints.cs" />
+    <Compile Include="Perk\Construction\SpecialObjectBlueprints.cs" />
+    <Compile Include="Perk\Construction\SpeedyBuilder.cs" />
+    <Compile Include="Perk\Construction\StorageContainerBlueprints.cs" />
+    <Compile Include="Perk\Construction\TerritoryMarkerBlueprints.cs" />
+    <Compile Include="Perk\Construction\VanityBlueprints.cs" />
+    <Compile Include="Perk\Cooking\FoodRecipes.cs" />
+    <Compile Include="Perk\Cooking\SpeedyCooking.cs" />
+    <Compile Include="Perk\FirstAid\FrugalMedic.cs" />
+    <Compile Include="Perk\FirstAid\HealingKitExpert.cs" />
+    <Compile Include="Perk\FirstAid\ImmediateImprovement.cs" />
+    <Compile Include="Perk\FirstAid\SpeedyMedic.cs" />
+    <Compile Include="Perk\Gathering\CarefulForager.cs" />
+    <Compile Include="Perk\Gathering\ForageExpert.cs" />
+    <Compile Include="Perk\Gathering\SeedPicker.cs" />
+    <Compile Include="Perk\Harvesting\LoggingAxeExpert.cs" />
+    <Compile Include="Perk\Harvesting\Lumberjack.cs" />
+    <Compile Include="Perk\Harvesting\Miner.cs" />
+    <Compile Include="Perk\Harvesting\OreBagger.cs" />
+    <Compile Include="Perk\Harvesting\PickaxeExpert.cs" />
+    <Compile Include="Perk\Harvesting\PrecisionLogging.cs" />
+    <Compile Include="Perk\Harvesting\PrecisionMining.cs" />
+    <Compile Include="Perk\Harvesting\SeedSearcher.cs" />
+    <Compile Include="Perk\Harvesting\SpeedyLogger.cs" />
+    <Compile Include="Perk\Harvesting\SpeedyMiner.cs" />
+    <Compile Include="Perk\Harvesting\WoodBagger.cs" />
+    <Compile Include="Perk\Metalworking\CoalManagement.cs" />
+    <Compile Include="Perk\Metalworking\ComponentBlueprints.cs" />
+    <Compile Include="Perk\Metalworking\Smelting.cs" />
+    <Compile Include="Perk\Metalworking\SmeltingMastery.cs" />
+    <Compile Include="Perk\Metalworking\SpeedyMetalworking.cs" />
+    <Compile Include="Perk\Metalworking\SpeedySmelter.cs" />
+    <Compile Include="Perk\Metalworking\ToolBlueprints.cs" />
+    <Compile Include="Perk\Survival\ExpertFarmer.cs" />
+    <Compile Include="Perk\Survival\FarmingEfficiency.cs" />
+    <Compile Include="Perk\Weaponsmith\MetalWeaponBlueprints.cs" />
+    <Compile Include="Perk\Weaponsmith\SpeedyWeaponsmith.cs" />
+    <Compile Include="Perk\Woodworking\SpeedyWoodworking.cs" />
+    <Compile Include="Perk\Woodworking\WoodArmorBlueprints.cs" />
+    <Compile Include="Perk\Woodworking\WoodComponentsBlueprints.cs" />
+    <Compile Include="Perk\Woodworking\WoodWeaponsBlueprints.cs" />
     <Compile Include="Placeable\CraftingForge\FinishSmelt.cs" />
     <Compile Include="Event\Creature\OnCombatRoundEnd.cs" />
     <Compile Include="Event\Creature\OnBlocked.cs" />
@@ -528,27 +586,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Event\Craft\" />
-    <Folder Include="Perk\Archery\" />
-    <Folder Include="Perk\Armorsmith\" />
     <Folder Include="Perk\Armor\" />
-    <Folder Include="Perk\Construction\" />
-    <Folder Include="Perk\Cooking\" />
     <Folder Include="Perk\Evocation\" />
-    <Folder Include="Perk\FirstAid\" />
-    <Folder Include="Perk\Gathering\" />
     <Folder Include="Perk\General\" />
-    <Folder Include="Perk\Harvesting\" />
     <Folder Include="Perk\MartialArts\" />
-    <Folder Include="Perk\Metalworking\" />
     <Folder Include="Perk\OneHanded\" />
     <Folder Include="Perk\Shields\" />
-    <Folder Include="Perk\Survival\" />
     <Folder Include="Perk\Throwing\" />
     <Folder Include="Perk\TwinBlade\" />
     <Folder Include="Perk\TwoHanded\" />
-    <Folder Include="Perk\Weaponsmith\" />
     <Folder Include="Perk\Weapons\" />
-    <Folder Include="Perk\Woodworking\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\SQL\Background\GetActiveBackgrounds.sql" />

@@ -8,14 +8,13 @@ namespace Freescape.Game.Server.Service
 {
     public class EffectTrackerService : IEffectTrackerService
     {
-        private static Dictionary<string, int> _effectTicks;
-
         private readonly INWScript _;
+        private readonly AppState _state;
 
-        public EffectTrackerService(INWScript script)
+        public EffectTrackerService(INWScript script, AppState state)
         {
-            _effectTicks = new Dictionary<string, int>();
             _ = script;
+            _state = state;
         }
 
         public void ProcessPCEffects(NWPlayer oPC)
@@ -30,26 +29,26 @@ namespace Freescape.Game.Server.Service
                 if (_.GetEffectDurationType(effect) != DURATION_TYPE_PERMANENT) continue;
                 if (!string.IsNullOrWhiteSpace(_.GetEffectTag(effect))) continue;
 
-                int ticks = _effectTicks.ContainsKey(effectKey) ? _effectTicks[effectKey] : 40;
+                int ticks = _state.EffectTicks.ContainsKey(effectKey) ? _state.EffectTicks[effectKey] : 40;
                 ticks--;
 
                 if (ticks <= 0)
                 {
                     _.RemoveEffect(oPC.Object, effect);
-                    _effectTicks.Remove(effectKey);
+                    _state.EffectTicks.Remove(effectKey);
                 }
                 else
                 {
                     foundIDs.Add(effectKey);
-                    _effectTicks[effectKey] = ticks;
+                    _state.EffectTicks[effectKey] = ticks;
                 }
             }
 
-            foreach (var effect in _effectTicks)
+            foreach (var effect in _state.EffectTicks)
             {
                 if (!foundIDs.Contains(effect.Key))
                 {
-                    _effectTicks.Remove(effect.Key);
+                    _state.EffectTicks.Remove(effect.Key);
                 }
             }
         }

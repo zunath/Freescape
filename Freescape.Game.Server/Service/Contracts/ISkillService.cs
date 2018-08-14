@@ -30,6 +30,7 @@ namespace Freescape.Game.Server.Service.Contracts
         void RegisterPCToAllCombatTargetsForSkill(NWPlayer pc, int skillID);
         void RegisterPCToAllCombatTargetsForSkill(NWPlayer player, SkillType skillType);
         void RegisterPCToNPCForSkill(NWPlayer pc, NWCreature npc, int skillID);
+        void RegisterPCToNPCForSkill(NWPlayer pc, NWCreature npc, SkillType skillType);
         void ToggleSkillLock(string playerID, int skillID);
     }
 }

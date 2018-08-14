@@ -47,7 +47,8 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_NumberOfResponsesPerPage_ShouldBe12()
         {
             DialogService service = new DialogService(
-                Substitute.For<INWScript>()
+                Substitute.For<INWScript>(),
+                new AppState()
             );
             Assert.AreEqual(12, service.NumberOfResponsesPerPage);
         }
@@ -56,7 +57,8 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_LoadPlayerDialog_InvalidGlobalID_ShouldThrowArgumentNullException()
         {
             DialogService service = new DialogService(
-                Substitute.For<INWScript>()
+                Substitute.For<INWScript>(),
+                new AppState()
             );
 
             Assert.Throws(typeof(ArgumentException), () =>
@@ -77,7 +79,8 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_LoadPlayerDialog_NoPlayerDialog_ShouldThrowException()
         {
             DialogService service = new DialogService(
-                Substitute.For<INWScript>()
+                Substitute.For<INWScript>(),
+                new AppState()
             );
 
             Assert.Throws(typeof(Exception), () =>
@@ -93,7 +96,8 @@ namespace Freescape.Game.Server.Tests.Service
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script
+                script,
+                new AppState()
             );
 
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
@@ -140,7 +144,8 @@ namespace Freescape.Game.Server.Tests.Service
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script
+                script,
+                new AppState()
             );
 
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
@@ -159,7 +164,8 @@ namespace Freescape.Game.Server.Tests.Service
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script
+                script,
+                new AppState()
             );
 
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
@@ -180,7 +186,8 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_RemovePlayerDialog_InvalidArguments_ShouldThrowException()
         {
             DialogService service = new DialogService(
-                Substitute.For<INWScript>()
+                Substitute.For<INWScript>(),
+                new AppState()
             );
 
             Assert.Throws(typeof(ArgumentException), () =>
@@ -201,7 +208,8 @@ namespace Freescape.Game.Server.Tests.Service
         public void DialogService_RemovePlayerDialog_NotRegistered_ShouldThrowException()
         {
             DialogService service = new DialogService(
-                Substitute.For<INWScript>()
+                Substitute.For<INWScript>(),
+                new AppState()
             );
 
             Assert.Throws(typeof(KeyNotFoundException), () =>
@@ -217,7 +225,8 @@ namespace Freescape.Game.Server.Tests.Service
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script
+                script,
+                new AppState()
             );
 
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
@@ -240,7 +249,8 @@ namespace Freescape.Game.Server.Tests.Service
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script
+                script,
+                new AppState()
             );
 
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
@@ -291,7 +301,8 @@ namespace Freescape.Game.Server.Tests.Service
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script
+                script,
+                new AppState()
             );
 
             for (int number = 1; number <= 99; number++)
@@ -320,7 +331,8 @@ namespace Freescape.Game.Server.Tests.Service
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script
+                script,
+                new AppState()
             );
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.GlobalID.Returns(x => "123");
@@ -340,7 +352,8 @@ namespace Freescape.Game.Server.Tests.Service
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
 
             DialogService service = new DialogService(
-                script
+                script,
+                new AppState()
             );
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.GlobalID.Returns(x => "123");

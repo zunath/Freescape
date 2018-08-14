@@ -18,8 +18,6 @@ namespace Freescape.Game.Server.Service
 {
     public class SkillService : ISkillService
     {
-        private static readonly Dictionary<string, CreatureSkillRegistration> CreatureRegistrations = new Dictionary<string, CreatureSkillRegistration>();
-
         private const float PrimaryIncrease = 0.2f;
         private const float SecondaryIncrease = 0.1f;
         private const float TertiaryIncrease = 0.05f;
@@ -35,6 +33,7 @@ namespace Freescape.Game.Server.Service
         private readonly IPerkService _perk;
         private readonly IBiowareXP2 _biowareXP2;
         private readonly ICustomEffectService _customEffect;
+        private readonly AppState _state;
 
         public SkillService(IDataContext db,
             INWScript script,
@@ -43,7 +42,8 @@ namespace Freescape.Game.Server.Service
             INWNXCreature nwnxCreature,
             IPerkService perk,
             IBiowareXP2 biowareXP2,
-            ICustomEffectService customEffect)
+            ICustomEffectService customEffect,
+            AppState state)
         {
             _db = db;
             _ = script;
@@ -53,6 +53,7 @@ namespace Freescape.Game.Server.Service
             _perk = perk;
             _biowareXP2 = biowareXP2;
             _customEffect = customEffect;
+            _state = state;
         }
 
         public int SkillCap => 500;
@@ -409,7 +410,7 @@ namespace Freescape.Game.Server.Service
                 GiveSkillXP(preg.Player, SkillType.HeavyArmor, (int)(armorXP * percent));
             }
 
-            CreatureRegistrations.Remove(creature.GlobalID);
+            _state.CreatureSkillRegistrations.Remove(creature.GlobalID);
         }
 
         private bool CheckForMartialArtsPenalty(List<Tuple<int, PlayerSkillPointTracker>> skillRegs)
@@ -496,17 +497,17 @@ namespace Freescape.Game.Server.Service
 
         private void RemovePlayerFromRegistrations(NWPlayer oPC)
         {
-            foreach (CreatureSkillRegistration reg in CreatureRegistrations.Values)
+            foreach (CreatureSkillRegistration reg in _state.CreatureSkillRegistrations.Values)
             {
                 reg.RemovePlayerRegistration(oPC);
 
                 if (reg.IsRegistrationEmpty())
                 {
-                    CreatureRegistrations.Remove(reg.CreatureID);
+                    _state.CreatureSkillRegistrations.Remove(reg.CreatureID);
                 }
                 else
                 {
-                    CreatureRegistrations[reg.CreatureID] = reg;
+                    _state.CreatureSkillRegistrations[reg.CreatureID] = reg;
                 }
             }
         }
@@ -712,14 +713,14 @@ namespace Freescape.Game.Server.Service
 
         private CreatureSkillRegistration GetCreatureSkillRegistration(string creatureUUID)
         {
-            if (CreatureRegistrations.ContainsKey(creatureUUID))
+            if (_state.CreatureSkillRegistrations.ContainsKey(creatureUUID))
             {
-                return CreatureRegistrations[creatureUUID];
+                return _state.CreatureSkillRegistrations[creatureUUID];
             }
             else
             {
                 var reg = new CreatureSkillRegistration(creatureUUID);
-                CreatureRegistrations[creatureUUID] = reg;
+                _state.CreatureSkillRegistrations[creatureUUID] = reg;
                 return reg;
             }
         }
@@ -767,6 +768,11 @@ namespace Freescape.Game.Server.Service
             
             CreatureSkillRegistration reg = GetCreatureSkillRegistration(npc.GlobalID);
             reg.AddSkillRegistrationPoint(pc, skillID, pcSkill.Rank);
+        }
+
+        public void RegisterPCToNPCForSkill(NWPlayer pc, NWCreature npc, SkillType skillType)
+        {
+            RegisterPCToNPCForSkill(pc, npc, (int) skillType);
         }
 
         public void RegisterPCToAllCombatTargetsForSkill(NWPlayer pc, int skillID)
