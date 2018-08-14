@@ -55,5 +55,6 @@ namespace Freescape.Game.Server.Service.Contracts
         void TransferBuildingOwnership(NWArea area, string newOwnerPlayerID);
         void TransferTerritoryOwnership(NWPlaceable flag, string newOwnerPlayerID);
         bool WillBlueprintOverlapWithExistingFlags(Location location, int blueprintID);
+        void DeleteContainerItemByGlobalID(string globalID);
     }
 }

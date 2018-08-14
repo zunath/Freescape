@@ -1155,6 +1155,13 @@ namespace Freescape.Game.Server.Service
             }
         }
 
+        public void DeleteContainerItemByGlobalID(string globalID)
+        {
+            var record = _db.PCTerritoryFlagsStructuresItems.Single(x => x.GlobalID == globalID);
+            _db.PCTerritoryFlagsStructuresItems.Remove(record);
+            _db.SaveChanges();
+        }
+
         public void SaveChanges()
         {
             _db.SaveChanges();

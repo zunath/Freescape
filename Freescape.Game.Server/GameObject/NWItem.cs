@@ -185,5 +185,19 @@ namespace Freescape.Game.Server.GameObject
             get => _.GetLocalInt(Object, "CUSTOM_ITEM_PROPERTY_MANA_BONUS");
             set => _.SetLocalInt(Object, "CUSTOM_ITEM_PROPERTY_MANA_BONUS", value);
         }
+
+
+        public virtual void ReduceItemStack()
+        {
+            int stackSize = _.GetItemStackSize(Object);
+            if (stackSize > 1)
+            {
+                _.SetItemStackSize(Object, stackSize - 1);
+            }
+            else
+            {
+                _.DestroyObject(Object);
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ using static NWN.NWScript;
 
 namespace Freescape.Game.Server.Service
 {
-    public class SearchService: ISearchService
+    public class SearchService : ISearchService
     {
         private const string SearchSiteCopyResref = "srch_plc_copy";
         private const string SearchSiteIDVariableName = "SearchSiteID";

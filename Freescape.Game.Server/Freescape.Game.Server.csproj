@@ -359,8 +359,25 @@
     <Compile Include="Placeable\QuestSystem\ItemCollector\OnDisturbed.cs" />
     <Compile Include="Placeable\QuestSystem\ItemCollector\OnOpened.cs" />
     <Compile Include="Placeable\QuestSystem\OnUsed.cs" />
+    <Compile Include="Placeable\Resource\OnAttacked.cs" />
+    <Compile Include="Placeable\Resource\OnDamaged.cs" />
+    <Compile Include="Placeable\Resource\OnDeath.cs" />
+    <Compile Include="Placeable\Resource\OnHeartbeat.cs" />
+    <Compile Include="Placeable\Resource\OnUsed.cs" />
+    <Compile Include="Placeable\SearchContainer\OnClosed.cs" />
+    <Compile Include="Placeable\SearchContainer\OnDisturbed.cs" />
+    <Compile Include="Placeable\SearchContainer\OnOpened.cs" />
+    <Compile Include="Placeable\SearchContainer\OnUsed.cs" />
     <Compile Include="Placeable\Sit.cs" />
+    <Compile Include="Placeable\StorageContainer\OnDisturbed.cs" />
+    <Compile Include="Placeable\StorageContainer\OnOpened.cs" />
     <Compile Include="Placeable\Stores\GenericStore.cs" />
+    <Compile Include="Placeable\StructureSystem\ConstructionSite\OnAttacked.cs" />
+    <Compile Include="Placeable\StructureSystem\PersistentStorage\OnClosed.cs" />
+    <Compile Include="Placeable\StructureSystem\PersistentStorage\OnDisturbed.cs" />
+    <Compile Include="Placeable\StructureSystem\PersistentStorage\OnOpened.cs" />
+    <Compile Include="Placeable\StructureSystem\PersistentStorage\OnUsed.cs" />
+    <Compile Include="Placeable\StructureSystem\TerritoryFlag\OnUsed.cs" />
     <Compile Include="Placeable\TrashCan\OnClosed.cs" />
     <Compile Include="Placeable\TrashCan\OnDisturbed.cs" />
     <Compile Include="Placeable\TrashCan\OnOpened.cs" />
@@ -532,10 +549,6 @@
     <Folder Include="Perk\Weaponsmith\" />
     <Folder Include="Perk\Weapons\" />
     <Folder Include="Perk\Woodworking\" />
-    <Folder Include="Placeable\Resource\" />
-    <Folder Include="Placeable\SearchContainer\" />
-    <Folder Include="Placeable\StorageContainer\" />
-    <Folder Include="Placeable\StructureSystem\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\SQL\Background\GetActiveBackgrounds.sql" />
