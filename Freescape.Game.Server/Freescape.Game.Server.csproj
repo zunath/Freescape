@@ -216,6 +216,11 @@
     <Compile Include="Perk\Armorsmith\HeavyArmorBlueprints.cs" />
     <Compile Include="Perk\Armorsmith\LightArmorBlueprints.cs" />
     <Compile Include="Perk\Armorsmith\SpeedyArmorsmith.cs" />
+    <Compile Include="Perk\Armor\DeflectDamage.cs" />
+    <Compile Include="Perk\Armor\Dodge.cs" />
+    <Compile Include="Perk\Armor\Evasiveness.cs" />
+    <Compile Include="Perk\Armor\Expertise.cs" />
+    <Compile Include="Perk\Armor\Mobility.cs" />
     <Compile Include="Perk\Construction\BuildingBlueprints.cs" />
     <Compile Include="Perk\Construction\ConservativeConstruction.cs" />
     <Compile Include="Perk\Construction\CraftingDeviceBlueprints.cs" />
@@ -228,6 +233,10 @@
     <Compile Include="Perk\Construction\VanityBlueprints.cs" />
     <Compile Include="Perk\Cooking\FoodRecipes.cs" />
     <Compile Include="Perk\Cooking\SpeedyCooking.cs" />
+    <Compile Include="Perk\Evocation\CrushingEarth.cs" />
+    <Compile Include="Perk\Evocation\FireBlast.cs" />
+    <Compile Include="Perk\Evocation\GraspingIce.cs" />
+    <Compile Include="Perk\Evocation\LightningShock.cs" />
     <Compile Include="Perk\FirstAid\FrugalMedic.cs" />
     <Compile Include="Perk\FirstAid\HealingKitExpert.cs" />
     <Compile Include="Perk\FirstAid\ImmediateImprovement.cs" />
@@ -235,6 +244,10 @@
     <Compile Include="Perk\Gathering\CarefulForager.cs" />
     <Compile Include="Perk\Gathering\ForageExpert.cs" />
     <Compile Include="Perk\Gathering\SeedPicker.cs" />
+    <Compile Include="Perk\General\Health.cs" />
+    <Compile Include="Perk\General\Lucky.cs" />
+    <Compile Include="Perk\General\Mana.cs" />
+    <Compile Include="Perk\General\Meditate.cs" />
     <Compile Include="Perk\Harvesting\LoggingAxeExpert.cs" />
     <Compile Include="Perk\Harvesting\Lumberjack.cs" />
     <Compile Include="Perk\Harvesting\Miner.cs" />
@@ -586,9 +599,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Event\Craft\" />
-    <Folder Include="Perk\Armor\" />
-    <Folder Include="Perk\Evocation\" />
-    <Folder Include="Perk\General\" />
     <Folder Include="Perk\MartialArts\" />
     <Folder Include="Perk\OneHanded\" />
     <Folder Include="Perk\Shields\" />
