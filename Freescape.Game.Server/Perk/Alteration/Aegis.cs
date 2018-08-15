@@ -7,8 +7,9 @@ using static NWN.NWScript;
 
 namespace Freescape.Game.Server.Perk.Alteration
 {
-    public class Aegis: PerkBase
+    public class Aegis: IPerk
     {
+        private readonly INWScript _;
         private readonly IPerkService _perk;
         private readonly ICustomEffectService _customEffect;
         private readonly ISkillService _skill;
@@ -20,15 +21,15 @@ namespace Freescape.Game.Server.Perk.Alteration
             ICustomEffectService customEffect,
             ISkillService skill,
             IRandomService random)
-            :base(script)
         {
+            _ = script;
             _perk = perk;
             _customEffect = customEffect;
             _skill = skill;
             _random = random;
         }
 
-        public override bool CanCastSpell(NWPlayer oPC, NWObject oTarget)
+        public bool CanCastSpell(NWPlayer oPC, NWObject oTarget)
         {
             int level = _perk.GetPCPerkLevel(oPC, PerkType.Aegis);
             int activeAegisLevel = _customEffect.GetActiveEffectLevel(oTarget, CustomEffectType.Aegis);
@@ -36,27 +37,27 @@ namespace Freescape.Game.Server.Perk.Alteration
             return level >= activeAegisLevel;
         }
 
-        public override string CannotCastSpellMessage()
+        public string CannotCastSpellMessage()
         {
             return "A more powerful effect already exists on your target.";
         }
 
-        public override int ManaCost(NWPlayer oPC, int baseManaCost)
+        public int ManaCost(NWPlayer oPC, int baseManaCost)
         {
             return baseManaCost;
         }
 
-        public override float CastingTime(NWPlayer oPC, float baseCastingTime)
+        public float CastingTime(NWPlayer oPC, float baseCastingTime)
         {
             return baseCastingTime;
         }
 
-        public override float CooldownTime(NWPlayer oPC, float baseCooldownTime)
+        public float CooldownTime(NWPlayer oPC, float baseCooldownTime)
         {
             return baseCooldownTime;
         }
 
-        public override void OnImpact(NWPlayer oPC, NWObject oTarget)
+        public void OnImpact(NWPlayer oPC, NWObject oTarget)
         {
             int level = _perk.GetPCPerkLevel(oPC, PerkType.Aegis);
             int ticks;
@@ -94,23 +95,23 @@ namespace Freescape.Game.Server.Perk.Alteration
 
         }
 
-        public override void OnPurchased(NWPlayer oPC, int newLevel)
+        public void OnPurchased(NWPlayer oPC, int newLevel)
         {
         }
 
-        public override void OnRemoved(NWPlayer oPC)
+        public void OnRemoved(NWPlayer oPC)
         {
         }
 
-        public override void OnItemEquipped(NWPlayer oPC, NWItem oItem)
+        public void OnItemEquipped(NWPlayer oPC, NWItem oItem)
         {
         }
 
-        public override void OnItemUnequipped(NWPlayer oPC, NWItem oItem)
+        public void OnItemUnequipped(NWPlayer oPC, NWItem oItem)
         {
         }
 
-        public override bool IsHostile()
+        public bool IsHostile()
         {
             return false;
         }

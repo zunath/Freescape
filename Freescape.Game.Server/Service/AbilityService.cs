@@ -66,7 +66,7 @@ namespace Freescape.Game.Server.Service
 
             if (perk == null) return;
 
-            IPerk perkAction = App.Resolve<PerkBase>(perk.JavaScriptName);
+            IPerk perkAction = App.ResolveByInterface<IPerk>("Perk." + perk.JavaScriptName);
             if (perkAction == null) return;
 
             PlayerCharacter playerEntity = _db.PlayerCharacters.Single(x => x.PlayerID == pc.GlobalID);
@@ -316,7 +316,7 @@ namespace Freescape.Game.Server.Service
 
             Data.Entities.Perk entity = _db.Perks.Single(x => x.PerkID == activeWeaponSkillID);
 
-            IPerk perk = App.Resolve<PerkBase>(entity.JavaScriptName);
+            IPerk perk = App.ResolveByInterface<IPerk>("Perk." + entity.JavaScriptName);
 
             perk?.OnImpact(oPC, oTarget);
 

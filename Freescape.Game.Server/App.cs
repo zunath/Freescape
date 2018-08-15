@@ -160,9 +160,8 @@ namespace Freescape.Game.Server
             RegisterInterfaceImplementations<IActionItem>(builder);
             RegisterInterfaceImplementations<IPerk>(builder);
 
-            // Conversations
+            // Abstract Classes
             RegisterAbstractClass<ConversationBase>(builder);
-            RegisterAbstractClass<PerkBase>(builder);
 
             // Third Party
             builder.RegisterType<BiowarePosition>().As<IBiowarePosition>();

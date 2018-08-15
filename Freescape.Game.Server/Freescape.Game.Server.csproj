@@ -423,7 +423,6 @@
     <Compile Include="NWN\Events\Player\pc_on_heartbeat.cs" />
     <Compile Include="Perk\Alteration\Aegis.cs" />
     <Compile Include="Perk\IPerk.cs" />
-    <Compile Include="Perk\PerkBase.cs" />
     <Compile Include="Placeable\CraftingDevice\OnClosed.cs" />
     <Compile Include="Placeable\CraftingDevice\OnDisturbed.cs" />
     <Compile Include="Placeable\CraftingDevice\OnOpened.cs" />
