@@ -259,6 +259,8 @@
     <Compile Include="Perk\Harvesting\SpeedyLogger.cs" />
     <Compile Include="Perk\Harvesting\SpeedyMiner.cs" />
     <Compile Include="Perk\Harvesting\WoodBagger.cs" />
+    <Compile Include="Perk\MartialArts\CircleKick.cs" />
+    <Compile Include="Perk\MartialArts\DeflectArrows.cs" />
     <Compile Include="Perk\Metalworking\CoalManagement.cs" />
     <Compile Include="Perk\Metalworking\ComponentBlueprints.cs" />
     <Compile Include="Perk\Metalworking\Smelting.cs" />
@@ -266,10 +268,26 @@
     <Compile Include="Perk\Metalworking\SpeedyMetalworking.cs" />
     <Compile Include="Perk\Metalworking\SpeedySmelter.cs" />
     <Compile Include="Perk\Metalworking\ToolBlueprints.cs" />
+    <Compile Include="Perk\OneHanded\BladePowerAttack.cs" />
+    <Compile Include="Perk\OneHanded\BluntPowerAttack.cs" />
+    <Compile Include="Perk\OneHanded\CalledShot.cs" />
+    <Compile Include="Perk\OneHanded\DualWielding.cs" />
+    <Compile Include="Perk\OneHanded\Opportunist.cs" />
+    <Compile Include="Perk\OneHanded\WeaponFinesse.cs" />
+    <Compile Include="Perk\Shields\BlockingRecovery.cs" />
+    <Compile Include="Perk\Shields\ExpulsionManeuver.cs" />
     <Compile Include="Perk\Survival\ExpertFarmer.cs" />
     <Compile Include="Perk\Survival\FarmingEfficiency.cs" />
+    <Compile Include="Perk\Throwing\RapidToss.cs" />
+    <Compile Include="Perk\Throwing\TossAccuracy.cs" />
+    <Compile Include="Perk\Throwing\ZenTossing.cs" />
+    <Compile Include="Perk\TwinBlade\TwinBladeMastery.cs" />
+    <Compile Include="Perk\TwoHanded\Cleave.cs" />
+    <Compile Include="Perk\TwoHanded\Knockdown.cs" />
     <Compile Include="Perk\Weaponsmith\MetalWeaponBlueprints.cs" />
     <Compile Include="Perk\Weaponsmith\SpeedyWeaponsmith.cs" />
+    <Compile Include="Perk\Weapons\Focus.cs" />
+    <Compile Include="Perk\Weapons\ImprovedCritical.cs" />
     <Compile Include="Perk\Woodworking\SpeedyWoodworking.cs" />
     <Compile Include="Perk\Woodworking\WoodArmorBlueprints.cs" />
     <Compile Include="Perk\Woodworking\WoodComponentsBlueprints.cs" />
@@ -599,13 +617,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Event\Craft\" />
-    <Folder Include="Perk\MartialArts\" />
-    <Folder Include="Perk\OneHanded\" />
-    <Folder Include="Perk\Shields\" />
-    <Folder Include="Perk\Throwing\" />
-    <Folder Include="Perk\TwinBlade\" />
-    <Folder Include="Perk\TwoHanded\" />
-    <Folder Include="Perk\Weapons\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\SQL\Background\GetActiveBackgrounds.sql" />
