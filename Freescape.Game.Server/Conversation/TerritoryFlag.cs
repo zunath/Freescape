@@ -361,7 +361,7 @@ namespace Freescape.Game.Server.Conversation
             NWPlayer player = NWPlayer.Wrap(_.GetFirstPC());
             while (player.IsValid)
             {
-                if (player != GetPC() && !player.IsDM)
+                if (!Equals(player, GetPC()) && !player.IsDM)
                 {
                     string message = "Add Permissions: ";
                     if (existingUUIDs.Contains(player.GlobalID))
@@ -554,7 +554,7 @@ namespace Freescape.Game.Server.Conversation
             NWPlayer player = NWPlayer.Wrap(_.GetFirstPC());
             while (player.IsValid)
             {
-                if (player != GetPC() && !player.IsDM)
+                if (!Equals(player, GetPC()) && !player.IsDM)
                 {
                     AddResponseToPage("TransferOwnershipPage", "Transfer Ownership: " + player.Name, true, new Tuple<string, dynamic>(string.Empty, player.GlobalID));
                 }

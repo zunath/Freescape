@@ -72,7 +72,7 @@ namespace Freescape.Game.Server.Perk.Throwing
             NWItem equippedArmor = oItem ?? oPC.Chest;
             NWItem equippedWeapon = oItem ?? oPC.RightHand;
 
-            if (equippedArmor == oItem || equippedWeapon == oItem ||
+            if (Equals(equippedArmor, oItem) || Equals(equippedWeapon, oItem) ||
                 equippedArmor.CustomItemType != CustomItemType.LightArmor ||
                 equippedWeapon.CustomItemType != CustomItemType.Throwing)
             {

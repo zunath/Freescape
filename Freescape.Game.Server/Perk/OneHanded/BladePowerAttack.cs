@@ -77,7 +77,7 @@ namespace Freescape.Game.Server.Perk.OneHanded
             NWItem equipped = oItem ?? oPC.RightHand;
             int perkLevel = _perk.GetPCPerkLevel(oPC, PerkType.BladePowerAttack);
 
-            if (equipped == oItem || oItem.CustomItemType != CustomItemType.Blade)
+            if (Equals(equipped, oItem) || equipped.CustomItemType != CustomItemType.Blade)
             {
                 _nwnxCreature.RemoveFeat(oPC, FEAT_POWER_ATTACK);
                 _nwnxCreature.RemoveFeat(oPC, FEAT_IMPROVED_POWER_ATTACK);

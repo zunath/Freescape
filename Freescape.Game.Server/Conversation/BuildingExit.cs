@@ -99,7 +99,7 @@ namespace Freescape.Game.Server.Conversation
                 NWPlayer player = NWPlayer.Wrap(_.GetFirstPC());
                 while (player.IsValid)
                 {
-                    if (player.Area == oArea) return;
+                    if (Equals(player.Area, oArea)) return;
                     player = NWPlayer.Wrap(_.GetNextPC());
                 }
 

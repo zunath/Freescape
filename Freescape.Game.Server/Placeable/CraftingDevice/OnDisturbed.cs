@@ -56,7 +56,7 @@ namespace Freescape.Game.Server.Placeable.CraftingDevice
                         HandleCraftItem(oPC, device);
                     }
                 }
-                else if (oItem == tools)
+                else if (Equals(oItem, tools))
                 {
                     device.DeleteLocalObject("CRAFT_DEVICE_TOOLS");
                 }

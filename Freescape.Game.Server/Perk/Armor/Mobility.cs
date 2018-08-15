@@ -67,7 +67,7 @@ namespace Freescape.Game.Server.Perk.Armor
         {
             NWItem equipped = oItem ?? oPC.Chest;
 
-            if (equipped == oItem || equipped.CustomItemType != CustomItemType.LightArmor)
+            if (equipped.Equals(oItem) || equipped.CustomItemType != CustomItemType.LightArmor)
             {
                 _nwnxCreature.RemoveFeat(oPC, FEAT_MOBILITY);
                 return;

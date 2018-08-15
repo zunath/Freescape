@@ -79,11 +79,11 @@ namespace Freescape.Game.Server.Perk.Weapons
             // Unarmed check
             NWItem mainHand = oPC.RightHand;
             NWItem offHand = oPC.LeftHand;
-            if (oItem != null && oItem == mainHand)
+            if (oItem != null && Equals(oItem, mainHand))
             {
                 mainHand = NWItem.Wrap(new Object());
             }
-            else if (oItem != null && oItem == offHand)
+            else if (oItem != null && Equals(oItem, offHand))
             {
                 offHand = NWItem.Wrap(new Object());
             }
@@ -97,7 +97,7 @@ namespace Freescape.Game.Server.Perk.Weapons
                 return;
             }
 
-            if (oItem != null && oItem == equipped) return;
+            if (oItem != null && Equals(oItem, equipped)) return;
 
             // All other weapon types
             PerkType perkType;

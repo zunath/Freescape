@@ -86,7 +86,7 @@ namespace Freescape.Game.Server.Perk.OneHanded
             NWItem offEquipped = oItem ?? oPC.LeftHand;
             
             // oItem was unequipped.
-            if (mainEquipped == oItem || offEquipped == oItem)
+            if (Equals(mainEquipped, oItem) || Equals(offEquipped, oItem))
             {
                 RemoveFeats(oPC);
                 return;

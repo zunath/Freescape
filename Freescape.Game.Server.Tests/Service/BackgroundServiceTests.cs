@@ -115,7 +115,7 @@ namespace Freescape.Game.Server.Tests.Service
             var player1 = Substitute.For<NWPlayer>(_, _nwnxCreature);
             player1.GlobalID.Returns("123");
 
-            var player2 = Substitute.For<INWPlayer>();
+            var player2 = Substitute.For<NWPlayer>();
             player2.GlobalID.Returns("789");
 
             IQueryable<PlayerCharacter> players =

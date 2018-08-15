@@ -75,7 +75,7 @@ namespace Freescape.Game.Server.Perk.OneHanded
         {
             NWItem equipped = oItem ?? oPC.RightHand;
             
-            if (equipped == oItem || equipped.CustomItemType != CustomItemType.FinesseBlade)
+            if (Equals(equipped, oItem) || equipped.CustomItemType != CustomItemType.FinesseBlade)
             {
                 _nwnxCreature.RemoveFeat(oPC, FEAT_OPPORTUNIST);
                 return;

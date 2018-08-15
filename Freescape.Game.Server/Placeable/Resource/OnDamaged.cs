@@ -135,7 +135,7 @@ namespace Freescape.Game.Server.Placeable.Resource
                 int attemptFailureCount = oPC.GetLocalInt("RESOURCE_ATTEMPT_FAILURE_COUNT") + 1;
                 NWObject failureResource = NWObject.Wrap(oPC.GetLocalObject("RESOURCE_ATTEMPT_FAILURE_OBJECT"));
 
-                if (!failureResource.IsValid || failureResource != resource)
+                if (!failureResource.IsValid || !Equals(failureResource, resource))
                 {
                     failureResource = resource;
                     attemptFailureCount = 1;

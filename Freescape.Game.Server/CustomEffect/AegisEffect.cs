@@ -15,6 +15,7 @@ namespace Freescape.Game.Server.CustomEffect
 
         public void Apply(NWCreature oCaster, NWObject oTarget)
         {
+            _skill.ApplyStatChanges((NWPlayer)oTarget, null);
         }
 
         public void Tick(NWCreature oCaster, NWObject oTarget)

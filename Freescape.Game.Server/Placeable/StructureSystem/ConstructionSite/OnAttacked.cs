@@ -67,7 +67,7 @@ namespace Freescape.Game.Server.Placeable.StructureSystem.ConstructionSite
             }
 
             // Offhand weapons don't contribute to building.
-            if (weapon == oPC.LeftHand)
+            if (weapon.Equals(oPC.LeftHand))
             {
                 return true;
             }

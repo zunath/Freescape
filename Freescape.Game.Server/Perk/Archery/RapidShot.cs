@@ -72,7 +72,7 @@ namespace Freescape.Game.Server.Perk.Archery
             NWItem equippedArmor = oItem ?? oPC.Chest;
             NWItem equippedWeapon = oItem ?? oPC.RightHand;
 
-            if (equippedArmor == oItem || equippedWeapon == oItem || 
+            if (equippedArmor.Equals(oItem) || equippedWeapon.Equals(oItem) || 
                 equippedArmor.CustomItemType != CustomItemType.LightArmor ||
                 equippedWeapon.CustomItemType != CustomItemType.Bow)
             {

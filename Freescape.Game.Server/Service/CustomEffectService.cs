@@ -7,6 +7,7 @@ using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
+using Freescape.Game.Server.ValueObject.CustomEffect;
 using NWN;
 using static NWN.NWScript;
 
@@ -14,30 +15,20 @@ namespace Freescape.Game.Server.Service
 {
     public class CustomEffectService : ICustomEffectService
     {
-        private class CasterSpell
-        {
-            public NWCreature Caster { get; set; }
-            public NWObject Target { get; set; }
-            public string EffectName { get; set; }
-            public int CustomEffectID { get; set; }
-        }
-
-        private readonly Dictionary<CasterSpell, int> _npcEffectList;
-        private readonly List<CasterSpell> _effectsToRemove;
-
         private readonly IDataContext _db;
         private readonly IErrorService _error;
         private readonly INWScript _;
+        private readonly AppState _state;
 
         public CustomEffectService(IDataContext db,
             IErrorService error,
-            INWScript script)
+            INWScript script,
+            AppState state)
         {
-            _npcEffectList = new Dictionary<CasterSpell, int>();
-            _effectsToRemove = new List<CasterSpell>();
             _db = db;
             _error = error;
             _ = script;
+            _state = state;
         }
 
         public int GetActiveEffectLevel(NWObject target, CustomEffectType effectType)
@@ -95,13 +86,15 @@ namespace Freescape.Game.Server.Service
                 PCCustomEffect result = RunPCCustomEffectProcess(oPC, effect);
                 if (result == null)
                 {
-                    oPC.SendMessage(effect.CustomEffect.WornOffMessage);
-                    ICustomEffect handler = App.Resolve<ICustomEffect>(effect.CustomEffect.ScriptHandler);
-                    handler?.WearOff(null, oPC);
-
+                    string message = effect.CustomEffect.WornOffMessage;
+                    string scriptHandler = effect.CustomEffect.ScriptHandler;
+                    oPC.SendMessage(message);
                     oPC.DeleteLocalInt("CUSTOM_EFFECT_ACTIVE_" + effect.CustomEffectID);
                     _db.PCCustomEffects.Remove(effect);
                     _db.SaveChanges();
+
+                    ICustomEffect handler = App.ResolveByInterface<ICustomEffect>("CustomEffect." + scriptHandler);
+                    handler?.WearOff(null, oPC);
                 }
                 else
                 {
@@ -113,12 +106,12 @@ namespace Freescape.Game.Server.Service
 
         public void OnModuleHeartbeat()
         {
-            foreach (var entry in _npcEffectList)
+            foreach (var entry in _state.NPCEffects)
             {
-                CasterSpell casterModel = entry.Key;
-                _npcEffectList[entry.Key] = entry.Value - 1;
+                CasterSpellVO casterModel = entry.Key;
+                _state.NPCEffects[entry.Key] = entry.Value - 1;
                 Data.Entities.CustomEffect entity = _db.CustomEffects.Single(x => x.CustomEffectID == casterModel.CustomEffectID);
-                ICustomEffect handler = App.Resolve<ICustomEffect>(entity.ScriptHandler);
+                ICustomEffect handler = App.ResolveByInterface<ICustomEffect>("CustomEffect." + entity.ScriptHandler);
 
                 try
                 {
@@ -135,7 +128,7 @@ namespace Freescape.Game.Server.Service
                         !casterModel.Target.IsValid ||
                         casterModel.Target.CurrentHP <= -11)
                 {
-                    _effectsToRemove.Add(entry.Key);
+                    _state.EffectsToRemove.Add(entry.Key);
 
                     handler?.WearOff(casterModel.Caster, casterModel.Target);
 
@@ -148,11 +141,11 @@ namespace Freescape.Game.Server.Service
                 }
             }
 
-            foreach (CasterSpell entry in _effectsToRemove)
+            foreach (CasterSpellVO entry in _state.EffectsToRemove)
             {
-                _npcEffectList.Remove(entry);
+                _state.NPCEffects.Remove(entry);
             }
-            _effectsToRemove.Clear();
+            _state.EffectsToRemove.Clear();
         }
 
         private PCCustomEffect RunPCCustomEffectProcess(NWPlayer oPC, PCCustomEffect effect)
@@ -165,7 +158,7 @@ namespace Freescape.Game.Server.Service
                 oPC.SendMessage(effect.CustomEffect.ContinueMessage);
             }
 
-            ICustomEffect handler = App.Resolve<ICustomEffect>(effect.CustomEffect.ScriptHandler);
+            ICustomEffect handler = App.ResolveByInterface<ICustomEffect>("CustomEffect." + effect.CustomEffect.ScriptHandler);
 
             handler?.Tick(null, oPC);
 
@@ -186,7 +179,11 @@ namespace Freescape.Game.Server.Service
             foreach (Effect effect in oTarget.Effects)
             {
                 int type = _.GetEffectType(effect);
-                if (type == EFFECT_TYPE_SANCTUARY) return;
+                if (type == EFFECT_TYPE_SANCTUARY)
+                {
+                    oCaster.SendMessage("Your target is currently under the effects of Sanctuary.");
+                    return;
+                }
             }
 
             Data.Entities.CustomEffect effectEntity = _db.CustomEffects.Single(x => x.CustomEffectID == customEffectID);
@@ -194,13 +191,17 @@ namespace Freescape.Game.Server.Service
             // PC custom effects are tracked in the database.
             if (oTarget.IsPlayer)
             {
-                PCCustomEffect entity = _db.PCCustomEffects.Single(x => x.PlayerID == oTarget.GlobalID && x.CustomEffectID == customEffectID);
+                PCCustomEffect entity = _db.PCCustomEffects.SingleOrDefault(x => x.PlayerID == oTarget.GlobalID && x.CustomEffectID == customEffectID);
 
                 if (entity == null)
                 {
-                    entity = new PCCustomEffect();
-                    entity.PlayerID = oTarget.GlobalID;
-                    entity.CustomEffectID = effectEntity.CustomEffectID;
+                    entity = new PCCustomEffect
+                    {
+                        PlayerID = oTarget.GlobalID,
+                        CustomEffectID = customEffectID
+                    };
+
+                    _db.PCCustomEffects.Add(entity);
                 }
 
                 entity.Ticks = ticks;
@@ -212,37 +213,39 @@ namespace Freescape.Game.Server.Service
             else
             {
                 // Look for existing effect.
-                foreach (var entry in _npcEffectList)
+                foreach (var entry in _state.NPCEffects)
                 {
-                    CasterSpell casterSpellModel = entry.Key;
+                    CasterSpellVO casterSpellModel = entry.Key;
 
-                    if (casterSpellModel.Caster == oCaster &&
+                    if (casterSpellModel.Caster.Equals(oCaster) &&
                        casterSpellModel.CustomEffectID == customEffectID &&
-                       casterSpellModel.Target == oTarget)
+                       casterSpellModel.Target.Equals(oTarget))
                     {
-                        _npcEffectList[entry.Key] = ticks;
+                        _state.NPCEffects[entry.Key] = ticks;
                         return;
                     }
                 }
 
                 // Didn't find an existing effect. Create a new one.
-                CasterSpell spellModel = new CasterSpell();
-                spellModel.Caster = oCaster;
-                spellModel.CustomEffectID = customEffectID;
-                spellModel.EffectName = effectEntity.Name;
-                spellModel.Target = oTarget;
+                CasterSpellVO spellModel = new CasterSpellVO
+                {
+                    Caster = oCaster,
+                    CustomEffectID = customEffectID,
+                    EffectName = effectEntity.Name,
+                    Target = oTarget
+                };
 
-                _npcEffectList[spellModel] = ticks;
+                _state.NPCEffects[spellModel] = ticks;
             }
 
-            ICustomEffect handler = App.Resolve<ICustomEffect>(effectEntity.ScriptHandler);
+            ICustomEffect handler = App.ResolveByInterface<ICustomEffect>("CustomEffect." + effectEntity.ScriptHandler);
             handler?.Apply(oCaster, oTarget);
             oTarget.SetLocalInt("CUSTOM_EFFECT_ACTIVE_" + customEffectID, effectLevel);
         }
 
         public bool DoesPCHaveCustomEffect(NWPlayer oPC, int customEffectID)
         {
-            PCCustomEffect effect = _db.PCCustomEffects.Single(x => x.PlayerID == oPC.GlobalID && x.CustomEffectID == customEffectID);
+            PCCustomEffect effect = _db.PCCustomEffects.SingleOrDefault(x => x.PlayerID == oPC.GlobalID && x.CustomEffectID == customEffectID);
 
             return effect != null;
         }
@@ -254,7 +257,7 @@ namespace Freescape.Game.Server.Service
 
         public void RemovePCCustomEffect(NWPlayer oPC, long customEffectID)
         {
-            PCCustomEffect effect = _db.PCCustomEffects.Single(x => x.PlayerID == oPC.GlobalID && x.CustomEffectID == customEffectID);
+            PCCustomEffect effect = _db.PCCustomEffects.SingleOrDefault(x => x.PlayerID == oPC.GlobalID && x.CustomEffectID == customEffectID);
             oPC.DeleteLocalInt("CUSTOM_EFFECT_ACTIVE_" + customEffectID);
 
             if (effect == null) return;

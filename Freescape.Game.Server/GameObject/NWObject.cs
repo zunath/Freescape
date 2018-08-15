@@ -25,15 +25,53 @@ namespace Freescape.Game.Server.GameObject
             return obj;
         }
 
+        public virtual bool IsInitializedAsPlayer
+        {
+            get
+            {
+                NWItem database = NWItem.Wrap(_.GetItemPossessedBy(Object, "database"));
+                string globalID = database.GetLocalString("PC_ID_NUMBER");
+                return database.IsValid && !string.IsNullOrWhiteSpace(globalID);
+            }
+        }
+
+        public virtual void InitializePlayer()
+        {
+            if (IsInitializedAsPlayer || !IsPlayer) return;
+
+            NWItem database = NWItem.Wrap(_.GetItemPossessedBy(Object, "database"));
+            if (!database.IsValid)
+            {
+                database = NWItem.Wrap(_.CreateItemOnObject("database", Object));
+            }
+
+            string guid = Guid.NewGuid().ToString();
+            database.SetLocalString("PC_ID_NUMBER", guid);
+        }
+
         public virtual string GlobalID
         {
             get
             {
-                string globalID = _.GetLocalString(Object, "GLOBAL_ID");
-                if (string.IsNullOrWhiteSpace(globalID))
+                string globalID;
+                if (IsPlayer)
                 {
-                    globalID = Guid.NewGuid().ToString();
-                    _.SetLocalString(Object, "GLOBAL_ID", globalID);
+                    if (!IsInitializedAsPlayer)
+                    {
+                        throw new Exception("Must call Initialize() before getting GlobalID");
+                    }
+
+                    NWItem database = NWItem.Wrap(_.GetItemPossessedBy(Object, "database"));
+                    globalID = database.GetLocalString("PC_ID_NUMBER");
+                }
+                else
+                {
+                    globalID = _.GetLocalString(Object, "GLOBAL_ID");
+                    if (string.IsNullOrWhiteSpace(globalID))
+                    {
+                        globalID = Guid.NewGuid().ToString();
+                        _.SetLocalString(Object, "GLOBAL_ID", globalID);
+                    }
                 }
 
                 return globalID;
@@ -284,6 +322,18 @@ namespace Freescape.Game.Server.GameObject
 
                 effect = _.GetNextEffect(Object);
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is NWObject item)) return false;
+
+            return item.Object == Object;
+        }
+
+        public override int GetHashCode()
+        {
+            return Object.GetHashCode();
         }
     }
 }

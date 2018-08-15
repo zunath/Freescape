@@ -45,6 +45,7 @@ namespace Freescape.Game.Server.Service
 
             foreach (PCPerk pcPerk in perks)
             {
+                pcPerk.Perk = _db.Perks.Single(x => x.PerkID == pcPerk.PerkID);
                 string jsName = pcPerk.Perk.JavaScriptName;
                 if (string.IsNullOrWhiteSpace(jsName)) continue;
 
@@ -65,6 +66,7 @@ namespace Freescape.Game.Server.Service
 
             foreach (PCPerk pcPerk in perks)
             {
+                pcPerk.Perk = _db.Perks.Single(x => x.PerkID == pcPerk.PerkID);
                 string jsName = pcPerk.Perk.JavaScriptName;
                 if (string.IsNullOrWhiteSpace(jsName)) continue;
                 

@@ -75,11 +75,11 @@ namespace Freescape.Game.Server.Perk.MartialArts
             CustomItemType offType = offHand.CustomItemType;
             bool receivesFeat = true;
 
-            if (unequippingItem != null && unequippingItem == mainHand)
+            if (unequippingItem != null && Equals(unequippingItem, mainHand))
             {
                 mainHand = NWItem.Wrap(new Object());
             }
-            else if (unequippingItem != null && unequippingItem == offHand)
+            else if (unequippingItem != null && Equals(unequippingItem, offHand))
             {
                 offHand = NWItem.Wrap(new Object());
             }

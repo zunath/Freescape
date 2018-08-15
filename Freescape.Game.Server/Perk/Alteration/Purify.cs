@@ -1,4 +1,5 @@
-﻿using Freescape.Game.Server.Enumeration;
+﻿using System;
+using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
@@ -80,7 +81,6 @@ namespace Freescape.Game.Server.Perk.Alteration
 
             Effect vfx = _.EffectVisualEffect(VFX_IMP_HEALING_S);
             _.ApplyEffectToObject(DURATION_TYPE_INSTANT, vfx, oTarget.Object);
-
 
             foreach (Effect effect in oTarget.Effects)
             {

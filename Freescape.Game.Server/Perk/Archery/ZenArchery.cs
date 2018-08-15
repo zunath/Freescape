@@ -71,7 +71,7 @@ namespace Freescape.Game.Server.Perk.Archery
         {
             NWItem equipped = oItem ?? oPC.RightHand;
 
-            if (equipped == oItem || 
+            if (equipped.Equals(oItem) || 
                     (equipped.CustomItemType != CustomItemType.Bow && 
                      equipped.CustomItemType != CustomItemType.Crossbow))
             {

@@ -23,45 +23,7 @@ namespace Freescape.Game.Server.GameObject
 
             return obj;
         }
-
-        public virtual bool IsInitialized
-        {
-            get
-            {
-                NWItem database = NWItem.Wrap(_.GetItemPossessedBy(Object, "database"));
-                string globalID = database.GetLocalString("PC_ID_NUMBER");
-                return database.IsValid && !string.IsNullOrWhiteSpace(globalID);
-            }
-        }
-
-        public virtual void Initialize()
-        {
-            if (IsInitialized) return;
-            
-            NWItem database = NWItem.Wrap(_.GetItemPossessedBy(Object, "database"));
-            if (!database.IsValid)
-            {
-                database = NWItem.Wrap(_.CreateItemOnObject("database", Object));
-            }
-            
-            string guid = Guid.NewGuid().ToString();
-            database.SetLocalString("PC_ID_NUMBER", guid);
-        }
-
-        public new virtual string GlobalID
-        {
-            get
-            {
-                if (!IsInitialized)
-                {
-                    throw new Exception("Must call Initialize() before getting GlobalID");
-                }
-
-                NWItem database = NWItem.Wrap(_.GetItemPossessedBy(Object, "database"));
-                return database.GetLocalString("PC_ID_NUMBER");
-            }
-        }
-
+        
         public virtual bool IsBusy
         {
             get => GetLocalInt("IS_BUSY") == 1;

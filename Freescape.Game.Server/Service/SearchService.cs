@@ -93,7 +93,7 @@ namespace Freescape.Game.Server.Service
                 while (player.IsValid)
                 {
                     if (_.GetDistanceBetween(oPC.Object, player.Object) <= 20.0f &&
-                        player.Area == oPC.Area &&        
+                        player.Area.Equals(oPC.Area) &&        
                         _.GetFactionEqual(player.Object, oPC.Object) == TRUE)
                     {
                         player.SendMessage(pcName + " found " + itemName + ".");

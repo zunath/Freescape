@@ -232,7 +232,7 @@ namespace Freescape.Game.Server.Conversation
             
             foreach (NWPlaceable structure in model.NearbyStructures)
             {
-                if (excludeObject == null || excludeObject != structure)
+                if (excludeObject == null || !Equals(excludeObject, structure))
                 {
                     AddResponseToPage("MainPage", structure.Name, true, new Tuple<string, dynamic>(string.Empty, structure));
                 }

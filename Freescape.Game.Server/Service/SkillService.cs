@@ -61,7 +61,7 @@ namespace Freescape.Game.Server.Service
         public void ApplyStatChanges(NWPlayer player, NWItem ignoreItem)
         {
             if (!player.IsPlayer) return;
-            if (!player.IsInitialized) return;
+            if (!player.IsInitializedAsPlayer) return;
 
             PlayerCharacter pcEntity = _db.PlayerCharacters.Single(x => x.PlayerID == player.GlobalID);
             List<PCSkill> skills = _db.PCSkills.Where(x => x.PlayerID == player.GlobalID && x.Skill.IsActive).ToList();
@@ -158,7 +158,7 @@ namespace Freescape.Game.Server.Service
             for (int slot = 0; slot < NUM_INVENTORY_SLOTS; slot++)
             {
                 NWItem item = NWItem.Wrap(_.GetItemInSlot(slot, player.Object));
-                if (item == ignoreItem) continue;
+                if (item.Equals(ignoreItem)) continue;
                 
                 equippedItemHPBonus += item.HPBonus;
                 equippedItemManaBonus += item.ManaBonus;
@@ -218,7 +218,7 @@ namespace Freescape.Game.Server.Service
                 NWObject target = NWObject.Wrap(_.GetAttackTarget(creature.Object));
                 if (target.IsValid && members.Contains(target))
                 {
-                    if (target.IsValid && target.Area == player.Area)
+                    if (target.IsValid && target.Area.Equals(player.Area))
                     {
                         RegisterPCToNPCForSkill(player, creature, skillID);
                     }
@@ -797,7 +797,7 @@ namespace Freescape.Game.Server.Service
                 NWCreature target = NWCreature.Wrap(_.GetAttackTarget(creature.Object));
                 if (target.IsValid && members.Contains(target))
                 {
-                    if (target.IsValid && target.Area == pc.Area)
+                    if (target.IsValid && target.Area.Equals(pc.Area))
                     {
                         RegisterPCToNPCForSkill(pc, creature, skillID);
                     }
@@ -815,7 +815,7 @@ namespace Freescape.Game.Server.Service
             // The unequip event fires before the item is actually unequipped, so we need
             // to have additional checks to make sure we're not getting the weapon that's about to be
             // unequipped.
-            if (weapon == ignoreItem)
+            if (weapon.Equals(ignoreItem))
             {
                 weapon = null;
                 NWItem offHand = oPC.LeftHand;
@@ -862,7 +862,7 @@ namespace Freescape.Game.Server.Service
             for (int slot = 0; slot < NUM_INVENTORY_SLOTS; slot++)
             {
                 NWItem oItem = NWItem.Wrap(_.GetItemInSlot(slot, oPC.Object));
-                if (oItem == ignoreItem)
+                if (oItem.Equals(ignoreItem))
                     continue;
 
                 if (oItem.IsValid)

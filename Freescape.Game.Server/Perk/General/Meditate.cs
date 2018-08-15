@@ -153,7 +153,7 @@ namespace Freescape.Game.Server.Perk.General
             NWArea pcArea = oPC.Area;
             foreach (NWPlayer member in oPC.GetPartyMembers())
             {
-                if (member.Area != pcArea) continue;
+                if (!member.Area.Equals(pcArea)) continue;
 
                 if (member.IsInCombat)
                 {

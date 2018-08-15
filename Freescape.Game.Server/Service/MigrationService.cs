@@ -109,12 +109,14 @@ namespace Freescape.Game.Server.Service
                     NWItem newItem = NWItem.Wrap(_.CreateItemOnObject(migrationItem.NewResref, oPC.Object, quantity));
                     if (!newItem.Possessor.IsValid)
                     {
-                        PCOverflowItem overflow = new PCOverflowItem();
-                        overflow.ItemResref = newItem.Resref;
-                        overflow.ItemTag = newItem.Tag;
-                        overflow.ItemName = newItem.Name;
-                        overflow.ItemObject = _scorco.SaveObject(newItem.Object);
-                        overflow.PlayerID = oPC.GlobalID;
+                        PCOverflowItem overflow = new PCOverflowItem
+                        {
+                            ItemResref = newItem.Resref,
+                            ItemTag = newItem.Tag,
+                            ItemName = newItem.Name,
+                            ItemObject = _scorco.SaveObject(newItem.Object),
+                            PlayerID = oPC.GlobalID
+                        };
                         _db.PCOverflowItems.Add(overflow);
                         _db.SaveChanges();
 
@@ -132,6 +134,8 @@ namespace Freescape.Game.Server.Service
         {
             switch (versionNumber)
             {
+                default:
+                    break;
             }
         }
     }

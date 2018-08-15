@@ -1,6 +1,8 @@
-﻿using Freescape.Game.Server.GameObject;
+﻿using System;
+using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
+using Object = NWN.Object;
 
 namespace Freescape.Game.Server.Event.Module
 {
@@ -55,8 +57,8 @@ namespace Freescape.Game.Server.Event.Module
             NWItem leftHand = oPC.LeftHand;
 
             if (!oPC.IsInCombat) return;
-            if (oItem == rightHand && oItem == leftHand) return;
-            if (oItem != leftHand) return;
+            if (Equals(oItem, rightHand) && Equals(oItem, leftHand)) return;
+            if (!Equals(oItem, leftHand)) return;
 
             oPC.ClearAllActions();
         }

@@ -82,7 +82,7 @@ namespace Freescape.Game.Server.Perk.TwinBlade
         {
             NWItem equipped = oItem ?? oPC.RightHand;
 
-            if (equipped == oItem || equipped.CustomItemType != CustomItemType.TwinBlade)
+            if (Equals(equipped, oItem) || equipped.CustomItemType != CustomItemType.TwinBlade)
             {
                 RemoveFeats(oPC);
                 return;

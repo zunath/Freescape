@@ -192,7 +192,7 @@ namespace Freescape.Game.Server.Conversation
                 NWPlayer player = NWPlayer.Wrap(_.GetFirstPC());
                 while(player.IsValid)
                 {
-                    if (player.Area == instance)
+                    if (Equals(player.Area, instance))
                     {
                         _.FloatingTextStringOnCreature("Someone is knocking on the front door.", player.Object, FALSE);
                     }

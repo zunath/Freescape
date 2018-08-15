@@ -43,10 +43,10 @@ namespace Freescape.Game.Server.Service
 
             if (!player.IsPlayer) return;
 
-            if (!player.IsInitialized)
+            if (!player.IsInitializedAsPlayer)
             {
                 player.DestroyAllInventoryItems();
-                player.Initialize();
+                player.InitializePlayer();
                 
                 _.CreateItemOnObject("open_rest_menu", player.Object);
                 _.AssignCommand(player.Object, () => _.TakeGoldFromCreature(_.GetGold(player.Object), player.Object, 1));

@@ -71,7 +71,7 @@ namespace Freescape.Game.Server.Perk.Throwing
         {
             NWItem equipped = oItem ?? oPC.RightHand;
             
-            if (equipped == oItem ||
+            if (Equals(equipped, oItem) ||
                 equipped.CustomItemType != CustomItemType.Throwing)
             {
                 _nwnxCreature.RemoveFeat(oPC, FEAT_ZEN_ARCHERY);

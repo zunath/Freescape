@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Freescape.Game.Server.ValueObject.CustomEffect;
 using Freescape.Game.Server.ValueObject.Dialog;
 using Freescape.Game.Server.ValueObject.Skill;
 
@@ -10,7 +11,8 @@ namespace Freescape.Game.Server
         public Dictionary<int, bool> DialogFilesInUse { get; }
         public Dictionary<string, int> EffectTicks { get; }
         public Dictionary<string, CreatureSkillRegistration> CreatureSkillRegistrations;
-
+        public Dictionary<CasterSpellVO, int> NPCEffects { get; }
+        public List<CasterSpellVO> EffectsToRemove { get; }
 
         public AppState()
         {
@@ -18,6 +20,8 @@ namespace Freescape.Game.Server
             DialogFilesInUse = new Dictionary<int, bool>();
             EffectTicks = new Dictionary<string, int>();
             CreatureSkillRegistrations = new Dictionary<string, CreatureSkillRegistration>();
+            NPCEffects = new Dictionary<CasterSpellVO, int>();
+            EffectsToRemove = new List<CasterSpellVO>();
 
             for (int x = 1; x <= Constants.NumberOfDialogs; x++)
             {

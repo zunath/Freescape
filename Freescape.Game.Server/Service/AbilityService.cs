@@ -58,7 +58,7 @@ namespace Freescape.Game.Server.Service
         {
             NWPlayer pc = NWPlayer.Wrap(_.GetItemActivator());
             NWItem item = NWItem.Wrap(_.GetItemActivated());
-            NWObject target = NWObject.Wrap(_.GetItemActivatedTarget());
+            NWPlayer target = NWPlayer.Wrap(_.GetItemActivatedTarget());
             int perkID = item.GetLocalInt("ACTIVATION_PERK_ID");
             if (perkID <= 0) return;
 
@@ -77,9 +77,9 @@ namespace Freescape.Game.Server.Service
                 return;
             }
 
-            if (perkAction.IsHostile())
+            if (perkAction.IsHostile() && target.IsPlayer)
             {
-                if (!_pvpSanctuary.IsPVPAttackAllowed(pc, (NWPlayer)target)) return;
+                if (!_pvpSanctuary.IsPVPAttackAllowed(pc, target)) return;
             }
 
             if (pc.Area.Resref != target.Area.Resref ||
@@ -91,7 +91,7 @@ namespace Freescape.Game.Server.Service
 
             if (!perkAction.CanCastSpell(pc, target))
             {
-                pc.SendMessage(perkAction.CannotCastSpellMessage() == null ? "That ability cannot be used at this time." : perkAction.CannotCastSpellMessage());
+                pc.SendMessage(perkAction.CannotCastSpellMessage() ?? "That ability cannot be used at this time.");
                 return;
             }
 
@@ -109,7 +109,20 @@ namespace Freescape.Game.Server.Service
             }
 
             // Check cooldown
-            PCCooldown pcCooldown = _db.PCCooldowns.Single(x => x.PlayerID == pc.GlobalID && x.CooldownCategoryID == perk.CooldownCategoryID);
+            PCCooldown pcCooldown = _db.PCCooldowns.SingleOrDefault(x => x.PlayerID == pc.GlobalID && x.CooldownCategoryID == perk.CooldownCategoryID);
+            if (pcCooldown == null)
+            {
+                pcCooldown = new PCCooldown
+                {
+                    CooldownCategoryID = Convert.ToInt32(perk.CooldownCategoryID),
+                    DateUnlocked = DateTime.UtcNow.AddSeconds(-1),
+                    PlayerID = pc.GlobalID
+                };
+
+                _db.PCCooldowns.Add(pcCooldown);
+                _db.SaveChanges();
+            }
+
             DateTime unlockDateTime = pcCooldown.DateUnlocked;
             DateTime now = DateTime.UtcNow;
 
@@ -121,12 +134,12 @@ namespace Freescape.Game.Server.Service
             }
 
             // Spells w/ casting time
-            if ((PerkExecutionType)perk.PerkExecutionType.PerkExecutionTypeID == PerkExecutionType.Spell)
+            if (perk.PerkExecutionType.PerkExecutionTypeID == (int)PerkExecutionType.Spell)
             {
                 CastSpell(pc, target, perk, perkAction, perk.CooldownCategory);
             }
             // Combat Abilities w/o casting time
-            else if ((PerkExecutionType)perk.PerkExecutionType.PerkExecutionTypeID == PerkExecutionType.CombatAbility)
+            else if (perk.PerkExecutionType.PerkExecutionTypeID == (int)PerkExecutionType.CombatAbility)
             {
                 perkAction.OnImpact(pc, target);
 
@@ -138,7 +151,7 @@ namespace Freescape.Game.Server.Service
                 ApplyCooldown(pc, perk.CooldownCategory, perkAction);
             }
             // Queued Weapon Skills
-            else if ((PerkExecutionType)perk.PerkExecutionType.PerkExecutionTypeID == PerkExecutionType.QueuedWeaponSkill)
+            else if (perk.PerkExecutionType.PerkExecutionTypeID == (int)PerkExecutionType.QueuedWeaponSkill)
             {
                 HandleQueueWeaponSkill(pc, perk, perkAction);
             }
@@ -238,7 +251,7 @@ namespace Freescape.Game.Server.Service
                 ApplyCooldown(pc, cooldown, perk);
                 pc.IsBusy = false;
 
-            }, 10.5f * castingTime);
+            }, castingTime + 0.5f);
         }
 
         private void ApplyCooldown(NWPlayer pc, CooldownCategory cooldown, IPerk ability)

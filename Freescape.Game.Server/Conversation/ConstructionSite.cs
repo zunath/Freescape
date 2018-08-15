@@ -189,7 +189,7 @@ namespace Freescape.Game.Server.Conversation
                 int flagID = _structure.GetTerritoryFlagID(existingFlag);
                 model.FlagID = flagID;
                 PCTerritoryFlag entity = _structure.GetPCTerritoryFlagByID(flagID);
-                if (distance <= entity.StructureBlueprint.MaxBuildDistance || site.Area == existingFlag)
+                if (distance <= entity.StructureBlueprint.MaxBuildDistance || Equals(site.Area, existingFlag))
                 {
                     model.IsTerritoryFlag = false;
                 }

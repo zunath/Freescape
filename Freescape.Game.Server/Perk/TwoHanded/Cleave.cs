@@ -75,7 +75,7 @@ namespace Freescape.Game.Server.Perk.TwoHanded
         {
             NWItem equipped = oItem ?? oPC.RightHand;
 
-            if (equipped == oItem || equipped.CustomItemType != CustomItemType.HeavyBlade)
+            if (Equals(equipped, oItem) || equipped.CustomItemType != CustomItemType.HeavyBlade)
             {
                 _nwnxCreature.RemoveFeat(oPC, FEAT_CLEAVE);
                 return;

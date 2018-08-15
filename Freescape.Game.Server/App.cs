@@ -45,7 +45,7 @@ namespace Freescape.Game.Server
             catch (Exception ex)
             {
                 IErrorService errorService = _container.Resolve<IErrorService>();
-                errorService.LogError(ex);
+                errorService.LogError(ex, typeof(T).ToString());
                 throw;
             }
         }
@@ -60,7 +60,7 @@ namespace Freescape.Game.Server
             catch (Exception ex)
             {
                 IErrorService errorService = _container.Resolve<IErrorService>();
-                errorService.LogError(ex);
+                errorService.LogError(ex, type.ToString());
                 throw;
             }
         }

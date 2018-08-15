@@ -72,7 +72,7 @@ namespace Freescape.Game.Server.Perk.Archery
             NWItem armor = oItem ?? oPC.Chest;
             if (armor.BaseItemType != BASE_ITEM_ARMOR) return;
             
-            if (armor == oItem || armor.CustomItemType != CustomItemType.LightArmor)
+            if (Equals(armor, oItem) || armor.CustomItemType != CustomItemType.LightArmor)
             {
                 _nwnxCreature.RemoveFeat(oPC, FEAT_POINT_BLANK_SHOT);
                 return;

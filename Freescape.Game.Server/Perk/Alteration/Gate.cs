@@ -30,11 +30,11 @@ namespace Freescape.Game.Server.Perk.Alteration
 
         public bool CanCastSpell(NWPlayer oPC, NWObject oTarget)
         {
-            if (oPC == oTarget) return true;
+            if (oPC.Equals(oTarget)) return true;
             
             foreach (NWPlayer member in oPC.GetPartyMembers())
             {
-                if (oTarget == member)
+                if (oTarget.Equals(member))
                     return true;
             }
             return false;

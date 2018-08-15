@@ -266,7 +266,7 @@
     <Compile Include="Perk\Metalworking\Smelting.cs" />
     <Compile Include="Perk\Metalworking\SmeltingMastery.cs" />
     <Compile Include="Perk\Metalworking\SpeedyMetalworking.cs" />
-    <Compile Include="Perk\Metalworking\SpeedySmelter.cs" />
+    <Compile Include="Perk\Metalworking\SpeedySmelting.cs" />
     <Compile Include="Perk\Metalworking\ToolBlueprints.cs" />
     <Compile Include="Perk\OneHanded\BladePowerAttack.cs" />
     <Compile Include="Perk\OneHanded\BluntPowerAttack.cs" />
@@ -291,7 +291,7 @@
     <Compile Include="Perk\Woodworking\SpeedyWoodworking.cs" />
     <Compile Include="Perk\Woodworking\WoodArmorBlueprints.cs" />
     <Compile Include="Perk\Woodworking\WoodComponentsBlueprints.cs" />
-    <Compile Include="Perk\Woodworking\WoodWeaponsBlueprints.cs" />
+    <Compile Include="Perk\Woodworking\WoodWeaponBlueprints.cs" />
     <Compile Include="Placeable\CraftingForge\FinishSmelt.cs" />
     <Compile Include="Event\Creature\OnCombatRoundEnd.cs" />
     <Compile Include="Event\Creature\OnBlocked.cs" />
@@ -590,6 +590,7 @@
     <Compile Include="Service\StructureService.cs" />
     <Compile Include="Service\TimeService.cs" />
     <Compile Include="ValueObject\CustomData.cs" />
+    <Compile Include="ValueObject\CustomEffect\CasterSpellVO.cs" />
     <Compile Include="ValueObject\Dialog\DialogPage.cs" />
     <Compile Include="ValueObject\Dialog\DialogResponse.cs" />
     <Compile Include="ValueObject\Dialog\PlayerDialog.cs" />

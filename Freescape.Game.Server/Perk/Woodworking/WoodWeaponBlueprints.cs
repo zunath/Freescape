@@ -1,8 +1,8 @@
 ﻿using Freescape.Game.Server.GameObject;
 
-namespace Freescape.Game.Server.Perk.Metalworking
+namespace Freescape.Game.Server.Perk.Woodworking
 {
-    public class SpeedySmelter : IPerk
+    public class WoodWeaponBlueprints : IPerk
     {
         public bool CanCastSpell(NWPlayer oPC, NWObject oTarget)
         {
