@@ -15,7 +15,7 @@ namespace Freescape.Game.Server.Service
             _ = script;
         }
 
-        public void OnModuleNWNXChat()
+        public void OnModuleChat()
         {
             NWPlayer sender = NWPlayer.Wrap(_.GetPCChatSpeaker());
             if (sender.GetLocalInt("LISTENING_FOR_DESCRIPTION") != 1) return;

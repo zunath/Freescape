@@ -39,7 +39,7 @@ namespace Freescape.Game.Server
         {
             try
             {
-                IRegisteredEvent @event = _container.ResolveNamed<IRegisteredEvent>(typeof(T).ToString());
+                IRegisteredEvent @event = _container.ResolveKeyed<IRegisteredEvent>(typeof(T).ToString());
                 return @event.Run(args);
             }
             catch (Exception ex)
@@ -54,7 +54,7 @@ namespace Freescape.Game.Server
         {
             try
             {
-                IRegisteredEvent @event = _container.ResolveNamed<IRegisteredEvent>(type.ToString());
+                IRegisteredEvent @event = _container.ResolveKeyed<IRegisteredEvent>(type.ToString());
                 return @event.Run(args);
             }
             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace Freescape.Game.Server
                 throw new Exception(nameof(T) + " must be an interface.");
             }
 
-            return _container.ResolveNamed<T>(typeof(T).ToString());
+            return _container.ResolveKeyed<T>(typeof(T).ToString());
         }
         
         public static T ResolveByInterface<T>(string typeName)
@@ -83,7 +83,7 @@ namespace Freescape.Game.Server
             }
 
             string @namespace = Assembly.GetExecutingAssembly().GetName().Name + "." + typeName;
-            return _container.ResolveNamed<T>(@namespace);
+            return _container.ResolveKeyed<T>(@namespace);
         }
 
         public static T Resolve<T>()
@@ -93,7 +93,18 @@ namespace Freescape.Game.Server
 
         public static T Resolve<T>(string key)
         {
-            return (T) _container.ResolveNamed(key, typeof(T));
+            return (T) _container.ResolveKeyed(key, typeof(T));
+        }
+
+        public static bool IsInterfaceKeyRegistered<T>(string key)
+        {
+            if (!typeof(T).IsInterface)
+            {
+                throw new Exception(nameof(T) + " must be an interface.");
+            }
+
+            string @namespace = Assembly.GetExecutingAssembly().GetName().Name + "." + key;
+            return _container.IsRegisteredWithKey<T>(@namespace);
         }
 
         private static void BuildIOCContainer()
@@ -120,6 +131,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<ActivityLoggingService>().As<IActivityLoggingService>();
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
             builder.RegisterType<BackgroundService>().As<IBackgroundService>();
+            builder.RegisterType<ChatCommandService>().As<IChatCommandService>();
             builder.RegisterType<ColorTokenService>().As<IColorTokenService>();
             builder.RegisterType<CraftService>().As<ICraftService>();
             builder.RegisterType<CustomEffectService>().As<ICustomEffectService>();
@@ -155,7 +167,7 @@ namespace Freescape.Game.Server
             // Interfaces
             RegisterInterfaceImplementations<IRegisteredEvent>(builder);
             RegisterInterfaceImplementations<ICustomEffect>(builder);
-            RegisterInterfaceImplementations<IChatCommand>(builder);
+            RegisterInterfaceImplementations<IChatCommand>(builder, true);
             RegisterInterfaceImplementations<IConversation>(builder);
             RegisterInterfaceImplementations<IActionItem>(builder);
             RegisterInterfaceImplementations<IPerk>(builder);
@@ -181,7 +193,7 @@ namespace Freescape.Game.Server
         }
 
 
-        private static void RegisterInterfaceImplementations<T>(ContainerBuilder builder)
+        private static void RegisterInterfaceImplementations<T>(ContainerBuilder builder, bool lowerCaseKey = false)
         {
             if (!typeof(T).IsInterface)
             {
@@ -193,7 +205,11 @@ namespace Freescape.Game.Server
                 .Where(p => typeof(T).IsAssignableFrom(p) && p.IsClass).ToArray();
             foreach (Type type in classes)
             {
-                builder.RegisterType(type).As<T>().Named<T>(type.ToString());
+                string key = type.Namespace;
+                if (lowerCaseKey) key = key + "." + type.Name.ToLower();
+                else key = key + "." + type.Name;
+                
+                builder.RegisterType(type).As<T>().Keyed<T>(key);
             }
         }
 
@@ -213,7 +229,7 @@ namespace Freescape.Game.Server
 
                 foreach (var type in types)
                 {
-                    builder.RegisterType(type).Named<T>(type.Name);
+                    builder.RegisterType(type).Keyed<T>(type.Name);
                 }
             }
         }

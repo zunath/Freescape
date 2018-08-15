@@ -4,7 +4,7 @@ namespace Freescape.Game.Server.Service.Contracts
 {
     public interface IPlayerDescriptionService
     {
-        void OnModuleNWNXChat();
+        void OnModuleChat();
         void ChangePlayerDescription(NWPlayer player);
     }
 }

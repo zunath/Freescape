@@ -18,7 +18,7 @@ namespace Freescape.Game.Server.ChatCommands
             return user.IsDM;
         }
 
-        public void DoAction(NWPlayer user)
+        public void DoAction(NWPlayer user, params string[] args)
         {
             _.SetTime(8, 0, 0, 0);
         }

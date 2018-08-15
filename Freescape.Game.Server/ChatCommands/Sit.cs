@@ -18,7 +18,7 @@ namespace Freescape.Game.Server.ChatCommands
             return true;
         }
 
-        public void DoAction(NWPlayer user)
+        public void DoAction(NWPlayer user, params string[] args)
         {
             user.AssignCommand(() => _.ActionPlayAnimation(NWScript.ANIMATION_LOOPING_SIT_CROSS, 1.0f, 9999));
         }

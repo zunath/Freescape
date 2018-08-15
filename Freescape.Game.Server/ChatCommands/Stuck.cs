@@ -23,7 +23,7 @@ namespace Freescape.Game.Server.ChatCommands
             return true;
         }
 
-        public void DoAction(NWPlayer user)
+        public void DoAction(NWPlayer user, params string[] args)
         {
             PlayerCharacter pc = _db.PlayerCharacters.Single(x => x.PlayerID == user.GlobalID);
             Location location = _.Location(

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Freescape.Game.Server.ChatCommands.Contracts;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.NWNX.Contracts;
@@ -31,18 +32,30 @@ namespace Freescape.Game.Server.Service
                 return;
             }
 
-            string command = message.Substring(1, message.Length);
-            command = command.Substring(0, 1).ToUpper() + command.Substring(1);
+            var split = message.Split(' ').ToList();
+
+            // Commands with no arguments won't be split, so if we didn't split anything then add the command to the split list manually.
+            if (split.Count <= 0)
+                split.Add(message);
+            
+            string command = split[0].Substring(1, split[0].Length-1);
             _nwnxChat.SkipMessage();
 
-            IChatCommand chatCommand = App.Resolve<IChatCommand>(command);
-            if (chatCommand == null || !chatCommand.CanUse(sender))
+            if (!App.IsInterfaceKeyRegistered<IChatCommand>("ChatCommands." + command))
             {
-                sender.SendMessage(_color.Red("Command not found."));
+                sender.SendMessage(_color.Red("Invalid chat command."));
                 return;
             }
 
-            chatCommand.DoAction(sender);
+            IChatCommand chatCommand = App.ResolveByInterface<IChatCommand>("ChatCommands." + command);
+            if (!chatCommand.CanUse(sender))
+            {
+                sender.SendMessage(_color.Red("Invalid chat command."));
+                return;
+            }
+
+            split.RemoveAt(0);
+            chatCommand.DoAction(sender, split.ToArray());
         }
     }
 }

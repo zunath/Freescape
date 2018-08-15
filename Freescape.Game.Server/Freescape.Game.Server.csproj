@@ -61,6 +61,7 @@
     <Compile Include="Bioware\Contracts\IBiowarePosition.cs" />
     <Compile Include="Bioware\Contracts\IBiowareXP2.cs" />
     <Compile Include="ChatCommands\Contracts\IChatCommand.cs" />
+    <Compile Include="ChatCommands\SpawnItem.cs" />
     <Compile Include="ChatCommands\Stuck.cs" />
     <Compile Include="ChatCommands\Sit.cs" />
     <Compile Include="ChatCommands\Day.cs" />
@@ -205,6 +206,8 @@
     <Compile Include="Event\Area\OnAreaHeartbeat.cs" />
     <Compile Include="Event\Area\OnAreaExit.cs" />
     <Compile Include="Event\Area\OnAreaEnter.cs" />
+    <Compile Include="Event\Module\OnModuleNWNXChat.cs" />
+    <Compile Include="NWN\Events\Module\mod_on_nwnxchat.cs" />
     <Compile Include="Perk\Alteration\Gate.cs" />
     <Compile Include="Perk\Alteration\HolyShot.cs" />
     <Compile Include="Perk\Alteration\Purify.cs" />

@@ -14,7 +14,7 @@ namespace Freescape.Game.Server.Event.Module
 
         public bool Run(params object[] args)
         {
-            _playerDescription.OnModuleNWNXChat();
+            _playerDescription.OnModuleChat();
 
             return true;
 

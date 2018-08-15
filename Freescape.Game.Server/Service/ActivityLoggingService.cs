@@ -111,7 +111,7 @@ namespace Freescape.Game.Server.Service
             string text = _nwnxChat.GetMessage();
             int mode = _nwnxChat.GetChannel();
             int channel = ConvertNWNXChatChannelIDToDatabaseID(mode);
-            NWPlayer recipient = (NWPlayer) _nwnxChat.GetTarget();
+            NWObject recipient = _nwnxChat.GetTarget();
             ChatChannelsDomain channelEntity = _db.ChatChannelsDomains.Single(x => x.ChatChannelID == channel);
 
             // Sender - should always have this data.
