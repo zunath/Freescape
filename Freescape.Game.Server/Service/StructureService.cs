@@ -108,7 +108,7 @@ namespace Freescape.Game.Server.Service
         {
             NWArea locationArea = NWArea.Wrap(_.GetAreaFromLocation(location));
             if (GetTerritoryFlagID(locationArea) > 0) return locationArea;
-            
+
             List<PCTerritoryFlag> areaFlags = _db.PCTerritoryFlags
                 .Where(x =>
                     x.LocationAreaTag == locationArea.Tag &&
@@ -142,7 +142,7 @@ namespace Freescape.Game.Server.Service
                         }
 
                         currentPlaceable++;
-                    } while (!placeable.IsValid);
+                    } while (placeable.IsValid);
 
                     checker.Destroy();
                 }
@@ -336,17 +336,16 @@ namespace Freescape.Game.Server.Service
             if (locationArea.GetLocalInt("BUILDING_DISABLED") == 1) return 0;
             
             NWObject flag = GetTerritoryFlagOwnerOfLocation(targetLocation);
-            
             Location flagLocation = flag.Location;
             int pcTerritoryFlagID = GetTerritoryFlagID(flag);
-            
+
             PCTerritoryFlag entity = _db.PCTerritoryFlags.SingleOrDefault(x => x.PCTerritoryFlagID == pcTerritoryFlagID);
-            
             float distance = _.GetDistanceBetweenLocations(flagLocation, targetLocation);
 
             // No territory flag found, or the distance is too far from the nearest territory flag.
             // Only for non-building areas.
             if ((!flag.IsValid ||
+                    entity == null ||
                     distance > entity.StructureBlueprint.MaxBuildDistance))
             {
                 return 1;
@@ -496,7 +495,7 @@ namespace Freescape.Game.Server.Service
             int constructionSiteID = GetConstructionSiteID(site);
             if (flagID <= 0) return true;
 
-            ConstructionSite constructionSiteEntity = _db.ConstructionSites.Single(x => x.ConstructionSiteID == constructionSiteID);
+            ConstructionSite constructionSiteEntity = _db.ConstructionSites.SingleOrDefault(x => x.ConstructionSiteID == constructionSiteID);
             PCTerritoryFlag flagEntity = _db.PCTerritoryFlags.Single(x => x.PCTerritoryFlagID == flagID);
             float distance = _.GetDistanceBetweenLocations(flaglocation, siteLocation);
 
@@ -621,7 +620,7 @@ namespace Freescape.Game.Server.Service
         public bool WillBlueprintOverlapWithExistingFlags(Location location, int blueprintID)
         {
             NWArea area = NWArea.Wrap(_.GetAreaFromLocation(location));
-            List<PCTerritoryFlag> flags = _db.PCTerritoryFlags.Where(x => x.LocationAreaTag == area.Tag)
+            List<PCTerritoryFlag> flags = _db.PCTerritoryFlags.Where(x => x.LocationAreaTag == area.Tag && x.IsActive)
                 .OrderByDescending(o => o.StructureBlueprint.MaxBuildDistance).ToList();
             StructureBlueprint blueprint = _db.StructureBlueprints.Single(x => x.StructureBlueprintID == blueprintID);
 
@@ -697,7 +696,8 @@ namespace Freescape.Game.Server.Service
                     PlayerID = entity.PlayerID,
                     ShowOwnerName = true,
                     BuildingPCStructureID = null,
-                    IsActive = true
+                    IsActive = true,
+                    BuildPrivacySettingID = 1 // 1 = Owner Only
                 };
                 
                 _db.PCTerritoryFlags.Add(pcFlag);
@@ -828,7 +828,8 @@ namespace Freescape.Game.Server.Service
             if (IsWithinRangeOfTerritoryFlag(constructionSite))
             {
                 NWObject flag = GetTerritoryFlagOwnerOfLocation(location);
-                PCTerritoryFlag flagEntity = _db.PCTerritoryFlags.Single(x => x.PCTerritoryFlagID == GetTerritoryFlagID(flag));
+                int flagID = GetTerritoryFlagID(flag);
+                PCTerritoryFlag flagEntity = _db.PCTerritoryFlags.Single(x => x.PCTerritoryFlagID == flagID);
                 entity.PCTerritoryFlagID = flagEntity.PCTerritoryFlagID;
             }
 

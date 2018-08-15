@@ -90,7 +90,6 @@ namespace Freescape.Game.Server.Conversation
         public override void Initialize()
         {
             NWPlayer oPC = GetPC();
-
             Model model = GetDialogCustomData<Model>();
             model.TargetLocation = oPC.GetLocalLocation("BUILD_TOOL_LOCATION_TARGET");
             oPC.DeleteLocalLocation("BUILD_TOOL_LOCATION_TARGET");
@@ -201,7 +200,7 @@ namespace Freescape.Game.Server.Conversation
             Model model = GetDialogCustomData<Model>();
             model.NearbyStructures.Clear();
             model.ActiveStructure = null;
-            
+
             DialogResponse constructionSiteResponse = new DialogResponse(_color.Green("Create Construction Site"));
             if (_structure.CanPCBuildInLocation(GetPC(), model.TargetLocation, StructurePermission.CanBuildStructures) != 1)
             {
@@ -209,13 +208,13 @@ namespace Freescape.Game.Server.Conversation
             }
 
             AddResponseToPage("MainPage", constructionSiteResponse);
-
             int flagID = _structure.GetTerritoryFlagID(model.Flag);
+
             if (!_structure.PlayerHasPermission(oPC, StructurePermission.CanMoveStructures, flagID) &&
                     !_structure.PlayerHasPermission(oPC, StructurePermission.CanRazeStructures, flagID) &&
                     !_structure.PlayerHasPermission(oPC, StructurePermission.CanRotateStructures, flagID))
                 return;
-            
+
             for (int current = 1; current <= 30; current++)
             {
                 NWPlaceable structure = NWPlaceable.Wrap(_.GetNearestObjectToLocation(OBJECT_TYPE_PLACEABLE, model.TargetLocation, current));
@@ -229,7 +228,7 @@ namespace Freescape.Game.Server.Conversation
                     model.NearbyStructures.Add(structure);
                 }
             }
-            
+
             foreach (NWPlaceable structure in model.NearbyStructures)
             {
                 if (excludeObject == null || !Equals(excludeObject, structure))

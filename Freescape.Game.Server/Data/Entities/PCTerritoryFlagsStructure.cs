@@ -38,8 +38,7 @@ namespace Freescape.Game.Server.Data.Entities
 
         [Column(TypeName = "datetime2")]
         public DateTime CreateDate { get; set; }
-
-        [Required]
+        
         [StringLength(32)]
         public string CustomName { get; set; }
 
