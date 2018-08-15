@@ -23,7 +23,7 @@ namespace Freescape.Game.Server.Service
         public void OnModuleItemEquipped()
         {
             NWPlayer player = NWPlayer.Wrap(_.GetPCItemLastEquippedBy());
-            if (!player.IsPlayer) return;
+            if (!player.IsPlayer || !player.IsInitializedAsPlayer) return;
 
             NWItem item = NWItem.Wrap(_.GetPCItemLastEquipped());
             if (item.BaseItemType != BASE_ITEM_HELMET) return;

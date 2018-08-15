@@ -23,5 +23,6 @@ namespace Freescape.Game.Server.Service.Contracts
         void DoPerkUpgrade(NWPlayer player, int perkID);
         void DoPerkUpgrade(NWPlayer player, PerkType perkType);
         string OnModuleExamine(string existingDescription, NWPlayer examiner, NWObject examinedObject);
+        void OnHitCastSpell(NWPlayer oPC);
     }
 }

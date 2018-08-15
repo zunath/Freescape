@@ -454,6 +454,8 @@ namespace Freescape.Game.Server.Service
         public void OnModuleItemEquipped()
         {
             NWPlayer oPC = NWPlayer.Wrap(_.GetPCItemLastEquippedBy());
+            if (!oPC.IsInitializedAsPlayer) return; // Players who log in for the first time don't have an ID yet.
+
             NWItem oItem = NWItem.Wrap(_.GetPCItemLastEquipped());
             ApplyStatChanges(oPC, null);
             ApplyWeaponPenalties(oPC, oItem);

@@ -3,7 +3,7 @@ using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject.Dialog;
 using NWN;
 
-namespace Freescape.Game.Server.Conversation.Item
+namespace Freescape.Game.Server.Conversation
 {
     internal class DestroySurvivalKnife: ConversationBase
     {

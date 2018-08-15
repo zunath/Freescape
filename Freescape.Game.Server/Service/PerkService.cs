@@ -38,7 +38,7 @@ namespace Freescape.Game.Server.Service
         {
             NWPlayer oPC = NWPlayer.Wrap(_.GetPCItemLastEquippedBy());
             NWItem oItem = NWItem.Wrap(_.GetPCItemLastEquipped());
-            if (!oPC.IsPlayer) return;
+            if (!oPC.IsPlayer || !oPC.IsInitializedAsPlayer) return;
             List<PCPerk> perks = _db.StoredProcedure<PCPerk>("GetPCPerksByExecutionType",
                 new SqlParameter("PlayerID", oPC.GlobalID),
                 new SqlParameter("ExecutionTypeID", (int) PerkExecutionType.EquipmentBased));
