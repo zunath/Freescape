@@ -94,20 +94,20 @@ namespace Freescape.Game.Server.Service
         public void OnHitCastSpell(NWPlayer oPC)
         {
             if (!oPC.IsPlayer) return;
-            
             NWItem oItem = NWItem.Wrap(_.GetSpellCastItem());
             int type = oItem.BaseItemType;
-            List<PCPerk> perks = _db.StoredProcedure<PCPerk>("GetPCPerksWithExecutionType",
+            List<PCPerk> pcPerks = _db.StoredProcedure<PCPerk>("GetPCPerksWithExecutionType",
                 new SqlParameter("PlayerID", oPC.GlobalID));
-
-            foreach (PCPerk perk in perks)
+            
+            foreach (PCPerk pcPerk in pcPerks)
             {
-                if (string.IsNullOrWhiteSpace(perk.Perk.JavaScriptName) || perk.Perk.ExecutionTypeID == (int)PerkExecutionType.None) continue;
+                pcPerk.Perk = GetPerkByID(pcPerk.PerkID);
+                if (string.IsNullOrWhiteSpace(pcPerk.Perk.JavaScriptName) || pcPerk.Perk.ExecutionTypeID == (int)PerkExecutionType.None) continue;
 
-                IPerk perkAction = App.ResolveByInterface<IPerk>("Perk." +perk.Perk.JavaScriptName);
+                IPerk perkAction = App.ResolveByInterface<IPerk>("Perk." +pcPerk.Perk.JavaScriptName);
                 if (perkAction == null) continue;
-
-                if (perk.Perk.ExecutionTypeID == (int)PerkExecutionType.ShieldOnHit)
+                
+                if (pcPerk.Perk.ExecutionTypeID == (int)PerkExecutionType.ShieldOnHit)
                 {
                     if (type == BASE_ITEM_SMALLSHIELD || type == BASE_ITEM_LARGESHIELD || type == BASE_ITEM_TOWERSHIELD)
                     {

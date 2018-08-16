@@ -1061,7 +1061,7 @@ namespace Freescape.Game.Server.Service
 
             int currentPlaceable = 1;
             NWPlaceable placeable = NWPlaceable.Wrap(_.GetNearestObject(OBJECT_TYPE_PLACEABLE, flag.Object, currentPlaceable));
-            while (!placeable.IsValid)
+            while (placeable.IsValid)
             {
                 if (_.GetDistanceBetween(placeable.Object, flag.Object) > entity.StructureBlueprint.MaxBuildDistance) break;
 

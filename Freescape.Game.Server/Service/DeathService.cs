@@ -72,6 +72,8 @@ namespace Freescape.Game.Server.Service
             while(_.GetIsObjectValid(factionMember) == TRUE)
             {
                 _.ClearPersonalReputation(oPC.Object, factionMember);
+
+                factionMember = _.GetNextFactionMember(oHostileActor.Object, FALSE);
             }
 
             _.PopUpDeathGUIPanel(oPC.Object, TRUE, TRUE, 0, RespawnMessage);
