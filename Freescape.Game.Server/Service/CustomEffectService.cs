@@ -174,18 +174,7 @@ namespace Freescape.Game.Server.Service
                 oCaster.SendMessage("A more powerful effect already exists on your target.");
                 return;
             }
-
-            // No custom effects can be applied if player is under the effect of sanctuary.
-            foreach (Effect effect in oTarget.Effects)
-            {
-                int type = _.GetEffectType(effect);
-                if (type == EFFECT_TYPE_SANCTUARY)
-                {
-                    oCaster.SendMessage("Your target is currently under the effects of Sanctuary.");
-                    return;
-                }
-            }
-
+            
             Data.Entities.CustomEffect effectEntity = _db.CustomEffects.Single(x => x.CustomEffectID == customEffectID);
 
             // PC custom effects are tracked in the database.
