@@ -25,7 +25,7 @@ namespace Freescape.Game.Server.Service
             _color = color;
         }
 
-        public bool OnModuleExamine(NWPlayer examiner, NWPlayer target)
+        public bool OnModuleExamine(NWPlayer examiner, NWObject target)
         {
             string backupDescription = target.GetLocalString("BACKUP_DESCRIPTION");
 

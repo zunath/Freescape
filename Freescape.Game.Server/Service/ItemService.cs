@@ -161,7 +161,7 @@ namespace Freescape.Game.Server.Service
             if (!examiner.IsPlayer) return existingDescription;
             if (examinedObject.ObjectType != OBJECT_TYPE_ITEM) return existingDescription;
 
-            NWItem examinedItem = (NWItem) examinedObject;
+            NWItem examinedItem = NWItem.Wrap(examinedObject.Object);
             ApplyItemFeatures(examinedItem);
             string description = "";
 

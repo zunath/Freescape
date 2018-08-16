@@ -1,4 +1,5 @@
 ﻿using System;
+using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
@@ -10,6 +11,7 @@ namespace Freescape.Game.Server.Event.Module
     {
         private readonly INWScript _;
         private readonly INWNXChat _nwnxChat;
+        private readonly INWNXEvents _nwnxEvents;
         private readonly IDeathService _death;
         private readonly IStructureService _structure;
         private readonly IObjectProcessingService _objectProcessing;
@@ -17,6 +19,7 @@ namespace Freescape.Game.Server.Event.Module
 
         public OnModuleLoad(INWScript script,
             INWNXChat nwnxChat,
+            INWNXEvents nwnxEvents,
             IDeathService death,
             IStructureService structure,
             IObjectProcessingService objectProcessing,
@@ -24,6 +27,7 @@ namespace Freescape.Game.Server.Event.Module
         {
             _ = script;
             _nwnxChat = nwnxChat;
+            _nwnxEvents = nwnxEvents;
             _death = death;
             _structure = structure;
             _objectProcessing = objectProcessing;
@@ -63,6 +67,7 @@ namespace Freescape.Game.Server.Event.Module
 
         private void SetModuleEventScripts()
         {
+            // Vanilla NWN Event Hooks
             _.SetEventScript(_.GetModule(), NWScript.EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM, "mod_on_acquire");
             _.SetEventScript(_.GetModule(), NWScript.EVENT_SCRIPT_MODULE_ON_ACTIVATE_ITEM, "mod_on_activate");
             _.SetEventScript(_.GetModule(), NWScript.EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER, "mod_on_enter");
@@ -79,6 +84,10 @@ namespace Freescape.Game.Server.Event.Module
             _.SetEventScript(_.GetModule(), NWScript.EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM, "mod_on_unequip");
             _.SetEventScript(_.GetModule(), NWScript.EVENT_SCRIPT_MODULE_ON_LOSE_ITEM, "mod_on_unacquire");
             _.SetEventScript(_.GetModule(), NWScript.EVENT_SCRIPT_MODULE_ON_USER_DEFINED_EVENT, "mod_on_user");
+
+            // NWNX Event Hooks
+            _nwnxEvents.SubscribeEvent(EventType.StartCombatRoundBefore, "mod_on_attack");
+            _nwnxEvents.SubscribeEvent(EventType.ExamineObjectBefore, "mod_on_examine");
         }
     }
 }

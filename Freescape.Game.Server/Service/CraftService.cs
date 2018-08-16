@@ -97,7 +97,7 @@ namespace Freescape.Game.Server.Service
 
         public CraftBlueprint GetBlueprintByID(int craftBlueprintID)
         {
-            return _db.CraftBlueprints.Single(x => x.CraftBlueprintID == craftBlueprintID);
+            return _db.CraftBlueprints.SingleOrDefault(x => x.CraftBlueprintID == craftBlueprintID);
         }
 
         public CraftBlueprint GetBlueprintKnownByPC(string playerID, int blueprintID, int deviceID)

@@ -35,7 +35,6 @@ namespace Freescape.Game.Server.Service
             if (containerID <= 0) return;
 
             StorageContainer entity = _db.StorageContainers.SingleOrDefault(x => x.StorageContainerID == containerID);
-            Location chestLocation = oChest.Location;
             bool chestLoaded = oChest.GetLocalInt("STORAGE_CONTAINER_LOADED") == 1;
 
             if (chestLoaded) return;
@@ -50,6 +49,7 @@ namespace Freescape.Game.Server.Service
                     StorageContainerID = containerID
                 };
                 _db.StorageContainers.Add(entity);
+                _db.SaveChanges();
             }
 
             foreach (StorageItem item in entity.StorageItems)

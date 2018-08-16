@@ -153,7 +153,7 @@ namespace Freescape.Game.Server.Service
         {
             if (examinedObject.ObjectType != OBJECT_TYPE_ITEM) return existingDescription;
 
-            NWItem examinedItem = (NWItem) examinedObject;
+            NWItem examinedItem = NWItem.Wrap(examinedObject.Object);
             if (!IsValidDurabilityType(examinedItem)) return existingDescription;
 
             string description = _color.Orange("Durability: ");
