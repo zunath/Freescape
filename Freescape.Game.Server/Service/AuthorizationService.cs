@@ -25,7 +25,7 @@ namespace Freescape.Game.Server.Service
 
             string cdKey = _.GetPCPublicCDKey(player.Object);
 
-            AuthorizedDM entity = _db.AuthorizedDMs.SingleOrDefault(x => x.CDKey == cdKey);
+            AuthorizedDM entity = _db.AuthorizedDMs.SingleOrDefault(x => x.CDKey == cdKey && x.IsActive);
             return entity != null;
         }
     }

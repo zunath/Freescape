@@ -1,31 +1,25 @@
 ﻿using Freescape.Game.Server.ChatCommands.Contracts;
+using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
 
 namespace Freescape.Game.Server.ChatCommands
 {
+    [CommandDetails("Spawns an item of a specific quantity on your character. Example: /spawnitem my_item 3", CommandPermissionType.DM)]
     public class SpawnItem: IChatCommand
     {
         private readonly INWScript _;
-        private readonly IAuthorizationService _auth;
         private readonly IColorTokenService _color;
 
         public SpawnItem(
             INWScript script,
-            IAuthorizationService auth,
             IColorTokenService color)
         {
             _ = script;
-            _auth = auth;
             _color = color;
         }
-
-        public bool CanUse(NWPlayer user)
-        {
-            return user.IsDM || _auth.IsPCRegisteredAsDM(user);
-        }
-
+        
         public void DoAction(NWPlayer user, params string[] args)
         {
             if (args.Length <= 0)
@@ -45,6 +39,13 @@ namespace Freescape.Game.Server.ChatCommands
             }
 
             var item = NWItem.Wrap(_.CreateItemOnObject(resref, user.Object, quantity));
+
+            if (!item.IsValid)
+            {
+                user.SendMessage(_color.Red("Item not found! Did you enter the correct ResRef?"));
+                return;
+            }
+
             item.IsIdentified = true;
         }
     }

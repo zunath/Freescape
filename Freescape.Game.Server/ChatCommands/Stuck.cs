@@ -2,11 +2,13 @@
 using Freescape.Game.Server.ChatCommands.Contracts;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
+using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using NWN;
 
 namespace Freescape.Game.Server.ChatCommands
 {
+    [CommandDetails("ALPHA Command: Returns you to your bind point.", CommandPermissionType.Player)]
     public class Stuck: IChatCommand
     {
         private readonly INWScript _;
@@ -17,12 +19,7 @@ namespace Freescape.Game.Server.ChatCommands
             _ = script;
             _db = db;
         }
-
-        public bool CanUse(NWPlayer user)
-        {
-            return true;
-        }
-
+        
         public void DoAction(NWPlayer user, params string[] args)
         {
             PlayerCharacter pc = _db.PlayerCharacters.Single(x => x.PlayerID == user.GlobalID);

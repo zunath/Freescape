@@ -1,9 +1,11 @@
 ﻿using Freescape.Game.Server.ChatCommands.Contracts;
+using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using NWN;
 
 namespace Freescape.Game.Server.ChatCommands
 {
+    [CommandDetails("Makes your character sit down.", CommandPermissionType.DM | CommandPermissionType.Player)]
     public class Sit: IChatCommand
     {
         private readonly INWScript _;
@@ -11,11 +13,6 @@ namespace Freescape.Game.Server.ChatCommands
         public Sit(INWScript script)
         {
             _ = script;
-        }
-
-        public bool CanUse(NWPlayer user)
-        {
-            return true;
         }
 
         public void DoAction(NWPlayer user, params string[] args)

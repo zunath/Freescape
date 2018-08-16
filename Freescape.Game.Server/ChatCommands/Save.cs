@@ -5,19 +5,20 @@ using NWN;
 
 namespace Freescape.Game.Server.ChatCommands
 {
-    [CommandDetails("Sets the world time to 8 AM.", CommandPermissionType.DM)]
-    public class Day: IChatCommand
+    [CommandDetails("Saves your character.", CommandPermissionType.Player)]
+    public class Save: IChatCommand
     {
         private readonly INWScript _;
-        
-        public Day(INWScript script)
+
+        public Save(INWScript script)
         {
             _ = script;
         }
-        
+
         public void DoAction(NWPlayer user, params string[] args)
         {
-            _.SetTime(8, 0, 0, 0);
+            _.ExportSingleCharacter(user.Object);
+            _.SendMessageToPC(user.Object, "Character saved successfully.");
         }
     }
 }

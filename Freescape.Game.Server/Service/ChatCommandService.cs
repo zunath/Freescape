@@ -1,5 +1,8 @@
 ﻿using System.Linq;
+using System.Reflection;
+using Freescape.Game.Server.ChatCommands;
 using Freescape.Game.Server.ChatCommands.Contracts;
+using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service.Contracts;
@@ -10,11 +13,16 @@ namespace Freescape.Game.Server.Service
     {
         private readonly INWNXChat _nwnxChat;
         private readonly IColorTokenService _color;
+        private readonly IAuthorizationService _auth;
 
-        public ChatCommandService(INWNXChat nwnxChat, IColorTokenService color)
+        public ChatCommandService(
+            INWNXChat nwnxChat, 
+            IColorTokenService color,
+            IAuthorizationService auth)
         {
             _nwnxChat = nwnxChat;
             _color = color;
+            _auth = auth;
         }
 
         public void OnModuleNWNXChat(NWPlayer sender)
@@ -42,19 +50,25 @@ namespace Freescape.Game.Server.Service
 
             if (!App.IsInterfaceKeyRegistered<IChatCommand>("ChatCommands." + command))
             {
-                sender.SendMessage(_color.Red("Invalid chat command."));
+                sender.SendMessage(_color.Red("Invalid chat command. Use '/help' to get a list of available commands."));
                 return;
             }
 
             IChatCommand chatCommand = App.ResolveByInterface<IChatCommand>("ChatCommands." + command);
-            if (!chatCommand.CanUse(sender))
-            {
-                sender.SendMessage(_color.Red("Invalid chat command."));
-                return;
-            }
+            CommandDetailsAttribute attribute = chatCommand.GetType().GetCustomAttribute<CommandDetailsAttribute>();
+            bool isDM = _auth.IsPCRegisteredAsDM(sender);
 
-            split.RemoveAt(0);
-            chatCommand.DoAction(sender, split.ToArray());
+            if (attribute != null && 
+                    (attribute.Permissions.HasFlag(CommandPermissionType.Player) && sender.IsPlayer ||
+                     attribute.Permissions.HasFlag(CommandPermissionType.DM) && isDM))
+            {
+                split.RemoveAt(0);
+                chatCommand.DoAction(sender, split.ToArray());
+            }
+            else
+            {
+                sender.SendMessage(_color.Red("Invalid chat command. Use '/help' to get a list of available commands."));
+            }
         }
     }
 }

@@ -60,7 +60,11 @@
     <Compile Include="Bioware\BiowareXP2.cs" />
     <Compile Include="Bioware\Contracts\IBiowarePosition.cs" />
     <Compile Include="Bioware\Contracts\IBiowareXP2.cs" />
+    <Compile Include="ChatCommands\CommandDetailsAttribute.cs" />
     <Compile Include="ChatCommands\Contracts\IChatCommand.cs" />
+    <Compile Include="ChatCommands\Help.cs" />
+    <Compile Include="ChatCommands\Night.cs" />
+    <Compile Include="ChatCommands\Save.cs" />
     <Compile Include="ChatCommands\SpawnItem.cs" />
     <Compile Include="ChatCommands\Stuck.cs" />
     <Compile Include="ChatCommands\Sit.cs" />
@@ -186,6 +190,7 @@
     <Compile Include="Enumeration\BackgroundType.cs" />
     <Compile Include="Enumeration\ChatChannel.cs" />
     <Compile Include="Enumeration\ClericDomain.cs" />
+    <Compile Include="Enumeration\CommandPermissionType.cs" />
     <Compile Include="Enumeration\CraftDeviceType.cs" />
     <Compile Include="Enumeration\CustomAttribute.cs" />
     <Compile Include="Enumeration\CustomEffectType.cs" />

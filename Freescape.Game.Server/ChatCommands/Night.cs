@@ -5,19 +5,19 @@ using NWN;
 
 namespace Freescape.Game.Server.ChatCommands
 {
-    [CommandDetails("Sets the world time to 8 AM.", CommandPermissionType.DM)]
-    public class Day: IChatCommand
+    [CommandDetails("Sets the world time to 8 PM.", CommandPermissionType.DM)]
+    public class Night : IChatCommand
     {
         private readonly INWScript _;
         
-        public Day(INWScript script)
+        public Night(INWScript script)
         {
             _ = script;
         }
         
         public void DoAction(NWPlayer user, params string[] args)
         {
-            _.SetTime(8, 0, 0, 0);
+            _.SetTime(20, 0, 0, 0);
         }
     }
 }
