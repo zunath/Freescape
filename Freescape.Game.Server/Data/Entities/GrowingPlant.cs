@@ -16,9 +16,16 @@ namespace Freescape.Game.Server.Data.Entities
         [StringLength(64)]
         public string LocationAreaTag { get; set; }
 
+        [Column(TypeName = "float")]
         public float LocationX { get; set; }
+
+        [Column(TypeName = "float")]
         public float LocationY { get; set; }
+
+        [Column(TypeName = "float")]
         public float LocationZ { get; set; }
+
+        [Column(TypeName = "float")]
         public float LocationOrientation { get; set; }
 
         [Column(TypeName = "datetime2")]

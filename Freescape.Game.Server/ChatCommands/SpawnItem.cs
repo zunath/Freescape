@@ -44,7 +44,8 @@ namespace Freescape.Game.Server.ChatCommands
                 }
             }
 
-            _.CreateItemOnObject(resref, user.Object, quantity);
+            var item = NWItem.Wrap(_.CreateItemOnObject(resref, user.Object, quantity));
+            item.IsIdentified = true;
         }
     }
 }

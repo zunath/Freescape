@@ -35,17 +35,11 @@ namespace Freescape.Game.Server.Event.Feat
 
             if (player.IsValid)
             {
-                Console.WriteLine("doing durability");
                 _durability.OnHitCastSpell(player);
-                Console.WriteLine("doing ability");
                 _ability.OnHitCastSpell(player);
-                Console.WriteLine("doing skill");
                 _skill.OnHitCastSpell(player);
-                Console.WriteLine("doing perk");
                 _perk.OnHitCastSpell(player);
-                Console.WriteLine("doing item specific");
                 HandleItemSpecificCastSpell();
-                Console.WriteLine("done");
             }
             return true;
         }

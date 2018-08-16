@@ -120,10 +120,15 @@ namespace Freescape.Game.Server.Service
 
             foreach (NWItem corpseItem in corpse.InventoryItems)
             {
-                PCCorpseItem corpseItemEntity = new PCCorpseItem();
-                string data = _serialization.Serialize(corpseItem);
-                corpseItemEntity.NWItemObject = data;
-                corpseItemEntity.PCCorpseItemID = entity.PCCorpseID;
+                PCCorpseItem corpseItemEntity = new PCCorpseItem
+                {
+                    GlobalID = corpseItem.GlobalID,
+                    NWItemObject = _serialization.Serialize(corpseItem),
+                    PCCorpseItemID = entity.PCCorpseID,
+                    ItemName = corpseItem.Name,
+                    ItemTag = corpseItem.Tag,
+                    ItemResref = corpseItem.Resref
+                };
                 entity.PCCorpseItems.Add(corpseItemEntity);
             }
 
@@ -204,8 +209,7 @@ namespace Freescape.Game.Server.Service
             NWPlayer oPC = NWPlayer.Wrap(_.GetLastDisturbed());
 
             if (!oPC.IsPlayer && !oPC.IsDM) return;
-
-            int corpseID = corpse.GetLocalInt("CORPSE_ID");
+            
             NWItem oItem = NWItem.Wrap(_.GetInventoryDisturbItem());
             int disturbType = _.GetInventoryDisturbType();
 
@@ -216,18 +220,10 @@ namespace Freescape.Game.Server.Service
             }
             else
             {
-                PCCorpse entity = _db.PCCorpses.Single(x => x.PCCorpseID == corpseID);
-                entity.PCCorpseItems.Clear();
+                PCCorpseItem dbItem = _db.PCCorpseItems.SingleOrDefault(x => x.GlobalID == oItem.GlobalID);
+                if (dbItem == null) return;
                 
-                foreach (NWItem corpseItem in corpse.InventoryItems)
-                {
-                    PCCorpseItem corpseItemEntity = new PCCorpseItem();
-                    string data = _serialization.Serialize(corpseItem);
-                    corpseItemEntity.NWItemObject = data;
-                    corpseItemEntity.PCCorpseID = entity.PCCorpseID;
-                    entity.PCCorpseItems.Add(corpseItemEntity);
-                }
-
+                _db.PCCorpseItems.Remove(dbItem);
                 _db.SaveChanges();
             }
         }

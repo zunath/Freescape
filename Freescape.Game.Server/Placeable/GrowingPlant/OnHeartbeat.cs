@@ -1,4 +1,5 @@
-﻿using Freescape.Game.Server.Data.Contracts;
+﻿using System.Linq;
+using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Event;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
@@ -10,15 +11,12 @@ namespace Freescape.Game.Server.Placeable.GrowingPlant
     public class OnHeartbeat: IRegisteredEvent
     {
         private readonly INWScript _;
-        private readonly IFarmingService _farming;
         private readonly IDataContext _db;
 
         public OnHeartbeat(INWScript script,
-            IFarmingService farming,
             IDataContext db)
         {
             _ = script;
-            _farming = farming;
             _db = db;
         }
 
@@ -28,7 +26,7 @@ namespace Freescape.Game.Server.Placeable.GrowingPlant
             int growingPlantID = plant.GetLocalInt("GROWING_PLANT_ID");
             if (growingPlantID <= 0) return false;
             
-            Data.Entities.GrowingPlant growingPlant = _farming.GetGrowingPlantByID(growingPlantID);
+            Data.Entities.GrowingPlant growingPlant = _db.GrowingPlants.Single(x => x.GrowingPlantID == growingPlantID);
             growingPlant.RemainingTicks--;
             growingPlant.TotalTicks++;
 
@@ -50,7 +48,7 @@ namespace Freescape.Game.Server.Placeable.GrowingPlant
                 plant = NWPlaceable.Wrap(_.CreateObject(OBJECT_TYPE_PLACEABLE, growingPlant.Plant.Resref, plant.Location));
                 plant.SetLocalInt("GROWING_PLANT_ID", growingPlantID);
             }
-
+            
             _db.SaveChanges();
             return true;
         }

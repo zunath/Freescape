@@ -499,7 +499,7 @@ namespace Freescape.Game.Server.Service
 
         private void RemovePlayerFromRegistrations(NWPlayer oPC)
         {
-            foreach (CreatureSkillRegistration reg in _state.CreatureSkillRegistrations.Values)
+            foreach (CreatureSkillRegistration reg in _state.CreatureSkillRegistrations.Values.ToArray())
             {
                 reg.RemovePlayerRegistration(oPC);
 
