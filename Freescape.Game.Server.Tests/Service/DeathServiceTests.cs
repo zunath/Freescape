@@ -7,6 +7,7 @@ using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service;
+using Freescape.Game.Server.Service.Contracts;
 using NSubstitute;
 using NUnit.Framework;
 using NWN;
@@ -78,10 +79,10 @@ namespace Freescape.Game.Server.Tests.Service
             int callCount = -1;
             INWScript script = Substitute.For<INWScript>();
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
-            ISCORCO scorco = Substitute.For<ISCORCO>();
+            ISerializationService serialization = Substitute.For<ISerializationService>();
             script.When(x => x.FloatingTextStringOnCreature(Arg.Any<string>(), Arg.Any<Object>(), Arg.Any<int>())).Do(x => callCount++);
             
-            DeathService service = new DeathService(_db, script, scorco);
+            DeathService service = new DeathService(_db, script, serialization);
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.Object.Returns(x => new Object());
             player.GlobalID.Returns("123");
@@ -111,10 +112,10 @@ namespace Freescape.Game.Server.Tests.Service
             
             INWScript script = Substitute.For<INWScript>();
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
-            ISCORCO scorco = Substitute.For<ISCORCO>();
+            ISerializationService serialization = Substitute.For<ISerializationService>();
             script.When(x => x.FloatingTextStringOnCreature(Arg.Any<string>(), Arg.Any<Object>(), Arg.Any<int>())).Do(x => callCount++);
 
-            DeathService service = new DeathService(_db, script, scorco);
+            DeathService service = new DeathService(_db, script, serialization);
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.Object.Returns(x => new Object());
             player.GlobalID.Returns("123");
@@ -141,8 +142,8 @@ namespace Freescape.Game.Server.Tests.Service
         public void DeathService_BindPlayerSoul_ArgumentNullPlayer_ShouldThrowArgumentNullException()
         {
             // Arrange
-            ISCORCO scorco = Substitute.For<ISCORCO>();
-            DeathService service = new DeathService(_db, Substitute.For<INWScript>(), scorco);
+            ISerializationService serialization = Substitute.For<ISerializationService>();
+            DeathService service = new DeathService(_db, Substitute.For<INWScript>(), serialization);
 
             // Assert
             Assert.Throws(typeof(ArgumentNullException), () =>
@@ -158,9 +159,9 @@ namespace Freescape.Game.Server.Tests.Service
             // Arrange
             INWScript script = Substitute.For<INWScript>();
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
-            ISCORCO scorco = Substitute.For<ISCORCO>();
+            ISerializationService serialization = Substitute.For<ISerializationService>();
 
-            DeathService service = new DeathService(_db, script, scorco);
+            DeathService service = new DeathService(_db, script, serialization);
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.Object.Returns(x => null);
 
@@ -178,8 +179,8 @@ namespace Freescape.Game.Server.Tests.Service
             // Arrange
             INWScript script = Substitute.For<INWScript>();
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
-            ISCORCO scorco = Substitute.For<ISCORCO>();
-            DeathService service = new DeathService(_db, script, scorco);
+            ISerializationService serialization = Substitute.For<ISerializationService>();
+            DeathService service = new DeathService(_db, script, serialization);
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
 
             // Assert

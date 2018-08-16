@@ -12,15 +12,15 @@ namespace Freescape.Game.Server.Placeable.StructureSystem.PersistentStorage
     {
         private readonly INWScript _;
         private readonly IStructureService _structure;
-        private readonly ISCORCO _scorco;
+        private readonly ISerializationService _serialization;
 
         public OnOpened(INWScript script,
             IStructureService structure,
-            ISCORCO scorco)
+            ISerializationService serialization)
         {
             _ = script;
             _structure = structure;
-            _scorco = scorco;
+            _serialization = serialization;
         }
 
         public bool Run(params object[] args)
@@ -32,7 +32,7 @@ namespace Freescape.Game.Server.Placeable.StructureSystem.PersistentStorage
 
             foreach (PCTerritoryFlagsStructuresItem item in entity.PCTerritoryFlagsStructuresItems)
             {
-                _scorco.LoadObject(item.ItemObject, location, chest.Object);
+                _serialization.DeserializeItem(item.ItemObject, chest);
             }
 
             chest.IsUseable = false;

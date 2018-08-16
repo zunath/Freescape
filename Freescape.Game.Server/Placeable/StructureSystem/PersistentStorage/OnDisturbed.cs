@@ -16,17 +16,17 @@ namespace Freescape.Game.Server.Placeable.StructureSystem.PersistentStorage
         private readonly INWScript _;
         private readonly IStructureService _structure;
         private readonly IColorTokenService _color;
-        private readonly ISCORCO _scorco;
+        private readonly ISerializationService _serialization;
 
         public OnDisturbed(INWScript script,
             IStructureService structure,
             IColorTokenService color,
-            ISCORCO scorco)
+            ISerializationService serialization)
         {
             _ = script;
             _structure = structure;
             _color = color;
-            _scorco = scorco;
+            _serialization = serialization;
         }
 
         public bool Run(params object[] args)
@@ -49,7 +49,7 @@ namespace Freescape.Game.Server.Placeable.StructureSystem.PersistentStorage
                     oPC.SendMessage(_color.Red("No more items can be placed inside."));
                 }
                 // Only specific types of items can be stored in resource bundles
-                else if (!string.IsNullOrWhiteSpace(entity.StructureBlueprint.Resref) && itemResref != entity.StructureBlueprint.ResourceResref)
+                else if (!string.IsNullOrWhiteSpace(entity.StructureBlueprint.ResourceResref) && itemResref != entity.StructureBlueprint.ResourceResref)
                 {
                     ReturnItem(oPC, item);
                     oPC.SendMessage(_color.Red("That item cannot be stored here."));
@@ -63,7 +63,7 @@ namespace Freescape.Game.Server.Placeable.StructureSystem.PersistentStorage
                         ItemTag = item.Tag,
                         PCStructureID = entity.PCTerritoryFlagStructureID,
                         GlobalID = item.GlobalID,
-                        ItemObject = _scorco.SaveObject(item.Object)
+                        ItemObject = _serialization.Serialize(item)
                     };
 
                     entity.PCTerritoryFlagsStructuresItems.Add(itemEntity);

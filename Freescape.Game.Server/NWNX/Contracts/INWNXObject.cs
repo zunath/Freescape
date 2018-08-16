@@ -13,8 +13,8 @@ namespace Freescape.Game.Server.NWNX.Contracts
         void SetMaxHitPoints(NWObject creature, int hp);
         string GetPortrait(NWObject creature);
         void SetPortrait(NWObject creature, string portrait);
-        string Serialize(NWObject obj);
-        NWObject Deserialize(string serialized);
+        string Serialize(Object obj);
+        Object Deserialize(string serialized);
         string GetDialogResref(NWObject obj);
         void SetAppearance(NWObject obj, int app);
         int GetAppearance(NWObject obj);

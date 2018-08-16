@@ -13,7 +13,7 @@ namespace Freescape.Game.Server.Data.Entities
         public int SearchSiteID { get; set; }
 
         [Required]
-        public byte[] SearchItem { get; set; }
+        public string SearchItem { get; set; }
 
         public virtual PlayerCharacter PlayerCharacter { get; set; }
     }

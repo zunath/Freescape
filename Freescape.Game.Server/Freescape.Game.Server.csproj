@@ -373,7 +373,6 @@
     <Compile Include="NWNX\Contracts\INWNXObject.cs" />
     <Compile Include="NWNX\Contracts\INWNXPlayer.cs" />
     <Compile Include="NWNX\Contracts\INWNXPlayerQuickBarSlot.cs" />
-    <Compile Include="NWNX\Contracts\ISCORCO.cs" />
     <Compile Include="NWNX\LocalVariable.cs" />
     <Compile Include="NWNX\NWNXBase.cs" />
     <Compile Include="NWNX\NWNXChat.cs" />
@@ -385,7 +384,6 @@
     <Compile Include="NWNX\NWNXPlayer.cs" />
     <Compile Include="NWNX\NWNXPlayerQuickBarSlot.cs" />
     <Compile Include="NWNX\QuickBarSlot.cs" />
-    <Compile Include="NWNX\SCORCO.cs" />
     <Compile Include="NWNX\SpecialAbilitySlot.cs" />
     <Compile Include="NWN\Events\Craft\cft_finish_smelt.cs" />
     <Compile Include="NWN\Events\Creature\crea_on_attacked.cs" />
@@ -555,6 +553,7 @@
     <Compile Include="Service\Contracts\IQuestService.cs" />
     <Compile Include="Service\Contracts\IRandomService.cs" />
     <Compile Include="Service\Contracts\ISearchService.cs" />
+    <Compile Include="Service\Contracts\ISerializationService.cs" />
     <Compile Include="Service\Contracts\ISkillService.cs" />
     <Compile Include="Service\Contracts\IStorageService.cs" />
     <Compile Include="Service\Contracts\IStructureService.cs" />
@@ -588,6 +587,7 @@
     <Compile Include="Service\QuestService.cs" />
     <Compile Include="Service\RandomService.cs" />
     <Compile Include="Service\SearchService.cs" />
+    <Compile Include="Service\SerializationService.cs" />
     <Compile Include="Service\SkillService.cs" />
     <Compile Include="Service\StorageService.cs" />
     <Compile Include="Service\StructureService.cs" />

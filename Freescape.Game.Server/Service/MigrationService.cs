@@ -15,7 +15,7 @@ namespace Freescape.Game.Server.Service
         private readonly INWScript _;
         private readonly IDataContext _db;
         private readonly IColorTokenService _color;
-        private readonly ISCORCO _scorco;
+        private readonly ISerializationService _serialization;
         private readonly IItemService _item;
 
         private const int PlayerVersionNumber = 1;
@@ -23,13 +23,13 @@ namespace Freescape.Game.Server.Service
         public MigrationService(INWScript script,
             IDataContext db,
             IColorTokenService color,
-            ISCORCO scorco,
+            ISerializationService serialization,
             IItemService item)
         {
             _ = script;
             _db = db;
             _color = color;
-            _scorco = scorco;
+            _serialization = serialization;
             _item = item;
         }
 
@@ -114,7 +114,7 @@ namespace Freescape.Game.Server.Service
                             ItemResref = newItem.Resref,
                             ItemTag = newItem.Tag,
                             ItemName = newItem.Name,
-                            ItemObject = _scorco.SaveObject(newItem.Object),
+                            ItemObject = _serialization.Serialize(newItem),
                             PlayerID = oPC.GlobalID
                         };
                         _db.PCOverflowItems.Add(overflow);

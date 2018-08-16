@@ -15,20 +15,20 @@ namespace Freescape.Game.Server.Conversation
     public class Outfit: ConversationBase
     {
         private readonly IColorTokenService _color;
-        private readonly ISCORCO _scorco;
+        private readonly ISerializationService _serialization;
         private readonly IDataContext _db;
 
         public Outfit(
             INWScript script, 
             IDialogService dialog,
             IColorTokenService color,
-            ISCORCO scorco,
+            ISerializationService serialization,
             IDataContext db) 
             : base(script, dialog)
         {
             _color = color;
             _db = db;
-            _scorco = scorco;
+            _serialization = serialization;
         }
 
         public override PlayerDialog SetUp(NWPlayer player)
@@ -128,7 +128,7 @@ namespace Freescape.Game.Server.Conversation
                 return;
             }
 
-            byte[] clothesData = _scorco.SaveObject(oClothes.Object);
+            string clothesData = _serialization.Serialize(oClothes);
             if (responseID == 1) entity.Outfit1 = clothesData;
             else if (responseID == 2) entity.Outfit2 = clothesData;
             else if (responseID == 3) entity.Outfit3 = clothesData;
@@ -160,21 +160,20 @@ namespace Freescape.Game.Server.Conversation
                 PCOutfit entity = GetPlayerOutfits(GetPC());
 
                 NWPlaceable oTempStorage = NWPlaceable.Wrap(_.GetObjectByTag("OUTFIT_BARREL"));
-                Location lLocation = oTempStorage.Location;
                 NWItem oClothes = oPC.Chest;
                 NWItem storedClothes = null;
                 oClothes.SetLocalString("TEMP_OUTFIT_UUID", oPC.GlobalID);
 
-                if (outfitID == 1) storedClothes = NWItem.Wrap(_scorco.LoadObject(entity.Outfit1, lLocation, oTempStorage.Object)); 
-                else if (outfitID == 2) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit2, lLocation, oTempStorage.Object));
-                else if (outfitID == 3) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit3, lLocation, oTempStorage.Object));
-                else if (outfitID == 4) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit4, lLocation, oTempStorage.Object));
-                else if (outfitID == 5) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit5, lLocation, oTempStorage.Object));
-                else if (outfitID == 6) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit6, lLocation, oTempStorage.Object));
-                else if (outfitID == 7) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit7, lLocation, oTempStorage.Object));
-                else if (outfitID == 8) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit8, lLocation, oTempStorage.Object));
-                else if (outfitID == 9) storedClothes =  NWItem.Wrap(_scorco.LoadObject(entity.Outfit9, lLocation, oTempStorage.Object));
-                else if (outfitID == 10) storedClothes = NWItem.Wrap(_scorco.LoadObject(entity.Outfit10, lLocation, oTempStorage.Object));
+                if (outfitID == 1) storedClothes      =  _serialization.DeserializeItem(entity.Outfit1, oTempStorage); 
+                else if (outfitID == 2) storedClothes =  _serialization.DeserializeItem(entity.Outfit2, oTempStorage); 
+                else if (outfitID == 3) storedClothes =  _serialization.DeserializeItem(entity.Outfit3, oTempStorage); 
+                else if (outfitID == 4) storedClothes =  _serialization.DeserializeItem(entity.Outfit4, oTempStorage); 
+                else if (outfitID == 5) storedClothes =  _serialization.DeserializeItem(entity.Outfit5, oTempStorage); 
+                else if (outfitID == 6) storedClothes =  _serialization.DeserializeItem(entity.Outfit6, oTempStorage); 
+                else if (outfitID == 7) storedClothes =  _serialization.DeserializeItem(entity.Outfit7, oTempStorage); 
+                else if (outfitID == 8) storedClothes =  _serialization.DeserializeItem(entity.Outfit8, oTempStorage); 
+                else if (outfitID == 9) storedClothes =  _serialization.DeserializeItem(entity.Outfit9, oTempStorage); 
+                else if (outfitID == 10) storedClothes = _serialization.DeserializeItem(entity.Outfit10, oTempStorage);
 
                 if (storedClothes == null) throw new Exception("Unable to locate stored clothes.");
 

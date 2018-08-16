@@ -23,7 +23,7 @@ namespace Freescape.Game.Server.Service
         private readonly IRandomService _random;
         private readonly IDataContext _db;
         private readonly IQuestService _quest;
-        private readonly ISCORCO _scorco;
+        private readonly ISerializationService _serialization;
         private readonly ILocalVariableService _localVariable;
         private readonly IColorTokenService _color;
         private readonly IDurabilityService _durability;
@@ -33,7 +33,7 @@ namespace Freescape.Game.Server.Service
             IRandomService random,
             IDataContext db,
             IQuestService quest,
-            ISCORCO scorco,
+            ISerializationService serialization,
             ILocalVariableService localVariable,
             IColorTokenService color,
             IDurabilityService durability)
@@ -42,7 +42,7 @@ namespace Freescape.Game.Server.Service
             _random = random;
             _db = db;
             _quest = quest;
-            _scorco = scorco;
+            _serialization = serialization;
             _localVariable = localVariable;
             _color = color;
             _durability = durability;
@@ -150,7 +150,7 @@ namespace Freescape.Game.Server.Service
                 var searchItems = _db.PCSearchSiteItems.Where(x => x.PlayerID == oPC.GlobalID && x.SearchSiteID == searchEntity.SearchSiteID);
                 foreach (PCSearchSiteItem item in searchItems)
                 {
-                    NWItem oItem = NWItem.Wrap(_scorco.LoadObject(item.SearchItem, oChest.Location, oChest.Object));
+                    NWItem oItem = _serialization.DeserializeItem(item.SearchItem, oChest);
 
                     // Prevent item duplication in containers
                     if (oItem.HasInventory)
@@ -211,7 +211,7 @@ namespace Freescape.Game.Server.Service
                 {
                     PCSearchSiteItem itemEntity = new PCSearchSiteItem
                     {
-                        SearchItem = _scorco.SaveObject(item.Object),
+                        SearchItem = _serialization.Serialize(item),
                         SearchSiteID = entity.SearchSiteID
                     };
 

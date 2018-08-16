@@ -718,7 +718,8 @@ namespace Freescape.Game.Server.Service
                     PCTerritoryFlagID = Convert.ToInt32(entity.PCTerritoryFlagID),
                     IsUseable = entity.StructureBlueprint.IsUseable,
                     CustomName = string.Empty,
-                    BuildingInteriorID = entity.BuildingInteriorID
+                    BuildingInteriorID = entity.BuildingInteriorID,
+                    IsActive = true
                 };
                 
                 _db.PCTerritoryFlagsStructures.Add(pcStructure);

@@ -113,11 +113,11 @@ namespace Freescape.Game.Server.NWNX
 
         // Serialize the full NWObject (including locals, inventory, etc) to base64 string
         // Only works on Creatures and Items currently.
-        public string Serialize(NWObject obj)
+        public string Serialize(Object obj)
         {
             string sFunc = "Serialize";
 
-            NWNX_PushArgumentObject(NWNX_Object, sFunc, obj.Object);
+            NWNX_PushArgumentObject(NWNX_Object, sFunc, obj);
 
             NWNX_CallFunction(NWNX_Object, sFunc);
             return NWNX_GetReturnValueString(NWNX_Object, sFunc);
@@ -125,14 +125,14 @@ namespace Freescape.Game.Server.NWNX
 
         // Deserialize the object. The NWObject will be created outside of the world and
         // needs to be manually positioned at a location/inventory.
-        public NWObject Deserialize(string serialized)
+        public Object Deserialize(string serialized)
         {
             string sFunc = "Deserialize";
 
             NWNX_PushArgumentString(NWNX_Object, sFunc, serialized);
 
             NWNX_CallFunction(NWNX_Object, sFunc);
-            return NWObject.Wrap(NWNX_GetReturnValueObject(NWNX_Object, sFunc));
+            return NWNX_GetReturnValueObject(NWNX_Object, sFunc);
         }
 
 

@@ -9,7 +9,7 @@ namespace Freescape.Game.Server.Data.Entities
         public long PCCorpseID { get; set; }
 
         [Required]
-        public byte[] NWItemObject { get; set; }
+        public string NWItemObject { get; set; }
 
         public virtual PCCorpse PcCorpse { get; set; }
     }

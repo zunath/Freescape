@@ -15,15 +15,15 @@ namespace Freescape.Game.Server.Service
     {
         private readonly IDataContext _db;
         private readonly INWScript _;
-        private readonly ISCORCO _scorco;
+        private readonly ISerializationService _serialization;
 
         public DeathService(IDataContext db, 
             INWScript script,
-            ISCORCO scorco)
+            ISerializationService serialization)
         {
             _db = db;
             _ = script;
-            _scorco = scorco;
+            _serialization = serialization;
         }
 
 
@@ -50,7 +50,7 @@ namespace Freescape.Game.Server.Service
 
                 foreach (PCCorpseItem item in entity.PCCorpseItems)
                 {
-                    _scorco.LoadObject(item.NWItemObject, location, corpse.Object);
+                    _serialization.DeserializeItem(item.NWItemObject, corpse);
                 }
             }
         }
@@ -114,7 +114,7 @@ namespace Freescape.Game.Server.Service
             foreach (NWItem corpseItem in corpse.InventoryItems)
             {
                 PCCorpseItem corpseItemEntity = new PCCorpseItem();
-                byte[] data = _scorco.SaveObject(corpseItem.Object);
+                string data = _serialization.Serialize(corpseItem);
                 corpseItemEntity.NWItemObject = data;
                 corpseItemEntity.PCCorpseItemID = entity.PCCorpseID;
                 entity.PCCorpseItems.Add(corpseItemEntity);
@@ -159,7 +159,7 @@ namespace Freescape.Game.Server.Service
                 foreach (NWItem corpseItem in corpse.InventoryItems)
                 {
                     PCCorpseItem corpseItemEntity = new PCCorpseItem();
-                    byte[] data = _scorco.SaveObject(corpseItem.Object);
+                    string data = _serialization.Serialize(corpseItem);
                     corpseItemEntity.NWItemObject = data;
                     corpseItemEntity.PCCorpseID = entity.PCCorpseID;
                     entity.PCCorpseItems.Add(corpseItemEntity);

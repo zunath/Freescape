@@ -11,7 +11,6 @@ using Freescape.Game.Server.CustomEffect.Contracts;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Event;
-using Freescape.Game.Server.Extension;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.Item.Contracts;
@@ -159,6 +158,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<QuestService>().As<IQuestService>();
             builder.RegisterType<RandomService>().As<IRandomService>();
             builder.RegisterType<SearchService>().As<ISearchService>();
+            builder.RegisterType<SerializationService>().As<ISerializationService>();
             builder.RegisterType<SkillService>().As<ISkillService>();
             builder.RegisterType<StorageService>().As<IStorageService>();
             builder.RegisterType<StructureService>().As<IStructureService>();
@@ -187,7 +187,6 @@ namespace Freescape.Game.Server
             builder.RegisterType<NWNXPlayer>().As<INWNXPlayer>();
             builder.RegisterType<NWNXPlayerQuickBarSlot>().As<INWNXPlayerQuickBarSlot>();
             builder.RegisterType<NWScript>().As<INWScript>().SingleInstance();
-            builder.RegisterType<SCORCO>().As<ISCORCO>();
 
             _container = builder.Build();
         }

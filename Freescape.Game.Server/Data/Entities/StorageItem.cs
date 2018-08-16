@@ -20,7 +20,7 @@ namespace Freescape.Game.Server.Data.Entities
         public string ItemResref { get; set; }
 
         [Required]
-        public byte[] ItemObject { get; set; }
+        public string ItemObject { get; set; }
 
         [Required]
         [StringLength(60)]

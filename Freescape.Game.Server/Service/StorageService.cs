@@ -14,17 +14,17 @@ namespace Freescape.Game.Server.Service
     {
         private readonly INWScript _;
         private readonly IDataContext _db;
-        private readonly ISCORCO _scorco;
+        private readonly ISerializationService _serialization;
         private readonly IColorTokenService _color;
 
         public StorageService(INWScript script, 
             IDataContext db,
-            ISCORCO scorco,
+            ISerializationService serialization,
             IColorTokenService color)
         {
             _ = script;
             _db = db;
-            _scorco = scorco;
+            _serialization = serialization;
             _color = color;
         }
 
@@ -34,7 +34,7 @@ namespace Freescape.Game.Server.Service
             int containerID = oChest.GetLocalInt("STORAGE_CONTAINER_ID");
             if (containerID <= 0) return;
 
-            StorageContainer entity = _db.StorageContainers.Single(x => x.StorageContainerID == containerID);
+            StorageContainer entity = _db.StorageContainers.SingleOrDefault(x => x.StorageContainerID == containerID);
             Location chestLocation = oChest.Location;
             bool chestLoaded = oChest.GetLocalInt("STORAGE_CONTAINER_LOADED") == 1;
 
@@ -54,7 +54,7 @@ namespace Freescape.Game.Server.Service
 
             foreach (StorageItem item in entity.StorageItems)
             {
-                _scorco.LoadObject(item.ItemObject, chestLocation, oChest.Object);
+                _serialization.DeserializeItem(item.ItemObject, oChest);
             }
 
             oChest.SetLocalInt("STORAGE_CONTAINER_LOADED", 1);
@@ -89,7 +89,7 @@ namespace Freescape.Game.Server.Service
                         ItemTag = oItem.Tag,
                         ItemResref = oItem.Resref,
                         GlobalID = oItem.GlobalID,
-                        ItemObject = _scorco.SaveObject(oItem.Object),
+                        ItemObject = _serialization.Serialize(oItem),
                         StorageContainerID = entity.StorageContainerID
                     };
 
