@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.Enumeration;

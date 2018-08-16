@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using Freescape.Game.Server.GameObject;
-using Freescape.Game.Server.Service.Contracts;
 using Object = NWN.Object;
 
 namespace Freescape.Game.Server.Event.Legacy

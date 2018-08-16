@@ -1,8 +1,6 @@
 ﻿using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.Event;
 using Freescape.Game.Server.GameObject;
-using Freescape.Game.Server.NWNX;
-using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
 

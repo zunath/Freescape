@@ -1,5 +1,4 @@
 ﻿using Freescape.Game.Server.GameObject;
-using Freescape.Game.Server.Service.Contracts;
 
 namespace Freescape.Game.Server.Perk.General
 {

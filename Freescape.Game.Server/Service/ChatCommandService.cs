@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Freescape.Game.Server.ChatCommands.Contracts;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.NWNX.Contracts;

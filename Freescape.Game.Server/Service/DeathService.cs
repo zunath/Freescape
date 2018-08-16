@@ -4,7 +4,6 @@ using System.Linq;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
-using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service.Contracts;
 using NWN;
 using static NWN.NWScript;
@@ -16,14 +15,20 @@ namespace Freescape.Game.Server.Service
         private readonly IDataContext _db;
         private readonly INWScript _;
         private readonly ISerializationService _serialization;
+        private readonly IRandomService _random;
+        private readonly IColorTokenService _color;
 
         public DeathService(IDataContext db, 
             INWScript script,
-            ISerializationService serialization)
+            ISerializationService serialization,
+            IRandomService random,
+            IColorTokenService color)
         {
             _db = db;
             _ = script;
             _serialization = serialization;
+            _random = random;
+            _color = color;
         }
 
 
@@ -125,6 +130,62 @@ namespace Freescape.Game.Server.Service
             corpse.SetLocalInt("CORPSE_ID", (int)entity.PCCorpseID);
         }
 
+        public void OnPlayerDying()
+        {
+            NWPlayer oPC = NWPlayer.Wrap(_.GetLastPlayerDying());
+            oPC.ClearAllActions();
+            DeathFunction(oPC, 8);
+        }
+
+        private void DeathFunction(NWPlayer oPC, int nDC)
+        {
+            if (!oPC.IsValid) return;
+            int iHP = oPC.CurrentHP;
+
+            //Player Rolls a random number between 1 and 20+ConMod
+            int iRoll = 20 + oPC.ConstitutionModifier;
+            iRoll = _random.Random(iRoll) + 1;
+
+            //Sanity Check
+            if (nDC > 30) nDC = 30;
+            else if (nDC < 4) nDC = 4;
+
+            if (iHP <= 0)
+            {
+                if (iRoll >= nDC) //Stabilize
+                {
+                    nDC -= 2;
+                    _.ApplyEffectToObject(DURATION_TYPE_INSTANT, _.EffectHeal(1), oPC.Object);
+                    oPC.DelayCommand(() =>
+                    {
+                        DeathFunction(oPC, nDC);
+                    }, 3.0f);
+                }
+                else  //Failed!
+                {
+                    if (_random.Random(2) + 1 == 1) nDC++;
+                    Effect eResult = _.EffectDamage(1);
+
+                    //Death!
+                    if (iHP <= -9)
+                    {
+                        _.ApplyEffectToObject(DURATION_TYPE_INSTANT, _.EffectVisualEffect(VFX_IMP_DEATH), oPC.Object);
+                        _.ApplyEffectToObject(DURATION_TYPE_INSTANT, _.EffectDeath(), oPC.Object);
+                        return;
+                    }
+                    else
+                    {
+                        oPC.SendMessage(_color.Orange("You failed to stabilize this round."));
+                    }
+                    _.ApplyEffectToObject(DURATION_TYPE_INSTANT, eResult, oPC.Object);
+
+                    oPC.DelayCommand(() =>
+                    {
+                        DeathFunction(oPC, nDC);
+                    }, 3.0f);
+                }
+            }
+        }
         public void OnPlayerRespawn()
         {
             NWPlayer oPC = NWPlayer.Wrap(_.GetLastRespawnButtonPresser());

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Freescape.Game.Server.GameObject.Contracts;
+﻿using Freescape.Game.Server.GameObject.Contracts;
 using Freescape.Game.Server.NWNX.Contracts;
 using NWN;
 using static NWN.NWScript;

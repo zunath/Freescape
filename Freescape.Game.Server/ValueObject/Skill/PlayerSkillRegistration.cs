@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Freescape.Game.Server.GameObject;
 
 namespace Freescape.Game.Server.ValueObject.Skill

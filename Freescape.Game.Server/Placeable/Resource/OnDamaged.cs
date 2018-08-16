@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.Enumeration;

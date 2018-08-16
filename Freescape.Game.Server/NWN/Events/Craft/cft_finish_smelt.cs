@@ -1,5 +1,4 @@
 ﻿using Freescape.Game.Server;
-using Freescape.Game.Server.Event.Area;
 using Freescape.Game.Server.Placeable.CraftingForge;
 
 // ReSharper disable once CheckNamespace

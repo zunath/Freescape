@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
 using Freescape.Game.Server.Bioware.Contracts;
 using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
-using Freescape.Game.Server.Item;
 using Freescape.Game.Server.Item.Contracts;
 using Freescape.Game.Server.NWNX.Contracts;
 using Freescape.Game.Server.Service.Contracts;

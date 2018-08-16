@@ -9,6 +9,7 @@ namespace Freescape.Game.Server.Service.Contracts
         void OnCorpseDisturb(NWPlaceable corpse);
         void OnModuleLoad();
         void OnPlayerDeath();
+        void OnPlayerDying();
         void OnPlayerRespawn();
         void TeleportPlayerToBindPoint(NWPlayer pc);
     }

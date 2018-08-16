@@ -1,5 +1,4 @@
-﻿using System;
-using Freescape.Game.Server.Event;
+﻿using Freescape.Game.Server.Event;
 using Freescape.Game.Server.GameObject;
 using NWN;
 using static NWN.NWScript;

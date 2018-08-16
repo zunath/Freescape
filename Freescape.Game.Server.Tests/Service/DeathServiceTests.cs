@@ -80,9 +80,11 @@ namespace Freescape.Game.Server.Tests.Service
             INWScript script = Substitute.For<INWScript>();
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
             ISerializationService serialization = Substitute.For<ISerializationService>();
+            IRandomService random = Substitute.For<IRandomService>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
             script.When(x => x.FloatingTextStringOnCreature(Arg.Any<string>(), Arg.Any<Object>(), Arg.Any<int>())).Do(x => callCount++);
             
-            DeathService service = new DeathService(_db, script, serialization);
+            DeathService service = new DeathService(_db, script, serialization, random, color);
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.Object.Returns(x => new Object());
             player.GlobalID.Returns("123");
@@ -113,9 +115,11 @@ namespace Freescape.Game.Server.Tests.Service
             INWScript script = Substitute.For<INWScript>();
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
             ISerializationService serialization = Substitute.For<ISerializationService>();
+            IRandomService random = Substitute.For<IRandomService>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
             script.When(x => x.FloatingTextStringOnCreature(Arg.Any<string>(), Arg.Any<Object>(), Arg.Any<int>())).Do(x => callCount++);
 
-            DeathService service = new DeathService(_db, script, serialization);
+            DeathService service = new DeathService(_db, script, serialization, random, color);
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.Object.Returns(x => new Object());
             player.GlobalID.Returns("123");
@@ -143,7 +147,9 @@ namespace Freescape.Game.Server.Tests.Service
         {
             // Arrange
             ISerializationService serialization = Substitute.For<ISerializationService>();
-            DeathService service = new DeathService(_db, Substitute.For<INWScript>(), serialization);
+            IRandomService random = Substitute.For<IRandomService>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DeathService service = new DeathService(_db, Substitute.For<INWScript>(), serialization, random, color);
 
             // Assert
             Assert.Throws(typeof(ArgumentNullException), () =>
@@ -160,8 +166,10 @@ namespace Freescape.Game.Server.Tests.Service
             INWScript script = Substitute.For<INWScript>();
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
             ISerializationService serialization = Substitute.For<ISerializationService>();
+            IRandomService random = Substitute.For<IRandomService>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
 
-            DeathService service = new DeathService(_db, script, serialization);
+            DeathService service = new DeathService(_db, script, serialization, random, color);
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
             player.Object.Returns(x => null);
 
@@ -180,7 +188,9 @@ namespace Freescape.Game.Server.Tests.Service
             INWScript script = Substitute.For<INWScript>();
             INWNXCreature nwnxCreature = Substitute.For<INWNXCreature>();
             ISerializationService serialization = Substitute.For<ISerializationService>();
-            DeathService service = new DeathService(_db, script, serialization);
+            IRandomService random = Substitute.For<IRandomService>();
+            IColorTokenService color = Substitute.For<IColorTokenService>();
+            DeathService service = new DeathService(_db, script, serialization, random, color);
             NWPlayer player = Substitute.For<NWPlayer>(script, nwnxCreature);
 
             // Assert
