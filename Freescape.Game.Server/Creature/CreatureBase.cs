@@ -15,6 +15,24 @@ namespace Freescape.Game.Server.Creature
             Self = NWCreature.Wrap(Object.OBJECT_SELF);
         }
 
+        public virtual IBehaviourTreeNode Behaviour => null;
+
+        public virtual bool IgnoreNWNEvents => false;
+        public virtual bool IgnoreOnBlocked => false;
+        public virtual bool IgnoreOnCombatRoundEnd => false;
+        public virtual bool IgnoreOnConversation => false;
+        public virtual bool IgnoreOnDamaged => false;
+        public virtual bool IgnoreOnDeath => false;
+        public virtual bool IgnoreOnDisturbed => false;
+        public virtual bool IgnoreOnHeartbeat => false;
+        public virtual bool IgnoreOnPerception => false;
+        public virtual bool IgnoreOnPhysicalAttacked => false;
+        public virtual bool IgnoreOnRested => false;
+        public virtual bool IgnoreOnSpawn => false;
+        public virtual bool IgnoreOnSpellCastAt => false;
+        public virtual bool IgnoreOnUserDefined => false;
+
+
         public virtual void OnBlocked()
         {
         }
@@ -67,8 +85,5 @@ namespace Freescape.Game.Server.Creature
         {
         }
 
-        public virtual IBehaviourTreeNode Behaviour => null;
-
-        public virtual bool IgnoreNWNEvents => false;
     }
 }

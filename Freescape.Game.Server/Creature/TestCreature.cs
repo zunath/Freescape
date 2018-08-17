@@ -1,14 +1,18 @@
 ﻿using System;
 using FluentBehaviourTree;
+using NWN;
 
 namespace Freescape.Game.Server.Creature
 {
     public class TestCreature: CreatureBase
     {
+        private readonly INWScript _;
         private readonly BehaviourTreeBuilder _builder;
 
-        public TestCreature(BehaviourTreeBuilder builder)
+        public TestCreature(BehaviourTreeBuilder builder,
+            INWScript script)
         {
+            _ = script;
             _builder = builder;
         }
 
@@ -27,7 +31,10 @@ namespace Freescape.Game.Server.Creature
 
                         if (ticks % 5 == 0)
                         {
-                            Console.WriteLine("action2 firing tick = " + ticks);
+                            Self.AssignCommand(() =>
+                            {
+                                _.ActionPlayAnimation(NWScript.ANIMATION_FIREFORGET_GREETING);
+                            });
                             return BehaviourTreeStatus.Success;
                         }
 
