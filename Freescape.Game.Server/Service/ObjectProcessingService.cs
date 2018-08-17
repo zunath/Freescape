@@ -37,6 +37,8 @@ namespace Freescape.Game.Server.Service
             RunProcessor();
         }
 
+        public float ProcessingTickInterval => 1f;
+
         private void RunProcessor()
         {
             foreach (var @event in _state.ProcessingEvents)
@@ -44,7 +46,7 @@ namespace Freescape.Game.Server.Service
                 @event.Value.Invoke();
             }
 
-            _.DelayCommand(0.01f, RunProcessor);
+            _.DelayCommand(ProcessingTickInterval, RunProcessor);
         }
 
         public string RegisterProcessingEvent(Action action)

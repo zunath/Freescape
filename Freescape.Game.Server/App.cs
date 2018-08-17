@@ -2,11 +2,12 @@
 using System.Linq;
 using System.Reflection;
 using Autofac;
+using FluentBehaviourTree;
 using Freescape.Game.Server.Bioware;
 using Freescape.Game.Server.Bioware.Contracts;
 using Freescape.Game.Server.ChatCommands.Contracts;
-using Freescape.Game.Server.Conversation;
 using Freescape.Game.Server.Conversation.Contracts;
+using Freescape.Game.Server.Creature.Contracts;
 using Freescape.Game.Server.CustomEffect.Contracts;
 using Freescape.Game.Server.Data;
 using Freescape.Game.Server.Data.Contracts;
@@ -64,16 +65,6 @@ namespace Freescape.Game.Server
             }
         }
         
-        public static T ResolveByInterface<T>()
-        {
-            if (!typeof(T).IsInterface)
-            {
-                throw new Exception(nameof(T) + " must be an interface.");
-            }
-
-            return _container.ResolveKeyed<T>(typeof(T).ToString());
-        }
-        
         public static T ResolveByInterface<T>(string typeName)
         {
             if (!typeof(T).IsInterface)
@@ -89,23 +80,13 @@ namespace Freescape.Game.Server
         {
             return (T)_container.Resolve(typeof(T));
         }
-
-        public static T Resolve<T>(string key)
+        
+        public static bool IsKeyRegistered<T>(string key)
         {
-            return (T) _container.ResolveKeyed(key, typeof(T));
-        }
-
-        public static bool IsInterfaceKeyRegistered<T>(string key)
-        {
-            if (!typeof(T).IsInterface)
-            {
-                throw new Exception(nameof(T) + " must be an interface.");
-            }
-
             string @namespace = Assembly.GetExecutingAssembly().GetName().Name + "." + key;
             return _container.IsRegisteredWithKey<T>(@namespace);
         }
-
+        
         private static void BuildIOCContainer()
         {
             var builder = new ContainerBuilder();
@@ -130,6 +111,7 @@ namespace Freescape.Game.Server
             builder.RegisterType<ActivityLoggingService>().As<IActivityLoggingService>();
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
             builder.RegisterType<BackgroundService>().As<IBackgroundService>();
+            builder.RegisterType<BehaviourService>().As<IBehaviourService>();
             builder.RegisterType<ChatCommandService>().As<IChatCommandService>();
             builder.RegisterType<ColorTokenService>().As<IColorTokenService>();
             builder.RegisterType<CraftService>().As<ICraftService>();
@@ -171,10 +153,8 @@ namespace Freescape.Game.Server
             RegisterInterfaceImplementations<IConversation>(builder);
             RegisterInterfaceImplementations<IActionItem>(builder);
             RegisterInterfaceImplementations<IPerk>(builder);
-
-            // Abstract Classes
-            RegisterAbstractClass<ConversationBase>(builder);
-
+            RegisterInterfaceImplementations<ICreature>(builder);
+            
             // Third Party
             builder.RegisterType<BiowarePosition>().As<IBiowarePosition>();
             builder.RegisterType<BiowareXP2>().As<IBiowareXP2>();
@@ -187,7 +167,8 @@ namespace Freescape.Game.Server
             builder.RegisterType<NWNXPlayer>().As<INWNXPlayer>();
             builder.RegisterType<NWNXPlayerQuickBarSlot>().As<INWNXPlayerQuickBarSlot>();
             builder.RegisterType<NWScript>().As<INWScript>().SingleInstance();
-
+            builder.RegisterType<BehaviourTreeBuilder>().SingleInstance();
+            
             _container = builder.Build();
         }
 
@@ -209,27 +190,6 @@ namespace Freescape.Game.Server
                 else key = key + "." + type.Name;
                 
                 builder.RegisterType(type).As<T>().Keyed<T>(key);
-            }
-        }
-
-        private static void RegisterAbstractClass<T>(ContainerBuilder builder)
-            where T: class
-        {
-            if (!typeof(T).IsAbstract) throw new Exception(nameof(T) + " is not an abstract class.");
-
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-
-            foreach (var assembly in assemblies)
-            {
-                var types = assembly.GetTypes()
-                    .Where(t => t.IsClass &&
-                                !t.IsAbstract &&
-                                t.IsSubclassOf(typeof(T)));
-
-                foreach (var type in types)
-                {
-                    builder.RegisterType(type).Keyed<T>(type.Name);
-                }
             }
         }
     }

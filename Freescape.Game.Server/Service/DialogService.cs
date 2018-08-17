@@ -1,5 +1,6 @@
 ﻿using System;
 using Freescape.Game.Server.Conversation;
+using Freescape.Game.Server.Conversation.Contracts;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
 using Freescape.Game.Server.ValueObject.Dialog;
@@ -74,7 +75,7 @@ namespace Freescape.Game.Server.Service
             if (string.IsNullOrWhiteSpace(@class)) throw new ArgumentException(nameof(@class), nameof(@class) + " cannot be null, empty, or whitespace.");
             if (dialogNumber != -1 && (dialogNumber < 1 || dialogNumber > NumberOfDialogs)) throw new ArgumentOutOfRangeException(nameof(dialogNumber), nameof(dialogNumber) + " must be between 1 and " + NumberOfDialogs);
 
-            ConversationBase convo = App.Resolve<ConversationBase>(@class);
+            IConversation convo = App.ResolveByInterface<IConversation>("Conversation." + @class);
             
             PlayerDialog dialog = convo.SetUp(player);
             if (dialog == null)

@@ -48,7 +48,7 @@ namespace Freescape.Game.Server.Service
             string command = split[0].Substring(1, split[0].Length-1);
             _nwnxChat.SkipMessage();
 
-            if (!App.IsInterfaceKeyRegistered<IChatCommand>("ChatCommands." + command))
+            if (!App.IsKeyRegistered<IChatCommand>("ChatCommands." + command))
             {
                 sender.SendMessage(_color.Red("Invalid chat command. Use '/help' to get a list of available commands."));
                 return;

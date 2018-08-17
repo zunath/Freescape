@@ -1,4 +1,5 @@
 ﻿using Freescape.Game.Server;
+using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.Event.Creature;
 
 // ReSharper disable once CheckNamespace
@@ -10,7 +11,7 @@ namespace NWN.Scripts
     {
         public static void Main()
         {
-            App.RunEvent<OnBlocked>();
+            App.RunEvent<OnCreatureEvent>(CreatureEventType.OnBlocked);
         }
     }
 }
