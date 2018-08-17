@@ -4,8 +4,8 @@ using System.Linq;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
+using Freescape.Game.Server.ValueObject;
 using Freescape.Game.Server.ValueObject.Dialog;
-using Freescape.Game.Server.ValueObject.Perk;
 using NWN;
 
 namespace Freescape.Game.Server.Conversation

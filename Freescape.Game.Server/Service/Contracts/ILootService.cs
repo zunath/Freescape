@@ -1,5 +1,5 @@
 ﻿using Freescape.Game.Server.GameObject;
-using Freescape.Game.Server.ValueObject.GameObject;
+using Freescape.Game.Server.ValueObject;
 
 namespace Freescape.Game.Server.Service.Contracts
 {

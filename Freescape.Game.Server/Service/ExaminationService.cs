@@ -6,7 +6,7 @@ using Freescape.Game.Server.Data.Contracts;
 using Freescape.Game.Server.Data.Entities;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
-using Freescape.Game.Server.ValueObject.Perk;
+using Freescape.Game.Server.ValueObject;
 using NWN;
 
 namespace Freescape.Game.Server.Service

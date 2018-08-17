@@ -1,4 +1,4 @@
-﻿namespace Freescape.Game.Server.ValueObject.GameObject
+﻿namespace Freescape.Game.Server.ValueObject
 {
     public class ItemVO
     {

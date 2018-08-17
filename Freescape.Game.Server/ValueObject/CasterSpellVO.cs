@@ -1,6 +1,6 @@
 ﻿using Freescape.Game.Server.GameObject;
 
-namespace Freescape.Game.Server.ValueObject.CustomEffect
+namespace Freescape.Game.Server.ValueObject
 {
     public class CasterSpellVO
     {

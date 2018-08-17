@@ -1,4 +1,4 @@
-﻿namespace Freescape.Game.Server.ValueObject.Perk
+﻿namespace Freescape.Game.Server.ValueObject
 {
     public class PCPerkHeader
     {

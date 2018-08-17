@@ -8,7 +8,7 @@ using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.Extension;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Service.Contracts;
-using Freescape.Game.Server.ValueObject.GameObject;
+using Freescape.Game.Server.ValueObject;
 using NWN;
 using static NWN.NWScript;
 using Quest = Freescape.Game.Server.Data.Entities.Quest;

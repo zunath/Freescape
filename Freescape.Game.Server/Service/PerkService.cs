@@ -9,7 +9,7 @@ using Freescape.Game.Server.Enumeration;
 using Freescape.Game.Server.GameObject;
 using Freescape.Game.Server.Perk;
 using Freescape.Game.Server.Service.Contracts;
-using Freescape.Game.Server.ValueObject.Perk;
+using Freescape.Game.Server.ValueObject;
 using NWN;
 using static NWN.NWScript;
 using PerkExecutionType = Freescape.Game.Server.Enumeration.PerkExecutionType;

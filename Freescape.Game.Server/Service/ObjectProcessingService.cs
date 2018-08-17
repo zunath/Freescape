@@ -9,11 +9,13 @@ namespace Freescape.Game.Server.Service
     public class ObjectProcessingService : IObjectProcessingService
     {
         private readonly INWScript _;
+        private readonly AppState _state;
 
-
-        public ObjectProcessingService(INWScript script)
+        public ObjectProcessingService(INWScript script,
+            AppState state)
         {
             _ = script;
+            _state = state;
         }
 
         public void OnModuleLoad()
@@ -30,6 +32,33 @@ namespace Freescape.Game.Server.Service
                 }
 
                 area = NWArea.Wrap(_.GetNextArea());
+            }
+
+            RunProcessor();
+        }
+
+        private void RunProcessor()
+        {
+            foreach (var @event in _state.ProcessingEvents)
+            {
+                @event.Value.Invoke();
+            }
+
+            _.DelayCommand(0.01f, RunProcessor);
+        }
+
+        public string RegisterProcessingEvent(Action action)
+        {
+            string globalID = Guid.NewGuid().ToString();
+            _state.ProcessingEvents.Add(globalID, action);
+            return globalID;
+        }
+
+        public void UnregisterProcessingEvent(string globalID)
+        {
+            if (_state.ProcessingEvents.ContainsKey(globalID))
+            {
+                _state.ProcessingEvents.Remove(globalID);
             }
         }
 

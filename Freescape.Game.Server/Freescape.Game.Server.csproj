@@ -601,13 +601,13 @@
     <Compile Include="Service\StructureService.cs" />
     <Compile Include="Service\TimeService.cs" />
     <Compile Include="ValueObject\CustomData.cs" />
-    <Compile Include="ValueObject\CustomEffect\CasterSpellVO.cs" />
+    <Compile Include="ValueObject\CasterSpellVO.cs" />
     <Compile Include="ValueObject\Dialog\DialogPage.cs" />
     <Compile Include="ValueObject\Dialog\DialogResponse.cs" />
     <Compile Include="ValueObject\Dialog\PlayerDialog.cs" />
-    <Compile Include="ValueObject\GameObject\ItemVO.cs" />
+    <Compile Include="ValueObject\ItemVO.cs" />
     <Compile Include="ValueObject\MapPin.cs" />
-    <Compile Include="ValueObject\Perk\PCPerkHeader.cs" />
+    <Compile Include="ValueObject\PCPerkHeader.cs" />
     <Compile Include="ValueObject\Skill\CreatureSkillRegistration.cs" />
     <Compile Include="ValueObject\Skill\PlayerSkillPointTracker.cs" />
     <Compile Include="ValueObject\Skill\PlayerSkillRegistration.cs" />
@@ -649,7 +649,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)*.*" "C:/nwn-ee/mono" /E /Y /C
+    <PostBuildEvent>xcopy "$(TargetDir)*.*" "C:/NeverwinterNights/NWN/mono" /E /Y /C
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
