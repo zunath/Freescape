@@ -638,6 +638,7 @@
     <Content Include="ServerFiles\Database\freescape-db.sql" />
     <Content Include="ServerFiles\Database\scripts\AddPerkLevels.sql" />
     <Content Include="ServerFiles\Database\scripts\WipePlayerData.sql" />
+    <Content Include="ServerFiles\Freescape v2 CEP265_CSharp.mod" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
